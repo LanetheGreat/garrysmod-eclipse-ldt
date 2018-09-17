@@ -1,0 +1,79 @@
+-------------------------------------------------------------------------------
+-- GWEN is a system that allows you to load a spritesheet and generate a skin out of it.
+-- @module GWEN
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Used in derma skins to create a bordered rectangle drawing function from an
+-- image. The texture is taken either from last argument or from SKIN.GwenTexture.
+-- @function [parent=#GWEN] CreateTextureBorder
+-- @param  #number x The X coordinate on the texture.
+-- @param  #number y The Y coordinate on the texture.
+-- @param  #number w Width of the area on texture.
+-- @param  #number h Height of the area on texture.
+-- @param  #number left Left width of border.
+-- @param  #number top Top width of border.
+-- @param  #number right Right width of border.
+-- @param  #number bottom Bottom width of border.
+-- @param  #IMaterial source Texture of source image to create a bordered rectangle from. Uses SKIN.GwenTexture if not set.
+-- @return #function The drawing function.  
+-- Arguments are:
+-- 
+-- * _#number x_   : X coordinate for the box.
+-- * _#number y_   : Y coordinate for the box.
+-- * _#number w_   : Width of the box.
+-- * _#number h_   : Width of the box.
+-- * _#table  clr_ : Optional color, default is white. Uses the Color structure.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Used in derma skins to create a rectangle drawing function from an image.
+-- The rectangle will not be scaled, but instead it will be drawn in the
+-- center of the box. The texture is taken from SKIN.GwenTexture
+-- @function [parent=#GWEN] CreateTextureCentered
+-- @param  x The X coordinate on the texture.
+-- @param  y The Y coordinate on the texture.
+-- @param  w Width of the area on texture.
+-- @param  h Height of the area on texture.
+-- @return #function The drawing function.  
+-- Arguments are:
+-- 
+-- * _#number x_   : X coordinate for the box.
+-- * _#number y_   : Y coordinate for the box.
+-- * _#number w_   : Width of the box.
+-- * _#number h_   : Width of the box.
+-- * _#table  clr_ : Optional color, default is white. Uses the Color structure.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Used in derma skins to create a rectangle drawing function from an image.
+-- The texture of the rectangle will be scaled. The texture is taken
+-- from SKIN.GwenTexture.
+-- @function [parent=#GWEN] CreateTextureNormal
+-- @param  x The X coordinate on the texture.
+-- @param  y The Y coordinate on the texture.
+-- @param  w Width of the area on texture.
+-- @param  h Height of the area on texture.
+-- @return #function The drawing function.  
+-- Arguments are:
+-- 
+-- * _#number x_   : X coordinate for the box.
+-- * _#number y_   : Y coordinate for the box.
+-- * _#number w_   : Width of the box.
+-- * _#number h_   : Width of the box.
+-- * _#table  clr_ : Optional color, default is white. Uses the Color structure.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- When used in a material skin, it returns a color value from a point in the
+-- skin image.
+-- @function [parent=#GWEN] TextureColor
+-- @param  x X position of the pixel to get the color from.
+-- @param  y Y position of the pixel to get the color from.
+-- @return #table The color of the point on the skin as a Color structure.
+
+return nil

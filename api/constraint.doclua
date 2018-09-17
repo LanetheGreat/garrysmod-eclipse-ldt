@@ -1,0 +1,418 @@
+-------------------------------------------------------------------------------
+-- The constraint library allows you to control the constraint system built
+-- into the physics engine (rope, weld, ballsockets, etc).
+-- @module constraint
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Stores information about constraints in an entity's table.
+-- @function [parent=#constraint] AddConstraintTable
+-- @param  #Entity ent1 The entity to store the information on.
+-- @param  #Entity constrt The constraint to store in the entity's table.
+-- @param  #Entity ent2 Optional. If different from ent1, the info will also be stored in the table for this entity.
+-- @param  #Entity ent3 Optional. Same as ent2.
+-- @param  #Entity ent4 Optional. Same as ent2.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Stores info about the constraints on the entity's table. The only difference
+-- between this and **constraint.AddConstraintTable** is that the constraint
+-- does not get deleted when the entity is removed.
+-- @function [parent=#constraint] AddConstraintTableNoDelete
+-- @param  #Entity ent1 The entity to store the information on.
+-- @param  #Entity constrt The constraint to store in the entity's table.
+-- @param  #Entity ent2 Optional. If different from ent1, the info will also be stored in the table for this entity.
+-- @param  #Entity ent3 Optional. Same as ent2.
+-- @param  #Entity ent4 Optional. Same as ent2.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Creates an advanced ballsocket (ragdoll) constraint.  
+-- Uses a https://developer.valvesoftware.com/wiki/Phys_ragdollconstraint
+-- @function [parent=#constraint] AdvBallsocket
+-- @param  #Entity Ent1 First entity.
+-- @param  #Entity Ent2 Second entity.
+-- @param  #number Bone1 Bone of first entity. (0 for non-ragdolls)
+-- @param  #number Bone2 Bone of second entity. (0 for non-ragdolls)
+-- @param  #Vector LPos1 Position on the first entity, in its local space coordinates.
+-- @param  #Vector LPos2 Position on the second entity, in its local space coordinates.
+-- @param  #number forcelimit Amount of force until it breaks. (0 = unbreakable)
+-- @param  #number torquelimit Amount of torque (rotation speed) until it breaks. (0 = unbreakable)
+-- @param  #number xmin Minimum angle in rotations around the X axis local to the constraint.
+-- @param  #number ymin Minimum angle in rotations around the Y axis local to the constraint.
+-- @param  #number zmin Minimum angle in rotations around the Z axis local to the constraint.
+-- @param  #number xmax Maximum angle in rotations around the X axis local to the constraint.
+-- @param  #number ymax Maximum angle in rotations around the Y axis local to the constraint.
+-- @param  #number zmax Maximum angle in rotations around the Z axis local to the constraint.
+-- @param  #number xfric Rotational friction in the X axis local to the constraint.
+-- @param  #number yfric Rotational friction in the Y axis local to the constraint.
+-- @param  #number zfric Rotational friction in the Z axis local to the constraint.
+-- @param  #number onlyrotation Only limit rotation, free movement.
+-- @param  #number nocollide Whether the entities should be no-collided.
+-- @return #Entity A phys_ragdollconstraint entity. Will return false if the constraint could not be created.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Creates an axis constraint.
+-- @function [parent=#constraint] Axis
+-- @param  #Ent1 Ent1 First entity.
+-- @param  #Ent2 Ent2 Second entity.
+-- @param  #number Bone1 Bone of first entity. (0 for non-ragdolls)
+-- @param  #number Bone2 Bone of second entity. (0 for non-ragdolls)
+-- @param  #Vector LPos1 Position on the first entity, in its local space coordinates.
+-- @param  #Vector LPos2 Position on the second entity, in its local space coordinates.
+-- @param  #number forcelimit Amount of force until it breaks. (0 = unbreakable)
+-- @param  #number torquelimit Amount of torque (rotational force) until it breaks. (0 = unbreakable)
+-- @param  #number friction Constraint friction.
+-- @param  #number nocollide Whether the entities should be no-collided.
+-- @param  #Vector LocalAxis If you include the LocalAxis then LPos2 will not be used in the final constraint. However, LPos2 is still a required argument.
+-- @param  #boolean DontAddTable Whether or not to add the constraint info on the entity table. See **constraint.AddConstraintTable**.
+-- @return #Entity The new constraint. Will return false if the constraint could not be created.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Creates a ballsocket joint.
+-- @function [parent=#constraint] Ballsocket
+-- @param  #Ent1 Ent1 First entity.
+-- @param  #Ent2 Ent2 Second entity.
+-- @param  #number Bone1 Bone of first entity. (0 for non-ragdolls)
+-- @param  #number Bone2 Bone of second entity. (0 for non-ragdolls)
+-- @param  #Vector LocalPos Center position of the joint, relative to the **second** entity.
+-- @param  #number forcelimit Amount of force until it breaks. (0 = unbreakable)
+-- @param  #number torquelimit Amount of torque (rotational force) until it breaks. (0 = unbreakable)
+-- @param  #number nocollide Whether the entities should be no-collided.
+-- @return #Entity The new constraint. Will return false if the constraint could not be created.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Basic checks to make sure that the specified entity and bone are valid.
+-- Returns false if we should not be constraining the entity.
+-- @function [parent=#constraint] CanConstrain
+-- @param  #Entity ent The entity to check.
+-- @param  #number bone The bone of the entity to check. (use 0 for mono boned ents)
+-- @return #boolean Should this bone constrain this entity.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Creates a rope without any constraint.
+-- @function [parent=#constraint] CreateKeyframeRope
+-- @param  #Vector pos
+-- @param  #number width The thickness of the rope.
+-- @param  #string material Name of the material to use while rendering the rope.
+-- @param  #Entity Constraint
+-- @param  #Entity Ent1 The first entity to join the rope with.
+-- @param  #Vector LPos1 Position on the first entity, in its local space coordinates.
+-- @param  #number Bone1 Bone of first entity to join the rope with.
+-- @param  #Entity Ent2 The second entity to join the rope to.
+-- @param  #Vector LPos2 Position on the second entity, in its local space coordinates.
+-- @param  #number Bone2 Bone of second entity to join the rope to.
+-- @param  #table kv 
+-- @return #Entity The new rope entity.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Creates an invisible, non-moveable anchor point in the world to which things
+-- can be attached.
+-- @function [parent=#constraint] CreateStaticAnchorPoint
+-- @param  #Vector pos The position to spawn the anchor at.
+-- @return #Entity, #PhysObj, #number, #Vector The anchor point's entity, physics object, bone, and local position coordinates.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Creates an elastic constraint.
+-- @function [parent=#constraint] Elastic
+-- @param  #Entity Ent1 First entity.
+-- @param  #Entity Ent2 Second entity.
+-- @param  #number Bone1 Bone of first entity. (0 for non-ragdolls)
+-- @param  #number Bone2 Bone of second entity. (0 for non-ragdolls)
+-- @param  #Vector LPos1 Position of first end of the rope. Local to Ent1.
+-- @param  #Vector LPos2 Position of second end of the rope. Local to Ent2.
+-- @param  #number constant 
+-- @param  #number damping 
+-- @param  #number rdamping 
+-- @param  #string material Name of the material to use while rendering the rope.
+-- @param  #number width The thickness of the rope.
+-- @param  #boolean stretchonly 
+-- @return #Entity, #Entity The new Constraint, returns false on failure and the new rope, returns nil if the constraint could not be created.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the constraint of a specified type between two entities, if it exists.
+-- @function [parent=#constraint] Find
+-- @param  #Entity Ent1 The first entity to check.
+-- @param  #Entity Ent2 The second entity to check.
+-- @param  #string type The constraint type to look for. (eg. "Weld", "Elastic", "NoCollide").
+-- @param  #number bone1 The bone number for the first entity. (0 for monoboned entities)
+-- @param  #number bone2 The bone number for the second entity. (0 for monoboned entities)
+-- @return #Entity The found Constraint or nil.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the first constraint of a specific type directly connected to the
+-- entity found.
+-- @function [parent=#constraint] FindConstraint
+-- @param  #Entity ent The entity to check.
+-- @param  #string type The type of constraint. (eg. "Weld", "Elastic", "NoCollide")
+-- @return #table The constraint table, set with **constraint.AddConstraintTable**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the other entity involved in the first constraint of a specific type
+-- directly connected to the entity.
+-- @function [parent=#constraint] FindConstraintEntity
+-- @param  #Entity ent The entity to check.
+-- @param  #string type The type of constraint. (eg. "Weld", "Elastic", "NoCollide")
+-- @return #Entity The other entity.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns a table of all constraints of a specific type directly connected to
+-- the entity.
+-- @function [parent=#constraint] FindConstraints
+-- @param  #Entity ent The entity to check.
+-- @param  #string type The type of constraint. (eg. "Weld", "Elastic", "NoCollide")
+-- @return #table All the constraints of this entity.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Make this entity forget any constraints it knows about. Note that this will
+-- not actually remove the constraints.
+-- @function [parent=#constraint] ForgetConstraints
+-- @param  #Entity ent The entity that will forget its constraints.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns a table of all entities recursively constrained to an entitiy.
+-- @function [parent=#constraint] GetAllConstrainedEntities
+-- @param  #Entity ent The entity to check.
+-- @param  #table ResultTable Optionally, a table used to return the results. _(Default: nil)_
+-- @return #table A table containing all of the constrained entities. This includes all entities constrained to entities constrained to the supplied entity, etc.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns a table of all constraints directly connected to the entity.
+-- @function [parent=#constraint] GetTable
+-- @param  #Entity ent The entity to check.
+-- @return #table A list of all constraints connected to the entity.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns true if the entity has constraints attached to it.
+-- @function [parent=#constraint] HasConstraints
+-- @param  #Entity ent The entity to check.
+-- @return #boolean Whether the entity has any constraints or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Creates a Hydraulic constraint.
+-- @function [parent=#constraint] Hydraulic
+-- @param  #Player pl The player that will be used to call **numpad.OnDown**.
+-- @param  #Entity Ent1 First entity.
+-- @param  #Entity Ent2 Second entity.
+-- @param  #number Bone1 Bone of first entity. (0 for non-ragdolls)
+-- @param  #number Bone2 Bone of second entity. (0 for non-ragdolls)
+-- @param  #Vector LPos1 Position on the first entity, in its local space coordinates.
+-- @param  #Vector LPos2 Position on the second entity, in its local space coordinates.
+-- @param  #Length1 Length1 
+-- @param  #Length2 Length2 
+-- @param  #number width The thickness of the rope.
+-- @param  #number key The key binding, corresponding to a **KEY_Enums**.
+-- @param  #number fixed Whether the hydraulic is fixed.
+-- @param  #number speed The speed used when the constraint is activated.
+-- @param  #string material Name of the material to use while rendering the rope.
+-- @return #Entity, #Entity, #Entity, #Entity The Constraint, rope, controller, and slider for the new constraint. Constraint will return false on failure, and rope/controller/slider will all return nil on failure.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Creates a keep upright constraint.
+-- 
+-- **Note**: This function only works on prop_physics or prop_ragdoll.
+-- @function [parent=#constraint] Keepupright
+-- @param  #Entity ent The entity to keep upright.
+-- @param  #Angle ang The angle defined as "upright".
+-- @param  #number bone The bone of the entity to constrain. (0 for boneless)
+-- @param  #number angularLimit Basically, the strength of the constraint.
+-- @return #Entity The created constraint, if any or false if the constraint failed to set.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Creates a motor constraint.
+-- @function [parent=#constraint] Motor
+-- @param  #Ent1 Ent1 First entity.
+-- @param  #Ent2 Ent2 Second entity.
+-- @param  #number Bone1 Bone of first entity. (0 for non-ragdolls)
+-- @param  #number Bone2 Bone of second entity. (0 for non-ragdolls)
+-- @param  #Vector LPos1 Position on the first entity, in its local space coordinates.
+-- @param  #Vector LPos2 Position on the second entity, in its local space coordinates.
+-- @param  #number friction Constraint friction.
+-- @param  #number torque Amount of torque (rotational force) applied to the entity.
+-- @param  #number forcetime Amount of time that the torque will be applied.
+-- @param  #number nocollide Whether the entities should be no-collided.
+-- @param  #number toggle Whether the constraint is on toggle.
+-- @param  #Player pl The player that will be used to call **numpad.OnDown** and **numpad.OnUp**.
+-- @param  #number forcelimit Amount of force until it breaks. (0 = unbreakable)
+-- @param  #number numpadkey_fwd The key binding for "forward", corresponding to an **KEY _Enums**.
+-- @param  #number numpadkey_bwd The key binding for "backwards", corresponding to an **KEY _Enums**.
+-- @param  #Vector LocalAxis If you include the LocalAxis then LPos2 will not be used in the final constraint. However, LPos2 is still a required argument.
+-- @return #Entity, #Entity The new Constraint, returns false on failure and the new axis, returns nil if the constraint could not be created.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Creates a muscle constraint.
+-- @function [parent=#constraint] Muscle
+-- @param  #Player pl The player that will be used to call **numpad.OnDown**.
+-- @param  #Entity Ent1 First entity.
+-- @param  #Entity Ent2 Second entity.
+-- @param  #number Bone1 Bone of first entity. (0 for non-ragdolls)
+-- @param  #number Bone2 Bone of second entity. (0 for non-ragdolls)
+-- @param  #Vector LPos1 Position on the first entity, in its local space coordinates.
+-- @param  #Vector LPos2 Position on the second entity, in its local space coordinates.
+-- @param  #Length1 Length1 
+-- @param  #Length2 Length2 
+-- @param  #number width The thickness of the rope.
+-- @param  #number key The key binding, corresponding to a **KEY_Enums**.
+-- @param  #number fixed Whether the constraint is fixed.
+-- @param  #number period
+-- @param  #number amplitude
+-- @param  #boolean starton Whether the muscle is in the on or off position initially.
+-- @param  #string material Name of the material to use while rendering the rope.
+-- @return #Entity, #Entity, #Entity, #Entity The Constraint, rope, controller, and slider for the new constraint. Constraint will return false on failure, and rope/controller/slider will all return nil on failure.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Creates an no-collide "constraint". Disables collision between two entities.
+-- @function [parent=#constraint] NoCollide
+-- @param  #Entity Ent1 First entity.
+-- @param  #Entity Ent2 Second entity.
+-- @param  #number Bone1 Bone of first entity. (0 for non-ragdolls)
+-- @param  #number Bone2 Bone of second entity. (0 for non-ragdolls)
+-- @return #Entity The new Constraint. Will return false if the constraint could not be created.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Creates a pulley constraint.
+-- @function [parent=#constraint] Pulley
+-- @param  #Entity Ent1 First entity.
+-- @param  #Entity Ent4 Second entity.
+-- @param  #number Bone1 Bone of first entity. (0 for non-ragdolls)
+-- @param  #number Bone4 Bone of second entity. (0 for non-ragdolls)
+-- @param  #Vector LPos1 Position on the first entity, in its local space coordinates.
+-- @param  #Vector LPos4 Position on the second entity, in its local space coordinates.
+-- @param  #Vector WPos2
+-- @param  #Vector WPos3
+-- @param  #number forcelimit Amount of force until it breaks. (0 = unbreakable)
+-- @param  #boolean rigid Whether the constraint is rigid.
+-- @param  #number width The thickness of the rope.
+-- @param  #string material Name of the material to use while rendering the rope.
+-- @return #Entity The new Constraint. Will return false if the constraint could not be created.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Attempts to remove all constraints associated with an entity.
+-- @function [parent=#constraint] RemoveAll
+-- @param  #Entity ent The entity to remove constraints from.
+-- @return #boolean, #number Whether any constraints were removed and the number of constraints removed.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Attempts to remove all constraints of a specified type associated with an entity.
+-- @function [parent=#constraint] RemoveConstraints
+-- @param  #Entity ent The entity to check.
+-- @param  #string type The constraint type to remove. (eg. "Weld", "Elastic", "NoCollide")
+-- @return #boolean, #number Whether any constraints were removed and the number of constraints removed.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Creates a rope constraint - with rope!
+-- @function [parent=#constraint] Rope
+-- @param  #Entity Ent1 First entity.
+-- @param  #Entity Ent2 Second entity.
+-- @param  #number Bone1 Bone of first entity. (0 for non-ragdolls)
+-- @param  #number Bone2 Bone of second entity. (0 for non-ragdolls)
+-- @param  #Vector LPos1 Position on the first entity, in its local space coordinates.
+-- @param  #Vector LPos2 Position on the second entity, in its local space coordinates.
+-- @param  #number length Length of the rope.
+-- @param  #number addlength Amount to add to the length of the rope. Works as it does in the Rope tool.
+-- @param  #number forcelimit Amount of force until it breaks. (0 = unbreakable)
+-- @param  #number width The thickness of the rope.
+-- @param  #string material Name of the material to use while rendering the rope.
+-- @param  #boolean rigid Whether the constraint is rigid.
+-- @return #Entity, #Entity The new Constraint. Will return a keyframe_rope if roping to the same bone on the same entity or false if the constraint could not be created, and a rope or nil if a keyframe_rope or failure.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Creates a slider constraint.
+-- @function [parent=#constraint] Slider
+-- @param  #Entity Ent1 First entity.
+-- @param  #Entity Ent2 Second entity.
+-- @param  #number Bone1 Bone of first entity. (0 for non-ragdolls)
+-- @param  #number Bone2 Bone of second entity. (0 for non-ragdolls)
+-- @param  #Vector LPos1 Position on the first entity, in its local space coordinates.
+-- @param  #Vector LPos2 Position on the second entity, in its local space coordinates.
+-- @param  #number width The thickness of the rope.
+-- @param  #string material Name of the material to use while rendering the rope.
+-- @return #Entity, #Entity The new Constraint, returns false on failure and the new rope, returns nil if the constraint could not be created.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Creates a weld constraint.
+-- @function [parent=#constraint] Weld
+-- @param  #Entity Ent1 First entity.
+-- @param  #Entity Ent2 Second entity.
+-- @param  #number Bone1 Bone of first entity. (0 for non-ragdolls)
+-- @param  #number Bone2 Bone of second entity. (0 for non-ragdolls)
+-- @param  #number forcelimit Amount of force until it breaks. (0 = unbreakable)
+-- @param  #number nocollide Whether the entities should be no-collided.
+-- @param  #boolean deleteent1onbreak If true, when ent2 is removed, ent1 will also be removed.
+-- @return #Entity The new Constraint. Will return false if the constraint could not be created.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Creates a winch constraint.
+-- @function [parent=#constraint] Winch
+-- @param  #Player pl The player that will be used to call **numpad.OnDown** and **numpad.OnUp**.
+-- @param  #Entity Ent1 First entity.
+-- @param  #Entity Ent2 Second entity.
+-- @param  #number Bone1 Bone of first entity. (0 for non-ragdolls)
+-- @param  #number Bone2 Bone of second entity. (0 for non-ragdolls)
+-- @param  #Vector LPos1 Position on the first entity, in its local space coordinates.
+-- @param  #Vector LPos2 Position on the second entity, in its local space coordinates.
+-- @param  #number width The thickness of the rope.
+-- @param  #number fwd_bind The key binding for "forward", corresponding to an **KEY _Enums**.
+-- @param  #number bwd_bind The key binding for "backwards", corresponding to an **KEY _Enums**.
+-- @param  #number fwd_speed Forward speed.
+-- @param  #number bwd_speed Backwards speed.
+-- @param  #string material Name of the material to use while rendering the rope.
+-- @param  #number toggle Whether the constraint is on toggle.
+-- @return #Entity, #Entity, #Entity The Constraint, rope, and controller for the new constraint. Constraint will return false on failure, and rope and controller will all return nil on failure.
+
+return nil

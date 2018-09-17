@@ -1,0 +1,166 @@
+-------------------------------------------------------------------------------
+-- The debugoverlay library is mainly useful for 3D debugging, it can be used
+-- to draw shapes on the screen for debug purposes.
+-- 
+-- **Note**: _These functions will not do anything unless the **developer** console variable is set to non 0._
+-- 
+-- **Note**: _These function appear to not work in singleplayer._
+-- @module debugoverlay
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Displays an axis indicator at the specified position.
+-- 
+-- **Note**: _This function will silently fail if the **developer ConVar** is set to 0._
+-- @function [parent=#debugoverlay] Axis
+-- @param  #Vector origin Position origin.
+-- @param  #Angle ang Angle of the axis.
+-- @param  #number size Size of the axis.
+-- @param  #number lifetime Number of seconds to appear. _(Default: 1)_
+-- @param  #boolean ignoreZ If true, will draw on top of everything; ignoring the Z buffer. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Displays a solid colored box at the specified position.
+-- 
+-- **Note**: _This function will silently fail if the **developer ConVar** is set to 0._
+-- @function [parent=#debugoverlay] Box
+-- @param  #Vector origin Position origin.
+-- @param  #Vector mins Minimum bounds of the box.
+-- @param  #Vector maxs Maximum bounds of the box.
+-- @param  #number lifetime Number of seconds to appear. _(Default: 1)_
+-- @param  #table color The color of the box. Uses the Color structure. _(Default: Color(255,255,25))_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Displays a solid colored rotated box at the specified position.
+-- 
+-- **Note**: _This function will silently fail if the **developer ConVar** is set to 0._
+-- @function [parent=#debugoverlay] BoxAngles
+-- @param  #Vector pos Position of the box in World coordinates.
+-- @param  #Vector mins The mins of the box. (lowest corner)
+-- @param  #Vector maxs The maxs of the box. (highest corner)
+-- @param  #Angle ang The angle to draw the box at.
+-- @param  #number lifetime Number of seconds to appear. _(Default: 1)_
+-- @param  #table color The color of the box. Uses the Color structure. _(Default: Color(255,255,25))_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Creates a colored cross at the specified position for the specified time.
+-- 
+-- **Note**: _This function will silently fail if the **developer ConVar** is set to 0._
+-- @function [parent=#debugoverlay] 
+-- @param  #Vector origin Position origin.
+-- @param  #number size Size of the cross.
+-- @param  #number lifetime Number of seconds to appear. _(Default: 1)_
+-- @param  #table color The color of the box. Uses the Color structure. _(Default: Color(255,255,25))_
+-- @param  #boolean ignoreZ If true, will draw on top of everything; ignoring the Z buffer. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Displays 2D text at the specified coordinates.
+-- 
+-- **Note**: _This function will silently fail if the **developer ConVar** is set to 0._
+-- @function [parent=#debugoverlay] EntityTextAtPosition
+-- @param  #Vector origin Position origin.
+-- @param  #number line Line of text, will offset text on the to display the new line unobstructed.
+-- @param  #string text The text to display.
+-- @param  #number lifetime Number of seconds to appear. _(Default: 1)_
+-- @param  #table color The color of the box. Uses the Color structure. _(Default: Color(255,255,25))_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Draws a 3D grid of limited size in given position.
+-- 
+-- **Note**: _This function will silently fail if the **developer ConVar** is set to 0._
+-- @function [parent=#debugoverlay] Grid
+-- @param  #Vector position Position origin.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Displays a colored line at the specified position.
+-- 
+-- **Note**: _This function will silently fail if the **developer ConVar** is set to 0._
+-- @function [parent=#debugoverlay] Line
+-- @param  #Vector pos1 First position of the line; Starting point.
+-- @param  #Vector pos2 Second position of the line; Ending point.
+-- @param  #number lifetime Number of seconds to appear. _(Default: 1)_
+-- @param  #table color The color of the box. Uses the Color structure. _(Default: Color(255,255,25))_
+-- @param  #boolean ignoreZ If true, will draw on top of everything; ignoring the Z buffer. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Displays text triangle at the specified coordinates.
+-- 
+-- **Note**: _This function will silently fail if the **developer ConVar** is set to 0._
+-- @function [parent=#debugoverlay] ScreenText
+-- @param  #number x The position of the text, from 0 (left) to 1 (right).
+-- @param  #number y The position of the text, from 0 (top) to 1 (bottom).
+-- @param  #string text The text to display.
+-- @param  #number lifetime Number of seconds to appear. _(Default: 1)_
+-- @param  #table color The color of the box. Uses the Color structure. _(Default: Color(255,255,25))_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Displays a colored sphere at the specified position.
+-- 
+-- **Note**: _This function will silently fail if the **developer ConVar** is set to 0._
+-- @function [parent=#debugoverlay] Sphere
+-- @param  #Vector origin Position origin.
+-- @param  #number size Size of the sphere.
+-- @param  #number lifetime Number of seconds to appear. _(Default: 1)_
+-- @param  #table color The color of the box. Uses the Color structure. _(Default: Color(255,255,25))_
+-- @param  #boolean ignoreZ If true, will draw on top of everything; ignoring the Z buffer. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Displays a "swept" box, two boxes connected with lines by their vertices.
+-- 
+-- **Note**: _This function will silently fail if the **developer ConVar** is set to 0._
+-- @function [parent=#debugoverlay] SweptBox
+-- @param  #Vector vStart The start position of the box.
+-- @param  #Vector vEnd The end position of the box.
+-- @param  #Vector vMins The "minimum" edge of the box.
+-- @param  #Vector vMaxs The "maximum" edge of the box.
+-- @param  #Angle ang The angle to draw the boxes at.
+-- @param  #number lifetime Number of seconds to appear. _(Default: 1)_
+-- @param  #table color The color of the box. Uses the Color structure. _(Default: Color(255,255,25))_
+
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Displays text at the specified position.
+-- 
+-- **Note**: _This function will silently fail if the **developer ConVar** is set to 0._
+-- @function [parent=#debugoverlay] Text
+-- @param  #Vector origin Position origin.
+-- @param  #string text The text to display.
+-- @param  #number lifetime Number of seconds to appear. _(Default: 1)_
+-- @param  #boolean viewCheck Clip text that is obscured. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Displays a colored triangle at the specified coordinates.
+-- 
+-- **Note**: _This function will silently fail if the **developer ConVar** is set to 0._
+-- @function [parent=#debugoverlay] Triangle
+-- @param  #Vector pos1 First point of the triangle.
+-- @param  #Vector pos2 Second point of the triangle.
+-- @param  #Vector pos3 Third point of the triangle.
+-- @param  #number lifetime Number of seconds to appear. _(Default: 1)_
+-- @param  #table color The color of the box. Uses the Color structure. _(Default: Color(255,255,25))_
+-- @param  #boolean ignoreZ If true, will draw on top of everything; ignoring the Z buffer. _(Default: false)_
+
+return nil

@@ -1,0 +1,4 @@
+# Ignore Eclipse's default files
+/.settings/
+/.buildpath
+/.project

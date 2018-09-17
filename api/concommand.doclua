@@ -1,0 +1,74 @@
+-------------------------------------------------------------------------------
+-- The concommand library is used to create console commands which can be used
+-- to network (basic) information & events between the client and the server.
+-- @module concommand
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Creates a console command that runs a function in lua with optional autocompletion function and help text.
+-- @function [parent=#concommand] Add
+-- @param  #string name The command name to be used in console.  
+-- This cannot be a name of existing console command or console variable. It will silently fail if it is.
+-- @param  #function callback The function to run when the concommand is executed.  
+-- Arguments passed are:
+-- 
+-- * _#Player ply_    : The player the ran the concommand. NULL entity if command was entered with the dedicated server console.
+-- * _#string cmd_    : The concommand string (if one callback is used for several concommands).
+-- * _#table args_    : A table of all #string arguments.
+-- * _#string argStr_ : The arguments as a string.
+-- @param  #function autoComplete The function to call which should return a table of options for autocompletion. _(Default: nil)_  
+-- This only properly works on the client since it is not networked.  
+-- Arguments passed are:
+-- 
+-- * _#string cmd_  : The concommand this autocompletion is for.
+-- * _#string args_ : The arguments typed so far.
+-- @param  #string helpText The text to display should a user run 'help cmdName'. _(Default: nil)_
+-- @param  #number flags Concommand modifier flags. See FCVAR_ Enums. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Used by the engine to call the autocomplete function for a console command,
+-- and retrieve returned options.
+-- @function [parent=#concommand] AutoComplete
+-- @param  #string command Name of the command.
+-- @param  #string arguments Arguments given to the command.
+-- @return #table Possibilities for auto-completion. This is the return value of the auto-complete callback.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Returns the tables of all console command callbacks, and autocomplete
+-- functions, that were added to the game with **concommand.Add**.
+-- @function [parent=#concommand] GetTable
+-- @return #table, #table Table of command callback functions and table of command autocomplete functions.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Removes a console command.
+-- @function [parent=#concommand] Remove
+-- @param  #string name The name of the command to be removed.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._  
+-- _You might be looking for **RunConsoleCommand** or **Player:ConCommand**._
+-- 
+-- Used by the engine to run a console command's callback function, that was
+-- added with **concommand.Add**. An error is sent to the player's chat if no
+-- callback is found.
+-- @function [parent=#concommand] Run
+-- @param  #Player ply Player to run concommand on.
+-- @param  #string cmd Command name.
+-- @param  #any args Command arguments. Can be either a table or string.
+-- @param  #string argumentString String of all arguments sent to the command.
+-- @return #boolean true if the console command with the given name exists, and false if it doesn't.
+
+return nil

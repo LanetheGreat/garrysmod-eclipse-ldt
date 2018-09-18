@@ -6,37 +6,37 @@
 
 ------------------------------------------------------------------------------
 -- This library provides generic functions for coroutine manipulation.
--- This is a global variable which hold the preloaded @{coroutine} module.
+-- This is a global variable which holds the preloaded @{coroutine} module.
 -- @field[parent = #global] coroutine#coroutine coroutine preloaded module
 
 ------------------------------------------------------------------------------
 -- The package library provides basic facilities for loading and building modules in Lua.
--- This is a global variable which hold the preloaded @{package} module.
+-- This is a global variable which holds the preloaded @{package} module.
 -- @field[parent = #global] package#package package preloaded module
 
 ------------------------------------------------------------------------------
 -- This library provides generic functions for string manipulation.
--- This is a global variable which hold the preloaded @{string} module.
+-- This is a global variable which holds the preloaded @{string} module.
 -- @field[parent = #global] string#string string preloaded module
 
 ------------------------------------------------------------------------------
 -- This library provides generic functions for table manipulation.
--- This is a global variable which hold the preloaded @{table} module.
+-- This is a global variable which holds the preloaded @{table} module.
 -- @field[parent = #global] table#table table preloaded module
 
 ------------------------------------------------------------------------------
 -- This library is an interface to the standard C math library.
--- This is a global variable which hold the preloaded @{math} module.
+-- This is a global variable which holds the preloaded @{math} module.
 -- @field[parent = #global] math#math math preloaded module
 
 ------------------------------------------------------------------------------
 -- The I/O library provides function for file manipulation.
--- This is a global variable which hold the preloaded @{io} module.
+-- This is a global variable which holds the preloaded @{io} module.
 -- @field[parent = #global] io#io io preloaded module
 
 ------------------------------------------------------------------------------
 -- Operating System Facilities.
--- This is a global variable which hold the preloaded @{os} module.
+-- This is a global variable which holds the preloaded @{os} module.
 -- @field[parent = #global] os#os os preloaded module
 
 ------------------------------------------------------------------------------
@@ -406,7 +406,7 @@
 ------------------------------------------------------------------------------
 -- GWEN is a system that allows you to load a spritesheet and generate a
 -- skin out of it.
--- This is a global variable which hold the preloaded @{GWEN} module.
+-- This is a global variable which holds the preloaded @{GWEN} module.
 -- @field[parent = #global] GWEN#GWEN GWEN preloaded module
 
 ------------------------------------------------------------------------------
@@ -416,33 +416,33 @@
 -- 
 -- However, this library can also be used by anyone else to forcefully
 -- unlock certain achievements.
--- This is a global variable which hold the preloaded @{achievements} module.
+-- This is a global variable which holds the preloaded @{achievements} module.
 -- @field[parent = #global] achievements#achievements achievements preloaded module
 
 ------------------------------------------------------------------------------
 -- The ai library.
--- This is a global variable which hold the preloaded @{ai} module.
+-- This is a global variable which holds the preloaded @{ai} module.
 -- @field[parent = #global] ai#ai ai preloaded module
 
 ------------------------------------------------------------------------------
 -- Allows you to set up a schedule for NPCs to follow.
 -- This lets you dictate their actions.
--- This is a global variable which hold the preloaded @{ai_schedule} module.
+-- This is a global variable which holds the preloaded @{ai_schedule} module.
 -- @field[parent = #global] ai_schedule#ai_schedule ai_schedule preloaded module
 
 ------------------------------------------------------------------------------
 -- Used to create tasks for scripted NPCs.
--- This is a global variable which hold the preloaded @{ai_task} module.
+-- This is a global variable which holds the preloaded @{ai_task} module.
 -- @field[parent = #global] ai_task#ai_task ai_task preloaded module
 
 ------------------------------------------------------------------------------
 -- The baseclass library.
--- This is a global variable which hold the preloaded @{baseclass} module.
+-- This is a global variable which holds the preloaded @{baseclass} module.
 -- @field[parent = #global] baseclass#baseclass baseclass preloaded module
 
 ------------------------------------------------------------------------------
 -- The bitwise library contains useful functions for bitwise operations.
--- This is a global variable which hold the preloaded @{bit} module.
+-- This is a global variable which holds the preloaded @{bit} module.
 -- @field[parent = #global] bit#bit bit preloaded module
 
 ------------------------------------------------------------------------------
@@ -451,379 +451,383 @@
 -- 
 -- The matrix functions exist, but are mostly unusable unless you're
 -- familiar with the source engine's layout for each aspect.
--- This is a global variable which hold the preloaded @{cam} module.
+-- This is a global variable which holds the preloaded @{cam} module.
 -- @field[parent = #global] cam#cam cam preloaded module
 
 ------------------------------------------------------------------------------
 -- The library to interface with the default chatbox.
--- This is a global variable which hold the preloaded @{chat} module.
+-- This is a global variable which holds the preloaded @{chat} module.
 -- @field[parent = #global] chat#chat chat preloaded module
 
 ------------------------------------------------------------------------------
 -- The cleanup library allows you to control what happens to custom entities
 -- when the clean-up buttons are pressed in the Utilities tab of the Spawn
 -- menu (default Q).
--- This is a global variable which hold the preloaded @{cleanup} module.
+-- This is a global variable which holds the preloaded @{cleanup} module.
 -- @field[parent = #global] cleanup#cleanup cleanup preloaded module
 
 ------------------------------------------------------------------------------
 -- The concommand library is used to create console commands which can be used
 -- to network (basic) information & events between the client and the server.
--- This is a global variable which hold the preloaded @{concommand} module.
+-- This is a global variable which holds the preloaded @{concommand} module.
 -- @field[parent = #global] concommand#concommand concommand preloaded module
 
 ------------------------------------------------------------------------------
 -- The constraint library allows you to control the constraint system built
 -- into the physics engine (rope, weld, ballsockets, etc).
--- This is a global variable which hold the preloaded @{constraint} module.
+-- This is a global variable which holds the preloaded @{constraint} module.
 -- @field[parent = #global] constraint#constraint constraint preloaded module
 
 ------------------------------------------------------------------------------
 -- The construct library is used to control the physical properties of entities.
--- This is a global variable which hold the preloaded @{construct} module.
+-- This is a global variable which holds the preloaded @{construct} module.
 -- @field[parent = #global] construct#construct construct preloaded module
 
 ------------------------------------------------------------------------------
 -- Retrieves the control panel for a given stool in the Q menu.
--- This is a global variable which hold the preloaded @{controlpanel} module.
+-- This is a global variable which holds the preloaded @{controlpanel} module.
 -- @field[parent = #global] controlpanel#controlpanel controlpanel preloaded module
 
 ------------------------------------------------------------------------------
 -- Used to store permanent variables/settings on clients that will persist
 -- between servers.
--- This is a global variable which hold the preloaded @{cookie} module.
+-- This is a global variable which holds the preloaded @{cookie} module.
 -- @field[parent = #global] cookie#cookie cookie preloaded module
 
 ------------------------------------------------------------------------------
 -- The cvars library allows you to control what happens when a cvar (console
 -- variable) is changed.
--- This is a global variable which hold the preloaded @{cvars} module.
+-- This is a global variable which holds the preloaded @{cvars} module.
 -- @field[parent = #global] cvars#cvars cvars preloaded module
 
 ------------------------------------------------------------------------------
 -- The debugoverlay library is mainly useful for 3D debugging, it can be used
 -- to draw shapes on the screen for debug purposes.
--- This is a global variable which hold the preloaded @{debugoverlay} module.
+-- This is a global variable which holds the preloaded @{debugoverlay} module.
 -- @field[parent = #global] debugoverlay#debugoverlay debugoverlay preloaded module
 
 ------------------------------------------------------------------------------
--- 
--- This is a global variable which hold the preloaded @{derma} module.
+-- The derma library allows you to add custom derma controls and create &
+-- modify derma skins.
+-- This is a global variable which holds the preloaded @{derma} module.
 -- @field[parent = #global] derma#derma derma preloaded module
 
 ------------------------------------------------------------------------------
--- 
--- This is a global variable which hold the preloaded @{dragndrop} module.
+-- The drag'n'drop library, used internally by certain base panels to allow
+-- for drag'n'drop functionality, like spawnmenu's customizations.
+-- This is a global variable which holds the preloaded @{dragndrop} module.
 -- @field[parent = #global] dragndrop#dragndrop dragndrop preloaded module
 
 ------------------------------------------------------------------------------
--- 
--- This is a global variable which hold the preloaded @{draw} module.
+-- The draw library's purpose is to simplify the usage of the **surface** library.
+-- This is a global variable which holds the preloaded @{draw} module.
 -- @field[parent = #global] draw#draw draw preloaded module
 
 ------------------------------------------------------------------------------
--- 
--- This is a global variable which hold the preloaded @{drive} module.
+-- The drive library is for adding custom control modes to the new "remote
+-- control" entity piloting system in Garry's Mod 13.
+-- This is a global variable which holds the preloaded @{drive} module.
 -- @field[parent = #global] drive#drive drive preloaded module
 
 ------------------------------------------------------------------------------
--- 
--- This is a global variable which hold the preloaded @{duplicator} module.
+-- The duplicator library allows you to specify what should be saved when
+-- someone attempts to duplicate your custom entity with the duplicator tool.
+-- This is a global variable which holds the preloaded @{duplicator} module.
 -- @field[parent = #global] duplicator#duplicator duplicator preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{effects} module.
+-- This is a global variable which holds the preloaded @{effects} module.
 -- @field[parent = #global] effects#effects effects preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{engine} module.
+-- This is a global variable which holds the preloaded @{engine} module.
 -- @field[parent = #global] engine#engine engine preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{ents} module.
+-- This is a global variable which holds the preloaded @{ents} module.
 -- @field[parent = #global] ents#ents ents preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{file} module.
+-- This is a global variable which holds the preloaded @{file} module.
 -- @field[parent = #global] file#file file preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{frame_blend} module.
+-- This is a global variable which holds the preloaded @{frame_blend} module.
 -- @field[parent = #global] frame_blend#frame_blend frame_blend preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{game} module.
+-- This is a global variable which holds the preloaded @{game} module.
 -- @field[parent = #global] game#game game preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{gameevent} module.
+-- This is a global variable which holds the preloaded @{gameevent} module.
 -- @field[parent = #global] gameevent#gameevent gameevent preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{gamemode} module.
+-- This is a global variable which holds the preloaded @{gamemode} module.
 -- @field[parent = #global] gamemode#gamemode gamemode preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{gmod} module.
+-- This is a global variable which holds the preloaded @{gmod} module.
 -- @field[parent = #global] gmod#gmod gmod preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{gmsave} module.
+-- This is a global variable which holds the preloaded @{gmsave} module.
 -- @field[parent = #global] gmsave#gmsave gmsave preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{gui} module.
+-- This is a global variable which holds the preloaded @{gui} module.
 -- @field[parent = #global] gui#gui gui preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{halo} module.
+-- This is a global variable which holds the preloaded @{halo} module.
 -- @field[parent = #global] halo#halo halo preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{hammer} module.
+-- This is a global variable which holds the preloaded @{hammer} module.
 -- @field[parent = #global] hammer#hammer hammer preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{hook} module.
+-- This is a global variable which holds the preloaded @{hook} module.
 -- @field[parent = #global] hook#hook hook preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{http} module.
+-- This is a global variable which holds the preloaded @{http} module.
 -- @field[parent = #global] http#http http preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{input} module.
+-- This is a global variable which holds the preloaded @{input} module.
 -- @field[parent = #global] input#input input preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{jit} module.
+-- This is a global variable which holds the preloaded @{jit} module.
 -- @field[parent = #global] jit#jit jit preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{killicon} module.
+-- This is a global variable which holds the preloaded @{killicon} module.
 -- @field[parent = #global] killicon#killicon killicon preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{language} module.
+-- This is a global variable which holds the preloaded @{language} module.
 -- @field[parent = #global] language#language language preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{list} module.
+-- This is a global variable which holds the preloaded @{list} module.
 -- @field[parent = #global] list#list list preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{markup} module.
+-- This is a global variable which holds the preloaded @{markup} module.
 -- @field[parent = #global] markup#markup markup preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{matproxy} module.
+-- This is a global variable which holds the preloaded @{matproxy} module.
 -- @field[parent = #global] matproxy#matproxy matproxy preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{menu} module.
+-- This is a global variable which holds the preloaded @{menu} module.
 -- @field[parent = #global] menu#menu menu preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{menubar} module.
+-- This is a global variable which holds the preloaded @{menubar} module.
 -- @field[parent = #global] menubar#menubar menubar preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{mesh} module.
+-- This is a global variable which holds the preloaded @{mesh} module.
 -- @field[parent = #global] mesh#mesh mesh preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{motionsensor} module.
+-- This is a global variable which holds the preloaded @{motionsensor} module.
 -- @field[parent = #global] motionsensor#motionsensor motionsensor preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{navmesh} module.
+-- This is a global variable which holds the preloaded @{navmesh} module.
 -- @field[parent = #global] navmesh#navmesh navmesh preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{net} module.
+-- This is a global variable which holds the preloaded @{net} module.
 -- @field[parent = #global] net#net net preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{notification} module.
+-- This is a global variable which holds the preloaded @{notification} module.
 -- @field[parent = #global] notification#notification notification preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{numpad} module.
+-- This is a global variable which holds the preloaded @{numpad} module.
 -- @field[parent = #global] numpad#numpad numpad preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{physenv} module.
+-- This is a global variable which holds the preloaded @{physenv} module.
 -- @field[parent = #global] physenv#physenv physenv preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{player} module.
+-- This is a global variable which holds the preloaded @{player} module.
 -- @field[parent = #global] player#player player preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{player_manager} module.
+-- This is a global variable which holds the preloaded @{player_manager} module.
 -- @field[parent = #global] player_manager#player_manager player_manager preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{presets} module.
+-- This is a global variable which holds the preloaded @{presets} module.
 -- @field[parent = #global] presets#presets presets preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{properties} module.
+-- This is a global variable which holds the preloaded @{properties} module.
 -- @field[parent = #global] properties#properties properties preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{render} module.
+-- This is a global variable which holds the preloaded @{render} module.
 -- @field[parent = #global] render#render render preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{resource} module.
+-- This is a global variable which holds the preloaded @{resource} module.
 -- @field[parent = #global] resource#resource resource preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{saverestore} module.
+-- This is a global variable which holds the preloaded @{saverestore} module.
 -- @field[parent = #global] saverestore#saverestore saverestore preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{scripted_ents} module.
+-- This is a global variable which holds the preloaded @{scripted_ents} module.
 -- @field[parent = #global] scripted_ents#scripted_ents scripted_ents preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{search} module.
+-- This is a global variable which holds the preloaded @{search} module.
 -- @field[parent = #global] search#search search preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{serverlist} module.
+-- This is a global variable which holds the preloaded @{serverlist} module.
 -- @field[parent = #global] serverlist#serverlist serverlist preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{sound} module.
+-- This is a global variable which holds the preloaded @{sound} module.
 -- @field[parent = #global] sound#sound sound preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{spawnmenu} module.
+-- This is a global variable which holds the preloaded @{spawnmenu} module.
 -- @field[parent = #global] spawnmenu#spawnmenu spawnmenu preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{sql} module.
+-- This is a global variable which holds the preloaded @{sql} module.
 -- @field[parent = #global] sql#sql sql preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{steamworks} module.
+-- This is a global variable which holds the preloaded @{steamworks} module.
 -- @field[parent = #global] steamworks#steamworks steamworks preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{surface} module.
+-- This is a global variable which holds the preloaded @{surface} module.
 -- @field[parent = #global] surface#surface surface preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{system} module.
+-- This is a global variable which holds the preloaded @{system} module.
 -- @field[parent = #global] system#system system preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{team} module.
+-- This is a global variable which holds the preloaded @{team} module.
 -- @field[parent = #global] team#team team preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{timer} module.
+-- This is a global variable which holds the preloaded @{timer} module.
 -- @field[parent = #global] timer#timer timer preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{umsg} module.
+-- This is a global variable which holds the preloaded @{umsg} module.
 -- @field[parent = #global] umsg#umsg umsg preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{undo} module.
+-- This is a global variable which holds the preloaded @{undo} module.
 -- @field[parent = #global] undo#undo undo preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{usermessage} module.
+-- This is a global variable which holds the preloaded @{usermessage} module.
 -- @field[parent = #global] usermessage#usermessage usermessage preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{utf8} module.
+-- This is a global variable which holds the preloaded @{utf8} module.
 -- @field[parent = #global] utf8#utf8 utf8 preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{util} module.
+-- This is a global variable which holds the preloaded @{util} module.
 -- @field[parent = #global] util#util util preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{util.worldpicker} module.
+-- This is a global variable which holds the preloaded @{util.worldpicker} module.
 -- @field[parent = #global] util.worldpicker#util.worldpicker util.worldpicker preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{vgui} module.
+-- This is a global variable which holds the preloaded @{vgui} module.
 -- @field[parent = #global] vgui#vgui vgui preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{video} module.
+-- This is a global variable which holds the preloaded @{video} module.
 -- @field[parent = #global] video#video video preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{weapons} module.
+-- This is a global variable which holds the preloaded @{weapons} module.
 -- @field[parent = #global] weapons#weapons weapons preloaded module
 
 ------------------------------------------------------------------------------
 -- 
--- This is a global variable which hold the preloaded @{widgets} module.
+-- This is a global variable which holds the preloaded @{widgets} module.
 -- @field[parent = #global] widgets#widgets widgets preloaded module
 
 -------------------------------------------------------------------------------

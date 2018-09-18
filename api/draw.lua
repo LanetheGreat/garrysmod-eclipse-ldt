@@ -1,0 +1,165 @@
+-------------------------------------------------------------------------------
+-- The draw library's purpose is to simplify the usage of the **surface** library.
+-- @module draw
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Simple draw text at position, but this will expand newlines and tabs.
+-- 
+-- **Note**: _This is a rendering function that requires a 2D rendering context._  
+-- _This means that it will only work in **hooks with a 2D rendering context**._
+-- 
+-- See also **MarkupObject** for limited width and markup support.
+-- @function [parent=#draw] DrawText
+-- @param  #string text Text to be drawn.
+-- @param  #string font Name of font to draw the text in. See **surface.CreateFont** to create your own, or **Default Fonts** for a list of default fonts. _(Default: "DermaDefault")_
+-- @param  #number x The X Coordinate. _(Default: 0)_
+-- @param  #number y The Y Coordinate. _(Default: 0)_
+-- @param  #table color Color to draw the text in. Uses the Color structure. _(Default: Color(255,255,255,255))_
+-- @param  #number xAlign Where to align the text horizontally. Uses the TEXT_ALIGN _Enums. _(Default: TEXT_ALIGN_LEFT)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Returns the height of the specified font in pixels.
+-- 
+-- **Note**: _This is a rendering function that requires a 2D rendering context._  
+-- _This means that it will only work in **hooks with a 2D rendering context**._
+-- @function [parent=#draw] GetFontHeight
+-- @param  #string font Name of the font to get the height of.
+-- @return #number The height of the font in pixels.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Sets drawing texture to a default white texture (vgui/white) via
+-- **surface.SetMaterial**. Useful for resetting the drawing texture.
+-- 
+-- **Note**: _This is a rendering function that requires a 2D rendering context._  
+-- _This means that it will only work in **hooks with a 2D rendering context**._
+-- @function [parent=#draw] NoTexture
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Draws a rounded rectangle.
+-- 
+-- **Note**: _If you intend to draw a non-rounded rectangle, then it's more
+-- efficient to use **surface.DrawRect**._
+-- 
+-- **Note**: _This is a rendering function that requires a 2D rendering context._  
+-- _This means that it will only work in **hooks with a 2D rendering context**._
+-- @function [parent=#draw] RoundedBox
+-- @param  #number cornerRadius Radius of the rounded corners, works best with a multiple of 2.
+-- @param  #number x The x coordinate of the top left of the rectangle.
+-- @param  #number y The y coordinate of the top left of the rectangle.
+-- @param  #number width The width of the rectangle.
+-- @param  #number height The height of the rectangle.
+-- @param  #table color The color to fill the rectangle with. Uses the Color structure.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Draws a rounded rectangle. This function also lets you specify which corners
+-- are drawn rounded.
+-- 
+-- **Note**: _This is a rendering function that requires a 2D rendering context._  
+-- _This means that it will only work in **hooks with a 2D rendering context**._
+-- @function [parent=#draw] RoundedBoxEx
+-- @param  #number cornerRadius Radius of the rounded corners, works best with a multiple of 2.
+-- @param  #number x The x coordinate of the top left of the rectangle.
+-- @param  #number y The y coordinate of the top left of the rectangle.
+-- @param  #number width The width of the rectangle.
+-- @param  #number height The height of the rectangle.
+-- @param  #table color The color to fill the rectangle with. Uses the Color structure.
+-- @param  #boolean roundTopLeft Whether the top left corner should be rounded. _(Default: false)_
+-- @param  #boolean roundTopRight Whether the top right corner should be rounded. _(Default: false)_
+-- @param  #boolean roundBottomLeft Whether the bottom left corner should be rounded. _(Default: false)_
+-- @param  #boolean roundBottomRight Whether the bottom right corner should be rounded. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Draws text on the screen.
+-- 
+-- **Note**: _This is a rendering function that requires a 2D rendering context._  
+-- _This means that it will only work in **hooks with a 2D rendering context**._
+-- @function [parent=#draw] SimpleText
+-- @param  #string text Text to be drawn.
+-- @param  #string font Name of font to draw the text in. See **surface.CreateFont** to create your own, or **Default Fonts** for a list of default fonts. _(Default: "DermaDefault")_
+-- @param  #number x The X Coordinate. _(Default: 0)_
+-- @param  #number y The Y Coordinate. _(Default: 0)_
+-- @param  #table color Color to draw the text in. Uses the Color structure. _(Default: Color(255,255,255,255))_
+-- @param  #number xAlign Where to align the text horizontally. Uses the TEXT_ALIGN _Enums. _(Default: TEXT_ALIGN_LEFT)_
+-- @param  #number yAlign Where to align the text vertically. Uses the TEXT_ALIGN _Enums. _(Default: TEXT_ALIGN_TOP)_
+-- @return #number, #number The width and height of the text. Same values as if you were calling **surface.GetTextSize**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Creates a simple line of text that is outlined.
+-- 
+-- **Note**: _This is a rendering function that requires a 2D rendering context._  
+-- _This means that it will only work in **hooks with a 2D rendering context**._
+-- @function [parent=#draw] SimpleTextOutlined
+-- @param  #string text Text to be drawn.
+-- @param  #string font Name of font to draw the text in. See **surface.CreateFont** to create your own, or **Default Fonts** for a list of default fonts. _(Default: "DermaDefault")_
+-- @param  #number x The X Coordinate. _(Default: 0)_
+-- @param  #number y The Y Coordinate. _(Default: 0)_
+-- @param  #table color Color to draw the text in. Uses the Color structure. _(Default: Color(255,255,255,255))_
+-- @param  #number xAlign Where to align the text horizontally. Uses the TEXT_ALIGN _Enums. _(Default: TEXT_ALIGN_LEFT)_
+-- @param  #number yAlign Where to align the text vertically. Uses the TEXT_ALIGN _Enums. _(Default: TEXT_ALIGN_TOP)_
+-- @return #number, #number The width and height of the text. Same values as if you were calling **surface.GetTextSize**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Works like **draw.SimpleText** but uses a table structure instead.
+-- 
+-- **Note**: _This is a rendering function that requires a 2D rendering context._  
+-- _This means that it will only work in **hooks with a 2D rendering context**._
+-- @function [parent=#draw] Text
+-- @param  #table textdata The text properties. See the **TextData structure**.
+-- @return #number, #number The width and height of the drawn text.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Works like **draw.Text**, but draws the text as a shadow.
+-- 
+-- **Note**: _This is a rendering function that requires a 2D rendering context._  
+-- _This means that it will only work in **hooks with a 2D rendering context**._
+-- @function [parent=#draw] TextShadow
+-- @param  #table textdata The text properties. See the **TextData structure**.
+-- @param  #number distance How far away the shadow appears.
+-- @param  #number alpha How visible the shadow is (0-255). _(Default: 200)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Draws a texture with a table structure.
+-- 
+-- **Note**: _This is a rendering function that requires a 2D rendering context._  
+-- _This means that it will only work in **hooks with a 2D rendering context**._
+-- @function [parent=#draw] TexturedQuad
+-- @param  #table texturedata The texture properties. See **TextureData structure**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Draws a rounded box with text in it.
+-- 
+-- **Note**: _This is a rendering function that requires a 2D rendering context._  
+-- _This means that it will only work in **hooks with a 2D rendering context**._
+-- @function [parent=#draw] WordBox
+-- @param  #number bordersize Size of border, should be multiple of 2. Ideally this will be 8 or 16.
+-- @param  #number x The X Coordinate.
+-- @param  #number y The Y Coordinate.
+-- @param  #string text Text to draw.
+-- @param  #string font Name of font to draw the text in. See **surface.CreateFont** to create your own, or **Default Fonts** for a list of default fonts. _(Default: "DermaDefault")_
+-- @param  #table boxcolor The border color. Uses the Color structure.
+-- @param  #table textcolor The text color. Uses the Color structure.
+-- @return #number, #number The width and height of the word box.
+
+return nil

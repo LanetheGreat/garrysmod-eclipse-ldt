@@ -271,8 +271,8 @@
 -- @param  #number toggle Whether the constraint is on toggle.
 -- @param  #Player pl The player that will be used to call **numpad.OnDown** and **numpad.OnUp**.
 -- @param  #number forcelimit Amount of force until it breaks. (0 = unbreakable)
--- @param  #number numpadkey_fwd The key binding for "forward", corresponding to an **KEY _Enums**.
--- @param  #number numpadkey_bwd The key binding for "backwards", corresponding to an **KEY _Enums**.
+-- @param  #number numpadkey_fwd The key binding for "forward", corresponding to an **KEY\_Enums**.
+-- @param  #number numpadkey_bwd The key binding for "backwards", corresponding to an **KEY\_Enums**.
 -- @param  #Vector LocalAxis If you include the LocalAxis then LPos2 will not be used in the final constraint. However, LPos2 is still a required argument.
 -- @return #Entity, #Entity The new Constraint, returns false on failure and the new axis, returns nil if the constraint could not be created.
 
@@ -407,8 +407,8 @@
 -- @param  #Vector LPos1 Position on the first entity, in its local space coordinates.
 -- @param  #Vector LPos2 Position on the second entity, in its local space coordinates.
 -- @param  #number width The thickness of the rope.
--- @param  #number fwd_bind The key binding for "forward", corresponding to an **KEY _Enums**.
--- @param  #number bwd_bind The key binding for "backwards", corresponding to an **KEY _Enums**.
+-- @param  #number fwd_bind The key binding for "forward", corresponding to an **KEY\_Enums**.
+-- @param  #number bwd_bind The key binding for "backwards", corresponding to an **KEY\_Enums**.
 -- @param  #number fwd_speed Forward speed.
 -- @param  #number bwd_speed Backwards speed.
 -- @param  #string material Name of the material to use while rendering the rope.

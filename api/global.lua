@@ -536,77 +536,89 @@
 -- @field[parent = #global] duplicator#duplicator duplicator preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The effects library allows you to manually add scripted effects.
 -- This is a global variable which holds the preloaded @{effects} module.
 -- @field[parent = #global] effects#effects effects preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The engine library provides functions to access various features in the
+-- game's engine, most are related to the demo and save systems.
 -- This is a global variable which holds the preloaded @{engine} module.
 -- @field[parent = #global] engine#engine engine preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The ents library provides functions for creating and finding entities in
+-- the game.
 -- This is a global variable which holds the preloaded @{ents} module.
 -- @field[parent = #global] ents#ents ents preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The file library provides functions for finding, reading and writing to files.
 -- This is a global variable which holds the preloaded @{file} module.
 -- @field[parent = #global] file#file file preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The frame blending library.
 -- This is a global variable which holds the preloaded @{frame_blend} module.
 -- @field[parent = #global] frame_blend#frame_blend frame_blend preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The game library provides functions to access various features in the
+-- game's engine, most of it's functions are related to controlling the map.
 -- This is a global variable which holds the preloaded @{game} module.
 -- @field[parent = #global] game#game game preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- Used to interface with the built in game events system.
 -- This is a global variable which holds the preloaded @{gameevent} module.
 -- @field[parent = #global] gameevent#gameevent gameevent preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The gamemode library provides functions relating to the gamemode system in
+-- Garry's Mod.
 -- This is a global variable which holds the preloaded @{gamemode} module.
 -- @field[parent = #global] gamemode#gamemode gamemode preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- Similar purpose to the **game library** and **engine library**, allows access to
+-- various features of the game's engine.
 -- This is a global variable which holds the preloaded @{gmod} module.
 -- @field[parent = #global] gmod#gmod gmod preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The gmsave library provides functions relating to the singleplayer save
+-- system in Garry's Mod.
 -- This is a global variable which holds the preloaded @{gmsave} module.
 -- @field[parent = #global] gmsave#gmsave gmsave preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The gui library is similar to the **input library** but features functions that
+-- are more focused on the mouse's interaction with GUI panels.
 -- This is a global variable which holds the preloaded @{gui} module.
 -- @field[parent = #global] gui#gui gui preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The halo library is used to draw glowing outlines around entities, an
+-- example of this can be seen by picking up props with the physgun in Garry's
+-- Mod 13.
 -- This is a global variable which holds the preloaded @{halo} module.
 -- @field[parent = #global] halo#halo halo preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The hammer library.
 -- This is a global variable which holds the preloaded @{hammer} module.
 -- @field[parent = #global] hammer#hammer hammer preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The hook library allows you to add hooks called by the game engine, allowing
+-- multiple scripts to modify game function.
 -- This is a global variable which holds the preloaded @{hook} module.
 -- @field[parent = #global] hook#hook hook preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The http library allows either the server or client to communicate with
+-- external websites via HTTP, both GET (http.Fetch) and POST (http.Post) are
+-- supported. A more powerful & advanced method can be used via the global HTTP function.
 -- This is a global variable which holds the preloaded @{http} module.
 -- @field[parent = #global] http#http http preloaded module
 

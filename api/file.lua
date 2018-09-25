@@ -1,0 +1,164 @@
+-------------------------------------------------------------------------------
+-- The file library provides functions for finding, reading and writing to files.  
+-- The following path values are most commonly used:
+-- 
+-- * "LUA" searches the lua files (in /lua/, in your gamemodes, in all the addons).
+-- * "GAME" searches all the mounted content (main folder, addons, mounted games etc).
+-- * "MOD" searches only the garrysmod folder.
+-- * "DATA" searches in the data folder.
+-- 
+-- For the full list of path values, type “path” in the console.
+-- @module file
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Appends a file relative to the data folder.
+-- @function [parent=#file] Append
+-- @param  #string name The file's name.
+-- @param  #string content The content which should be appended to the file.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Creates a directory that is relative to the data folder.
+-- @function [parent=#file] CreateDir
+-- @param  #string name The directory's name.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Deletes a file or empty folder that is relative to the data folder. You
+-- can't remove any files outside of data folder.
+-- @function [parent=#file] Delete
+-- @param  #string name The file name.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Returns a boolean of whether the file or directory exists or not.
+-- @function [parent=#file] Exists
+-- @param  #string name The file or directory's name.
+-- @param  #string path The path of where to look for the file:
+-- 
+-- * "GAME" Structured like base folder (garrysmod/), searches all the mounted content. (main folder, addons, mounted games etc)
+-- * "LUA" or "lsv" - All Lua folders (lua/) including gamesmodes and addons.
+-- * "DATA" Data folder. (garrysmod/data)
+-- * "MOD" Strictly the game folder (garrysmod/), ignores mounting.
+-- @return #boolean Returns true if the file exists and false if it is not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Returns a list of files and directories inside a single folder.
+-- @function [parent=#file] Find
+-- @param  #string name The wildcard to search for. "models/*.mdl" will list .mdl files in the models/ folder.
+-- @param  #string path The path to look for the files and directories in. See **this list** for a list of valid paths.
+-- @param  #string sorting The sorting to be used, optional. _(Default: "nameasc")_
+-- 
+-- * "nameasc": sort the files ascending by name.
+-- * "namedesc": sort the files descending by name
+-- * "dateasc": sort the files ascending by date.
+-- * "datedesc" sort the files descending by date.
+-- @return #table, #table A table of found files and found directories, or nil for both if the path is invalid.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Returns whether the given file is a directory or not.
+-- @function [parent=#file] IsDir
+-- @param  #string fileName The file or directory's name.
+-- @param  #string path The path type.
+-- @return #boolean True if the given path is a directory or false if it is a file.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Attempts to open a file with the given mode.
+-- @function [parent=#file] Open
+-- @param  #string fileName The files name. See **file.Write** for details on filename restrictions when writing to files.
+-- @param  #string fileMode The mode to open the file in. Possible values are:
+-- 
+-- * **r** - read mode
+-- * **w** - write mode
+-- * **a** - append mode
+-- * **rb** - binary read mode
+-- * **wb** - binary write mode
+-- * **ab** - binary append mode
+-- @param  #string path The path of where to look for the file:
+-- 
+-- * "GAME" Structured like base folder (garrysmod/), searches all the mounted content. (main folder, addons, mounted games etc)
+-- * "LUA" or "lsv" - All Lua folders (lua/) including gamesmodes and addons.
+-- * "DATA" Data folder. (garrysmod/data)
+-- * "MOD" Strictly the game folder (garrysmod/), ignores mounting.
+-- @return #File The opened file object, or nil if it failed to open due to it not existing or being used by another process.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Returns the content of a file.  
+-- Beware of casing -- some filesystems are case-sensitive. SRCDS on Linux seems to force file/directory creation to lowercase, but will not modify read operations.
+-- @function [parent=#file] Read
+-- @param  #string fileName The name of the file.
+-- @param  #string path The path of where to look for the file: _(Default: "DATA")_
+-- 
+-- * "GAME" Structured like base folder (garrysmod/), searches all the mounted content. (main folder, addons, mounted games etc)
+-- * "LUA" or "lsv" - All Lua folders (lua/) including gamesmodes and addons.
+-- * "DATA" Data folder. (garrysmod/data)
+-- * "MOD" Strictly the game folder (garrysmod/), ignores mounting.
+-- @return #string The data from the file as a string, or nil if the file isn't found.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Attempts to rename a file with the given name to another given name.  
+-- This function is constrained to the data/ folder.
+-- @function [parent=#file] Rename
+-- @param  #string orignalFileName The original file or folder name. See **file.Write** for details on filename restrictions when writing to files.
+-- @param  #string targetFileName The target file or folder name. See **file.Write** for details on filename restrictions when writing to files.
+-- @return #boolean True on success, false otherwise.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Returns the file's size in bytes. If the file is not found, returns -1.
+-- @function [parent=#file] Size
+-- @param  #string fileName The name of the file.
+-- @param  #string path The path of where to look for the file: _(Default: "DATA")_
+-- 
+-- * "GAME" Structured like base folder (garrysmod/), searches all the mounted content. (main folder, addons, mounted games etc)
+-- * "LUA" or "lsv" - All Lua folders (lua/) including gamesmodes and addons.
+-- * "DATA" Data folder. (garrysmod/data)
+-- * "MOD" Strictly the game folder (garrysmod/), ignores mounting.
+-- @return #number The file's size in bytes.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Returns when the file or folder was lasted modified in Unix time.
+-- @function [parent=#file] Time
+-- @param  #string path The file or folder path.
+-- @param  #string gamePath The game path to be used:
+-- 
+-- * "GAME" Structured like base folder (garrysmod/), searches all the mounted content. (main folder, addons, mounted games etc)
+-- * "LUA" or "lsv" - All Lua folders (lua/) including gamesmodes and addons.
+-- * "DATA" Data folder. (garrysmod/data)
+-- * "MOD" Strictly the game folder (garrysmod/), ignores mounting.
+-- @return #number Seconds passed since the Unix epoch.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Writes the given string to a file. Erases all previous data in the file. To
+-- add data without deleting previous data, use file.Append.
+-- 
+-- It is recommended to write only to lowercase file paths and names because
+-- some filesystems are case-sensitive. The Linux build of SRCDS seems to
+-- auto-lower directory and file names on write, but not on read.
+-- @function [parent=#file] Write
+-- @param  #string fileName The name of the file being written into.  
+-- The filename must end with ".txt", ".jpg", ".png", ".vtf" or ".dat" and the path is relative to the data/ folder.  
+-- Restricted symbols are: " :
+-- @param  #string content The content that will be written into the file.
+
+return nil

@@ -17,7 +17,7 @@
 -- @param  #number x The X Coordinate. _(Default: 0)_
 -- @param  #number y The Y Coordinate. _(Default: 0)_
 -- @param  #table color Color to draw the text in. Uses the Color structure. _(Default: Color(255,255,255,255))_
--- @param  #number xAlign Where to align the text horizontally. Uses the TEXT_ALIGN _Enums. _(Default: TEXT_ALIGN_LEFT)_
+-- @param  #number xAlign Where to align the text horizontally. Uses the TEXT\_ALIGN\_Enums. _(Default: TEXT_ALIGN_LEFT)_
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_
@@ -91,8 +91,8 @@
 -- @param  #number x The X Coordinate. _(Default: 0)_
 -- @param  #number y The Y Coordinate. _(Default: 0)_
 -- @param  #table color Color to draw the text in. Uses the Color structure. _(Default: Color(255,255,255,255))_
--- @param  #number xAlign Where to align the text horizontally. Uses the TEXT_ALIGN _Enums. _(Default: TEXT_ALIGN_LEFT)_
--- @param  #number yAlign Where to align the text vertically. Uses the TEXT_ALIGN _Enums. _(Default: TEXT_ALIGN_TOP)_
+-- @param  #number xAlign Where to align the text horizontally. Uses the TEXT\_ALIGN\_Enums. _(Default: TEXT_ALIGN_LEFT)_
+-- @param  #number yAlign Where to align the text vertically. Uses the TEXT\_ALIGN\_Enums. _(Default: TEXT_ALIGN_TOP)_
 -- @return #number, #number The width and height of the text. Same values as if you were calling **surface.GetTextSize**.
 
 -------------------------------------------------------------------------------
@@ -108,8 +108,8 @@
 -- @param  #number x The X Coordinate. _(Default: 0)_
 -- @param  #number y The Y Coordinate. _(Default: 0)_
 -- @param  #table color Color to draw the text in. Uses the Color structure. _(Default: Color(255,255,255,255))_
--- @param  #number xAlign Where to align the text horizontally. Uses the TEXT_ALIGN _Enums. _(Default: TEXT_ALIGN_LEFT)_
--- @param  #number yAlign Where to align the text vertically. Uses the TEXT_ALIGN _Enums. _(Default: TEXT_ALIGN_TOP)_
+-- @param  #number xAlign Where to align the text horizontally. Uses the TEXT\_ALIGN\_Enums. _(Default: TEXT_ALIGN_LEFT)_
+-- @param  #number yAlign Where to align the text vertically. Uses the TEXT\_ALIGN\_Enums. _(Default: TEXT_ALIGN_TOP)_
 -- @return #number, #number The width and height of the text. Same values as if you were calling **surface.GetTextSize**.
 
 -------------------------------------------------------------------------------

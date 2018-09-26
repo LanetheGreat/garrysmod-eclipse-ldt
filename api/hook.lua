@@ -7,7 +7,7 @@
 -- _Client_ | _Menu_ | _Server_
 -- 
 -- Add a hook to be called upon the given event occurring.
--- @function [parent=#hooks] Add
+-- @function [parent=#hook] Add
 -- @param  #string eventName The event to hook on to, see **GM Hooks** and **Sandbox Hooks**.
 -- @param  #any identifier The unique identifier, usually a string. This can be used elsewhere in the code to replace or remove the hook. The identifier should be unique so that you do not accidentally override some other mods hook, unless that's what you are trying to do.  
 -- The identifier can be either a string, or a table/object with an IsValid function defined such as an Entity or Panel. numbers and booleans, for example, are not allowed.  
@@ -23,7 +23,7 @@
 -- other than nil, and then returns that data.  
 -- In almost all cases, you should use **hook.Run** instead - it calls **hook.Call**
 -- internally but supplies the gamemode table by itself, making your code neater.
--- @function [parent=#hooks] Call
+-- @function [parent=#hook] Call
 -- @param  #string eventName The event to call hooks for.
 -- @param  #table gamemodeTable If the gamemode is specified, the gamemode hook within will be called, otherwise not.
 -- @param  ... The arguments to be passed to the hooks.
@@ -33,14 +33,14 @@
 -- _Client_ | _Menu_ | _Server_
 -- 
 -- Returns a list of all the hooks registered with hook.Add.
--- @function [parent=#hooks] GetTable
+-- @function [parent=#hook] GetTable
 -- @return #table A table of tables.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_
 -- 
 -- Removes the hook with the supplied identifier from the given event.
--- @function [parent=#hooks] Remove
+-- @function [parent=#hook] Remove
 -- @param  #string eventName The event name.
 -- @param  #any The unique identifier of the hook to remove, usually a string.
 
@@ -57,7 +57,7 @@
 -- 
 -- See also: **gamemode.Call** - same as this, but does not call hooks if the
 -- gamemode hasn't defined the function.
--- @function [parent=#hooks] Run
+-- @function [parent=#hook] Run
 -- @param  #string eventName The event to call hooks for.
 -- @param  ... The arguments to be passed to the hooks.
 -- @return #any Returned data from called hooks.

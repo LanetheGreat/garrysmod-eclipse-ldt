@@ -42,7 +42,7 @@
 -- Removes the hook with the supplied identifier from the given event.
 -- @function [parent=#hook] Remove
 -- @param  #string eventName The event name.
--- @param  #any The unique identifier of the hook to remove, usually a string.
+-- @param  #any identifier The unique identifier of the hook to remove, usually a string.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_
@@ -53,7 +53,7 @@
 -- If no hook returns any data, it will try to call the **GAMEMODE:**<**eventName**>
 -- alternative, if one exists.  
 -- 
--- This function internally calls hook.Call.  
+-- This function internally calls **hook.Call**.  
 -- 
 -- See also: **gamemode.Call** - same as this, but does not call hooks if the
 -- gamemode hasn't defined the function.

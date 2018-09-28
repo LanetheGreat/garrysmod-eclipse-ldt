@@ -26,6 +26,7 @@
 
 ------------------------------------------------------------------------------
 -- This library is an interface to the standard C math library.
+-- In Garry's Mod several additional math functions have been added.
 -- This is a global variable which holds the preloaded @{math} module.
 -- @field[parent = #global] math#math math preloaded module
 
@@ -623,57 +624,64 @@
 -- @field[parent = #global] http#http http preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The input library allows you to gather information about the clients input
+-- devices (mouse & keyboard), such as the cursor position and whether a key is
+-- pressed or not.
 -- This is a global variable which holds the preloaded @{input} module.
 -- @field[parent = #global] input#input input preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- Functions to work with the LuaJIT functionality of gmod.
 -- This is a global variable which holds the preloaded @{jit} module.
 -- @field[parent = #global] jit#jit jit preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The killicon library is used to add to and control the icons that appear in
+-- the top right of your screen when a player is killed.
 -- This is a global variable which holds the preloaded @{killicon} module.
 -- @field[parent = #global] killicon#killicon killicon preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The language library is used for translation.
 -- This is a global variable which holds the preloaded @{language} module.
 -- @field[parent = #global] language#language language preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The list library allows you add and retrieve values to and from lists. The
+-- list library is basically a fancy wrapper for a table, but with much more
+-- limited functionality.
 -- This is a global variable which holds the preloaded @{list} module.
 -- @field[parent = #global] list#list list preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The markup library only contains a single function to create a **MarkupObject**.
 -- This is a global variable which holds the preloaded @{markup} module.
 -- @field[parent = #global] markup#markup markup preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- Add proxies to materials.
 -- This is a global variable which holds the preloaded @{matproxy} module.
 -- @field[parent = #global] matproxy#matproxy matproxy preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The menu library.
 -- This is a global variable which holds the preloaded @{menu} module.
 -- @field[parent = #global] menu#menu menu preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The menubar library.
 -- This is a global variable which holds the preloaded @{menubar} module.
 -- @field[parent = #global] menubar#menubar menubar preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The mesh library allows you to create meshes. A mesh is a set of vertices
+-- that define a 3D shape, for constant meshes you should use the **IMesh** object
+-- instead.
 -- This is a global variable which holds the preloaded @{mesh} module.
 -- @field[parent = #global] mesh#mesh mesh preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- Functions related to Kinect for Windows usage in GMod.
 -- This is a global variable which holds the preloaded @{motionsensor} module.
 -- @field[parent = #global] motionsensor#motionsensor motionsensor preloaded module
 

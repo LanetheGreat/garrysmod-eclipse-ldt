@@ -1,0 +1,243 @@
+-------------------------------------------------------------------------------
+-- Functions to work with the LuaJIT functionality of gmod.
+-- @module jit
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- This is NOT a function, it's a variable containing the target architecture
+-- name: "x86", "x64", "arm", "ppc", "ppcspe", or "mips". This will be "x86" in GMod.
+-- @field [parent=#jit] #string arch
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- You can attach callbacks to a number of compiler events with jit.attach.  
+-- The callback can be called:
+-- 
+-- * when a function has been compiled to bytecode. ("bc")
+-- * when trace recording starts or stops. ("trace")
+-- * as a trace is being recorded. ("record")
+-- * or when a trace exits through a side exit. ("texit")
+-- 
+-- Set a callback with **jit.attach**(callback, "event") and clear the same
+-- callback with **jit.attach**(callback).
+-- 
+-- **Warning**: _This function isn't officially documented on LuJIT wiki, use
+-- it at your own risk._
+-- @function [parent=#jit] attach
+-- @param  #function callback The callback function.
+-- The arguments passed to the callback depend on the event being reported:
+-- 
+-- * "bc":
+-- ** _#function func_ : The function that's just been recorded.
+-- * "trace":
+-- ** _#string what_ : description of the trace event: "flush", "start", "stop", "abort". Available for all events.
+-- ** _#number tr_ : The trace number. Not available for flush.
+-- ** _#function func_ : The function being traced. Available for start and abort.
+-- ** _#number pc_ : The program counter - the bytecode number of the function being recorded (if this a Lua function). Available for start and abort.
+-- ** _#number otr_ : "start": the parent trace number if this is a side trace, "abort": abort code
+-- ** _#string oex_ : "start": the exit number for the parent trace, "abort": abort reason (string)
+-- * "record":
+-- ** _#number tr_ : The trace number. Not available for flush.
+-- ** _#function func_ : The function being traced. Available for start and abort.
+-- ** _#number pc_ : The program counter - the bytecode number of the function being recorded (if this a Lua function). Available for start and abort.
+-- ** _#number depth_ : The depth of the inlining of the current bytecode.
+-- * "texit":
+-- ** _#number tr_ : The trace number. Not available for flush.
+-- ** _#number ex_ : The exit number.
+-- ** _#number ngpr_ : The number of general-purpose registers that are active at the exit.
+-- ** _#number nfpr_ : The number of floating point registers that are active at the exit.
+-- @param  #string event The event to hook into.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Flushes the whole cache of compiled code.
+-- @function [parent=#jit] flush
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Disables LuaJIT Lua compilation.
+-- @function [parent=#jit] off
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Enables LuaJIT Lua compilation.
+-- @function [parent=#jit] on
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- JIT compiler optimization control. The opt sub-module provides the backend
+-- for the -O command line LuaJIT option. You can also use it programmatically.
+-- @function [parent=#jit] opt.start
+-- @param  ... Optimization arguments. Same as command line options.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- This is NOT a function, it's a variable containing the target OS name: "Windows", "Linux", "OSX", "BSD", "POSIX" or "Other".
+-- @field [parent=#jit] #string os
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Returns the status of the JIT compiler and the current optimizations enabled.
+-- @function [parent=#jit] status
+-- @return #boolean, #any Is JIT enabled and strings for CPU-specific features/enabled optimizations.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Returns bytecode of a function at a position.
+-- @function [parent=#jit] util.funcbc
+-- @param  #function func Function to retrieve bytecode from.
+-- @param  #number pos Position of the bytecode to retrieve.
+-- @return #number, #number The bytecode instruction and opcode.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Retrieves LuaJIT information about a given function, similarly to **debug.getinfo**.
+-- Possible table fields:
+-- 
+-- * linedefined: as for **debug.getinfo**.
+-- * lastlinedefined: as for **debug.getinfo**.
+-- * params: the number of parameters the function takes.
+-- * stackslots: the number of stack slots the function's local variable use.
+-- * upvalues: the number of upvalues the function uses.
+-- * bytecodes: the number of bytecodes it the compiled function.
+-- * gcconsts: the number of garbage collectable constants.
+-- * nconsts: the number of lua_Number (double) constants.
+-- * children: Boolean representing whether the function creates closures.
+-- * currentline: as for **debug.getinfo**.
+-- * isvararg: if the function is a vararg function.
+-- * source: as for **debug.getinfo**.
+-- * loc: a string describing the source and currentline, like "<source>:<line>".
+-- * ffid: the fast function id of the function. (if it has one) In this case only upvalues above and addr below are valid.
+-- * addr: the address of the function. (if it is not a Lua function) If it's a C function rather than a fast function, only upvalues above is valid.
+-- @function [parent=#jit] util.funcinfo
+-- @param  #function func Function to retrieve info about.
+-- @param  #number pos _(Default: 0)_
+-- @return #table Information about the supplied function.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Gets a constant at a certain index in a function.
+-- 
+-- **Warning**: _This function isn't officially documented on LuJIT wiki, use
+-- it at your own risk._
+-- @function [parent=#jit] util.funck
+-- @param  #function func Function to get constant from.
+-- @param  #number index Constant index. (counting down from the top of the function at -1)
+-- @return #any The constant found.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Does the exact same thing as **debug.getupvalue** except it only returns the
+-- name, not the name and the object. The upvalue indexes also start at 0
+-- rather than 1, so doing **jit.util.funcuvname**(func, 0) will get you the same
+-- name as **debug.getupvalue**(func, 1).
+-- 
+-- **Warning**: _This function isn't officially documented on LuJIT wiki, use
+-- it at your own risk._
+-- @function [parent=#jit] util.funcuvname
+-- @param  #function func Function to get the upvalue indexed from.
+-- @param  #number index The upvalue index, starting from 0.
+-- @return #string The function returns nil if there is no upvalue with the given index, otherwise the name of the upvalue is returned.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Gets the address of a function from a list of 20 functions, for the list see
+-- **Ircalladdr Functions**.
+-- 
+-- **Warning**: _This function isn't officially documented on LuJIT wiki, use
+-- it at your own risk._
+-- @function [parent=#jit] util.ircalladdr
+-- @param  #number index The index of the function address to get from the ircalladdr func array. (starting from 0)
+-- @return #number The address of the function.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- 
+-- @function [parent=#jit] util.traceexitstub
+-- @param  #number exitno Exit number to retrieve exit stub address from. (gotten via **jit.attach** with the texit event)
+-- @return #number The exitstub trace address.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Return table fields:
+-- 
+-- * _#number link_ : the linked trace. (0 for link types: none, return, interpreter)
+-- * _#number nk_ : the lowest IR constant. (???)
+-- * _#number nins_ : the next IR instruction. (???)
+-- * _#string linktype_ : the link type. (none, root, loop, tail-recursion, up-recursion, down-recursion, interpreter, return)
+-- * _#number nexit_ : number of snapshots. (for use with **jit.util.tracesnap**)
+-- @function [parent=#jit] util.traceinfo
+-- @param  #number trace The trace index to retrieve info for. (gotten via **jit.attach**)
+-- @return #table The trace info.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- 
+-- @function [parent=#jit] util.traceir
+-- @param  #number tr
+-- @param  #number index
+-- @return #number, #number, #number, #number, #number m/ot/op1/op2/prev
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- 
+-- @function [parent=#jit] util.tracek
+-- @param  #number tr
+-- @param  #number index
+-- @return #any, #number, #number k/t/slot(optional)
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- 
+-- @function [parent=#jit] util.tracemc
+-- @param  #number tr
+-- @return #string, #number, #number mcode/address/loop
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Return table fields:
+-- 
+-- * _#number ref_ : first IR ref for the snapshot.
+-- * _#number nslots_ : the number of valid slots.
+-- * _#number map_ : the snapshot map, all indexes except first 2 and last. (there might not be any of these)
+-- * _#number_ : last index in table. -16777216 (255 << 24)
+-- @function [parent=#jit] util.tracesnap
+-- @param  #number tr Trace index to retrieve snapshot for. (gotten via **jit.attach**)
+-- @param  #number sn Snapshot index for trace. (starting from 0 to nexit - 1, nexit gotten via **jit.util.traceinfo**)
+-- @return #table The snapshot as a table.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- This is NOT a function, it's a variable containing the LuaJIT version string.
+-- This is "LuaJIT 2.0.4" in GMod.
+-- @field [parent=#jit] #string version
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- This is NOT a function, it's a variable containing the version number of the
+-- LuaJIT core. Version xx.yy.zz is represented by the decimal number xxyyzz.
+-- In GMod this is 20004.
+-- @field [parent=#jit] #number version_num
+
+return nil

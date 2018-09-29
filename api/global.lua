@@ -686,57 +686,69 @@
 -- @field[parent = #global] motionsensor#motionsensor motionsensor preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The navigation mesh library. To be used with **CNavArea**.  
+-- The navigation mesh is used by **NextBot** to calculate path to its target.
 -- This is a global variable which holds the preloaded @{navmesh} module.
 -- @field[parent = #global] navmesh#navmesh navmesh preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The net library is one of a number of ways to send data between the client
+-- and server. The major advantages of the net library are the large size limit
+-- (64kb/message) and the ability to send data backwards - from the client to
+-- the server.
 -- This is a global variable which holds the preloaded @{net} module.
 -- @field[parent = #global] net#net net preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- Used to display notifications on the screen (mid-right).
 -- This is a global variable which holds the preloaded @{notification} module.
 -- @field[parent = #global] notification#notification notification preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The numpad module allows you to execute functions on a key press or release.
 -- This is a global variable which holds the preloaded @{numpad} module.
 -- @field[parent = #global] numpad#numpad numpad preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The physenv library allows you to control the physics environment created by
+-- the engine, and lets you modify constants such as gravity and maximum velocity.
 -- This is a global variable which holds the preloaded @{physenv} module.
 -- @field[parent = #global] physenv#physenv physenv preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The player library is used to get the Lua objects that represent players in-game.
 -- This is a global variable which holds the preloaded @{player} module.
 -- @field[parent = #global] player#player player preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The player_manager library lets you manage players, such as setting their
+-- models or creating player classes.
 -- This is a global variable which holds the preloaded @{player_manager} module.
 -- @field[parent = #global] player_manager#player_manager player_manager preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The presets library lets you add and modify the pre-set options for scripted
+-- tools (selected via the white bar at the top of each tools control panel).
 -- This is a global variable which holds the preloaded @{presets} module.
 -- @field[parent = #global] presets#presets presets preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The properties library gives you access to the menu that shows up when right
+-- clicking entities while holding C.
 -- This is a global variable which holds the preloaded @{properties} module.
 -- @field[parent = #global] properties#properties properties preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The render library is a powerful set of functions that let you control how
+-- the world and its contents are rendered. It can also be used to draw some 3D
+-- clientside effects such as beams, boxes and spheres.
 -- This is a global variable which holds the preloaded @{render} module.
 -- @field[parent = #global] render#render render preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The resource library is used to control what files are sent to clients who
+-- join a server, this includes models, materials, sounds, text files but not
+-- Lua files.
 -- This is a global variable which holds the preloaded @{resource} module.
 -- @field[parent = #global] resource#resource resource preloaded module
 

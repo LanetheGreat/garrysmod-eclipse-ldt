@@ -1,11 +1,13 @@
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Operating System Facilities.
 -- This library is implemented through table os. 
 -- @module os
 
-
-
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Returns an approximation of the amount in seconds of CPU time used by
 -- the program.
 -- @function [parent=#os] clock
@@ -13,6 +15,8 @@
 -- the program.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Returns a string or a table containing date and time, formatted according
 -- to the given string `format`.
 --
@@ -45,6 +49,8 @@
 -- @return #string a formatted string representation of `time`. 
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Returns the number of seconds from time `t1` to time `t2`. In POSIX,
 -- Windows, and some other systems, this value is exactly `t2`*-*`t1`.
 -- @function [parent=#os] difftime
@@ -53,6 +59,8 @@
 -- @return #number the number of seconds from time `t1` to time `t2`.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- This function is equivalent to the C function `system`. It passes
 -- `command` to be executed by an operating system shell. It returns a status
 -- code, which is system-dependent. If `command` is absent, then it returns
@@ -62,12 +70,16 @@
 -- @return A status code which is system-dependent.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Calls the C function `exit`, with an optional `code`, to terminate the
 -- host program. The default value for `code` is the success code.
 -- @function [parent=#os] exit
 -- @param #number code an exit code. (default is the success code)
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Returns the value of the process environment variable `varname`, or
 -- nil if the variable is not defined.
 -- @function [parent=#os] getenv
@@ -76,6 +88,8 @@
 -- nil if the variable is not defined.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Deletes the file or directory with the given name. Directories must be
 -- empty to be removed. If this function fails, it returns nil, plus a string
 -- describing the error.
@@ -84,6 +98,8 @@
 -- @return #nil, #string an error message if it failed.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Renames file or directory named `oldname` to `newname`. If this function
 -- fails, it returns nil, plus a string describing the error.
 -- @function [parent=#os] rename
@@ -92,6 +108,8 @@
 -- @return #nil, #string an error message if it failed.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Sets the current locale of the program. `locale` is a string specifying
 -- a locale; `category` is an optional string describing which category to
 -- change: `"all"`, `"collate"`, `"ctype"`, `"monetary"`, `"numeric"`, or
@@ -111,6 +129,8 @@
 -- @return #string the current locale.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Returns the current time when called without arguments, or a time
 -- representing the date and time specified by the given table. This table
 -- must have fields `year`, `month`, and `day`, and may have fields `hour`,
@@ -127,6 +147,8 @@
 -- @return #number a number meaning a date.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Returns a string with a file name that can be used for a temporary
 -- file. The file must be explicitly opened before its use and explicitly
 -- removed when no longer needed.

@@ -1,10 +1,14 @@
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- The package library provides basic facilities for loading and building modules in Lua.
 -- It exports two of its functions directly in the global environment 
 -- require and module. Everything else is exported in a table package.
 -- @module package
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- The path used by `require` to search for a C loader.
 -- Lua initializes the C path `package.cpath` in the same way it initializes
 -- the Lua path `package.path`, using the environment variable `LUA_CPATH`
@@ -12,12 +16,16 @@
 -- @field [parent=#package] #string cpath
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- A table used by `require` to control which modules are already
 -- loaded. When you require a module `modname` and `package.loaded[modname]`
 -- is not false, `require` simply returns the value stored there.
 -- @field [parent=#package] #table loaded
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- A table used by `require` to control how to load modules.
 -- Each entry in this table is a *searcher function*. When looking for a module,
 -- `require` calls each of these searchers in ascending order, with the module
@@ -64,6 +72,8 @@
 -- @field [parent=#package] #table loaders
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Dynamically links the host program with the C library `libname`.
 -- Inside this library, looks for a function `funcname` and returns this 
 -- function as a C function.
@@ -84,6 +94,8 @@
 -- @param #string funcname the name of a function defined in the C library named `libname`.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- The path used by `require` to search for a Lua loader.
 -- At start-up, Lua initializes this variable with the value of the environment
 -- variable `LUA_PATH` or with a default path defined in `luaconf.h`, if
@@ -92,11 +104,15 @@
 -- @field [parent=#package] #string path
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- A table to store loaders for specific modules (see `require`).
 -- function package.preload end
 -- @field [parent=#package] #table preload
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Sets a metatable for `module` with its `__index` field referring to the
 -- global environment, so that this module inherits values from the global
 -- environment. To be used as an option to function `module`.

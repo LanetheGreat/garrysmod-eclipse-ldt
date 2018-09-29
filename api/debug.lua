@@ -16,6 +16,8 @@
 -- @module debug
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Enters an interactive mode with the user, running each string that
 -- the user enters. Using simple commands and other debug facilities,
 -- the user can inspect global and local variables, change their values,
@@ -27,12 +29,16 @@
 -- @function [parent=#debug] debug
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Returns the environment of object `o`.
 -- @function [parent=#debug] getfenv
 -- @param o object to handle.
 -- @return #table the environment of object `o`.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Returns the current hook settings of the thread, as three values: the
 -- current hook function, the current hook mask, and the current hook count
 -- (as set by the `debug.sethook` function).
@@ -40,6 +46,8 @@
 -- @param #thread thread thread to handle.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Returns a table with information about a function. You can give the
 -- function directly, or you can give a number as the value of `func`,
 -- which means the function running at level `func` of the call stack
@@ -66,6 +74,8 @@
 -- @return #table with information about the function `func`.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- This function returns the name and the value of the local variable with
 -- index `local` of the function at level `level` of the stack. (The first
 -- parameter or local variable has index 1, and so on, until the last active
@@ -83,6 +93,8 @@
 -- index `local` of the function at level `level` of the stack.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Returns the metatable of the given `object` or nil if it does not have
 -- a metatable.
 -- @function [parent=#debug] getmetatable
@@ -91,10 +103,14 @@
 -- a metatable.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Returns the registry table.
 -- @function [parent=#debug] getregistry
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- This function returns the name and the value of the upvalue with index
 -- `up` of the function `func`. The function returns nil if there is no
 -- upvalue with the given index.
@@ -105,6 +121,8 @@
 -- `up` of the function `func`.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Sets the environment of the given `object` to the given `table`. Returns
 -- `object`.
 -- @function [parent=#debug] setfenv
@@ -113,6 +131,8 @@
 -- @return the given object.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Sets the given function as a hook. The string `mask` and the number
 -- `count` describe when the hook will be called. The string mask may have
 -- the following characters, with the given meaning:
@@ -142,6 +162,8 @@
 -- @param #number count the hook is called after every `count` instructions.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- This function assigns the value `value` to the local variable with
 -- index `local` of the function at level `level` of the stack. The function
 -- returns nil if there is no local variable with the given index, and raises
@@ -157,6 +179,8 @@
 -- @return #nil if there no local variable with the given index.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Sets the metatable for the given `object` to the given `table` (which
 -- can be nil).
 -- @function [parent=#debug] setmetatable
@@ -164,6 +188,8 @@
 -- @param #table table the metatable for `object`. 
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- This function assigns the value `value` to the upvalue with index `up`
 -- of the function `func`. The function returns nil if there is no upvalue
 -- with the given index. Otherwise, it returns the name of the upvalue.
@@ -173,5 +199,21 @@
 -- @param value the new value.
 -- @return #string the name of the upvalue if it succeed.
 -- @return #nil if there no upvalue with the given index.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Prints out the lua function call stack to the console.
+-- @function [parent=#debug] Trace
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Returns a full execution stack trace.
+-- @function [parent=#debug] traceback
+-- @param  #thread thread Thread (ie. error object from xpcall error handler) to build traceback for. _(Default: current thread)_
+-- @param  #string message Appended at the beginning of the traceback. _(Default: nil)_
+-- @param  #number level Which level to start the traceback. _(Default: 1)_
+-- @return #string A dump of the execution stack.
 
 return nil

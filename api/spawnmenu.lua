@@ -1,0 +1,282 @@
+-------------------------------------------------------------------------------
+-- -- The spawnmenu library is a set of functions that allow you to control the
+-- spawn (Q) menu.
+-- @module spawnmenu
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Activates a tool, opens context menu and brings up the tool gun.
+-- @function [parent=#spawnmenu] ActivateTool
+-- @param  #string tool Tool class/file name.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Activates tools context menu in specified tool tab.
+-- @function [parent=#spawnmenu] ActivateToolPanel
+-- @param  #number tab The tabID of the tab to open the context menu in.
+-- @param  #Panel cp The control panel to open.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns currently opened control panel of a tool, post process effect or some other menu in spawnmenu.
+-- @function [parent=#spawnmenu] ActiveControlPanel
+-- @return #Panel The currently opened control panel, if any.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Registers a new content type that is saveable into spawnlists.
+-- Created/called by **spawnmenu.CreateContentIcon**.
+-- @function [parent=#spawnmenu] AddContentType
+-- @param  #string name An unique name of the content type.
+-- @param  #function constructor A function that is called whenever we need create a new panel for this content type.
+-- It has two arguments:
+-- 
+-- * _#Panel container_ : The container/parent of the new panel.
+-- * _#table data_ : Data for the content type passed from **spawnmenu.CreateContentIcon**.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Inserts a new tab into the CreationMenus table, which will be used by the
+-- creation menu to generate its tabs. (Spawnlists, Weapons, Entities, etc.)
+-- @function [parent=#spawnmenu] AddCreationTab
+-- @param  #string name What text will appear on the tab. (ie. Spawnlists)
+-- @param  #function function The function called to generate the content of the tab.
+-- @param  #string material Path to the material that will be used as an icon on the tab. _(Default: "icon16/exclamation.png")_
+-- @param  #number order The order in which this tab should be shown relative to the other tabs on the creation menu. _(Default: 1000)_
+-- @param  #string tooltip The tooltip to be shown for this tab. _(Default: nil)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- _You should never try to modify player's customized spawnlists._
+-- 
+-- Used to populate prop categories in the spawnmenu tree. This function should
+-- generally be called within **SANDBOX:PopulatePropMenu**.
+-- 
+-- Looking at this file will help you to understand where the information
+-- passed to this function comes from.
+-- @function [parent=#spawnmenu] 
+-- @param  #string filename The filename of the list. This name has to be unique, but doesn't have to actually exist. If a player saves changes made to this list, it will be saved under this name.
+-- @param  #string name The name of the category. (e.g. Comic Props.)
+-- @param  #table contents A table of entries for the spawn menu. It must be numerically indexed.
+-- Each member of the table is a sub-table containing a type member, and other members depending on the type.
+-- 
+-- * _#string type_ : "header" - a simple header for organization.
+-- ** _#string text_ : The text that the header will display.
+-- * _#string type_ : "model" - spawns a model where the player is looking.
+-- ** _#string model_ : The path to the model file.
+-- ** _#number skin_ : The skin for the model to use (optional).
+-- ** _#string body_ : The bodygroups for the model (optional).
+-- ** _#number wide_ : The width of the spawnicon (optional).
+-- ** _#number tall_ : The height of the spawnicon (optional).
+-- * _#string type_ : "entity" - spawns an entity where the player is looking (appears in the Entities tab by default).
+-- ** _#string spawnname_ : The filename of the entity, for example "sent_ball".
+-- ** _#string nicename_ : The name of the entity to display.
+-- ** _#string material_ : The icon to display, this should be set to "entities/<sent_name>.png".
+-- ** _#boolean admin_ : Whether the entity is only spawnable by admins (optional).
+-- * _#string type_ : "vehicle" - spawns a vehicle where the player is looking (appears in the Vehicles tab by default).
+-- ** _#string spawnname_ : The filename of the vehicle.
+-- ** _#string nicename_ : The name of the vehicle to display.
+-- ** _#string material_ : The icon to display.
+-- ** _#boolean admin_ : Whether the vehicle is only spawnable by admins (optional).
+-- * _#string type_ : "npc" - spawns an NPC where the player is looking (appears in the NPCs tab by default).
+-- ** _#string spawnname_ : The spawn name of the NPC.
+-- ** _#string nicename_ : The name to display.
+-- ** _#string material_ : The icon to display.
+-- ** _#table weapon_ : A table of potential weapons (each a string) to give to the NPC. When spawned, one of these will be chosen randomly each time.
+-- ** _#boolean admin_ : Whether the NPC is only spawnable by admins (optional).
+-- * _#string type_ : "weapon" - When clicked, gives the player a weapon; when middle-clicked, spawns a weapon where the player is looking (appears in the Weapons tab by default).
+-- ** _#string spawnname_ : The spawn name of the weapon.
+-- ** _#string nicename_ : The name to display.
+-- ** _#string material_ : The icon to display.
+-- ** _#boolean admin_ : Whether the weapon is only spawnable by admins (optional).
+-- @param  #string icon The icon to use in the tree.
+-- @param  #number id The unique ID number for the spawnlist category. Used to make sub categories. See "parentID" parameter below. If not set, it will be automatically set to ever increasing number, starting with 1000. _(Default: 1000)_
+-- @param  #number parentID The unique ID of the parent category. This will make the category a subcategory of that given. 0 makes this a base category. (such as Builder) _(Default: 0)_
+-- @param  #string needsApp The needed game for this prop category, if one is needed. If the specified game is not mounted, the category isn't shown. This uses the shortcut name, e.g. cstrike, and not the Steam AppID. _(Default: "")_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Used to create a new category in the list inside of a spawnmenu ToolTab.
+-- 
+-- You must call this function from **SANDBOX:AddToolMenuCategories** for it to
+-- work properly.
+-- @function [parent=#spawnmenu] AddToolCategory
+-- @param  #string tab The ToolTab name, as created with **spawnmenu.AddToolTab**.  
+-- You can also use the default ToolTab names "Main" and "Utilities".
+-- @param  #string RealName The identifier name.
+-- @param  #string PrintName The displayed name.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Adds an option to the right side of the spawnmenu.
+-- @function [parent=#spawnmenu] AddToolMenuOption
+-- @param  #string tab The spawnmenu tab to add into. (for example "Utilities")
+-- @param  #string category The category to add into. (for example "Admin")
+-- @param  #string class Unique identifier of option to add.
+-- @param  #string name The nice name of item.
+-- @param  #string cmd Command to execute when the item is selected.
+-- @param  #string config Config name, used in older versions to load tool settings UI from a file. No longer works.
+-- 
+-- **This feature is deprecated.**
+-- _You should avoid using it as it may be removed in a future version._
+-- @param  #function cpanel A function to build the context panel.
+-- The function has one argument:
+-- 
+-- * _#Panel pnl_ : A DForm that will be shown in the context menu.
+-- @param  #table table Allows to override the table that will be added to the tool list. Some of the fields will be overwritten by this function. _(Default: {})_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Adds a new tool tab to the right side of the spawnmenu via the
+-- **SANDBOX:AddToolMenuTabs** hook.
+-- 
+-- This function is a inferior duplicate of **spawnmenu.GetToolMenu**, just without
+-- its return value.
+-- @function [parent=#spawnmenu] AddToolTab
+-- @param  #string name The internal name of the tab. This is used for sorting.
+-- @param  #string label The 'nice' name of the tab. (Tip: **language.Add**) _(Default: name)_
+-- @param  #string icon The filepath to the icon of the tab. Should be a .png. _(Default: "icon16/wrench.png")_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- @function [parent=#spawnmenu] ClearToolMenus
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Creates a new content icon.
+-- @function [parent=#spawnmenu] CreateContentIcon
+-- @param  #string type The type of the content icon.
+-- @param  #Panel parent The parent to add the content icon to.
+-- @param  #table data The data to send to the content icon in **spawnmenu.AddContentType**.
+-- @return #Panel The created content icon, if it was returned by **spawnmenu.AddContentType**.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Calls **spawnmenu.SaveToTextFiles**.
+-- @function [parent=#spawnmenu] DoSaveToTextFiles
+-- @param  #table spawnlists A table containing spawnlists.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the function to create an vgui element for a specified content type.
+-- @function [parent=#spawnmenu] GetContentType
+-- @param  #string contentType
+-- @return #function The panel creation function.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Gets the CreationMenus table, which was filled with creation menu tabs from
+-- **spawnmenu.AddCreationTab**.
+-- @function [parent=#spawnmenu] GetCreationTabs
+-- @return #table The CreationMenus table. See the **CreationMenus structure**.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Similar to **spawnmenu.GetPropTable**, but only returns spawnlists created by
+-- addons via **spawnmenu.AddPropCategory**.
+-- 
+-- These spawnlists are shown in a separate menu in-game.
+-- @function [parent=#spawnmenu] GetCustomPropTable
+-- @return #table See **spawnmenu.GetPropTable** for table format.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns a table of all prop categories and their props in the spawnmenu.
+-- Note that if the spawnmenu has not been populated, this will return an empty
+-- table. This will not return spawnlists created by addons, see
+-- **spawnmenu.GetCustomPropTable** for that.
+-- @function [parent=#spawnmenu] GetPropTable
+-- @return #table Table of all the prop categories and props in the following format:
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Adds a new tool tab (or returns an existing one by name) to the right side
+-- of the spawnmenu via the **SANDBOX:AddToolMenuTabs** hook.
+-- @function [parent=#spawnmenu] GetToolMenu
+-- @param  #string name The internal name of the tab. This is used for sorting.
+-- @param  #string label The 'nice' name of the tab. _(Default: name)_
+-- @param  #string icon The filepath to the icon of the tab. Should be a .png. _(Default: "icon16/wrench.png")_
+-- @return #table A table of tables representing categories and items in the left part of the tab.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Gets a table of tools on the client.
+-- @function [parent=#spawnmenu] GetTools
+-- @return #table A table with groups of tools, along with information on each tool.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Calls **spawnmenu.PopulateFromTextFiles**.
+-- @function [parent=#spawnmenu] PopulateFromEngineTextFiles
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Loads spawnlists from text files.
+-- @function [parent=#spawnmenu] PopulateFromTextFiles
+-- @param  #function callback The function to call.
+-- Arguments are:
+-- 
+-- * strFilename
+-- * strName
+-- * tabContents
+-- * icon
+-- * id
+-- * parentid
+-- * needsapp
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Saves a table of spawnlists to files.
+-- @function [parent=#spawnmenu] SaveToTextFiles
+-- @param  #table spawnlists A table containing spawnlists.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets currently active control panel to be returned by **spawnmenu.ActiveControlPanel**.
+-- @function [parent=#spawnmenu] SetActiveControlPanel
+-- @param  #Panel pnl The panel to set.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This feature is deprecated.**  
+-- _You should avoid using it as it may be removed in a future version._
+-- 
+-- 
+-- @function [parent=#spawnmenu] SwitchToolTab
+-- @param  #number id The tab ID to open.
+
+return nil

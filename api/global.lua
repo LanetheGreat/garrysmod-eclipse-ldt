@@ -753,92 +753,116 @@
 -- @field[parent = #global] resource#resource resource preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The saverestore library contains functions relating to the singleplayer save
+-- system built into the game.
 -- This is a global variable which holds the preloaded @{saverestore} module.
 -- @field[parent = #global] saverestore#saverestore saverestore preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The scripted_ents library allows you to access information about any
+-- scripted entities loaded into the game, as well as register your own entities.
 -- This is a global variable which holds the preloaded @{scripted_ents} module.
 -- @field[parent = #global] scripted_ents#scripted_ents scripted_ents preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The search library.
 -- This is a global variable which holds the preloaded @{search} module.
 -- @field[parent = #global] search#search search preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- Menu state library to query the master server list.
 -- This is a global variable which holds the preloaded @{serverlist} module.
 -- @field[parent = #global] serverlist#serverlist serverlist preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- Used primarily for adding new soundscript entries.
 -- This is a global variable which holds the preloaded @{sound} module.
 -- @field[parent = #global] sound#sound sound preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The spawnmenu library is a set of functions that allow you to control the
+-- spawn (Q) menu.
 -- This is a global variable which holds the preloaded @{spawnmenu} module.
 -- @field[parent = #global] spawnmenu#spawnmenu spawnmenu preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The SQL library allows you to access powerful database software included
+-- with Garry's Mod. It is the preferred and fastest method of storing large
+-- amounts of data. The database is located in sv.db serverside and cl.db
+-- clientside, both in the Garry's Mod base folder. SQL is a whole scripting
+-- language in itself although relatively simple, it's something you'll need to
+-- read up on before using this library.
 -- This is a global variable which holds the preloaded @{sql} module.
 -- @field[parent = #global] sql#sql sql preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- Steamworks related functions.
 -- This is a global variable which holds the preloaded @{steamworks} module.
 -- @field[parent = #global] steamworks#steamworks steamworks preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The surface library allows you to draw text and shapes on the screen.
+-- Primarily used for making HUDs & custom GUI panels.
 -- This is a global variable which holds the preloaded @{surface} module.
 -- @field[parent = #global] surface#surface surface preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The system library provides functions that allow you to gather information
+-- about the system running the game, such as operating system, uptime and
+-- battery level.
 -- This is a global variable which holds the preloaded @{system} module.
 -- @field[parent = #global] system#system system preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The team library gives you access to the team system built into the Source
+-- engine, and allows you to create custom teams and get information about them.
 -- This is a global variable which holds the preloaded @{team} module.
 -- @field[parent = #global] team#team team preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The timer library is a very useful set of functions which allow you to run a
+-- function periodically or after a given delay.
 -- This is a global variable which holds the preloaded @{timer} module.
 -- @field[parent = #global] timer#timer timer preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The umsg (user message) library was previously the most common way of
+-- sending information from the server to the client.
 -- This is a global variable which holds the preloaded @{umsg} module.
 -- @field[parent = #global] umsg#umsg umsg preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The undo library allows you to add custom entities to the undo list,
+-- allowing users to "undo" their creation with their undo (default: Z) key.
 -- This is a global variable which holds the preloaded @{undo} module.
 -- @field[parent = #global] undo#undo undo preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The usermessage library is used to receive user messages from the server on
+-- the client.
 -- This is a global variable which holds the preloaded @{usermessage} module.
 -- @field[parent = #global] usermessage#usermessage usermessage preloaded module
 
 ------------------------------------------------------------------------------
+-- The utf8 library provides basic support for UTF-8 encoding. This library
+-- does not provide any support for Unicode other than the handling of the
+-- encoding. Any operation that needs the meaning of a character, such as
+-- character classification, is outside its scope.
 -- 
+-- Unless stated otherwise, all functions that expect a byte position as a
+-- parameter assume that the given position is either the start of a byte
+-- sequence or one plus the length of the subject string. As in the string
+-- library, negative indices count from the end of the string.
 -- This is a global variable which holds the preloaded @{utf8} module.
 -- @field[parent = #global] utf8#utf8 utf8 preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- Utility functions.
 -- This is a global variable which holds the preloaded @{util} module.
 -- @field[parent = #global] util#util util preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- util.worldpicker is for picking an entity in the world while GUI is open.
 -- This is a global variable which holds the preloaded @{util.worldpicker} module.
 -- @field[parent = #global] util.worldpicker#util.worldpicker util.worldpicker preloaded module
 

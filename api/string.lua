@@ -10,9 +10,13 @@
 -- For instance, string.byte(s, i) can be written as s:byte(i).
 --
 -- The string library assumes one-byte character encodings.
+-- 
+-- In Garry's Mod there are several extra useful functions and features added to this library.
 -- @module string
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Returns the internal numerical codes of the characters `s[i]`, `s[i+1]`,
 -- ..., `s[j]`. The default value for `i` is 1; the default value for `j`
 -- is `i`.
@@ -24,6 +28,8 @@
 -- @return the internal numerical codes of the characters `s[i]`, `s[i+1]`,..., `s[j]`
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Receives zero or more integers. Returns a string with length equal to
 -- the number of arguments, in which each character has the internal numerical
 -- code equal to its corresponding argument.
@@ -36,6 +42,8 @@
 -- code equal to its corresponding argument.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Returns a string containing a binary representation of the given
 -- function, so that a later `loadstring` on this string returns a copy of
 -- the function. `function` must be a Lua function without upvalues.
@@ -44,6 +52,29 @@
 -- @return #string a string representation of the given function.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Returns whether or not the second passed string matches the end of the first.
+-- @function [parent=#string] EndsWith
+-- @param  #string str The string whose end is to be checked.
+-- @param  #string end The string to be matched with the end of the first.
+-- @return #boolean true if the first string ends with the second, or the second is empty, otherwise false.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Splits a string up wherever it finds the given separator.
+-- 
+-- This is the reverse of **string.Implode**.
+-- @function [parent=#string] Explode
+-- @param  #string separator The string will be separated wherever this sequence is found.
+-- @param  #string str The string to split up.
+-- @param  #boolean use_patterns Set this to true if your separator is a pattern.
+-- @return #table Exploded string as a numerical sequential table.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Looks for the first match of `pattern` in the string `s`. If it finds a
 -- match, then `find` returns the indices of `s` where this occurrence starts
 -- and ends; otherwise, it returns nil.A third, optional numerical argument
@@ -65,6 +96,8 @@
 -- @return #nil if pattern not found.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Returns a formatted version of its variable number of arguments following
 -- the description given in its first argument (which must be a string). The
 -- format string follows the same rules as the `printf` family of standard C
@@ -92,6 +125,82 @@
 -- @return #string the formatted string.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Returns the time as a formatted string or as a table if no format is given.
+-- @function [parent=#string] FormattedTime
+-- @param  #number float The time in seconds to format.
+-- @param  #string format An optional formatting to use. If no format it specified, a table will be returned instead. _(Default: nil)_
+-- @return #string Returns the time as a formatted string only if a format was specified. Returns a table only if no format was specified.
+-- The table will contain these fields:
+-- 
+-- * _#number ms_ : milliseconds
+-- * _#number s_ : seconds
+-- * _#number m_ : minutes
+-- * _#number h_ : hours
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Creates a string from a Color variable.
+-- @function [parent=#string] FromColor
+-- @param  #table color The color to put in the string.
+-- @return #string Color represented as a string of 3-4 integers.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- **This feature is deprecated.**  
+-- _You should avoid using it as it may be removed in a future version._
+-- _Use either string.sub(str, index, index) or str[index]._
+-- 
+-- Returns char value from the specified index in the supplied string.
+-- @function [parent=#string] 
+-- @param  #string str The string that you will be searching with the supplied index.
+-- @param  #number index The index's value of the string to be returned.
+-- @return #string A single character.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Returns extension of the file.
+-- @function [parent=#string] GetExtensionFromFilename
+-- @param  #string file String eg. file-path to get the file extensions from.
+-- @return #string The file extension, if there is one.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Returns file name and extension.
+-- @function [parent=#string] GetFileFromFilename
+-- @param  #string pathString The string eg. file-path to get the file-name from.
+-- @return #string The file name.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Returns the path only from a file's path.
+-- @function [parent=#string] GetPathFromFilename
+-- @param  #string Inputstring String to get path from.
+-- @return #string The file path.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- **This feature is deprecated.**  
+-- _You should avoid using it as it may be removed in a future version._
+-- _This function is removed in Lua versions later than what GMod is currently using. Use **string.gmatch** instead._
+-- 
+-- Returns an iterator function that is called for every complete match of the
+-- pattern, all sub matches will be passed as to the loop.
+-- @function [parent=#string] 
+-- @param  #string data The string to search in.
+-- @param  #string pattern The pattern to search for.
+-- @return #function The iterator function that can be used in a for-in loop.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Returns an iterator function that, each time it is called, returns the
 -- next captures from `pattern` over string `s`. If `pattern` specifies no
 -- captures, then the whole match is produced in each call.
@@ -119,6 +228,8 @@
 -- @param #string pattern pattern to search.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Returns a copy of `s` in which all (or the first `n`, if given)
 -- occurrences of the `pattern` have been replaced by a replacement string
 -- specified by `repl`, which can be a string, a table, or a function. `gsub`
@@ -169,6 +280,41 @@
 -- @return #string a modified copy of `s`.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- **This feature is deprecated.This feature is deprecated.**  
+-- _You should avoid using it as it may be removed in a future version._
+-- _You really should just use **table.concat**._
+-- 
+-- Joins the values of a table together to form a string. This is the reverse
+-- of **string.Explode** and is functionally identical to **table.concat**,
+-- but with less features.
+-- @function [parent=#string] Implode
+-- @param  #string separator The separator to insert between each piece. _(Default: "")_
+-- @param  #table pieces The table of pieces to concatenate. The keys for these must be numeric and sequential.
+-- @return #string Imploded pieces.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Escapes special characters for JavaScript in a string, making the string
+-- safe for inclusion in to JavaScript strings.
+-- @function [parent=#string] JavascriptSafe
+-- @param  #string str The string that should be escaped.
+-- @return #string The escaped string.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Returns everything left of supplied place of that string.
+-- @function [parent=#string] Left
+-- @param  #string str The string to extract from.
+-- @param  #number num Amount of chars relative to the beginning (starting from 1).
+-- @return #string Returns a string containing a specified number of characters from the left side of a string.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Receives a string and returns its length. The empty string `""` has
 -- length 0. Embedded zeros are counted, so `"a\000bc\000"` has length 5.
 -- @function [parent=#string] len
@@ -176,6 +322,8 @@
 -- @return #number the lenght of `s`.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Receives a string and returns a copy of this string with all uppercase
 -- letters changed to lowercase. All other characters are left unchanged. The
 -- definition of what an uppercase letter is depends on the current locale.
@@ -184,6 +332,8 @@
 -- @return #string a lower case version of `s`.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Looks for the first *match* of `pattern` in the string `s`. If it
 -- finds one, then `match` returns the captures from the pattern; otherwise
 -- it returns nil. If `pattern` specifies no captures, then the whole match
@@ -196,6 +346,8 @@
 -- @return #string the captures from the pattern; otherwise it returns nil. If pattern specifies no captures, then the whole match is returned. 
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Returns a string that is the concatenation of `n` copies of the string `s`.
 -- @function [parent=#string] rep
 -- @param #string s string to handle.
@@ -203,12 +355,106 @@
 -- @return #string the concatenation of `n` copies of the string `s`.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Converts a digital filesize to human-readable text.
+-- @function [parent=#string] NiceSize
+-- @param  #number bytes The filesize in bytes.
+-- @return #string The human-readable filesize, in Bytes/KB/MB/GB. (whichever is appropriate)
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Formats the supplied number (in seconds) to the highest possible time unit.
+-- @function [parent=#string] NiceTime
+-- @param  #number num The number to format, in seconds.
+-- @return # string A nicely formatted time string.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Escapes all special characters within a string, making the string safe for
+-- inclusion in a Lua pattern.
+-- @function [parent=#string] PatternSafe
+-- @param  #string str The string to be sanitized.
+-- @return #string The string that has been sanitized for inclusion in Lua patterns.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Repeats a string by the provided number, with an optional separator.
+-- @function [parent=#string] rep
+-- @param  #string str The string to convert.
+-- @param  #number repetitions Timer to repeat, this values gets rounded internally.
+-- @param  #String that will separate the repeated piece. Notice that it doesn't add this string to the start or the end of the result, only between the repeated parts. _(Default: "")_
+-- @return #string epeated string.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Replaces all occurrences of the supplied second string.
+-- @function [parent=#string] Replace
+-- @param  #string str The string we are seeking to replace an occurrence(s).
+-- @param  #string find What we are seeking to replace.
+-- @param  #string replace What to replace find with.
+-- @return #string The modified string.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Returns a string that is the string `s` reversed.
 -- @function [parent=#string] reverse
 -- @param #string s string to handle.
 -- @return #string the string `s` reversed.
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Returns the last n-th characters of the string.
+-- @function [parent=#string] Right
+-- @param  #string str The string to extract from.
+-- @param  #number num Amount of chars relative to the end (starting from 1).
+-- @return #string Returns a string containing a specified number of characters from the right side of a string.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Sets the character at the specific index of the string.
+-- @function [parent=#string] SetChar
+-- @param  #string InputString The input string.
+-- @param  #number Index The character index, 1 is the first from left.
+-- @param  #string ReplacementChar String to replace with.
+-- @return #string The modified string.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Splits the string into a table of strings, separated by the second argument.
+-- @function [parent=#string] Split
+-- @param  #string Inputstring String to split.
+-- #param  #string Separator Character(s) to split with.
+-- @return #table The split string.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Returns whether or not the first string starts with the second.
+-- @function [parent=#string] StartWith
+-- @param  #string inputStr String to check.
+-- @param  #string start String to check with.
+-- @return #boolean Whether the first string starts with the second.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Removes the extension of a path.
+-- @function [parent=#string] StripExtension
+-- @param  #string Inputstring The path to change.
+-- @return #string The modified string.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Returns the substring of `s` that starts at `i` and continues until
 -- `j`; `i` and `j` can be negative. If `j` is absent, then it is assumed to
 -- be equal to -1 (which is the same as the string length). In particular,
@@ -221,6 +467,71 @@
 -- @return #string the substring of `s` that starts at `i` and continues until `j`. 
 
 -------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Fetches a Color type from a string.
+-- @function [parent=#string] ToColor
+-- @param  #string Inputstring The string to convert from.
+-- @return #table The output **Color structure**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Returns given time in "MM:SS" format.
+-- @function [parent=#string] ToMinutesSeconds
+-- @param  #number time Time in seconds.
+-- @return #string The formatted time.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Returns given time in "MM:SS:MS" format.
+-- @function [parent=#string] ToMinutesSecondsMilliseconds
+-- @param  #number time Time in seconds.
+-- @return #string The formatted time.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Splits the string into characters and creates a sequential table of characters.
+-- 
+-- **Warning**: _As a result of the UTF-8 encoding, non-ASCII characters will
+-- be split into more than one character in the output table. Each character
+-- value in the output table will always be 1 byte._
+-- @function [parent=#string] ToTable
+-- @param  #string str The string you'll turn into a table.
+-- @return #table A sequential table where each value is a character from the given string.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Removes leading and trailing matches of a string.
+-- @function [parent=#string] Trim
+-- @param  #string Inputstring The string to trim.
+-- @param  #string Char Custom character(s) to remove. _(Default: " ")_
+-- @return #string The trimmed string.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Removes leading spaces/characters from a string.
+-- @function [parent=#string] TrimLeft
+-- @param  #string str The string to trim.
+-- @param  #string char Custom character(s) to remove. _(Default: " ")_
+-- @return #string The trimmed string.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Removes trailing spaces/characters from a string.
+-- @function [parent=#string] TrimRight
+-- @param  #string str The string to trim.
+-- @param  #string char Custom character(s) to remove. _(Default: " ")_
+-- @return #string The trimmed string.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
 -- Receives a string and returns a copy of this string with all lowercase
 -- letters changed to uppercase. All other characters are left unchanged. The
 -- definition of what a lowercase letter is depends on the current locale.

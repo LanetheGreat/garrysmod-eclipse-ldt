@@ -891,16 +891,12 @@
 -- _Client_
 -- 
 -- Sets the current drawing material to "color".
--- The material is defined as:
--- 
 -- @function [parent=#render] SetColorMaterial
 
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
 -- Sets the current drawing material to "color_ignorez".
--- The material is defined as:
--- 
 -- @function [parent=#render] SetColorMaterialIgnoreZ
 
 -------------------------------------------------------------------------------

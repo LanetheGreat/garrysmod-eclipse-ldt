@@ -1,0 +1,303 @@
+-------------------------------------------------------------------------------
+-- The surface library allows you to draw text and shapes on the screen.
+-- Primarily used for making HUDs & custom GUI panels.
+-- @module surface
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Creates a new font. To prevent the font from displaying incorrectly when
+-- using the "outline" setting, set "antialias" to false. This will ensure the
+-- text properly fills out the entire outline.
+-- 
+-- Be sure to check the List of Default Fonts first! Those fonts can be used
+-- without using this function.
+-- 
+-- **Warning** : _Due to the static nature of fonts, do NOT create the font
+-- more than once. You should only be creating them once, it is recommended to
+-- create them at the top of your script. Do not use this function within **GM:HUDPaint**!_
+-- @function [parent=#surface] CreateFont
+-- @param  #string fontName The new font name.
+-- @param  #table fontData The font properties. See the **FontData structure**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Enables or disables the clipping used by the VGUI that limits the drawing
+-- operations to a panels bounds. See also **DisableClipping** and **Panel:NoClipping**.
+-- @function [parent=#surface] DisableClipping
+-- @param  #boolean disable True to disable, false to enable the clipping.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Draws a hollow circle, made of dots.
+-- 
+-- **Note**: _This is a rendering function that requires a 2D rendering context._
+-- _This means that it will only work in hooks with a 2D rendering context._
+-- @function [parent=#surface] DrawCircle
+-- @param  #number originX The center x integer coordinate.
+-- @param  #number originY The center y integer coordinate.
+-- @param  #number radius The radius of the circle.
+-- @param  #number r The red value of the color to draw the circle with, or a **Color structure**.
+-- @param  #number g The green value of the color to draw the circle with. Unused if a **Color structure** was given.
+-- @param  #number b The blue value of the color to draw the circle with. Unused if a **Color structure** was given.
+-- @param  #number a The alpha value of the color to draw the circle with. Unused if a **Color structure** was given. _(Default: 255)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Draws a line from one point to another.
+-- 
+-- **Note**: _This is a rendering function that requires a 2D rendering context._
+-- _This means that it will only work in hooks with a 2D rendering context._
+-- @function [parent=#surface] DrawLine
+-- @param  #number startX The start x integer coordinate.
+-- @param  #number startY The start y integer coordinate.
+-- @param  #number endX The end x integer coordinate.
+-- @param  #number endY The end y integer coordinate.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Draws a hollow box with a border width of 1 px.
+-- 
+-- **Note**: _This is a rendering function that requires a 2D rendering context._
+-- _This means that it will only work in hooks with a 2D rendering context._
+-- @function [parent=#surface] DrawOutlinedRect
+-- @param  #number x The start x integer coordinate.
+-- @param  #number y The start y integer coordinate.
+-- @param  #number w The integer width.
+-- @param  #number h The integer height.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Draws a textured polygon (secretly a triangle fan) with a maximum of 256
+-- vertices. Only works properly with convex polygons. You may try to render
+-- concave polygons, but there is no guarantee that things wont get messed up.
+-- Unlike most surface library functions, non-integer coordinates are not rounded.
+-- 
+-- **Warning**: _You must reset the drawing color and texture before calling
+-- the function to ensure consistent results._
+-- 
+-- **Note**: _This is a rendering function that requires a 2D rendering context._
+-- _This means that it will only work in hooks with a 2D rendering context._
+-- @function [parent=#surface] DrawPoly
+-- @param  #table vertices A table containing integer vertices. See the **PolygonVertex structure**.  
+-- **The vertices must be in clockwise order.**
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Draws a solid rectangle on the screen.
+-- 
+-- **Note**: _This is a rendering function that requires a 2D rendering context._
+-- _This means that it will only work in hooks with a 2D rendering context._
+-- @function [parent=#surface] DrawRect
+-- @param  #number x The X integer co-ordinate.
+-- @param  #number y The Y integer co-ordinate.
+-- @param  #number width The integer width of the rectangle.
+-- @param  #number height The integer height of the rectangle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Draw the specified text on the screen, using the previously set position,
+-- font and color.
+-- 
+-- **Note**: _This is a rendering function that requires a 2D rendering context._
+-- _This means that it will only work in hooks with a 2D rendering context._
+-- @function [parent=#surface] DrawText
+-- @param  #string text The text to be rendered.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Draw a textured rectangle with the given position and dimensions on the
+-- screen, using the current active texture set with **surface.SetMaterial**. It is
+-- also affected by **surface.SetDrawColor**.
+-- 
+-- **Note**: _This is a rendering function that requires a 2D rendering context._
+-- _This means that it will only work in hooks with a 2D rendering context._
+-- @function [parent=#surface] DrawTexturedRect
+-- @param  #number x The X integer co-ordinate.
+-- @param  #number y The Y integer co-ordinate.
+-- @param  #number width The integer width of the rectangle.
+-- @param  #number height The integer height of the rectangle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Draw a textured rotated rectangle with the given position and dimensions and
+-- angle on the screen, using the current active texture.
+-- @function [parent=#surface] DrawTexturedRectRotated
+-- @param  #number x The X integer co-ordinate, representing the center of the rectangle.
+-- @param  #number y The Y integer co-ordinate, representing the center of the rectangle.
+-- @param  #number width The integer width of the rectangle.
+-- @param  #number height The integer height of the rectangle.
+-- @param  #number rotation The rotation of the rectangle, in degrees.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Draws a textured rectangle with a repeated or partial texture.
+-- u and v refer to texture coordinates:
+-- * (u, v) = (0, 0) is the top left
+-- * (u, v) = (1, 0) is the top right
+-- * (u, v) = (1, 1) is the bottom right
+-- * (u, v) = (0, 1) is the bottom left
+-- 
+-- Using a start point of (1, 0) and an end point to (0, 1), you can draw an
+-- image flipped horizontally, same goes with other directions. Going above 1
+-- will tile the texture. Negative values are allowed as well.
+-- 
+-- **Note**: _If you are using a .png image, you need supply the "noclamp" flag
+-- as second parameter for Material if you intend to use tiling._
+-- 
+-- **Note**: _This is a rendering function that requires a 2D rendering context._
+-- _This means that it will only work in hooks with a 2D rendering context._
+-- @function [parent=#surface] DrawTexturedRectUV
+-- @param  #number x The X integer coordinate.
+-- @param  #number y The Y integer coordinate.
+-- @param  #number width The integer width of the rectangle.
+-- @param  #number height The integer height of the rectangle.
+-- @param  #number startU The U texture mapping of the rectangle origin.
+-- @param  #number startV The V texture mapping of the rectangle origin.
+-- @param  #number endU The U texture mapping of the rectangle end.
+-- @param  #number endV The V texture mapping of the rectangle end.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Gets the HUD texture with the specified name.
+-- @function [parent=#surface] GetHUDTexture
+-- @param  #string name The name of the texture.
+-- @return #ITexture The HUD texture specified.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Returns the width and height (in pixels) of the given text, but only if the
+-- font has been set with **surface.SetFont**.
+-- @function [parent=#surface] GetTextSize
+-- @param  #string text The string to check the size of.
+-- @return #number, #number Width and height of the provided text.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Returns the texture id of the material with the given name/path.
+-- 
+-- **Note**: _This function will not work with .png or .jpg images. For that,
+-- **see Material**._
+-- @function [parent=#surface] GetTextureID
+-- @param  #string name/path Name or path of the texture.
+-- @return #number The texture ID.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Returns the size of the texture with the associated texture ID.
+-- @function [parent=#surface] GetTextureSize
+-- @param  #number textureID The texture ID, returned by surface.GetTextureID.
+-- @return #number, #number The texture's width and height.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Play a sound file directly on the client (such as UI sounds, etc).
+-- @function [parent=#surface] PlaySound
+-- @param  #string soundfile The path to the sound file, which can be relative to the sound/ folder.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- **This feature is deprecated.**  
+-- _You should avoid using it as it may be removed in a future version._
+-- _You should use ScrH instead._
+-- 
+-- Returns the height of the current client's screen.
+-- @function [parent=#surface] ScreenHeight
+-- @return #number The screen's height.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- **This feature is deprecated.**  
+-- _You should avoid using it as it may be removed in a future version._
+-- _You should use ScrW instead._
+-- 
+-- Returns the width of the current client's screen.
+-- @function [parent=#surface] ScreenWidth
+-- @return #number The screen's width.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Sets a multiplier that will influence all upcoming drawing operations.
+-- @function [parent=#surface] SetAlphaMultiplier
+-- @param  #number multiplier The multiplier ranging from 0 to 1.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Set the color of any future shapes to be drawn, can be set by either using
+-- r, g, b, a as separate values or by a Color structure. Using a color
+-- structure is not recommended to be created procedurally.
+-- @function [parent=#surface] SetDrawColor
+-- @param  #number r The red value of color, or a **Color structure**.
+-- @param  #number g The green value of color. Unused if a **Color structure** was given.
+-- @param  #number b The blue value of color. Unused if a **Color structure** was given.
+-- @param  #number a The alpha value of color. Unused if a **Color structure** was given. _(Default: 255)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Set the current font to be used for text operations later. The fonts must
+-- first be created with **surface.CreateFont** or be one of the **Default Fonts**.
+-- @function [parent=#surface] SetFont
+-- @param  #string fontName The name of the font to use.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Sets the material to be used in all upcoming draw operations using the
+-- surface library. Not to be confused with **render.SetMaterial**.
+-- See also **surface.SetTexture**.
+-- 
+-- **Warning**: _Material function calls are expensive to be done inside this
+-- function or inside rendering context, you should be caching the results of
+-- Material calls_
+-- @function [parent=#surface] SetMaterial
+-- @param  #IMaterial material The material to be used.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Set the color of any future shapes to be drawn, can be set by either using
+-- r, g, b, a as separate values or by a Color structure. Using a color
+-- structure is not recommended to be created procedurally.
+-- @function [parent=#surface] SetTextColor
+-- @param  #number r The red value of color, or a **Color structure**.
+-- @param  #number g The green value of color. Unused if a **Color structure** was given.
+-- @param  #number b The blue value of color. Unused if a **Color structure** was given.
+-- @param  #number a The alpha value of color. Unused if a **Color structure** was given. _(Default: 255)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Set the position to draw any future text.
+-- @function [parent=#surface] SetTextPos
+-- @param  #number x The X integer co-ordinate.
+-- @param  #number y The Y integer co-ordinate.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Sets the texture to be used in all upcoming draw operations using the
+-- surface library. See also **surface.SetMaterial** for an **IMaterial** alternative.
+-- @function [parent=#surface] SetTexture
+-- @param  #number textureID The ID of the texture to draw with returned by **surface.GetTextureID**.
+
+return nil

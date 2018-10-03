@@ -867,22 +867,25 @@
 -- @field[parent = #global] util.worldpicker#util.worldpicker util.worldpicker preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The vgui library allows you to script and create your own panels using
+-- Valve's GUI system.
 -- This is a global variable which holds the preloaded @{vgui} module.
 -- @field[parent = #global] vgui#vgui vgui preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The video library.
 -- This is a global variable which holds the preloaded @{video} module.
 -- @field[parent = #global] video#video video preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The weapons library allows you to access information about any scripted
+-- weapons loaded into the game, as well as register your own weapons.
 -- This is a global variable which holds the preloaded @{weapons} module.
 -- @field[parent = #global] weapons#weapons weapons preloaded module
 
 ------------------------------------------------------------------------------
--- 
+-- The widgets library. Widgets allow the player to have mouse interaction
+-- with entities, such as being able to manipulate the bones of an NPC.
 -- This is a global variable which holds the preloaded @{widgets} module.
 -- @field[parent = #global] widgets#widgets widgets preloaded module
 

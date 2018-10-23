@@ -108,7 +108,7 @@
 -- _Use **math.BSplinePoint** instead._
 -- 
 -- Basic code for Bezier-Spline algorithm, helper function for **math.BSplinePoint**.
--- @function [parent=#math] 
+-- @function [parent=#math] calcBSplineN
 -- @param  #number i
 -- @param  #number k
 -- @param  #number t
@@ -279,7 +279,7 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_
 -- 
--- Returns the base-10 logarithm of x. This is usually more accurate than math.log(x, 10).
+-- Returns the base-10 logarithm of x. This is usually more accurate than **math.log**(x, 10).
 -- @function [parent=#math] log10
 -- @param  #number x The value to get the base from exponent from.
 -- @return #number Logarithm of x to base 10.
@@ -305,8 +305,8 @@
 -- 
 -- **This feature is deprecated.**  
 -- _You should avoid using it as it may be removed in a future version._
--- _This is removed in Lua versions later than what GMod is currently using.
--- You should use the % operator or **math.fmod** instead._
+-- _This is removed in Lua versions later than what GMod is currently using._
+-- _You should use the % operator or **math.fmod** instead._
 -- 
 -- Returns the modulus of the specified values. Same as **math.fmod**.
 -- @function [parent=#math] mod
@@ -374,8 +374,8 @@
 -- 
 -- When called without arguments, returns a uniform pseudo-random real
 -- number in the range *[0,1)*. When called with an integer number `m`,
--- `math.random` returns a uniform pseudo-random integer in the range *[1,
--- m]*. When called with two integer numbers `m` and `n`, `math.random`
+-- **math.random** returns a uniform pseudo-random integer in the range *[1,
+-- m]*. When called with two integer numbers `m` and `n`, **math.random**
 -- returns a uniform pseudo-random integer in the range *[m, n]*.
 -- @function [parent=#math] random
 -- @param  #number m If m is the only parameter: upper limit. _(Default: nil)_  

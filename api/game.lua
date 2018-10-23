@@ -147,7 +147,7 @@
 -- See **Global States** for more information.
 -- @function [parent=#game] GetGlobalState
 -- @param  #string name The name of the Global State to retrieve the state of.  
--- If the Global State by that name does not exist, **GLOBAL_DEAD** will be returned.  
+-- If the Global State by that name does not exist, **GLOBAL\_DEAD** will be returned.  
 -- See **Global States** for a list of default global states.
 -- @return #number The state of the Global State. See **GLOBAL\_Enums**.
 
@@ -226,7 +226,8 @@
 -- Kicks a player from the server. This can be ran before the player has spawned.
 -- @function [parent=#game] KickID
 -- @param  #string id UserID or SteamID of the player to kick.
--- @param  #string reason Reason to display to the player. This can span across multiple lines. _(Default: "No reason given")_
+-- @param  #string reason Reason to display to the player. _(Default: "No reason given")_  
+-- This can span across multiple lines.
 
 -------------------------------------------------------------------------------
 -- _Server_

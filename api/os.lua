@@ -21,7 +21,7 @@
 -- to the given string `format`.
 --
 -- If the `time` argument is present, this is the time to be formatted
--- (see the `os.time` function for a description of this value). Otherwise,
+-- (see the **os.time** function for a description of this value). Otherwise,
 -- `date` formats the current time.
 --
 -- If `format` starts with '`!`', then the date is formatted in Coordinated
@@ -42,7 +42,7 @@
 -- formatted according to the same rules as the C function `strftime`.
 -- When called without arguments, `date` returns a reasonable date and time
 -- representation that depends on the host system and on the current locale
--- (that is, `os.date()` is equivalent to `os.date("%c")`).
+-- (that is, **os.date**() is equivalent to **os.date**("%c")).
 -- @function [parent=#os] date
 -- @param #string format format of date. (optional)
 -- @param #number time time to format. (default value is current time) 
@@ -135,7 +135,7 @@
 -- representing the date and time specified by the given table. This table
 -- must have fields `year`, `month`, and `day`, and may have fields `hour`,
 -- `min`, `sec`, and `isdst` (for a description of these fields, see the
--- `os.date` function).
+-- **os.date** function).
 -- 
 -- The returned value is a number, whose meaning depends on your system. In
 -- POSIX, Windows, and some other systems, this number counts the number
@@ -159,7 +159,7 @@
 -- file.) You still have to open the file to use it and to remove it (even
 -- if you do not use it).
 -- 
--- When possible, you may prefer to use `io.tmpfile`, which automatically
+-- When possible, you may prefer to use **io.tmpfile**, which automatically
 -- removes the file when the program ends.
 -- @function [parent=#os] tmpname
 -- @return #string a string with a file name that can be used for a temporary file.

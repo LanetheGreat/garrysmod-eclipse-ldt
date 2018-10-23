@@ -23,7 +23,8 @@
 -- does not affect the original.
 -- @function [parent=#table] ClearKeys
 -- @param  #table table The original table to modify.
--- @param  #boolean saveKeys Save the keys within each member table. This will insert a new field _\_\_key_ into each value, and should not be used if the table contains non-table values. _(Default: false)_
+-- @param  #boolean saveKeys Save the keys within each member table. _(Default: false)_  
+-- This will insert a new field _\_\_key_ into each value, and should not be used if the table contains non-table values.
 -- @return #table Table with integer keys.
 
 -------------------------------------------------------------------------------
@@ -55,7 +56,7 @@
 -- Creates a deep copy and returns that copy.
 -- 
 -- **Warning**: _This function does NOT copy userdata, such as **Vectors** and **Angles**!_
--- @function [parent=#table] 
+-- @function [parent=#table] Copy
 -- @param  #table originalTable The table to be copied.
 -- @return #table A deep copy of the original table.
 
@@ -98,12 +99,12 @@
 -- 
 -- **This feature is deprecated.**  
 -- _You should avoid using it as it may be removed in a future version._
--- _Instead, iterate the table using ipairs or increment from the previous
--- index using next. Non-numerically indexed tables are not ordered._
+-- _Instead, iterate the table using ipairs or increment from the previous index using next._
+-- _Non-numerically indexed tables are not ordered._
 -- 
 -- Returns the value positioned after the supplied value in a table. If it
 -- isn't found then the first element in the table is returned.
--- @function [parent=#table] 
+-- @function [parent=#table] FindNext
 -- @param  #table tbl Table to search.
 -- @param  #any value Value to return element after.
 -- @return #any Found element.
@@ -113,12 +114,12 @@
 -- 
 -- **This feature is deprecated.**  
 -- _You should avoid using it as it may be removed in a future version._
--- _Instead, iterate your table with ipairs, storing the previous value and
--- checking for the target. Non-numerically indexed tables are not ordered._
+-- _Instead, iterate your table with ipairs, storing the previous value and checking for the target._
+-- _Non-numerically indexed tables are not ordered._
 -- 
 -- Returns the value positioned before the supplied value in a table. If it
 -- isn't found then the last element in the table is returned.
--- @function [parent=#table] 
+-- @function [parent=#table] FindPrev
 -- @param  #table tbl Table to search.
 -- @param  #any value Value to return element before.
 -- @return #any Found element.
@@ -144,8 +145,8 @@
 -- 
 -- This is inherited from the original Lua implementation and is deprecated in
 -- Lua as of 5.1; see here. You should use pairs() instead. The GLua
--- interpretation of this is table.ForEach.
--- @function [parent=#table] 
+-- interpretation of this is **table.ForEach**.
+-- @function [parent=#table] foreach
 -- @param  #table tbl The table to iterate over.
 -- @param  #function callback The function to run for each key and value.
 
@@ -157,10 +158,10 @@
 -- _You should use **pairs**() instead._
 -- 
 -- Iterates over a table and calls the given function for each key and value
--- found. Unlike table.foreach, this ignores the value returned by the function.
--- @function [parent=#table] 
+-- found. Unlike **table.foreach**, this ignores the value returned by the function.
+-- @function [parent=#table] ForEach
 -- @param  #table tab Table to iterate over.
--- @param  #function callback Function to call for every key-value pair.
+-- @param  #function callback Function to call for every key-value pair.  
 -- Arguments passed are:
 -- 
 -- * _#any key_
@@ -188,7 +189,7 @@
 -- _Non-numerically indexed tables are not ordered and do not have a first key._
 -- 
 -- Returns the first key found in the given table.
--- @function [parent=#table] 
+-- @function [parent=#table] GetFirstKey
 -- @param  #table tab Table to retrieve key from.
 -- @return #any key
 
@@ -201,7 +202,7 @@
 -- _Non-numerically indexed tables are not ordered and do not have a first key._
 -- 
 -- Returns the first value found in the given table.
--- @function [parent=#table] 
+-- @function [parent=#table] GetFirstValue
 -- @param  #table tab Table to retrieve value from.
 -- @return #any value
 
@@ -218,8 +219,8 @@
 -- 
 -- **This feature is deprecated.**  
 -- _You should avoid using it as it may be removed in a future version._
--- _Instead, use the result of the length (#) operator, ensuring it is not zero.
--- Non-numerically indexed tables are not ordered and do not have a last key._
+-- _Instead, use the result of the length (#) operator, ensuring it is not zero._
+-- _Non-numerically indexed tables are not ordered and do not have a last key._
 -- 
 -- Returns the last key found in the given table.
 -- @function [parent=#table] GetLastKey
@@ -231,11 +232,11 @@
 -- 
 -- **This feature is deprecated.**  
 -- _You should avoid using it as it may be removed in a future version._
--- _Instead, index the table with the result of the length (#) operator,
--- ensuring it is not zero. Non-numerically indexed tables are not ordered and do not have a last key._
+-- _Instead, index the table with the result of the length (#) operator, ensuring it is not zero._
+-- _Non-numerically indexed tables are not ordered and do not have a last key._
 -- 
 -- Returns the last value found in the given table.
--- @function [parent=#table] 
+-- @function [parent=#table] getn
 -- @param  #table tab Table to retrieve value from.
 -- @return #any value
 
@@ -281,7 +282,7 @@
 -- Inserts element `value` at position `pos` in `table`, shifting up
 -- other elements to open space, if necessary. The default value for `pos` is
 -- `n+1`, where `n` is the length of the table, so that a call
--- `table.insert(t,x)` inserts `x` at the end of table `t`.
+-- **table.insert**(t,x) inserts `x` at the end of table `t`.
 -- @function [parent=#table] insert
 -- @param #table table table to modify.
 -- @param #number pos index of insertion.
@@ -354,7 +355,7 @@
 -- sequential tables you should instead use following:_
 -- 
 -- ```mytable[math.random(#mytable)]```
--- @function [parent=#table] 
+-- @function [parent=#table] Random
 -- @param  #table haystack The table to choose from.
 -- @return #any, #any A random value and its associated key.
 
@@ -364,7 +365,7 @@
 -- Removes from `table` the element at position `pos`, shifting down other
 -- elements to close the space, if necessary. Returns the value of the removed
 -- element. The default value for `pos` is `n`, where `n` is the length of the
--- table, so that a call `table.remove(t)` removes the last element of table
+-- table, so that a call **table.remove**(t) removes the last element of table
 -- `t`.
 -- @function [parent=#table] remove
 -- @param #table table table to modify.

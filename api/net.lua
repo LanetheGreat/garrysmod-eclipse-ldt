@@ -95,7 +95,7 @@
 -- 
 -- **Warning**: _You **must** read information in same order as you write it._
 -- @function [parent=#net] ReadEntity
--- @return #Entity The entity, or Entity(0) if no entity could be read.
+-- @return #Entity The entity, or **Entity**(0) if no entity could be read.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -191,7 +191,7 @@
 -- 
 -- **Warning**: _You **must** read information in same order as you write it._
 -- @function [parent=#net] ReadVector
--- @return #Vector The read vector, or Vector(0,0,0) if no vector could be read.
+-- @return #Vector The read vector, or **Vector**(0,0,0) if no vector could be read.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -392,7 +392,7 @@
 -- facilitate reading with **net.ReadType**. If you know the data type you are
 -- writing, use a function meant for that specific data type to reduce amount
 -- of data sent._
--- @function [parent=#net] 
+-- @function [parent=#net] WriteType
 -- @param  #any data The data to be sent.
 
 -------------------------------------------------------------------------------

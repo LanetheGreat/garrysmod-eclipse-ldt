@@ -5,7 +5,7 @@
 -------------------------------------------------------------------------------
 -- _Server_
 -- 
--- Create a new empty task. Used by Schedule:AddTask and Schedule:EngTask.
+-- Create a new empty task. Used by **Schedule:AddTask** and **Schedule:EngTask**.
 -- @function [parent=#ai_task] New
 -- @return #Task The new task object.
 

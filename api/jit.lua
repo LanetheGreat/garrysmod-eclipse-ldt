@@ -12,7 +12,7 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_
 -- 
--- You can attach callbacks to a number of compiler events with jit.attach.  
+-- You can attach callbacks to a number of compiler events with **jit.attach**.  
 -- The callback can be called:
 -- 
 -- * when a function has been compiled to bytecode. ("bc")
@@ -30,24 +30,24 @@
 -- The arguments passed to the callback depend on the event being reported:
 -- 
 -- * "bc":
--- ** _#function func_ : The function that's just been recorded.
+--  * _#function func_ : The function that's just been recorded.
 -- * "trace":
--- ** _#string what_ : description of the trace event: "flush", "start", "stop", "abort". Available for all events.
--- ** _#number tr_ : The trace number. Not available for flush.
--- ** _#function func_ : The function being traced. Available for start and abort.
--- ** _#number pc_ : The program counter - the bytecode number of the function being recorded (if this a Lua function). Available for start and abort.
--- ** _#number otr_ : "start": the parent trace number if this is a side trace, "abort": abort code
--- ** _#string oex_ : "start": the exit number for the parent trace, "abort": abort reason (string)
+--  * _#string what_ : description of the trace event: "flush", "start", "stop", "abort". Available for all events.
+--  * _#number tr_ : The trace number. Not available for flush.
+--  * _#function func_ : The function being traced. Available for start and abort.
+--  * _#number pc_ : The program counter - the bytecode number of the function being recorded (if this a Lua function). Available for start and abort.
+--  * _#number otr_ : "start": the parent trace number if this is a side trace, "abort": abort code
+--  * _#string oex_ : "start": the exit number for the parent trace, "abort": abort reason (string)
 -- * "record":
--- ** _#number tr_ : The trace number. Not available for flush.
--- ** _#function func_ : The function being traced. Available for start and abort.
--- ** _#number pc_ : The program counter - the bytecode number of the function being recorded (if this a Lua function). Available for start and abort.
--- ** _#number depth_ : The depth of the inlining of the current bytecode.
+--  * _#number tr_ : The trace number. Not available for flush.
+--  * _#function func_ : The function being traced. Available for start and abort.
+--  * _#number pc_ : The program counter - the bytecode number of the function being recorded (if this a Lua function). Available for start and abort.
+--  * _#number depth_ : The depth of the inlining of the current bytecode.
 -- * "texit":
--- ** _#number tr_ : The trace number. Not available for flush.
--- ** _#number ex_ : The exit number.
--- ** _#number ngpr_ : The number of general-purpose registers that are active at the exit.
--- ** _#number nfpr_ : The number of floating point registers that are active at the exit.
+--  * _#number tr_ : The trace number. Not available for flush.
+--  * _#number ex_ : The exit number.
+--  * _#number ngpr_ : The number of general-purpose registers that are active at the exit.
+--  * _#number nfpr_ : The number of floating point registers that are active at the exit.
 -- @param  #string event The event to hook into.
 
 -------------------------------------------------------------------------------

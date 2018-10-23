@@ -53,7 +53,7 @@
 -- Creates a colored cross at the specified position for the specified time.
 -- 
 -- **Note**: _This function will silently fail if the **developer ConVar** is set to 0._
--- @function [parent=#debugoverlay] 
+-- @function [parent=#debugoverlay] Cross
 -- @param  #Vector origin Position origin.
 -- @param  #number size Size of the cross.
 -- @param  #number lifetime Number of seconds to appear. _(Default: 1)_

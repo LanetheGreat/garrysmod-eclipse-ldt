@@ -13,7 +13,7 @@
 -- 
 -- This is similar to **hook.Run** and **hook.Call**, except the hook library will call
 -- hooks created with **hook.Add** even if there is no corresponding gamemode function.
--- @function [parent=#gamemode] 
+-- @function [parent=#gamemode] Call
 -- @param  #string name The name of the hook to call.
 -- @param  ... Arguments to pass to the hook function(s).
 -- @return #any The result of the hook function - can be up to 6 values. Returns false if the gamemode function doesn't exist (i.e. nothing happened), but remember - a hook can also return false.

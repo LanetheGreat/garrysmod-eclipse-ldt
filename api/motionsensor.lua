@@ -65,7 +65,7 @@
 -- @param  #table sensor
 -- @param  #Vector pos
 -- @param  #Angle rotation
--- @return #Angle The angle. If !translator.AnglesTable then return {}.
+-- @return #Angle The angle. If !**translator.AnglesTable** then return {}.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -73,7 +73,7 @@
 -- @function [parent=#motionsensor] ProcessPositionTable
 -- @param  #table translator
 -- @param  #table sensor
--- @return #Vector The position. If !translator.PositionTable then return {}.
+-- @return #Vector The position. If !**translator.PositionTable** then return {}.
 
 
 -------------------------------------------------------------------------------

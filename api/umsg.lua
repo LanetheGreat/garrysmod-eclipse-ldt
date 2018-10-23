@@ -86,7 +86,7 @@
 -- Starts a new usermessage.
 -- 
 -- **Warning**: _Usermessages have a limit of only 256 bytes!_
--- @function [parent=#umsg] 
+-- @function [parent=#umsg] Start
 -- @param  #string name The name of the message to be sent.
 -- @param  #Player filter If passed a player object, it will only be sent to the player, if passed a **CRecipientFilter** of players, it will be sent to all specified players,
 -- if passed nil (or another invalid value), the message will be sent to all players.

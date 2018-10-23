@@ -22,7 +22,7 @@
 -- _Client_ | _Menu_
 -- 
 -- Gets the button name from a numeric button code. The name needs to be
--- translated with language.GetPhrase before being displayed.
+-- translated with **language.GetPhrase** before being displayed.
 -- 
 -- **Note**: Despite the name of the function, this also works for the full
 -- range of keys in **BUTTON\_CODE\_Enums**.
@@ -97,7 +97,7 @@
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
--- Switches to the provided weapon on the next CUserCmd generation/CreateMove
+-- Switches to the provided weapon on the next **CUserCmd** generation/CreateMove
 -- call. Direct binding to **CInput::MakeWeaponSelection**.
 -- @function [parent=#input] SelectWeapon
 -- @param  #Weapon weapon The weapon entity to switch to.

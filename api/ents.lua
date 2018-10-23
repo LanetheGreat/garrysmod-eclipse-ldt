@@ -22,8 +22,7 @@
 -- 
 -- Creates a clientside only prop. See also **ClientsideModel**.
 -- @function [parent=#ents] CreateClientProp
--- @param  #string model The model for the entity to be created. _(Default: "models/error.mdl")_
--- 
+-- @param  #string model The model for the entity to be created. _(Default: "models/error.mdl")_  
 -- **Warning**: _Model must be precached with **util.PrecacheModel** on the server before usage._
 -- @return #CSEnt The created entity.
 

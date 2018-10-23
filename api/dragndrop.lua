@@ -35,7 +35,7 @@
 -- _Client_ | _Menu_
 -- 
 -- Returns a table of currently dragged panels.
--- @function [parent=#dragndrop] 
+-- @function [parent=#dragndrop] GetDroppable
 -- @param  #string name If set, the function will return only the panels with this **Panel:Droppable** name. _(Default: nil)_
 -- @return #table A table of all panels that are being currently dragged, if any.
 

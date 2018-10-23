@@ -234,7 +234,7 @@
 -- @param  #Length1 Length1 
 -- @param  #Length2 Length2 
 -- @param  #number width The thickness of the rope.
--- @param  #number key The key binding, corresponding to a **KEY_Enums**.
+-- @param  #number key The key binding, corresponding to a **KEY\_Enums**.
 -- @param  #number fixed Whether the hydraulic is fixed.
 -- @param  #number speed The speed used when the constraint is activated.
 -- @param  #string material Name of the material to use while rendering the rope.
@@ -291,7 +291,7 @@
 -- @param  #Length1 Length1 
 -- @param  #Length2 Length2 
 -- @param  #number width The thickness of the rope.
--- @param  #number key The key binding, corresponding to a **KEY_Enums**.
+-- @param  #number key The key binding, corresponding to a **KEY\_Enums**.
 -- @param  #number fixed Whether the constraint is fixed.
 -- @param  #number period
 -- @param  #number amplitude

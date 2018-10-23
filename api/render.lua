@@ -241,7 +241,7 @@
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
--- Draws the the current material set by render.SetMaterial to the area specified.
+-- Draws the the current material set by **render.SetMaterial** to the area specified.
 -- 
 -- **Note**: _This is a rendering function that requires a 2D rendering context._
 -- _This means that it will only work in hooks with a 2D rendering context._
@@ -333,7 +333,8 @@
 -- @param  #number longitudeSteps The number of longitude steps. This controls the quality of the sphere. Higher quality will lower performance significantly. 50 is a good number to start with.
 -- @param  #number latitudeSteps The number of latitude steps. This controls the quality of the sphere. Higher quality will lower performance significantly. 50 is a good number to start with.
 -- @param  #table color The color of the sphere. See **Color structure**. _(Default: Color(255,255,255))_
--- @param  #boolean writeZ Whether or not to consider the Z buffer. If false, the wireframe will be drawn over everything currently drawn. If true, it will be drawn with depth considered, as if it were a regular object in 3D space. _(Default: false)_
+-- @param  #boolean writeZ Whether or not to consider the Z buffer. _(Default: false)_  
+-- If false, the wireframe will be drawn over everything currently drawn. If true, it will be drawn with depth considered, as if it were a regular object in 3D space.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -460,7 +461,7 @@
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
--- Returns the _rt_FullFrameDepth texture. Alias of _rt_PowerOfTwoFB.
+-- Returns the \_rt\_FullFrameDepth texture. Alias of \_rt\_PowerOfTwoFB.
 -- @function [parent=#render] GetFullScreenDepthTexture
 -- @return #ITexture The frame's current depth texture.
 
@@ -505,14 +506,14 @@
 -- 
 -- Returns the render target's power of two texture.
 -- @function [parent=#render] GetPowerOfTwoTexture
--- @return #ITexture The power of two texture, which is _rt_poweroftwofb by default.
+-- @return #ITexture The power of two texture, which is \_rt\_poweroftwofb by default.
 
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
--- Alias of render.GetPowerOfTwoTexture.
+-- Alias of **render.GetPowerOfTwoTexture**.
 -- @function [parent=#render] GetRefractTexture
--- @return #ITexture The power of two texture, which is _rt_poweroftwofb by default.
+-- @return #ITexture The power of two texture, which is \_rt\_poweroftwofb by default.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -528,9 +529,9 @@
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
--- Returns the _rt_ResolvedFullFrameDepth texture for SSAO depth.
+-- Returns the \_rt\_ResolvedFullFrameDepth texture for SSAO depth.
 -- @function [parent=#render] GetResolvedFullFrameDepth
--- @return #ITexture The _rt_ResolvedFullFrameDepth texture
+-- @return #ITexture The \_rt\_ResolvedFullFrameDepth texture
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -539,7 +540,7 @@
 -- **render.UpdateScreenEffectTexture** in order to update this texture with the
 -- currently rendered scene.
 -- 
--- This texture is mainly used within GM:RenderScreenspaceEffects
+-- This texture is mainly used within **GM:RenderScreenspaceEffects**.
 -- @function [parent=#render] GetScreenEffectTexture
 -- @param  #number textureIndex Max index is 3, but engine only creates the first two for you. _(Default: 0)_
 -- @return #ITexture The selected effect texture.
@@ -567,7 +568,7 @@
 -- drawing a floating-point texture to an integer texture (e.g. the default
 -- render target). Use an UnlitGeneric material instead._
 -- @function [parent=#render] GetSuperFPTex
--- @return #ITexture Render target named "__rt_supertexture1".
+-- @return #ITexture Render target named "\_\_rt\_supertexture1".
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -578,7 +579,7 @@
 -- drawing a floating-point texture to an integer texture (e.g. the default
 -- render target). Use an UnlitGeneric material instead._
 -- @function [parent=#render] GetSuperFPTex2
--- @return #ITexture Render target named "__rt_supertexture2".
+-- @return #ITexture Render target named "\_\_rt\_supertexture2".
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -643,8 +644,8 @@
 -- * _#string model_ : Path to the model to draw.
 -- * _#Vector pos_ : The position to draw the model at.
 -- * _#Angle angle_ : The angles to draw the model at.
--- @param  #CSEnt ent If provided, this entity will be reused instead of creating a new one with ClientsideModel.
--- Note that the ent's model, position and angles will be changed, and **Entity:SetNoDraw** will be set to true. _(Default: nil)_
+-- @param  #CSEnt ent If provided, this entity will be reused instead of creating a new one with **ClientsideModel**. _(Default: nil)_  
+-- Note that the ent's model, position and angles will be changed, and **Entity:SetNoDraw** will be set to true.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -695,7 +696,7 @@
 -- 
 -- **Note**: _Doing surface library draw calls with alpha set to 0 is a no-op
 -- and will never have any effect._
--- @function [parent=#render] 
+-- @function [parent=#render] OverrideBlendFunc
 -- @param  #boolean enabled true to enable, false to disable. No other arguments are required when disabling.
 -- @param  #number srcBlend The source color blend function **BLEND\_Enums**. Determines how a rendered texture's final color should be calculated.
 -- @param  #number destBlend The destination color blend function **BLEND\_Enums**.
@@ -814,8 +815,8 @@
 -- @param  #ITexture texture The new render target to be used.
 -- @param  #number x X origin of the viewport. _(Default: 0)_
 -- @param  #number y Y origin of the viewport. _(Default: 0)_
--- @param  #number w Width of the viewport. _(Default: texture:Width())_
--- @param  #number h Height of the viewport. _(Default: texture:Height())_
+-- @param  #number w Width of the viewport. _(Default: **texture:Width**())_
+-- @param  #number h Height of the viewport. _(Default: **texture:Height**())_
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -832,7 +833,8 @@
 -- 
 -- This applies the changes made to map lighting using **engine.LightStyle**.
 -- @function [parent=#render] RedownloadAllLightmaps
--- @param  #boolean DoStaticProps When true, this will also apply lighting changes to static props. This is really slow on large maps. _(Default: false)_
+-- @param  #boolean DoStaticProps When true, this will also apply lighting changes to static props. _(Default: false)_  
+-- This is really slow on large maps.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -849,7 +851,8 @@
 -- 
 -- Renders the scene with the specified viewData to the current active render target.
 -- @function [parent=#render] RenderView
--- @param  #table view The view data to be used in the rendering. See **ViewData structure**. Any missing value is assumed to be that of the current view. Similarly, you can make a normal render by simply not passing this table at all. _(Default: nil)_
+-- @param  #table view The view data to be used in the rendering. _(Default: nil)_  
+-- See **ViewData structure**. Any missing value is assumed to be that of the current view. Similarly, you can make a normal render by simply not passing this table at all.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -911,7 +914,7 @@
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
--- If the fog mode is set to **MATERIAL_FOG_LINEAR_BELOW_FOG_Z**, the fog will only
+-- If the fog mode is set to **MATERIAL\_FOG\_LINEAR\_BELOW\_FOG\_Z**, the fog will only
 -- be rendered below the specified height.
 -- @function [parent=#render] SetFogZ
 -- @param  #number fogZ The fog Z distance.
@@ -970,7 +973,8 @@
 -- 
 -- Disables all local lights if called with no arguments.
 -- @function [parent=#render] SetLocalModelLights
--- @param  #table lights A table containing up to 4 tables for each light source that should be set up. Each of these tables should contain the properties of its associated light source, see **LocalLight structure**. _(Default: {})_
+-- @param  #table lights A table containing up to 4 tables for each light source that should be set up. _(Default: {})_  
+-- Each of these tables should contain the properties of its associated light source, see **LocalLight structure**.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -1141,7 +1145,7 @@
 -- 
 -- Changes the view port position and size.
 -- 
--- **Note**: _This function will override values of ScrW and ScrH with the ones
+-- **Note**: _This function will override values of **ScrW** and **ScrH** with the ones
 -- you set._
 -- @function [parent=#render] SetViewPort
 -- @param  #number x X origin of the view port.

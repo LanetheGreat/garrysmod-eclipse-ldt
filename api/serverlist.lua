@@ -21,7 +21,7 @@
 -- Each table with player info has next fields:
 -- 
 -- * _#number time_ : The amount of time the player is playing on the server, in seconds.
--- * _#string name _ : The player name.
+-- * _#string name_ : The player name.
 -- * _#number score_ : The players score.
 
 -------------------------------------------------------------------------------
@@ -29,6 +29,6 @@
 -- 
 -- Queries the master server for server list.
 -- @function [parent=#serverlist] Query
--- @return #table data The information about what kind of servers we want. See **ServerQueryData structure**.
+-- @return #table The information about what kind of servers we want. See **ServerQueryData structure**.
 
 return nil

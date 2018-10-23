@@ -143,6 +143,7 @@
 -- 
 -- Draws a textured rectangle with a repeated or partial texture.
 -- u and v refer to texture coordinates:
+-- 
 -- * (u, v) = (0, 0) is the top left
 -- * (u, v) = (1, 0) is the top right
 -- * (u, v) = (1, 1) is the bottom right
@@ -200,7 +201,7 @@
 -- 
 -- Returns the size of the texture with the associated texture ID.
 -- @function [parent=#surface] GetTextureSize
--- @param  #number textureID The texture ID, returned by surface.GetTextureID.
+-- @param  #number textureID The texture ID, returned by **surface.GetTextureID**.
 -- @return #number, #number The texture's width and height.
 
 -------------------------------------------------------------------------------
@@ -215,7 +216,7 @@
 -- 
 -- **This feature is deprecated.**  
 -- _You should avoid using it as it may be removed in a future version._
--- _You should use ScrH instead._
+-- _You should use **ScrH** instead._
 -- 
 -- Returns the height of the current client's screen.
 -- @function [parent=#surface] ScreenHeight
@@ -226,7 +227,7 @@
 -- 
 -- **This feature is deprecated.**  
 -- _You should avoid using it as it may be removed in a future version._
--- _You should use ScrW instead._
+-- _You should use **ScrW** instead._
 -- 
 -- Returns the width of the current client's screen.
 -- @function [parent=#surface] ScreenWidth

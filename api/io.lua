@@ -9,7 +9,7 @@
 -- 
 -- When using implicit file descriptors, all operations are supplied by table io.
 -- 
--- When using explicit file descriptors, the operation io.open returns a file descriptor
+-- When using explicit file descriptors, the operation **io.open** returns a file descriptor
 -- and then all operations are supplied as methods of the file descriptor.
 -- 
 -- The table io also provides three predefined file descriptors with their usual meanings from C: io.stdin, io.stdout, and io.stderr.
@@ -20,13 +20,13 @@
 -- @module io 
 
 -------------------------------------------------------------------------------
--- Equivalent to `file:close`. Without a `file`, closes the default
+-- Equivalent to **file:close**. Without a `file`, closes the default
 -- output file.
 -- @function [parent=#io] close
 -- @param #file file file to close.
 
 -------------------------------------------------------------------------------
--- Equivalent to `file:flush` over the default output file.
+-- Equivalent to **file:flush** over the default output file.
 -- @function [parent=#io] flush
 
 -------------------------------------------------------------------------------
@@ -46,16 +46,16 @@
 -- that, each time it is called, returns a new line from the file. Therefore,
 -- the construction 
 -- 
---     for line in io.lines(filename) do *body* end
+--     for line in **io.lines**(filename) do *body* end
 -- will iterate over all lines of the file. When the iterator function detects
 -- the end of file, it returns nil (to finish the loop) and automatically
 -- closes the file.
 -- 
--- The call `io.lines()` (with no file name) is equivalent to
--- `io.input():lines()`; that is, it iterates over the lines of the default
+-- The call **io.lines**() (with no file name) is equivalent to
+-- **io.input**():**lines**(); that is, it iterates over the lines of the default
 -- input file. In this case it does not close the file when the loop ends.
 -- @function [parent=#io] lines
--- @param a filename or a file handle. (default value is `io.input()`)
+-- @param a filename or a file handle. (default value is **io.input()**)
 
 -------------------------------------------------------------------------------
 -- This function opens a file, in the mode specified in the string `mode`. It
@@ -79,7 +79,7 @@
 -- @return #file a file handle.
 
 -------------------------------------------------------------------------------
--- Similar to `io.input`, but operates over the default output file.
+-- Similar to **io.input**, but operates over the default output file.
 -- @function [parent=#io] output
 -- @param file a filename or a file handle which will used as default output. (optional)
 -- @return #file the default ouput file handle.
@@ -96,7 +96,7 @@
 -- @return #file a file handle used to read from or write to the program `prog`.
 
 -------------------------------------------------------------------------------
--- Equivalent to `io.input():read`.
+-- Equivalent to **io.input**():**read**.
 -- @function [parent=#io] read
 -- @param format
 
@@ -126,7 +126,7 @@
 -- @param obj
 
 -------------------------------------------------------------------------------
--- Equivalent to `io.output():write`.
+-- Equivalent to **io.output**():**write**.
 -- @function [parent=#io] write
 -- @param ...
 
@@ -151,7 +151,7 @@
 -- new line from the file. Therefore, the construction
 -- 
 --     for line in file:lines() do *body* end
--- will iterate over all lines of the file. (Unlike `io.lines`, this function
+-- will iterate over all lines of the file. (Unlike **io.lines**, this function
 -- does not close the file when the loop ends.)
 -- @function [parent=#file] lines
 -- @param self
@@ -191,9 +191,9 @@
 -- measured in bytes from the beginning of the file. If this function fails,
 -- it returns nil, plus a string describing the error.
 -- The default value for `whence` is `"cur"`, and for `offset` is 0. Therefore,
--- the call `file:seek()` returns the current file position, without changing
--- it; the call `file:seek("set")` sets the position to the beginning of the
--- file (and returns 0); and the call `file:seek("end")` sets the position
+-- the call **file:seek**() returns the current file position, without changing
+-- it; the call **file:seek**("set") sets the position to the beginning of the
+-- file (and returns 0); and the call **file:seek**("end") sets the position
 -- to the end of the file, and returns its size.
 -- @function [parent=#file] seek
 -- @param self
@@ -208,7 +208,7 @@
 --
 --  * `"no"` : no buffering; the result of any output operation appears immediately.
 --  * `"full"` : full buffering; output operation is performed only when the
---   buffer is full (or when you explicitly `flush` the file (see `io.flush`)).
+--   buffer is full (or when you explicitly `flush` the file (see **io.flush**)).
 --  * `"line"` : line buffering; output is buffered until a newline is output or
 --   there is any input from some special files (such as a terminal device).
 --   
@@ -223,7 +223,7 @@
 -------------------------------------------------------------------------------
 -- Writes the value of each of its arguments to the `file`. The arguments
 -- must be strings or numbers. To write other values, use `tostring` or
--- `string.format` before `write`.
+-- **string.format** before `write`.
 -- @function [parent=#file] write
 -- @param self
 -- @param ... must be strings or a numbers.

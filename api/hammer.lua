@@ -6,7 +6,7 @@
 -- _Server_
 -- 
 -- Sends command to Hammer, if Hammer is running with the current map loaded.
--- @function [parent=#hammer] 
+-- @function [parent=#hammer] SendCommand
 -- @param  #string cmd Command to send including arguments. All commands are in the format "command var1 var2 etc". All commands that pick an entity with x y z , must use the exact position including decimals. i.e. -354.4523 123.4 -1224.325452
 -- List of commands:
 -- 

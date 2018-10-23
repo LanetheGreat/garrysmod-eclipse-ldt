@@ -134,8 +134,7 @@
 -- @param  #Vector pos The position to look from.
 -- @param  #boolean anyZ This argument is ignored and has no effect. _(Default: false)_
 -- @param  #number maxDist This is the maximum distance from the given position that the function will look for a **CNavArea**.
--- @param  #boolean checkLOS If this is set to true then the function will internally do a **util.TraceLine** from the starting position to each potential **CNavArea** with a MASK_NPCSOLID_BRUSHONLY **MASK\_Enums**. If the trace fails then the **CNavArea** is ignored.
--- 
+-- @param  #boolean checkLOS If this is set to true then the function will internally do a **util.TraceLine** from the starting position to each potential **CNavArea** with a MASK\_NPCSOLID\_BRUSHONLY **MASK\_Enums**. If the trace fails then the **CNavArea** is ignored.
 -- If this is set to false then the function will find the closest **CNavArea** through anything, including the world.
 -- @param  #boolean checkGround If checkGround is true then this function will internally call **navmesh.GetNavArea** to check if there is a **CNavArea** directly below the position, and return it if so, before checking anywhere else.
 -- @param  #number team This will internally call **CNavArea:IsBlocked** to check if the target **CNavArea** is not to be navigated by the given team. Currently this appears to do nothing.
@@ -146,7 +145,7 @@
 -- 
 -- Returns the classname of the player spawn entity.
 -- @function [parent=#navmesh] GetPlayerSpawnName
--- @return #string The classname of the spawn point entity. By default returns "info_player_start".
+-- @return #string The classname of the spawn point entity. By default returns "info\_player\_start".
 
 -------------------------------------------------------------------------------
 -- _Server_

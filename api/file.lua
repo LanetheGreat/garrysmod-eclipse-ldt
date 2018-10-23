@@ -54,8 +54,7 @@
 -- @function [parent=#file] Find
 -- @param  #string name The wildcard to search for. "models/*.mdl" will list .mdl files in the models/ folder.
 -- @param  #string path The path to look for the files and directories in. See **this list** for a list of valid paths.
--- @param  #string sorting The sorting to be used, optional. _(Default: "nameasc")_
--- 
+-- @param  #string sorting The sorting to be used, optional. _(Default: "nameasc")_  
 -- * "nameasc": sort the files ascending by name.
 -- * "namedesc": sort the files descending by name
 -- * "dateasc": sort the files ascending by date.
@@ -100,8 +99,7 @@
 -- Beware of casing -- some filesystems are case-sensitive. SRCDS on Linux seems to force file/directory creation to lowercase, but will not modify read operations.
 -- @function [parent=#file] Read
 -- @param  #string fileName The name of the file.
--- @param  #string path The path of where to look for the file: _(Default: "DATA")_
--- 
+-- @param  #string path The path of where to look for the file: _(Default: "DATA")_  
 -- * "GAME" Structured like base folder (garrysmod/), searches all the mounted content. (main folder, addons, mounted games etc)
 -- * "LUA" or "lsv" - All Lua folders (lua/) including gamesmodes and addons.
 -- * "DATA" Data folder. (garrysmod/data)
@@ -124,8 +122,7 @@
 -- Returns the file's size in bytes. If the file is not found, returns -1.
 -- @function [parent=#file] Size
 -- @param  #string fileName The name of the file.
--- @param  #string path The path of where to look for the file: _(Default: "DATA")_
--- 
+-- @param  #string path The path of where to look for the file: _(Default: "DATA")_  
 -- * "GAME" Structured like base folder (garrysmod/), searches all the mounted content. (main folder, addons, mounted games etc)
 -- * "LUA" or "lsv" - All Lua folders (lua/) including gamesmodes and addons.
 -- * "DATA" Data folder. (garrysmod/data)
@@ -150,7 +147,7 @@
 -- _Client_ | _Menu_ | _Server_
 -- 
 -- Writes the given string to a file. Erases all previous data in the file. To
--- add data without deleting previous data, use file.Append.
+-- add data without deleting previous data, use **file.Append**.
 -- 
 -- It is recommended to write only to lowercase file paths and names because
 -- some filesystems are case-sensitive. The Linux build of SRCDS seems to

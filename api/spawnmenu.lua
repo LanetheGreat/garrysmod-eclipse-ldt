@@ -62,45 +62,48 @@
 -- 
 -- Looking at this file will help you to understand where the information
 -- passed to this function comes from.
--- @function [parent=#spawnmenu] 
+-- @function [parent=#spawnmenu] AddPropCategory
 -- @param  #string filename The filename of the list. This name has to be unique, but doesn't have to actually exist. If a player saves changes made to this list, it will be saved under this name.
 -- @param  #string name The name of the category. (e.g. Comic Props.)
 -- @param  #table contents A table of entries for the spawn menu. It must be numerically indexed.
 -- Each member of the table is a sub-table containing a type member, and other members depending on the type.
 -- 
 -- * _#string type_ : "header" - a simple header for organization.
--- ** _#string text_ : The text that the header will display.
+--  * _#string text_ : The text that the header will display.
 -- * _#string type_ : "model" - spawns a model where the player is looking.
--- ** _#string model_ : The path to the model file.
--- ** _#number skin_ : The skin for the model to use (optional).
--- ** _#string body_ : The bodygroups for the model (optional).
--- ** _#number wide_ : The width of the spawnicon (optional).
--- ** _#number tall_ : The height of the spawnicon (optional).
+--  * _#string model_ : The path to the model file.
+--  * _#number skin_ : The skin for the model to use (optional).
+--  * _#string body_ : The bodygroups for the model (optional).
+--  * _#number wide_ : The width of the spawnicon (optional).
+--  * _#number tall_ : The height of the spawnicon (optional).
 -- * _#string type_ : "entity" - spawns an entity where the player is looking (appears in the Entities tab by default).
--- ** _#string spawnname_ : The filename of the entity, for example "sent_ball".
--- ** _#string nicename_ : The name of the entity to display.
--- ** _#string material_ : The icon to display, this should be set to "entities/<sent_name>.png".
--- ** _#boolean admin_ : Whether the entity is only spawnable by admins (optional).
+--  * _#string spawnname_ : The filename of the entity, for example "sent_ball".
+--  * _#string nicename_ : The name of the entity to display.
+--  * _#string material_ : The icon to display, this should be set to "entities/<sent_name>.png".
+--  * _#boolean admin_ : Whether the entity is only spawnable by admins (optional).
 -- * _#string type_ : "vehicle" - spawns a vehicle where the player is looking (appears in the Vehicles tab by default).
--- ** _#string spawnname_ : The filename of the vehicle.
--- ** _#string nicename_ : The name of the vehicle to display.
--- ** _#string material_ : The icon to display.
--- ** _#boolean admin_ : Whether the vehicle is only spawnable by admins (optional).
+--  * _#string spawnname_ : The filename of the vehicle.
+--  * _#string nicename_ : The name of the vehicle to display.
+--  * _#string material_ : The icon to display.
+--  * _#boolean admin_ : Whether the vehicle is only spawnable by admins (optional).
 -- * _#string type_ : "npc" - spawns an NPC where the player is looking (appears in the NPCs tab by default).
--- ** _#string spawnname_ : The spawn name of the NPC.
--- ** _#string nicename_ : The name to display.
--- ** _#string material_ : The icon to display.
--- ** _#table weapon_ : A table of potential weapons (each a string) to give to the NPC. When spawned, one of these will be chosen randomly each time.
--- ** _#boolean admin_ : Whether the NPC is only spawnable by admins (optional).
+--  * _#string spawnname_ : The spawn name of the NPC.
+--  * _#string nicename_ : The name to display.
+--  * _#string material_ : The icon to display.
+--  * _#table weapon_ : A table of potential weapons (each a string) to give to the NPC. When spawned, one of these will be chosen randomly each time.
+--  * _#boolean admin_ : Whether the NPC is only spawnable by admins (optional).
 -- * _#string type_ : "weapon" - When clicked, gives the player a weapon; when middle-clicked, spawns a weapon where the player is looking (appears in the Weapons tab by default).
--- ** _#string spawnname_ : The spawn name of the weapon.
--- ** _#string nicename_ : The name to display.
--- ** _#string material_ : The icon to display.
--- ** _#boolean admin_ : Whether the weapon is only spawnable by admins (optional).
+--  * _#string spawnname_ : The spawn name of the weapon.
+--  * _#string nicename_ : The name to display.
+--  * _#string material_ : The icon to display.
+--  * _#boolean admin_ : Whether the weapon is only spawnable by admins (optional).
 -- @param  #string icon The icon to use in the tree.
--- @param  #number id The unique ID number for the spawnlist category. Used to make sub categories. See "parentID" parameter below. If not set, it will be automatically set to ever increasing number, starting with 1000. _(Default: 1000)_
--- @param  #number parentID The unique ID of the parent category. This will make the category a subcategory of that given. 0 makes this a base category. (such as Builder) _(Default: 0)_
--- @param  #string needsApp The needed game for this prop category, if one is needed. If the specified game is not mounted, the category isn't shown. This uses the shortcut name, e.g. cstrike, and not the Steam AppID. _(Default: "")_
+-- @param  #number id The unique ID number for the spawnlist category. _(Default: 1000)_  
+-- Used to make sub categories. See "parentID" parameter below. If not set, it will be automatically set to ever increasing number, starting with 1000.
+-- @param  #number parentID The unique ID of the parent category. This will make the category a subcategory of that given. _(Default: 0)_  
+-- 0 makes this a base category. (such as Builder)
+-- @param  #string needsApp The needed game for this prop category, if one is needed. _(Default: "")_  
+-- If the specified game is not mounted, the category isn't shown. This uses the shortcut name, e.g. cstrike, and not the Steam AppID.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -207,7 +210,7 @@
 -- table. This will not return spawnlists created by addons, see
 -- **spawnmenu.GetCustomPropTable** for that.
 -- @function [parent=#spawnmenu] GetPropTable
--- @return #table Table of all the prop categories and props in the following format:
+-- @return #table Table of all the prop categories and props.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -241,7 +244,7 @@
 -- 
 -- Loads spawnlists from text files.
 -- @function [parent=#spawnmenu] PopulateFromTextFiles
--- @param  #function callback The function to call.
+-- @param  #function callback The function to call.  
 -- Arguments are:
 -- 
 -- * strFilename
@@ -274,7 +277,6 @@
 -- 
 -- **This feature is deprecated.**  
 -- _You should avoid using it as it may be removed in a future version._
--- 
 -- 
 -- @function [parent=#spawnmenu] SwitchToolTab
 -- @param  #number id The tab ID to open.

@@ -144,7 +144,7 @@
 -- **This is an internal function or feature.**  
 -- _This means you will be able to use it, but you really shouldn't._
 -- 
--- Unsubscribes to the specified workshop addon. Call steamworks.ApplyAddons afterwards to update.
+-- Unsubscribes to the specified workshop addon. Call **steamworks.ApplyAddons** afterwards to update.
 -- **Note**: _This function should never be called without a user's consent and
 -- should not be called if the addon is currently in use (aka: the user is not
 -- in the main menu) as it may result in unexpected behaviour._

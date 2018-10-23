@@ -24,7 +24,7 @@
 -- evaluate expressions, and so on. A line containing only the word `cont`
 -- finishes this function, so that the caller continues its execution.
 -- 
--- Note that commands for `debug.debug` are not lexically nested within any
+-- Note that commands for **debug.debug** are not lexically nested within any
 -- function, and so have no direct access to local variables.
 -- @function [parent=#debug] debug
 
@@ -41,7 +41,7 @@
 -- 
 -- Returns the current hook settings of the thread, as three values: the
 -- current hook function, the current hook mask, and the current hook count
--- (as set by the `debug.sethook` function).
+-- (as set by the **debug.sethook** function).
 -- @function [parent=#debug] gethook
 -- @param #thread thread thread to handle.
 
@@ -63,9 +63,9 @@
 -- the function itself. If present, the option '`L`' adds a field named
 -- `activelines` with the table of valid lines.
 -- 
--- For instance, the expression `debug.getinfo(1,"n").name` returns a table
+-- For instance, the expression **debug.getinfo**(1,"n").name returns a table
 -- with a name for the current function, if a reasonable name can be found,
--- and the expression `debug.getinfo(print)` returns a table with all available
+-- and the expression **debug.getinfo**(print) returns a table with all available
 -- information about the `print` function.
 -- @function [parent=#debug] getinfo
 -- @param #thread thread thread to handle.
@@ -81,7 +81,7 @@
 -- parameter or local variable has index 1, and so on, until the last active
 -- local variable.) The function returns nil if there is no local variable
 -- with the given index, and raises an error when called with a `level` out
--- of range. (You can call `debug.getinfo` to check whether the level is valid.)
+-- of range. (You can call **debug.getinfo** to check whether the level is valid.)
 -- 
 -- Variable names starting with '`(`' (open parentheses) represent internal
 -- variables (loop control variables, temporaries, and C function locals).
@@ -144,7 +144,7 @@
 -- With a `count` different from zero, the hook is called after every `count`
 -- instructions.
 --
--- When called without arguments, `debug.sethook` turns off the hook.
+-- When called without arguments, **debug.sethook** turns off the hook.
 --
 -- When the hook is called, its first parameter is a string describing
 -- the event that has triggered its call: `"call"`, `"return"` (or `"tail

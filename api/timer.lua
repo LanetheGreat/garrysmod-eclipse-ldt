@@ -40,7 +40,7 @@
 -- _You should be using **timer.Remove** instead._
 -- 
 -- Stops and destroys the given timer. Alias of **timer.Remove**.
--- @function [parent=#timer] 
+-- @function [parent=#timer] Destroy
 -- @param  #string identifier Identifier of the timer to destroy.
 
 -------------------------------------------------------------------------------
@@ -62,7 +62,7 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_
 -- 
--- Stops and removes a timer created by timer.Create.
+-- Stops and removes a timer created by **timer.Create**.
 -- @function [parent=#timer] Remove
 -- @param  #string identifier Identifier of the timer to remove.
 

@@ -9,6 +9,6 @@
 -- Creates a schedule for scripted NPC.
 -- @function [parent=#ai_schedule] New
 -- @param  #string name Name of the schedule.
--- @return #table A table containing schedule information to be used with ENTITY:StartSchedule.
+-- @return #table A table containing schedule information to be used with **ENTITY:StartSchedule**.
 
 return nil

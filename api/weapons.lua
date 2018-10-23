@@ -44,7 +44,7 @@
 -- _This means you will be able to use it, but you really shouldn't._
 -- 
 -- Called after all SWEPS have been loaded and runs **baseclass.Set** on each one.  
--- You can retrieve all the currently registered SWEPS with weapons.GetList.
+-- You can retrieve all the currently registered SWEPS with **weapons.GetList**.
 -- 
 -- **Note**: _This is not called after a SWEP auto refresh, and thus the inherited
 -- baseclass functions retrieved with **baseclass.Get** will not be updated._

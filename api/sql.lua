@@ -40,7 +40,7 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_
 -- 
--- Performs the query like sql.Query, but returns the first row found.
+-- Performs the query like **sql.Query**, but returns the first row found.
 -- @function [parent=#sql] QueryRow
 -- @param  #string query The input query.
 -- @param  #number row The row number. Say we receive back 5 rows, putting 3 as this argument will give us row #3. _(Default: 1)_

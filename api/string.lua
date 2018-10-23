@@ -7,7 +7,7 @@
 -- Thus, the last character is at position -1, and so on.
 --
 -- The string library provides all its functions inside the table string. It also sets a metatable for strings where the __index field points to the string table. Therefore, you can use the string functions in object-oriented style.
--- For instance, string.byte(s, i) can be written as s:byte(i).
+-- For instance, **string.byte**(s, i) can be written as **s:byte**(i).
 --
 -- The string library assumes one-byte character encodings.
 -- 
@@ -77,7 +77,7 @@
 -- 
 -- Looks for the first match of `pattern` in the string `s`. If it finds a
 -- match, then `find` returns the indices of `s` where this occurrence starts
--- and ends; otherwise, it returns nil.A third, optional numerical argument
+-- and ends; otherwise, it returns nil. A third, optional numerical argument
 -- `init` specifies where to start the search; its default value is 1 and
 -- can be negative. A value of true as a fourth, optional argument `plain`
 -- turns off the pattern matching facilities, so the function does a plain
@@ -152,10 +152,10 @@
 -- 
 -- **This feature is deprecated.**  
 -- _You should avoid using it as it may be removed in a future version._
--- _Use either string.sub(str, index, index) or str[index]._
+-- _Use either **string.sub**(str, index, index) or str[index]._
 -- 
 -- Returns char value from the specified index in the supplied string.
--- @function [parent=#string] 
+-- @function [parent=#string] GetChar
 -- @param  #string str The string that you will be searching with the supplied index.
 -- @param  #number index The index's value of the string to be returned.
 -- @return #string A single character.
@@ -189,11 +189,12 @@
 -- 
 -- **This feature is deprecated.**  
 -- _You should avoid using it as it may be removed in a future version._
--- _This function is removed in Lua versions later than what GMod is currently using. Use **string.gmatch** instead._
+-- _This function is removed in Lua versions later than what GMod is currently using._
+-- _Use **string.gmatch** instead._
 -- 
 -- Returns an iterator function that is called for every complete match of the
 -- pattern, all sub matches will be passed as to the loop.
--- @function [parent=#string] 
+-- @function [parent=#string] gfind
 -- @param  #string data The string to search in.
 -- @param  #string pattern The pattern to search for.
 -- @return #function The iterator function that can be used in a for-in loop.
@@ -282,7 +283,7 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_
 -- 
--- **This feature is deprecated.This feature is deprecated.**  
+-- **This feature is deprecated.**  
 -- _You should avoid using it as it may be removed in a future version._
 -- _You really should just use **table.concat**._
 -- 
@@ -387,7 +388,7 @@
 -- @param  #string str The string to convert.
 -- @param  #number repetitions Timer to repeat, this values gets rounded internally.
 -- @param  #String that will separate the repeated piece. Notice that it doesn't add this string to the start or the end of the result, only between the repeated parts. _(Default: "")_
--- @return #string epeated string.
+-- @return #string Repeated string.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_
@@ -432,7 +433,7 @@
 -- Splits the string into a table of strings, separated by the second argument.
 -- @function [parent=#string] Split
 -- @param  #string Inputstring String to split.
--- #param  #string Separator Character(s) to split with.
+-- @param  #string Separator Character(s) to split with.
 -- @return #table The split string.
 
 -------------------------------------------------------------------------------

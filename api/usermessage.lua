@@ -27,7 +27,7 @@
 -- specified name arrives.
 -- 
 -- **Warning**: _Usermessages have a limit of only 256 bytes!_
--- @function [parent=#usermessage] 
+-- @function [parent=#usermessage] Hook
 -- @param  #string name The message name to hook to.
 -- @param  #function callback The function to be called if the specified message was received.
 -- Parameters (Optional):

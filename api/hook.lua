@@ -32,7 +32,7 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_
 -- 
--- Returns a list of all the hooks registered with hook.Add.
+-- Returns a list of all the hooks registered with **hook.Add**.
 -- @function [parent=#hook] GetTable
 -- @return #table A table of tables.
 

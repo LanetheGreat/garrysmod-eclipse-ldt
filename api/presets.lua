@@ -47,7 +47,7 @@
 -- 
 -- Used internally to ask the player if they want to override an already
 -- existing preset.
--- @function [parent=#presets] 
+-- @function [parent=#presets] OverwritePresetPrompt
 -- @param  #function callback
 
 -------------------------------------------------------------------------------

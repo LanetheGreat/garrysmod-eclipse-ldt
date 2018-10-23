@@ -13,7 +13,8 @@
 -- See also **MarkupObject** for limited width and markup support.
 -- @function [parent=#draw] DrawText
 -- @param  #string text Text to be drawn.
--- @param  #string font Name of font to draw the text in. See **surface.CreateFont** to create your own, or **Default Fonts** for a list of default fonts. _(Default: "DermaDefault")_
+-- @param  #string font Name of font to draw the text in. _(Default: "DermaDefault")_  
+-- See **surface.CreateFont** to create your own, or **Default Fonts** for a list of default fonts.
 -- @param  #number x The X Coordinate. _(Default: 0)_
 -- @param  #number y The Y Coordinate. _(Default: 0)_
 -- @param  #table color Color to draw the text in. Uses the Color structure. _(Default: Color(255,255,255,255))_
@@ -87,7 +88,8 @@
 -- _This means that it will only work in **hooks with a 2D rendering context**._
 -- @function [parent=#draw] SimpleText
 -- @param  #string text Text to be drawn.
--- @param  #string font Name of font to draw the text in. See **surface.CreateFont** to create your own, or **Default Fonts** for a list of default fonts. _(Default: "DermaDefault")_
+-- @param  #string font Name of font to draw the text in. _(Default: "DermaDefault")_  
+-- See **surface.CreateFont** to create your own, or **Default Fonts** for a list of default fonts.
 -- @param  #number x The X Coordinate. _(Default: 0)_
 -- @param  #number y The Y Coordinate. _(Default: 0)_
 -- @param  #table color Color to draw the text in. Uses the Color structure. _(Default: Color(255,255,255,255))_
@@ -104,7 +106,8 @@
 -- _This means that it will only work in **hooks with a 2D rendering context**._
 -- @function [parent=#draw] SimpleTextOutlined
 -- @param  #string text Text to be drawn.
--- @param  #string font Name of font to draw the text in. See **surface.CreateFont** to create your own, or **Default Fonts** for a list of default fonts. _(Default: "DermaDefault")_
+-- @param  #string font Name of font to draw the text in. _(Default: "DermaDefault")_  
+-- See **surface.CreateFont** to create your own, or **Default Fonts** for a list of default fonts.
 -- @param  #number x The X Coordinate. _(Default: 0)_
 -- @param  #number y The Y Coordinate. _(Default: 0)_
 -- @param  #table color Color to draw the text in. Uses the Color structure. _(Default: Color(255,255,255,255))_
@@ -157,7 +160,8 @@
 -- @param  #number x The X Coordinate.
 -- @param  #number y The Y Coordinate.
 -- @param  #string text Text to draw.
--- @param  #string font Name of font to draw the text in. See **surface.CreateFont** to create your own, or **Default Fonts** for a list of default fonts. _(Default: "DermaDefault")_
+-- @param  #string font Name of font to draw the text in. _(Default: "DermaDefault")_  
+-- See **surface.CreateFont** to create your own, or **Default Fonts** for a list of default fonts.
 -- @param  #table boxcolor The border color. Uses the Color structure.
 -- @param  #table textcolor The text color. Uses the Color structure.
 -- @return #number, #number The width and height of the word box.

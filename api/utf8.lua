@@ -66,7 +66,7 @@
 -- Returns the number of UTF-8 sequences in the given string between positions
 -- startPos and endPos (both inclusive). If it finds any invalid UTF-8 byte
 -- sequence, returns false as well as the position of the first invalid byte.
--- @function [parent=#utf8] 
+-- @function [parent=#utf8] len
 -- @param  #string string The string to calculate the length of.
 -- @param  #number startPos The starting position to get the length from. _(Default: 1)_
 -- @param  #number endPos The ending position to get the length from. _(Default: 1)_

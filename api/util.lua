@@ -96,8 +96,7 @@
 -- @param  #string name The name of the decal to paint.
 -- @param  #Vector start The start of the trace.
 -- @param  #Vector end The end of the trace.
--- @param  #Entity filter If set, the decal will not be able to be placed on given entity. Can also be a table of entities. _(Default: NULL)_
--- 
+-- @param  #Entity filter If set, the decal will not be able to be placed on given entity. Can also be a table of entities. _(Default: NULL)_  
 -- Here's a list of all the decal names that should be possible to use by default:
 -- 
 -- * BeerSplash
@@ -189,7 +188,7 @@
 -- @param  #string effectName The name of the effect to create.
 -- @param  #CEffectData effectData The effect data describing the effect.
 -- @param  #boolean allowOverride Whether Lua-defined effects should override engine-defined effects with the same name for this/single function call. _(Default: true)_
--- @param  #any ignorePredictionOrRecipientFilter Can either be a boolean to ignore the prediction filter or a CRecipientFilter. _(Default: nil)_
+-- @param  #any ignorePredictionOrRecipientFilter Can either be a boolean to ignore the prediction filter or a CRecipientFilter. _(Default: nil)_  
 -- Set this to true if you wish to call this function in multiplayer from server.
 
 -------------------------------------------------------------------------------
@@ -222,7 +221,7 @@
 -- 
 -- Gets PData of an offline player using their SteamID.
 -- 
--- **Warning**: _This function internally uses Player:UniqueID, which can cause
+-- **Warning**: _This function internally uses **Player:UniqueID**, which can cause
 -- collisions (two or more players sharing the same PData entry). It's
 -- recommended that you don't use it._
 -- @function [parent=#util] GetPData
@@ -245,7 +244,7 @@
 -- players view position, and ends 16384 units along a specified direction.
 -- @function [parent=#util] GetPlayerTrace
 -- @param  #Player ply The player the trace should be based on.
--- @param  #Vector dir The direction of the trace. _(Default: ply:GetAimVector())_
+-- @param  #Vector dir The direction of the trace. _(Default: **ply:GetAimVector**())_
 -- @return #table The trace data. See **Trace structure**.
 
 -------------------------------------------------------------------------------
@@ -512,7 +511,7 @@
 -- @param  #Vector origin The origin of the trace.
 -- @param  #Vector endpos The end point of the trace, relative to the start.
 -- This is the direction of the trace times the distance of the trace.
--- @param  #Entity filter Entity which should be ignored by the trace. _(Default: nil)_
+-- @param  #Entity filter Entity which should be ignored by the trace. _(Default: nil)_  
 -- Can also be a table of entities or a function. See **Trace structure**.
 -- @return #table Trace result. See **TraceResult structure**.
 
@@ -589,7 +588,7 @@
 -- A good value can be calculated using this formula: 1 / ( startWidth + endWidth ) * 0.5
 -- @param  #string texture Path to the texture to use as a trail.
 -- **Note**: _You should also include the ".vmt" or the game WILL crash!_
--- @return #Entity Entity of created trail. (env_spritetrail)
+-- @return #Entity Entity of created trail. (env\_spritetrail)
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_
@@ -604,14 +603,14 @@
 -- Given a 64bit SteamID will return a STEAM_0: style Steam ID.
 -- @function [parent=#util] SteamIDFrom64
 -- @param  #string id The 64 bit Steam ID.
--- @return #string STEAM_0 style Steam ID.
+-- @return #string STEAM\_0 style Steam ID.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
 -- Given a STEAM_0 style Steam ID will return a 64bit Steam ID.
 -- @function [parent=#util] SteamIDTo64
--- @param  #string id The STEAM_0 style id.
+-- @param  #string id The STEAM\_0 style id.
 -- @return #string 64bit Steam ID.
 
 -------------------------------------------------------------------------------
@@ -653,7 +652,7 @@
 -- Creates a timer object.
 -- @function [parent=#util] Timer
 -- @param  #number startdelay How long you want the timer to be. _(Default: 0)_
--- @return #table A timer object.
+-- @return #table A timer object.  
 -- It has next methods:
 -- 
 -- * Reset() - Resets the timer to nothing.

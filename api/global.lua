@@ -3221,6 +3221,7 @@
 -- 
 -- Sets, changes or removes a table's metatable. Returns Tab (the first argument).
 -- 
+-- 
 -- @function [parent=#global] setmetatable
 -- @param  #table Tab The table who's metatable to change.
 -- @param  #table Metatable The metatable to assign. If it's nil, the metatable will be removed.
@@ -3359,6 +3360,7 @@
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_
+-- 
 -- 
 -- @function [parent=#global] TimedSin
 -- @param  #number frequency The frequency of fluctuation, in hertz.
@@ -3584,5 +3586,8260 @@
 -- You cannot throw an error() from this callback: it will have no effect (not even stopping the callback).
 -- @param  ... Arguments to pass to the initial function.
 -- @return ... Status of the execution; First value is true for success, false for failure and the returns of the first function if execution succeeded, otherwise the first return value of the error callback.
+
+
+-- Global types
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Created by **Angle** and many more functions.
+-- @type Angle
+-- @field #number pitch The pitch component of the angle.
+-- @field #number yaw The yaw component of the angle.
+-- @field #number roll The roll component of the angle.
+-- @field #number p The pitch component of the angle.
+-- @field #number y The yaw component of the angle.
+-- @field #number r The roll component of the angle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- Adds the values of the argument angle to the orignal angle. This functions
+-- the same as angle1 + angle2 without creating a new angle object, skipping
+-- object construction and garbage collection.
+-- @function [parent=#Angle] Add
+-- @param  self
+-- @param  #Angle angle The angle to add.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Divides all values of the original angle by a scalar. This functions the
+-- same as angle1 / num without creating a new angle object, skipping object
+-- construction and garbage collection.
+-- @function [parent=#Angle] Div
+-- @param  self
+-- @param  #number scalar The number to divide by.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a normal vector facing in the direction that the angle points.
+-- @function [parent=#Angle] Forward
+-- @param  self
+-- @return #Vector The forward direction of the angle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the pitch, yaw and roll are 0 or not.
+-- @function [parent=#Angle] IsZero
+-- @param  self
+-- @return #boolean Whether the pitch, yaw and roll are 0 or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Multiplies a scalar to all the values of the orignal angle. This functions
+-- the same as num * angle without creating a new angle object, skipping object
+-- construction and garbage collection.
+-- @function [parent=#Angle] Mul
+-- @param  self
+-- @return #number scalar The number to multiply.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Normalizes the angles by applying a module with 360 to pitch, yaw and roll.
+-- @param  self
+-- @function [parent=#Angle] Normalize
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a normal vector facing in the direction that points right relative
+-- to the angle's direction.
+-- @function [parent=#Angle] Right
+-- @param  self
+-- @return #Vector The right direction of the angle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Rotates the angle around the specified axis by the specified degrees.
+-- @function [parent=#Angle] RotateAroundAxis
+-- @param  self
+-- @param  #Vector axis The axis to rotate around.
+-- @param  #number rotation The degrees to rotate around the specified axis.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Copies pitch, yaw and roll from the second angle to the first.
+-- @function [parent=#Angle] Set
+-- @param  self
+-- @param  #Angle originalAngle The angle to copy the values from.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Snaps the angle to nearest interval of degrees.
+-- 
+-- **Note**: _This will modify the original angle too!_
+-- @function [parent=#Angle] SnapTo
+-- @param  self
+-- @param  #string axis The component/axis to snap. Can be either "p"/"pitch", "y"/"yaw" or "r"/"roll".
+-- @param  #number target The target angle snap interval.
+-- @return #Angle The snapped angle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Subtracts the values of the argument angle to the orignal angle. This
+-- functions the same as angle1 - angle2 without creating a new angle object,
+-- skipping object construction and garbage collection.
+-- @function [parent=#Angle] Sub
+-- @param  self
+-- @param  #Angle angle The angle to subtract.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a normal vector facing in the direction that points up relative to
+-- the angle's direction.
+-- @function [parent=#Angle] Up
+-- @param  self
+-- @return #Vector The up direction of the angle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets pitch, yaw and roll to 0. This function is faster than doing it manually.
+-- @function [parent=#Angle] Zero
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- This is the object returned by the **EffectData** function and is required for
+-- **util.Effect** function.
+-- @type CEffectData
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the angles of the effect.
+-- @function [parent=#CEffectData] GetAngles
+-- @param  self
+-- @return #Angle The angles of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the attachment ID for the effect.
+-- @function [parent=#CEffectData] GetAttachment
+-- @param  self
+-- @return #number The attachment ID of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns byte which represents the color of the effect.
+-- @function [parent=#CEffectData] GetColor
+-- @param  self
+-- @return #number The color of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the damage type of the effect.
+-- @function [parent=#CEffectData] GetDamageType
+-- @param  self
+-- @return #number Damage type of the effect, see **DMG\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the entity index of the entity set for the effect.
+-- @function [parent=#CEffectData] GetEntIndex
+-- @param  self
+-- @return #number The entity index of the entity set for the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the entity assigned to the effect.
+-- @function [parent=#CEffectData] GetEntity
+-- @param  self
+-- @return #Entity The entity assigned to the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the flags of the effect.
+-- @function [parent=#CEffectData] GetFlags
+-- @param  self
+-- @return #number The flags of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the hit box ID of the effect.
+-- @function [parent=#CEffectData] GetHitBox
+-- @param  self
+-- @return #number The hit box ID of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the magnitude of the effect.
+-- @function [parent=#CEffectData] GetMagnitude
+-- @param  self
+-- @return #number The magnitude of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the material ID of the effect.
+-- @function [parent=#CEffectData] GetMaterialIndex
+-- @param  self
+-- @return #number The material ID of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the normalized direction vector of the effect.
+-- @function [parent=#CEffectData] GetNormal
+-- @param  self
+-- @return #Vector The normalized direction vector of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the origin position of the effect.
+-- @function [parent=#CEffectData] GetOrigin
+-- @param  self
+-- @return #Vector The origin position of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the radius of the effect.
+-- @function [parent=#CEffectData] GetRadius
+-- @param  self
+-- @return #number The radius of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the scale of the effect.
+-- @function [parent=#CEffectData] GetScale
+-- @param  self
+-- @return #number The scale of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the start position of the effect.
+-- @function [parent=#CEffectData] GetStart
+-- @param  self
+-- @return #Vector The start position of the effect. 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the surface property index of the effect.
+-- @function [parent=#CEffectData] GetSurfaceProp
+-- @param  self
+-- @return #number The surface property index of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the angles of the effect.
+-- @function [parent=#CEffectData] SetAngles
+-- @param  self
+-- @param  #Angle ang The new angles to be set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the attachment id of the effect to be created with this effect data.
+-- 
+-- **Note**: _This is internally stored as an integer, but only the first 5
+-- bits will be networked._
+-- @function [parent=#CEffectData] SetAttachment
+-- @param  self
+-- @param  #number attachment New attachment ID of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the color of the effect.
+-- @function [parent=#CEffectData] SetColor
+-- @param  self
+-- @param  #number color Color represented by a byte.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the damage type of the effect to be created with this effect data.
+-- @function [parent=#CEffectData] SetDamageType
+-- @param  self
+-- @param  #number damageType Damage type, see **DMG\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the entity of the effect via its index.
+-- @function [parent=#CEffectData] SetEntIndex
+-- @param  self
+-- @param  #number entIndex The entity index to be set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the entity of the effect to be created with this effect data.
+-- @function [parent=#CEffectData] SetEntity
+-- @param  self
+-- @param  #Entity entity Entity of the effect, mostly used for parenting.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the flags of the effect.
+-- 
+-- **Note**: _This is internally stored as an integer, but only the first 8
+-- bits will be networked._
+-- @function [parent=#CEffectData] SetFlags
+-- @param  self
+-- @param  #number flags The flags of the effect. Each effect has their own flags.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the hit box index of the effect.
+-- 
+-- **Note**: _This is internally stored as an integer, but only the first 11
+-- bits will be networked._
+-- @function [parent=#CEffectData] SetHitBox
+-- @param  self
+-- @param  #number hitBoxIndex The hit box index of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the magnitude of the effect.
+-- @function [parent=#CEffectData] SetMagnitude
+-- @param  self
+-- @param  #number magnitude The magnitude of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the material index of the effect.
+-- 
+-- **Note**: _This is internally stored as an integer, but only the first 11
+-- bits will be networked._
+-- @function [parent=#CEffectData] SetMaterialIndex
+-- @param  self
+-- @param  #number materialIndex The material index of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the normalized direction vector of the effect to be created with this
+-- effect data.
+-- @function [parent=#CEffectData] SetNormal
+-- @param  self
+-- @param  #Vector normal The normalized direction vector of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the origin of the effect to be created with this effect data.
+-- @function [parent=#CEffectData] SetOrigin
+-- @param  self
+-- @param  #Vector origin Origin of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the radius of the effect to be created with this effect data.
+-- 
+-- **Note**: _This is clamped internally from 0 to 1023._
+-- @function [parent=#CEffectData] SetRadius
+-- @param  self
+-- @param  #number radius Radius of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the scale of the effect to be created with this effect data.
+-- @function [parent=#CEffectData] SetScale
+-- @param  self
+-- @param  #number scale Scale of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the start of the effect to be created with this effect data.
+-- @function [parent=#CEffectData] SetStart
+-- @param  self
+-- @param  #Vector start Start of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the surface property index of the effect.
+-- @function [parent=#CEffectData] SetSurfaceProp
+-- @param  self
+-- @param  #number surfaceProperties The surface property index of the effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- This is the object returned by the **ParticleEmitter** function.
+-- @type CLuaEmitter
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Creates a new **CLuaParticle** with the given material and position.
+-- @function [parent=#CLuaEmitter] Add
+-- @param  self
+-- @param  #string material The particles material. Can also be an **IMaterial**.
+-- @param  #Vector position The position to spawn the particle on.
+-- @return #CLuaParticle The created particle, if any.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Manually renders all particles the emitter has created.
+-- @function [parent=#CLuaEmitter] Draw
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Removes the emitter and all its particles.
+-- @function [parent=#CLuaEmitter] Finish
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the amount of active particles of this emitter.
+-- @function [parent=#CLuaEmitter] GetNumActiveParticles
+-- @param  self
+-- @return #number The amount of active particles of this emitter.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the position of this emitter. This is set when creating the emitter
+-- with **ParticleEmitter**.
+-- @function [parent=#CLuaEmitter] GetPos
+-- @param  self
+-- @return #Vector Position of this particle emitter.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns whether this emitter is 3D or not. This is set when creating the
+-- emitter with **ParticleEmitter**.
+-- @function [parent=#CLuaEmitter] Is3D
+-- @param  self
+-- @return #boolean Whether this emitter is 3D or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns whether this **CLuaEmitter** is valid or not.
+-- @function [parent=#CLuaEmitter] IsValid
+-- @param  self
+-- @return #boolean Whether this CLuaEmitter is valid or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the bounding box for this emitter. Usually the bounding box is
+-- automatically determined by the particles, but this function overrides it.
+-- @function [parent=#CLuaEmitter] SetBBox
+-- @param  self
+-- @param  #Vector mins The minimum position of the box.
+-- @param  #Vector maxs The maximum position of the box.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- This function sets the the distance between the render camera and the
+-- emitter at which the particles should start fading and at which distance
+-- fade ends (alpha becomes 0).
+-- @function [parent=#CLuaEmitter] SetNearClip
+-- @param  self
+-- @param  #number distanceMin Min distance where the alpha becomes 0.
+-- @param  #number distanceMax Max distance where the alpha starts fading.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Prevents all particles of the emitter from automatically drawing.
+-- @function [parent=#CLuaEmitter] SetNoDraw
+-- @param  self
+-- @param  #boolean Whether we should draw the particles or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- The function name has not much in common with its actual function, it
+-- applies a radius to every particles that affects the building of the
+-- bounding box, as it, usually is constructed by the particle that has the
+-- lowest x, y and z and the highest x, y and z, this function just
+-- adds/subtracts the radius and inflates the bounding box.
+-- @function [parent=#CLuaEmitter] SetParticleCullRadius
+-- @param  self
+-- @param  #number radius Particle radius.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the position of the particle emitter.
+-- @function [parent=#CLuaEmitter] SetPos
+-- @param  self
+-- @param  #Vector position New position.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- This class is essentially what controls a **NextBot** NPC. You can access it in
+-- a **NextBot** NPC by using **self.loco** variable.
+-- @type CLuaLocomotion
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the location we want to get to.
+-- @function [parent=#CLuaLocomotion] Approach
+-- @param  self
+-- @param  #Vector goal The vector we want to get to.
+-- @param  #number goalweight If unsure then set this to 1.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Removes the stuck status from the bot.
+-- @function [parent=#CLuaLocomotion] ClearStuck
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the direction we want to face.
+-- @function [parent=#CLuaLocomotion] FaceTowards
+-- @param  self
+-- @param  #Vector goal The vector we want to face.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the acceleration speed
+-- @function [parent=#CLuaLocomotion] GetAcceleration
+-- @param  self
+-- @return #number Current acceleration speed.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the current acceleration as a vector.
+-- @function [parent=#CLuaLocomotion] GetCurrentAcceleration
+-- @param  self
+-- @return #Vector Current acceleration.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Gets the height the bot is scared to fall from.
+-- @function [parent=#CLuaLocomotion] GetDeathDropHeight
+-- @param  self
+-- @return #number Current death drop height.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Gets the deceleration speed.
+-- @function [parent=#CLuaLocomotion] GetDeceleration
+-- @param  self
+-- @return #number Current deceleration speed.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Return unit vector in XY plane describing our direction of motion - even if
+-- we are currently not moving.
+-- @function [parent=#CLuaLocomotion] GetGroundMotionVector
+-- @param  self
+-- @return #Vector A vector representing the X and Y movement.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Gets the height of the bot's jump.
+-- @function [parent=#CLuaLocomotion] GetJumpHeight
+-- @param  self
+-- @return #number Current jump height.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns maximum jump height of this **CLuaLocomotion**.
+-- @function [parent=#CLuaLocomotion] GetMaxJumpHeight
+-- @param  self
+-- @return #number The maximum jump height.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the max rate at which the NextBot can visually rotate.
+-- @function [parent=#CLuaLocomotion] GetMaxYawRate
+-- @param  self
+-- @return #number Maximum yaw rate.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Gets the max height the bot can step up.
+-- @function [parent=#CLuaLocomotion] GetStepHeight
+-- @param  self
+-- @return #number Current step height.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the current movement velocity as a vector.
+-- @function [parent=#CLuaLocomotion] GetVelocity
+-- @param  self
+-- @return #Vector Current velocity.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether this **CLuaLocomotion** can reach and/or traverse/move in given **CNavArea**.
+-- @function [parent=#CLuaLocomotion] IsAreaTraversable
+-- @param  self
+-- @param  #CNavArea area The area to test.
+-- @return #boolean Whether this **CLuaLocomotion** can traverse given **CNavArea**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns true if we're trying to move.
+-- @function [parent=#CLuaLocomotion] IsAttemptingToMove
+-- @param  self
+-- @return #boolean Whether we're trying to move or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns true of the locomotion engine is jumping or climbing.
+-- @function [parent=#CLuaLocomotion] IsClimbingOrJumping
+-- @param  self
+-- @return #boolean Whether we're climbing or jumping or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether the locomotion/nextbot is on ground or not.
+-- @function [parent=#CLuaLocomotion] IsOnGround
+-- @param  self
+-- @return #boolean Whether the locomotion/nextbot is on ground or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns true if we're stuck.
+-- @function [parent=#CLuaLocomotion] IsStuck
+-- @param  self
+-- @return #boolean Whether we're stuck or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether or not the target in question is on a ladder or not.
+-- @function [parent=#CLuaLocomotion] IsUsingLadder
+-- @param  self
+-- @return #boolean If the target is on a ladder or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Makes the bot jump.
+-- @function [parent=#CLuaLocomotion] Jump
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#CLuaLocomotion] JumpAcrossGap
+-- @param  self
+-- @param  #Vector landingGoal
+-- @param  #Vector landingForward
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the acceleration speed.
+-- @function [parent=#CLuaLocomotion] SetAcceleration
+-- @param  self
+-- @param  #number speed Speed acceleration. _Default: 400)_
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the height the bot is scared to fall from.
+-- @function [parent=#CLuaLocomotion] SetDeathDropHeight
+-- @param  self
+-- @param  #number height The drop height. _(Default: 200)_
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the deceleration speed.
+-- @function [parent=#CLuaLocomotion] SetDeceleration
+-- @param  self
+-- @param  #number deceleration New deceleration speed. _(Default: 400)_
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets movement speed.
+-- @function [parent=#CLuaLocomotion] SetDesiredSpeed
+-- @param  self
+-- @return #number speed The new desired speed.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the height of the bot's jump.
+-- @function [parent=#CLuaLocomotion] SetJumpHeight
+-- @param  self
+-- @param  #number height The new jump height. _(Default: 58)_
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the max rate at which the NextBot can visually rotate. This will not
+-- affect moving or pathing.
+-- @function [parent=#CLuaLocomotion] SetMaxYawRate
+-- @param  self
+-- @param  #number yawRate Desired new maximum yaw rate.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the max height the bot can step up.
+-- @function [parent=#CLuaLocomotion] SetStepHeight
+-- @param  self
+-- @param  #number height The new max step height. _(Default: 18)_
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the current movement velocity
+-- @function [parent=#CLuaLocomotion] SetVelocity
+-- @param  self
+-- @param  #Vector velocity The new movement velocity.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- This is the object returned by the **CLuaEmitter:Add** function.
+-- @type CLuaParticle
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the air resistance of the particle.
+-- @function [parent=#CLuaParticle] GetAirResistance
+-- @param  self
+-- @return #number The air resistance of the particle.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the current orientation of the particle.
+-- @function [parent=#CLuaParticle] GetAngles
+-- @param  self
+-- @return #Angle The angles of the particle.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the angular velocity of the particle.
+-- @function [parent=#CLuaParticle] GetAngleVelocity
+-- @param  self
+-- @return #Angle The angular velocity of the particle.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the 'bounciness' of the particle.
+-- @function [parent=#CLuaParticle] GetBounce
+-- @param  self
+-- @return #number The 'bounciness' of the particle.  
+-- 2 means it will gain 100% of its previous velocity,  
+-- 1 means it will not lose velocity,  
+-- 0.5 means it will lose half of its velocity with each bounce.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the color of the particle.
+-- @function [parent=#CLuaParticle] GetColor
+-- @param  self
+-- @return #number, #number, #number Red, Green, Blue components.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the amount of time in seconds after which the particle will be destroyed.
+-- @function [parent=#CLuaParticle] GetDieTime
+-- @param  self
+-- @return #number The amount of time in seconds after which the particle will be destroyed.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the alpha value that the particle will reach on its death.
+-- @function [parent=#CLuaParticle] GetEndAlpha
+-- @param  self
+-- @return #number The alpha value the particle will fade to.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the length that the particle will reach on its death.
+-- @function [parent=#CLuaParticle] GetEndLength
+-- @param  self
+-- @return #number The length the particle will reach.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the size that the particle will reach on its death.
+-- @function [parent=#CLuaParticle] GetEndSize
+-- @param  self
+-- @return #number The size the particle will reach.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the gravity of the particle.
+-- @function [parent=#CLuaParticle] GetGravity
+-- @param  self
+-- @return #Vector The gravity of the particle.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the 'life time' of the particle, how long the particle existed since its creation.
+-- 
+-- This value will always be between 0 and **CLuaParticle:GetDieTime**.
+-- It changes automatically as time goes.
+-- 
+-- It can be manipulated using **CLuaParticle:SetLifeTime**.
+-- If the life time of the particle will be more than **CLuaParticle:GetDieTime**, it will be removed.
+-- @function [parent=#CLuaParticle] GetLifeTime
+-- @param  self
+-- @return #number How long the particle existed, in seconds.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the absolute position of the particle.
+-- @function [parent=#CLuaParticle] GetPos
+-- @param  self
+-- @return #Vector The absolute position of the particle.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the current rotation of the particle in radians, this should only be
+-- used for 2D particles.
+-- @function [parent=#CLuaParticle] GetRoll
+-- @param  self
+-- @return #number The current rotation of the particle in radians.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the current rotation speed of the particle in radians, this should only be used for 2D particles.
+-- @function [parent=#CLuaParticle] GetRollDelta
+-- @param  self
+-- @return #number The current rotation speed of the particle in radians.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the alpha value which the particle has when it's created.
+-- @function [parent=#CLuaParticle] GetStartAlpha
+-- @param  self
+-- @return #number The alpha value which the particle has when it's created.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the length which the particle has when it's created.
+-- @function [parent=#CLuaParticle] GetStartLength
+-- @param  self
+-- @return #number The length which the particle has when it's created.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the size which the particle has when it's created.
+-- @function [parent=#CLuaParticle] GetStartSize
+-- @param  self
+-- @return #number The size which the particle has when it's created.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the current velocity of the particle.
+-- @function [parent=#CLuaParticle] GetVelocity
+-- @param  self
+-- @return #Vector The current velocity of the particle.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the air resistance of the the particle.
+-- @function [parent=#CLuaParticle] SetAirResistance
+-- @param  self
+-- @return #number airResistance New air resistance.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the angles of the particle.
+-- @function [parent=#CLuaParticle] SetAngles
+-- @param  self
+-- @param  #Angle ang New angle.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the angular velocity of the the particle.
+-- @function [parent=#CLuaParticle] SetAngleVelocity
+-- @param  self
+-- @param  #Angle angVel New angular velocity.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the 'bounciness' of the the particle.
+-- @function [parent=#CLuaParticle] SetBounce
+-- @param  self
+-- @param  #number bounce New 'bounciness' of the particle.  
+-- 2 means it will gain 100% of its previous velocity,  
+-- 1 means it will not lose velocity,  
+-- 0.5 means it will lose half of its velocity with each bounce.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the whether the particle should collide with the world or not.
+-- @function [parent=#CLuaParticle] SetCollide
+-- @param  self
+-- @param  #boolean shouldCollide Whether the particle should collide with the world or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the function that gets called whenever the particle collides with the world.
+-- @function [parent=#CLuaParticle] SetCollideCallback
+-- @param  self
+-- @param  #function collideFunc Collide callback.  
+-- The arguments are:
+-- 
+-- * **CLuaParticle** particle - The particle itself.
+-- * **Vector** hitPos - Position of the collision.
+-- * **Vector** hitNormal - Direction of the collision, perpendicular to the hit surface.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the color of the particle.
+-- @function [parent=#CLuaParticle] SetColor
+-- @param  self
+-- @param  #number r The red component.
+-- @param  #number r The green component.
+-- @param  #number r The blue component.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the time where the particle will be removed.
+-- @function [parent=#CLuaParticle] SetDieTime
+-- @param  self
+-- @param  #number dieTime The new die time.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the alpha value of the particle that it will reach when it dies.
+-- @function [parent=#CLuaParticle] SetEndAlpha
+-- @param  self
+-- @param  #number endAlpha The new alpha value of the particle that it will reach when it dies.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the length of the particle that it will reach when it dies.
+-- @function [parent=#CLuaParticle] SetEndLength
+-- @param  self
+-- @param  #number endLength The new length of the particle that it will reach when it dies.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the size of the particle that it will reach when it dies.
+-- @function [parent=#CLuaParticle] SetEndSize
+-- @param  self
+-- @param  #number endSize The new size of the particle that it will reach when it dies.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the directional gravity aka. acceleration of the particle.
+-- @function [parent=#CLuaParticle] SetGravity
+-- @param  self
+-- @param  #Vector gravity The directional gravity.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the 'life time' of the particle, how long the particle existed since
+-- its creation. This value should always be between 0 and
+-- **CLuaParticle:GetDieTime**. It changes automatically as time goes. If the life
+-- time of the particle will be more than **CLuaParticle:GetDieTime**, it will
+-- be removed.
+-- @function [parent=#CLuaParticle] SetLifeTime
+-- @param  self
+-- @param  #number lifeTime The new life time of the particle.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets whether the particle should be lighted.
+-- @function [parent=#CLuaParticle] SetLighting
+-- @param  self
+-- @param  #boolean useLighting Whether the particle should be lighted.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets when the particles think function should be called next, this uses the
+-- synchronized server time returned by **CurTime**.
+-- @function [parent=#CLuaParticle] SetNextThink
+-- @param  self
+-- @param  #number nextThink Next think time.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the absolute position of the particle.
+-- @function [parent=#CLuaParticle] SetPos
+-- @param  self
+-- @param  #Vector pos The new particle position.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the roll of the particle in radians. This should only be used for 2D particles.
+-- @function [parent=#CLuaParticle] SetRoll
+-- @param  self
+-- @param  #number roll The new rotation of the particle in radians.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the rotation speed of the particle in radians. This should only be used
+-- for 2D particles.
+-- @function [parent=#CLuaParticle] SetRollDelta
+-- @param  self
+-- @param  #number rollDelta The new rotation speed of the particle in radians.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the initial alpha value of the particle.
+-- @function [parent=#CLuaParticle] SetStartAlpha
+-- @param  self
+-- @param  #number startAlpha Initial alpha.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the initial length value of the particle.
+-- @function [parent=#CLuaParticle] SetStartLength
+-- @param  self
+-- @param  #number startLength Initial length.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the initial size value of the particle.
+-- @function [parent=#CLuaParticle] SetStartSize
+-- @param  self
+-- @param  #number startSize Initial size.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the think function of the particle.
+-- @function [parent=#CLuaParticle] SetThinkFunction
+-- @param  self
+-- @param  #function thinkFunc Think function.  
+-- It has only one argument:
+-- 
+-- * **CLuaParticle** particle - The particle the think hook is set on.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the velocity of the particle.
+-- @function [parent=#CLuaParticle] SetVelocity
+-- @param  self
+-- @param  #Vector vel The new velocity of the particle.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Scales the velocity based on the particle speed.
+-- @function [parent=#CLuaParticle] SetVelocityScale
+-- @param  self
+-- @param  #boolean doScale Use velocity scaling. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- A class used to store the inputs from CUserCmd and other information related
+-- to the current movement simulation, such as velocity, position and so on.
+-- 
+-- This can only be accessed during **GM:SetupMove**, **GM:Move**, **GM:PlayerTick** and **GM:FinishMove**.
+-- @type CMoveData
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Adds keys to the move data, as if player pressed them.
+-- @function [parent=#CMoveData] AddKey
+-- @param  self
+-- @param  #number keys Keys to add, see **IN\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the aim angle. Seems to be same as **CMoveData:GetAngles**.
+-- @function [parent=#CMoveData] GetAbsMoveAngles
+-- @param  self
+-- @return #Angle Aiming angle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the aim angle. On client is the same as **Entity:GetAngles**.
+-- @function [parent=#CMoveData] GetAngles
+-- @param  self
+-- @return #Angle Aiming angle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets which buttons are down.
+-- @function [parent=#CMoveData] GetButtons
+-- @param  self
+-- @return #number An integer representing which buttons are down, see **IN\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the radius that constrains the players movement.
+-- @function [parent=#CMoveData] GetConstraintRadius
+-- @param  self
+-- @return #number The constraint radius.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the players forward speed.
+-- @function [parent=#CMoveData] GetForwardSpeed
+-- @param  self
+-- @return #number Player's forward speed.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the number passed to "impulse" console command.
+-- @function [parent=#CMoveData] GetImpulseCommand
+-- @param  self
+-- @return #number The impulse.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the maximum client speed of the player.
+-- @function [parent=#CMoveData] GetMaxClientSpeed
+-- @param  self
+-- @return #number The maximum client speed.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the maximum speed of the player.
+-- @function [parent=#CMoveData] GetMaxSpeed
+-- @param  self
+-- @return #number The maximum speed.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the angle the player is moving at. For more info, see **CMoveData:SetMoveAngles**.
+-- @function [parent=#CMoveData] GetMoveAngles
+-- @param  self
+-- @return #Angle The move direction.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the aim angle. Only works clientside, server returns same as **CMoveData:GetAngles**.
+-- @function [parent=#CMoveData] GetOldAngles
+-- @param  self
+-- @return #Angle The aim angle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Get which buttons were down last frame.
+-- @function [parent=#CMoveData] GetOldButtons
+-- @param  self
+-- @return #number An integer representing which buttons were down, see **IN\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the player's position.
+-- @function [parent=#CMoveData] GetOrigin
+-- @param  self
+-- @return #Vector The player's position.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the strafe speed of the player.
+-- @function [parent=#CMoveData] GetSideSpeed
+-- @param  self
+-- @return #number The player's strafe speed.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the vertical speed of the player. (Z axis of **CMoveData:GetVelocity**)
+-- @function [parent=#CMoveData] GetUpSpeed
+-- @param  self
+-- @return #number Vertical speed.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the players velocity.
+-- @function [parent=#CMoveData] GetVelocity
+-- @param  self
+-- @return #Vector The players velocity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the key is down or not.
+-- @function [parent=#CMoveData] KeyDown
+-- @param  self
+-- @param  #number key The key to test, see **IN\_Enums**.
+-- @return #boolean Is the key down or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the key was pressed. If you want to check if the key is held
+-- down, try **CMoveData:KeyDown**.
+-- @function [parent=#CMoveData] KeyPressed
+-- @param  self
+-- @param  #number key The key to test, see **IN\_Enums**.
+-- @return #boolean Was the key pressed or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the key was released.
+-- @function [parent=#CMoveData] KeyReleased
+-- @param  self
+-- @param  #number key A key to test, see **IN\_Enums**.
+-- @return #boolean Was the key released or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the key was down or not. Unlike **CMoveData:KeyDown**, it will
+-- return false if **CMoveData:KeyPressed** is true and it will return true if
+-- **CMoveData:KeyReleased** is true.
+-- @function [parent=#CMoveData] KeyWasDown
+-- @param  self
+-- @param  #number key The key to test, see **IN\_Enums**.
+-- @return #boolean Was the key down or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets absolute move angles. Doesn't seem to do anything?
+-- @function [parent=#CMoveData] SetAbsMoveAngles
+-- @param  self
+-- @param  #Angle ang New absolute move angles.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets angles.
+-- @function [parent=#CMoveData] SetAngles
+-- @param  self
+-- @param  #Angle ang The angles.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the pressed buttons on the move data.
+-- @function [parent=#CMoveData] SetButtons
+-- @param  self
+-- @param  #number buttons A number representing which buttons are down, see **IN\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the radius that constrains the players movement. It is unknown what
+-- this function does as changing its values doesn't affect player movement.
+-- @function [parent=#CMoveData] SetConstraintRadius
+-- @param  self
+-- @param  #number radius The new constraint radius.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets players forward speed.
+-- @function [parent=#CMoveData] SetForwardSpeed
+-- @param  self
+-- @param  #number speed New forward speed.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the impulse command. This isn't actually utilized in the engine anywhere.
+-- @function [parent=#CMoveData] SetImpulseCommand
+-- @param  self
+-- @param  #number impulse The impulse to set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the maximum player speed. Player won't be able to run or sprint faster
+-- then this value. This also automatically sets **CMoveData:SetMaxSpeed** when
+-- used in the **GM:SetupMove** hook. You must set it manually in the **GM:Move** hook.
+-- This must be called on both client and server to avoid prediction errors.
+-- This will not reduce speed in air.
+-- 
+-- **Note**: _Setting this to 0 will not make the player stationary. It won't
+-- do anything._
+-- @function [parent=#CMoveData] SetMaxClientSpeed
+-- @param  self
+-- @param  #number maxSpeed The new maximum speed.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the maximum speed of the player. This must match with
+-- **CMoveData:SetMaxClientSpeed** both, on server and client. Doesn't seem to be
+-- doing anything on it's own, use **CMoveData:SetMaxClientSpeed** instead.
+-- @function [parent=#CMoveData] SetMaxSpeed
+-- @param  self
+-- @param  #number maxSpeed The new maximum speed.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the serverside move angles, making the movement keys act as if player
+-- was facing that direction.
+-- @function [parent=#CMoveData] SetMoveAngles
+-- @param  self
+-- @param  #Angle dir The aim direction.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets old aim angles. Doesn't seem to be doing anything?
+-- @function [parent=#CMoveData] SetOldAngles
+-- @param  self
+-- @param  #Angle aimAng The old angles.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the 'old' pressed buttons on the move data. These buttons are used to
+-- work out which buttons have been released, which have just been pressed and
+-- which are being held down.
+-- @function [parent=#CMoveData] SetOldButtons
+-- @param  self
+-- @param  #number buttons A number representing which buttons were down, see **IN\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the players position.
+-- @function [parent=#CMoveData] SetOrigin
+-- @param  self
+-- @param  #Vector pos The position.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets players strafe speed.
+-- @function [parent=#CMoveData] SetSideSpeed
+-- @param  self
+-- @param  #number speed Strafe speed.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets vertical speed of the player. (Z axis of **CMoveData:SetVelocity**)
+-- @function [parent=#CMoveData] SetUpSpeed
+-- @param  self
+-- @param  #number speed Vertical speed to set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the player's velocity.
+-- @function [parent=#CMoveData] SetVelocity
+-- @param  self
+-- @param  #Vector velocity The velocity to set.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- An object returned by navmesh library functions.
+-- @type CNavArea
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Adds this **CNavArea** to the closed list, a list of areas that have been
+-- checked by A* pathfinding algorithm.
+-- @function [parent=#CNavArea] AddToClosedList
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Adds this **CNavArea** to the Open List.
+-- @function [parent=#CNavArea] AddToOpenList
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Clears the open and closed lists for a new search.
+-- @function [parent=#CNavArea] ClearSearchLists
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the height difference between the edges of two connected navareas.
+-- @function [parent=#CNavArea] ComputeAdjacentConnectionHeightChange
+-- @param  self
+-- @param  #CNavArea navarea The other connected navarea.
+-- @return #number The height change.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the **NavDir\_Enums** direction that the given vector faces on this **CNavArea**.
+-- @function [parent=#CNavArea] ComputeDirection
+-- @param  self
+-- @param  #Vector pos The position to compute direction towards.
+-- @return #number The direction the vector is in relation to this **CNavArea**. See **NavDir\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the height difference on the Z axis of the two **CNavAreas**. This is
+-- calculated from the center most point on both **CNavAreas**.
+-- @function [parent=#CNavArea] ComputeGroundHeightChange
+-- @param  self
+-- @param  #CNavArea navArea The nav area to test against.
+-- @return #number The ground height change.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Connects this **CNavArea** to another **CNavArea** or **CNavLadder** with a one way
+-- connection. (From this area to the target) See **CNavLadder:ConnectTo** for
+-- making the connection from ladder to area.
+-- @function [parent=#CNavArea] ConnectTo
+-- @param  self
+-- @param  #CNavArea area The **CNavArea** or **CNavLadder** this area leads to.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns true if this **CNavArea** contains the given vector.
+-- @function [parent=#CNavArea] Contains
+-- @param  self
+-- @param  #Vector pos The position to test.
+-- @return #boolean True if the vector was inside and false otherwise.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Disconnects this nav area from given area or ladder. (Only disconnects one way)
+-- @function [parent=#CNavArea] Disconnect
+-- @param  self
+-- @param  #CNavArea area The **CNavArea** or **CNavLadder** this to disconnect from.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Draws this navarea on debug overlay.
+-- @function [parent=#CNavArea] Draw
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Draws the hiding spots on debug overlay. This includes sniper/exposed spots too!
+-- @function [parent=#CNavArea] DrawSpots
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns a table of all the CNavAreas that have a (one and two way)
+-- connection from this CNavArea. If an area has a one-way incoming connection
+-- to this CNavArea, then it will not be returned from this function, use
+-- **CNavArea:GetIncomingConnections** to get all one-way incoming connections. See
+-- **CNavArea:GetAdjacentAreasAtSide** for a function that only returns areas from
+-- one side/direction.
+-- @function [parent=#CNavArea] GetAdjacentAreas
+-- @param  self
+-- @return #table A table of all **CNavArea** that have a (one and two way) connection from this **CNavArea**.
+-- Returns an empty table if this area has no outgoing connections to any other areas.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns a table of all the CNavAreas that have a (one and two way)
+-- connection from this **CNavArea** in given direction. If an area has a one-way
+-- incoming connection to this **CNavArea**, then it will not be returned from this
+-- function, use **CNavArea:GetIncomingConnections** to get all incoming
+-- connections. See **CNavArea:GetAdjacentAreas** for a function that returns all
+-- areas from all sides/directions.
+-- @function [parent=#CNavArea] GetAdjacentAreasAtSide
+-- @param  self
+-- @param  #number navDir The direction, in which to look for **CNavAreas**, see **NavDir\_Enums**.
+-- @return #table A table of all **CNavArea** that have a (one and two way) connection from this **CNavArea** in given direction.
+-- Returns an empty table if this area has no outgoing connections to any other areas in given direction.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the amount of **CNavArea**'s that have a connection (one and two way)
+-- from this **CNavArea**. See **CNavArea:GetAdjacentCountAtSide** for a function that
+-- only returns area count from one side/direction.
+-- @function [parent=#CNavArea] GetAdjacentCount
+-- @param  self
+-- @return #number The amount of CNavAreas that have a connection ( one and two way ) from this CNavArea.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the amount of CNavAreas that have a connection (one or two way)
+-- from this **CNavArea** in given direction. See **CNavArea:GetAdjacentCount** for a
+-- function that returns **CNavArea** count from/in all sides/directions.
+-- @function [parent=#CNavArea] GetAdjacentCountAtSide
+-- @param  self
+-- @param  #number navDir The direction, in which to look for **CNavAreas**, see **NavDir\_Enums**.
+-- @return #number The amount of **CNavAreas** that have a connection (one or two way) from this **CNavArea** in given direction.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the attribute mask for the given **CNavArea**.
+-- @function [parent=#CNavArea] GetAttributes
+-- @param  self
+-- @return #boolean Attribute mask for this **CNavArea**, see **NAV\_MESH\_Enums** for the specific flags.  
+-- **Note**: _A navmesh that was generated with nav\_quicksave set to 1 will have all **CNavAreas** attribute masks set to 0._
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the center most vector point for the given **CNavArea**.
+-- @function [parent=#CNavArea] GetCenter
+-- @param  self
+-- @return #Vector The center vector.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the closest point of this **CNavArea** from the given position.
+-- @function [parent=#CNavArea] GetClosestPointOnArea
+-- @param  self
+-- @param  #Vector pos The given position, can be outside of the **CNavArea** bounds.
+-- @return #Vector The closest position on this **CNavArea**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the vector position of the corner for the given **CNavArea**.
+-- @function [parent=#CNavArea] GetCorner
+-- @param  self
+-- @param  #number cornerid The target corner to get the position of, takes **NavCorner\_Enums**.
+-- @return #Vector The corner position.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the cost from starting area this area when pathfinding. Set by **CNavArea:SetCostSoFar**.
+-- @function [parent=#CNavArea] GetCostSoFar
+-- @param  self
+-- @return #number The cost so far.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns a table of very bad hiding spots in this area.
+-- @function [parent=#CNavArea] GetExposedSpots
+-- @param  self
+-- @return #table A table of Vectors.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns size info about the nav area.
+-- @function [parent=#CNavArea] GetExtentInfo
+-- @param  self
+-- @return #table Returns a table containing the following keys:
+-- 
+-- * _#Vector hi_
+-- * _#Vector lo_
+-- * _#number SizeX_
+-- * _#number SizeY_
+-- * _#number SizeZ_
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns a table of good hiding spots in this area
+-- @function [parent=#CNavArea] GetHidingSpots
+-- @param  self
+-- @return #table A table of Vectors.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns this **CNavArea**'s unique ID.
+-- @function [parent=#CNavArea] GetID
+-- @param  self
+-- @return #number The unique ID.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns a table of all the **CNavArea**'s that have a one-way connection to this
+-- **CNavArea**. If a **CNavArea** has a two-way connection to or from this **CNavArea**
+-- then it will not be returned from this function, use
+-- **CNavArea:GetAdjacentAreas** to get outgoing (one and two way) connections. See
+-- **CNavArea:GetIncomingConnectionsAtSide** for a function that returns one-way
+-- incoming connections from only one side/direction.
+-- @function [parent=#CNavArea] GetIncomingConnections
+-- @param  self
+-- @return #table A table of all **CNavArea**'s with one-way connection to this **CNavArea**.
+-- Returns an empty table if there are no one-way incoming connections to this **CNavArea**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns a table of all the **CNavArea**'s that have a one-way connection to this
+-- **CNavArea** from given direction. If a **CNavArea** has a two-way connection to or
+-- from this **CNavArea** then it will not be returned from this function, use
+-- **CNavArea:GetAdjacentAreas** to get outgoing (one and two way) connections. See
+-- **CNavArea:GetIncomingConnections** for a function that returns one-way incoming
+-- connections from all sides/directions.
+-- @function [parent=#CNavArea] GetIncomingConnectionsAtSide
+-- @param  self
+-- @param  #number navDir The direction, from which to look for **CNavArea**'s, see **NavDir\_Enums**.
+-- @return #table A table of all **CNavArea**'s with one-way connection to this **CNavArea** from given direction.
+-- Returns an empty table if there are no one-way incoming connections to this **CNavArea** from given direction.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns all **CNavLadder**'s that have a (one or two way) connection from this
+-- **CNavArea**. See **CNavArea:GetLaddersAtSide** for a function that only returns
+-- **CNavLadder**'s in given direction.
+-- @function [parent=#CNavArea] GetLadders
+-- @param  self
+-- @return #table The **CNavLadder**'s that have a (one or two way) connection from this **CNavArea**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns all **CNavLadder**'s that have a (one or two way) connection from (one
+-- and two way) this **CNavArea** in given direction. See **CNavArea:GetLadders** for a
+-- function that returns **CNavLadder** from/in all sides/directions.
+-- @function [parent=#CNavArea] GetLaddersAtSide
+-- @param  self
+-- @param  #number navDir The direction, in which to look for **CNavLadder**'s.
+-- 
+-- * 0 = Up (LadderDirectionType::LADDER_UP)
+-- * 1 = Down (LadderDirectionType::LADDER_DOWN)
+-- @return #table The **CNavLadder**'s that have a (one or two way) connection from this **CNavArea** in given direction.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the parent **CNavArea**.
+-- @function [parent=#CNavArea] GetParent
+-- @param  self
+-- @return #CNavArea The parent **CNavArea**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns how this **CNavArea** is connected to its parent.
+-- @function [parent=#CNavArea] GetParentHow
+-- @param  self
+-- @return #number See **NavTraverseType\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the Place of the nav area.
+-- @function [parent=#CNavArea] GetPlace
+-- @param  self
+-- @return #string The place of the nav area, or no value if it doesn't have a place set.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns a random **CNavArea** that has an outgoing (one or two way) connection
+-- from this **CNavArea** in given direction.
+-- @function [parent=#CNavArea] GetRandomAdjacentAreaAtSide
+-- @param  self
+-- @param  #number navDir The direction, in which to look for **CNavArea**'s, see **NavDir\_Enums**.
+-- @return #CNavArea The random **CNavArea** that has an outgoing (one or two way) connection from this **CNavArea** in given direction, if any.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns a random point on the nav area.
+-- @function [parent=#CNavArea] GetRandomPoint
+-- @param  self
+-- @return #Vector The random point on the nav area.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the width this Nav Area.
+-- @function [parent=#CNavArea] GetSizeX
+-- @param  self
+-- @return #number The area's width.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the height of this Nav Area.
+-- @function [parent=#CNavArea] GetSizeY
+-- @param  self
+-- @return #number The area's height.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the total cost when passing from starting area to the goal area
+-- through this node. Set by **CNavArea:SetTotalCost**.
+-- @function [parent=#CNavArea] GetTotalCost
+-- @param  self
+-- @return #number The total cost.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the elevation of this Nav Area at the given position.
+-- @function [parent=#CNavArea] GetZ
+-- @param  self
+-- @param  #Vector pos The position to get the elevation from, the z value from this position is ignored and only the X and Y values are used to this task.
+-- @return #number The elevation.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns true if the given **CNavArea** has this attribute flag set.
+-- @function [parent=#CNavArea] HasAttributes
+-- @param  self
+-- @param  #number attribs Attribute mask to check for, see **NAV\_MESH\_Enums**.
+-- @return #boolean True if the **CNavArea** matches the given mask. False otherwise.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#CNavArea] IsBlocked
+-- @param  self
+-- @param  #number teamID
+-- @param  #boolean ignoreNavBlockers _(Default: false)_
+-- @return #boolean
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether this node is in the Closed List.
+-- @function [parent=#CNavArea] IsClosed
+-- @param  self
+-- @return #boolean Whether this node is in the Closed List.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether this **CNavArea** has an outgoing (one or two way) connection to
+-- given **CNavArea**. See **CNavArea:IsConnectedAtSide** for a function that only
+-- checks for outgoing connections in one direction.
+-- @function [parent=#CNavArea] IsConnected
+-- @param  self
+-- @param  #CNavArea navArea The **CNavArea** to test against.
+-- @return #boolean Whether this **CNavArea** has an outgoing (one or two way) connection to given **CNavArea**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether this **CNavArea* has an outgoing (one or two way) connection to
+-- given **CNavArea** in given direction. See **CNavArea:IsConnected** for a function
+-- that checks all sides.
+-- @function [parent=#CNavArea] IsConnectedAtSide
+-- @param  self
+-- @param  #CNavArea navArea The **CNavArea** to test against.
+-- @param  #number navDirType The direction, in which to look for the connection. See **NavDir\_Enums**
+-- @return #boolean Whether this **CNavArea** has an outgoing (one or two way) connection to given **CNavArea** in given direction.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether this Nav Area is in the same plane as the given one.
+-- @function [parent=#CNavArea] IsCoplanar
+-- @param  self
+-- @param  #CNavArea navArea The Nav Area to test.
+-- @return #boolean Whether we're coplanar or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether this Nav Area is flat within the tolerance of the
+-- nav_coplanar_slope_limit_displacement and nav_coplanar_slope_limit convars.
+-- @function [parent=#CNavArea] IsFlat
+-- @param  self
+-- @return #boolean Whether this **CNavArea** is mostly flat.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether this area is in the Open List.
+-- @function [parent=#CNavArea] IsOpen
+-- @param  self
+-- @return #boolean Whether this area is in the Open List.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether the Open List is empty or not.
+-- @function [parent=#CNavArea] IsOpenListEmpty
+-- @param  self
+-- @return #boolean Whether the Open List is empty or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns if this position overlaps the Nav Area within the given tolerance.
+-- @function [parent=#CNavArea] IsOverlapping
+-- @param  self
+-- @param  #Vector pos The overlapping position to test.
+-- @param  #number tolerance The tolerance of the overlapping, set to 0 for no tolerance. _(Default: 0)_
+-- @return #boolean Whether the given position overlaps the Nav Area or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns true if this **CNavArea** is overlapping the given **CNavArea**.
+-- @function [parent=#CNavArea] IsOverlappingArea
+-- @param  self
+-- @param  #CNavArea navArea The **CNavArea** to test against.
+-- @return #boolean True if the given **CNavArea** overlaps this **CNavArea** at any point.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns if we're shaped like a square.
+-- @function [parent=#CNavArea] IsRoughlySquare
+-- @param  self
+-- @return #boolean If we're a square or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Whether this Nav Area is placed underwater.
+-- @function [parent=#CNavArea] IsUnderwater
+-- @param  self
+-- @return #boolean Whether we're underwater or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether this **CNavArea** is valid or not.
+-- @function [parent=#CNavArea] IsValid
+-- @param  self
+-- @return #boolean Whether this **CNavArea** is valid or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether we can be seen from the given position.
+-- @function [parent=#CNavArea] IsVisible
+-- @param  self
+-- @param  #Vector pos The position to check.
+-- @return #boolean Whether we can be seen or not, and if we can be seen, this is returned with either the center or one of the corners of the Nav Area.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Drops a corner or all corners of a **CNavArea** to the ground below it.
+-- @function [parent=#CNavArea] PlaceOnGround
+-- @param  self
+-- @param  #number corner The corner(s) to drop, uses **NavCorner\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Removes a CNavArea from the Open List with the lowest cost to traverse to
+-- from the starting node, and returns it.
+-- @function [parent=#CNavArea] PopOpenList
+-- @param  self
+-- @return #CNavArea The **CNavArea** from the Open List with the lowest cost to traverse to from the starting node.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Removes the given nav area.
+-- @function [parent=#CNavArea] Remove
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Removes this node from the Closed List.
+-- @function [parent=#CNavArea] RemoveFromClosedList
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the attributes for given CNavArea.
+-- @function [parent=#CNavArea] SetAttributes
+-- @param  self
+-- @param  #number attribs The attribute bitflag. See **NAV\_MESH\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the position of a corner of a nav area.
+-- @function [parent=#CNavArea] SetCorner
+-- @param  self
+-- @param  #number corner The corner to set, uses **NavCorner\_Enums**.
+-- @param  #Vector position The new position to set.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the cost from starting area this area when pathfinding.
+-- @function [parent=#CNavArea] SetCostSoFar
+-- @param  self
+-- @param  #number cost The cost so far.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the new parent of this **CNavArea**.
+-- @function [parent=#CNavArea] SetParent
+-- @param  self
+-- @param  #CNavArea parent The new parent to set.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the Place of the nav area. There is a limit of 256 Places per nav file.
+-- @function [parent=#CNavArea] SetPlace
+-- @param  self
+-- @param  #string place Set to "" to remove place from the nav area.
+-- @return #boolean Returns true of operation succeeded, false otherwise.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the total cost when passing from starting area to the goal area through
+-- this node.
+-- @function [parent=#CNavArea] SetTotalCost
+-- @param  self
+-- @param  #number cost The total cost of the path to set. Must be above or equal 0.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Moves this open list to appropriate position based on its **CNavArea:GetTotalCost**
+-- compared to the total cost of other areas in the open list.
+-- @function [parent=#CNavArea] UpdateOnOpenList
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- An object that represents a ladder for Nextbots.
+-- @type CNavLadder
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Connects this ladder to a **CNavArea** with a one way connection. (From this
+-- ladder to the target area). See **CNavArea:ConnectTo** for making the connection
+-- from area to ladder.
+-- @function [parent=#CNavLadder] ConnectTo
+-- @param  self
+-- @param  #CNavArea area The area this ladder leads to.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Disconnects this ladder from given area in a single direction.
+-- @function [parent=#CNavLadder] Disconnect
+-- @param  self
+-- @param  #CNavArea area The **CNavArea** this to disconnect from.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the bottom most position of the ladder.
+-- @function [parent=#CNavLadder] GetBottom
+-- @param  self
+-- @return #Vector The bottom most position of the ladder.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the bottom area of the **CNavLadder**.
+-- @function [parent=#CNavLadder] GetBottomArea
+-- @param  self
+-- @return #CNavArea The bottom connecting nav area.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns this CNavLadders unique ID.
+-- @function [parent=#CNavLadder] GetID
+-- @param  self
+-- @return #number The unique ID.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the length of the ladder.
+-- @function [parent=#CNavLadder] GetLength
+-- @param  self
+-- @return #number The length of the ladder.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the direction of this **CNavLadder**. (The direction in which players
+-- back will be facing if they are looking directly at the ladder)
+-- @function [parent=#CNavLadder] GetNormal
+-- @param  self
+-- @return #Vector The direction of this **CNavLadder**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the world position based on given height relative to the ladder.
+-- @function [parent=#CNavLadder] GetPosAtHeight
+-- @param  self
+-- @param  #number height The Z position in world space coordinates.
+-- @return #Vector The closest point on the ladder to that height.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the topmost position of the ladder.
+-- @function [parent=#CNavLadder] GetTop
+-- @param  self
+-- @return #Vector The topmost position of the ladder.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the top behind **CNavArea** of the **CNavLadder**.
+-- @function [parent=#CNavLadder] GetTopBehindArea
+-- @param  self
+-- @return #CNavArea The top behind **CNavArea** of the **CNavLadder**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the top forward **CNavArea** of the **CNavLadder**.
+-- @function [parent=#CNavLadder] GetTopForwardArea
+-- @param  self
+-- @return #CNavArea The top forward **CNavArea** of the **CNavLadder**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the top left **CNavArea** of the **CNavLadder**.
+-- @function [parent=#CNavLadder] GetTopLeftArea
+-- @param  self
+-- @return #CNavArea The top left **CNavArea** of the **CNavLadder**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the top right **CNavArea** of the **CNavLadder**.
+-- @function [parent=#CNavLadder] GetTopRightArea
+-- @param  self
+-- @return #CNavArea The top right **CNavArea** of the **CNavLadder**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the width of the ladder in Hammer Units.
+-- @function [parent=#CNavLadder] GetWidth
+-- @param  self
+-- @return #number The width of the ladder in Hammer Units.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether this CNavLadder has an outgoing (one or two way) connection
+-- to given CNavArea in given direction.
+-- @function [parent=#CNavLadder] IsConnectedAtSide
+-- @param  self
+-- @param  #CNavArea navArea The **CNavArea** to test against.
+-- @param  #number navDirType The direction, in which to look for the connection. See **NavDir\_Enums**.
+-- @return #boolean Whether this **CNavLadder** has an outgoing (one or two way) connection to given **CNavArea** in given direction.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether this **CNavLadder** is valid or not.
+-- @function [parent=#CNavLadder] IsValid
+-- @param  self
+-- @return #boolean Whether this **CNavLadder** is valid or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Removes the given nav ladder.
+-- @function [parent=#CNavLadder] Remove
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the bottom area of the **CNavLadder**.
+-- @function [parent=#CNavLadder] SetBottomArea
+-- @param  self
+-- @param  #CNavArea area The **CNavArea** to connect to the bottom of the **CNavLadder**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the top behind area of the **CNavLadder**.
+-- @function [parent=#CNavLadder] SetTopBehindArea
+-- @param  self
+-- @param  #CNavArea area The **CNavArea** to connect to the top-back of the **CNavLadder**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the top forward area of the CNavLadder.
+-- @function [parent=#CNavLadder] SetTopForwardArea
+-- @param  self
+-- @param  #CNavArea area The **CNavArea** to connect to the top-front of the **CNavLadder**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the top left area of the **CNavLadder**.
+-- @function [parent=#CNavLadder] SetTopLeftArea
+-- @param  self
+-- @param  #CNavArea area The **CNavArea** to connect to the top-left of the **CNavLadder**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the top right area of the **CNavLadder**.
+-- @function [parent=#CNavLadder] SetTopRightArea
+-- @param  self
+-- @param  #CNavArea area The **CNavArea** to connect to the top-right of the **CNavLadder**.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- This object represents a .pcf (Orange Box) particle system. Created by
+-- **Entity:CreateParticleEffect** and **CreateParticleSystem**.
+-- @type CNewParticleEffect
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Adds a control point to the particle system.
+-- 
+-- **Note**: _This function will not work if the **CNewParticleEffect:GetOwner**
+-- entity is not valid._
+-- @function [parent=#CNewParticleEffect] AddControlPoint
+-- @param  self
+-- @param  #number cpID The control point ID, 0 to 63.
+-- @param  #Entity ent The entity to attach the control point to.
+-- @param  #number partAttachment See **PATTACH\_Enums**.
+-- @param  #number entAttachment The attachment ID on the entity to attach the particle system to. _(Default: 0)_
+-- @param  #Vector offset The offset from the Entity:GetPos of the entity we are attaching this CP to. _(Default: Vector(0, 0, 0))_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- 
+-- @function [parent=#CNewParticleEffect] GetAutoUpdateBBox
+-- @param  self
+-- @return #boolean
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the name of the particle effect this system is set to emit.
+-- @function [parent=#CNewParticleEffect] GetEffectName
+-- @param  self
+-- @return #string The name of the particle effect.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the highest control point number for given particle system.
+-- @function [parent=#CNewParticleEffect] GetHighestControlPoint
+-- @param  self
+-- @return #boolean The highest control point number for given particle system, 0 to 63.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the owner of the particle system, the entity the particle system is
+-- attached to.
+-- @function [parent=#CNewParticleEffect] GetOwner
+-- @param  self
+-- @return #Entity The owner of the particle system.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns whether the particle system has finished emitting particles or not.
+-- @function [parent=#CNewParticleEffect] IsFinished
+-- @param  self
+-- @return #boolean Whether the particle system has finished emitting particles or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns whether the particle system is valid or not.
+-- @function [parent=#CNewParticleEffect] IsValid
+-- @param  self
+-- @return #boolean Whether the particle system is valid or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns whether the particle system is intended to be used on a view model.
+-- @function [parent=#CNewParticleEffect] IsViewModelEffect
+-- @param  self
+-- @return #boolean Is intended for view models.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Forces the particle system to render using current rendering context. Can be
+-- used to render the particle system in vgui panels, etc. Used in conjunction
+-- with **CNewParticleEffect:SetShouldDraw**.
+-- @function [parent=#CNewParticleEffect] Render
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Forces the particle system to restart emitting particles.
+-- @function [parent=#CNewParticleEffect] Restart
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets a value for given control point.
+-- @function [parent=#CNewParticleEffect] SetControlPoint
+-- @param  self
+-- @param  #number cpID The control point ID, 0 to 63.
+-- @param  #Vector value The value to set for given control point.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Essentially makes child control point follow the parent entity.
+-- @function [parent=#CNewParticleEffect] SetControlPointEntity
+-- @param  self
+-- @param  #number child The child control point ID, 0 to 63.
+-- @param  #Entity parent The parent entity to follow.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the forward direction for given control point.
+-- @function [parent=#CNewParticleEffect] SetControlPointForwardVector
+-- @param  self
+-- @param  #number cpID The control point ID, 0 to 63.
+-- @param  #Vector forward The forward direction for given control point.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the orientation for given control point.
+-- @function [parent=#CNewParticleEffect] SetControlPointOrientation
+-- @param  self
+-- @param  #number cpID The control point ID, 0 to 63.
+-- @param  #Vector forward The forward direction for given control point.
+-- @param  #Vector right The right direction for given control point.
+-- @param  #Vector up The up direction for given control point.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Essentially makes child control point follow the parent control point.
+-- @function [parent=#CNewParticleEffect] SetControlPointParent
+-- @param  self
+-- @param  #number child The child control point ID, 0 to 63.
+-- @param  #number parent The parent control point ID, 0 to 63.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the right direction for given control point.
+-- @function [parent=#CNewParticleEffect] SetControlPointRightVector
+-- @param  self
+-- @param  #number cpID The control point ID, 0 to 63.
+-- @param  #Vector right The right direction for given control point.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the upward direction for given control point.
+-- @function [parent=#CNewParticleEffect] SetControlPointUpVector
+-- @param  self
+-- @param  #number cpID The control point ID, 0 to 63.
+-- @param  #Vector upward The upward direction for given control point.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- 
+-- @function [parent=#CNewParticleEffect] SetIsViewModelEffect
+-- @param  self
+-- @param  #boolean isViewModel
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Forces the particle system to stop automatically rendering. Used in
+-- conjunction with **CNewParticleEffect:Render**.
+-- @function [parent=#CNewParticleEffect] SetShouldDraw
+-- @param  self
+-- @param  #boolean should Whether to automatically draw the particle effect or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the sort origin for given particle system. This is used as a helper to
+-- determine which particles are in front of which.
+-- @function [parent=#CNewParticleEffect] SetSortOrigin
+-- @param  self
+-- @param  #Vector origin The new sort origin.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Starts the particle emission.
+-- @function [parent=#CNewParticleEffect] StartEmission
+-- @param  self
+-- @param  #boolean infiniteOnly _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Stops the particle emission.
+-- @function [parent=#CNewParticleEffect] StopEmission
+-- @param  self
+-- @param  #boolean infiniteOnly _(Default: false)_
+-- @param  #boolean removeAllParticles _(Default: false)_
+-- @param  #boolean wakeOnStop _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Stops particle emission and destroys all particles instantly. Also detaches
+-- the particle effect from the entity it was attached to.
+-- 
+-- **Note**: _This function will work identically to
+-- **CNewParticleEffect:StopEmission**( false, true ) if
+-- **CNewParticleEffect:GetOwner** entity is not valid._
+-- 
+-- Consider using **CNewParticleEffect:StopEmission**( false, true ) instead, which
+-- has same effect, but doesn't require owner entity, and does't detach the
+-- particle system from its entity.
+-- @function [parent=#CNewParticleEffect] StopEmissionAndDestroyImmediately
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- List of all possible functions to manipulate Recipient Filters. Can be
+-- created with **RecipientFilter**.
+-- @type CRecipientFilter
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Adds all players to the recipient filter.
+-- @function [parent=#CRecipientFilter] AddAllPlayers
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Adds all players that are in the same PAS as this position.
+-- @function [parent=#CRecipientFilter] AddPAS
+-- @param  self
+-- @param  #Vector pos PAS position that players may be able to see.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Adds a player to the recipient filter.
+-- @function [parent=#CRecipientFilter] AddPlayer
+-- @param  self
+-- @param  #Player Player Player to add to the recipient filter.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Adds all players that are in the same PVS as this position.
+-- @function [parent=#CRecipientFilter] AddPVS
+-- @param  self
+-- @param  #Vector Position PVS position.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Adds all players that are on the given team to the filter.
+-- @function [parent=#CRecipientFilter] AddRecipientsByTeam
+-- @param  self
+-- @param  #number teamid Team index to add players from.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the number of valid players in the recipient filter.
+-- @function [parent=#CRecipientFilter] GetCount
+-- @param  self
+-- @return #number Number of valid players in the recipient filter.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns a table of all valid players currently in the recipient filter.
+-- @function [parent=#CRecipientFilter] GetPlayers
+-- @param  self
+-- @return #table A table of all valid players currently in the recipient filter.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Removes all players from the recipient filter.
+-- @function [parent=#CRecipientFilter] RemoveAllPlayers
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Removes all players from the filter that are in Potentially Audible Set for
+-- given position.
+-- @function [parent=#CRecipientFilter] RemovePAS
+-- @param  self
+-- @param  #Vector position The position to test.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Removes the player from the recipient filter.
+-- @function [parent=#CRecipientFilter] RemovePlayer
+-- @param  self
+-- @param  #Player Player The player that should be in the recipient filter if you call this function.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Removes all players that can see this PVS from the recipient filter.
+-- @function [parent=#CRecipientFilter] RemovePVS
+-- @param  self
+-- @param  #Vector pos Position that players may be able to see.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Removes all players that are on the given team from the filter.
+-- @function [parent=#CRecipientFilter] RemoveRecipientsByTeam
+-- @param  self
+-- @param  #number teamid Team index to remove players from.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Removes all players that are not on the given team from the filter.
+-- @function [parent=#CRecipientFilter] RemoveRecipientsNotOnTeam
+-- @param  self
+-- @param  #number teamid Team index.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- CSEnt is a client-side only entity which can be created with **ClientsideModel**,
+-- **ClientsideRagdoll**, **ClientsideScene**, and **ents.CreateClientProp**.
+-- Its base class is Entity so it inherits all of the Client and Shared
+-- functions used by Entity.
+-- @type CSEnt
+-- @extends Entity
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Removes the clientside entity.
+-- @function [parent=#CSEnt] Remove
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- CSoundPatch class. Created with **CreateSound**.
+-- @type CSoundPatch
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Adjust the pitch, alias the speed at which the sound is being played. This
+-- invokes the **GM:EntityEmitSound**.
+-- @function [parent=#CSoundPatch] ChangePitch
+-- @param  self
+-- @param  #number pitch The pitch can range from 0-255.
+-- @param  #number deltaTime The time to fade from previous to the new pitch. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Adjusts the volume of the sound played. Appears to only work while the sound
+-- is being played.
+-- @function [parent=#CSoundPatch] ChangeVolume
+-- @param  self
+-- @param  #number volume The volume ranges from 0 to 1.
+-- @param  #number deltaTime Time to fade the volume from previous to new value from. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Fades out the volume of the sound from the current volume to 0 in the given
+-- amount of seconds.
+-- @function [parent=#CSoundPatch] FadeOut
+-- @param  self
+-- @param  #number seconds Fade time.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the Digital Signal Processor (DSP) effect for the sound.
+-- @function [parent=#CSoundPatch] GetDSP
+-- @param  self
+-- @return #number The DSP effects of the sound.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the current pitch.
+-- @function [parent=#CSoundPatch] GetPitch
+-- @param  self
+-- @return #number The current pitch, can range from 0-255.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the current sound level.
+-- @function [parent=#CSoundPatch] GetSoundLevel
+-- @param  self
+-- @return #number The current sound level, see **SNDLVL\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the current volume.
+-- @function [parent=#CSoundPatch] GetVolume
+-- @param  self
+-- @return #number The current volume, ranging from 0 to 1.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whenever the sound is being played.
+-- @function [parent=#CSoundPatch] IsPlaying
+-- @param  self
+-- @return #boolean Is playing or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Starts to play the sound.
+-- @function [parent=#CSoundPatch] Play
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Same as **CSoundPatch:Play** but with 2 extra arguments allowing to set volume
+-- and pitch directly.
+-- @function [parent=#CSoundPatch] PlayEx
+-- @param  self
+-- @param  #number volume The volume ranges from 0 to 1.
+-- @return #number pitch The pitch can range from 0-255.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the Digital Signal Processor (DSP) effect for the sound. Similar to **Player:SetDSP**.
+-- @function [parent=#CSoundPatch] SetDSP
+-- @param  self
+-- @param  #number dsp The DSP effect to set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the sound level in decibel.
+-- @function [parent=#CSoundPatch] SetSoundLevel
+-- @param  self
+-- @param  #number level The sound level in decibel. See **SNDLVL\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Stops the sound from being played.
+-- @function [parent=#CSoundPatch] Stop
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- A class used to store and modify all the data concerning a damage event. An
+-- empty CTakeDamageInfo object can be created with **DamageInfo**.  
+-- List of hooks that this object is passed to:
+-- 
+-- * **ENTITY:OnTakeDamage**
+-- * **GM:DoPlayerDeath**
+-- * **GM:EntityTakeDamage**
+-- * **GM:OnDamagedByExplosion**
+-- * **GM:ScaleNPCDamage**
+-- * **GM:ScalePlayerDamage**
+-- * **NEXTBOT:OnInjured**
+-- * **NEXTBOT:OnKilled**
+-- * **NEXTBOT:OnOtherKilled**
+-- List of functions that use this object:
+-- 
+-- * **util.BlastDamageInfo**
+-- * **Entity:TakeDamageInfo**
+-- * **Entity:TakePhysicsDamage**
+-- * **Entity:DispatchTraceAttack**
+-- @type CTakeDamageInfo
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Increases the damage by damageIncrease.
+-- @function [parent=#CTakeDamageInfo] AddDamage
+-- @param  self
+-- @param  #number damageIncrease The damage to add.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the ammo type used by the weapon that inflicted the damage.
+-- @function [parent=#CTakeDamageInfo] GetAmmoType
+-- @param  self
+-- @return #number Ammo type ID.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the attacker (character who originated the attack), for example a
+-- player or an NPC that shot the weapon.
+-- @function [parent=#CTakeDamageInfo] GetAttacker
+-- @param  self
+-- @return #Entity The attacker.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the initial unmodified by skill level (**game.GetSkillLevel**) damage.
+-- @function [parent=#CTakeDamageInfo] GetBaseDamage
+-- @param  self
+-- @return #number Base Damage.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the total damage.
+-- @function [parent=#CTakeDamageInfo] GetDamage
+-- @param  self
+-- @return #number Damage amount.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the current bonus damage.
+-- @function [parent=#CTakeDamageInfo] GetDamageBonus
+-- @param  self
+-- @return #number Bonus damage.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the custom damage type. This is used by Day of Defeat: Source and Team
+-- Fortress 2 for extended damage info, but isn't used in Garry's Mod by default.
+-- @function [parent=#CTakeDamageInfo] GetDamageCustom
+-- @param  self
+-- @return #number The custom damage type.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a vector representing the damage force.
+-- @function [parent=#CTakeDamageInfo] GetDamageForce
+-- @param  self
+-- @return #Vector The damage force.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the position where the damage was or is going to be applied to.
+-- @function [parent=#CTakeDamageInfo] GetDamagePosition
+-- @param  self
+-- @return #Vector The damage position.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a bit flag which indicates the damage type(s) of the damage. Consider
+-- using **CTakeDamageInfo:IsDamageType** instead. Value returned by this function
+-- can contain multiple damage types.
+-- @function [parent=#CTakeDamageInfo] GetDamageType
+-- @param  self
+-- @return #number Damage type(s), a combination of **DMG\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the inflicter of the damage. This is not necessarily a weapon. For
+-- hitscan weapons this is the weapon. For projectile weapons this is the
+-- projectile. For a more reliable method of getting the weapon that damaged an
+-- entity, use **GetAttacker** with **GetActiveWeapon**.
+-- @function [parent=#CTakeDamageInfo] GetInflictor
+-- @param  self
+-- @return #Entity The inflicter.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the maximum damage.
+-- @function [parent=#CTakeDamageInfo] GetMaxDamage
+-- @param  self
+-- @return #number The maximum damage.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the initial, unmodified position where the damage occured.
+-- @function [parent=#CTakeDamageInfo] GetReportedPosition
+-- @param  self
+-- @return #Vector Damage's position.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns true if the damage was caused by a bullet.
+-- @function [parent=#CTakeDamageInfo] IsBulletDamage
+-- @param  self
+-- @return #boolean Is bullet damage.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whenever the damageinfo contains the damage type specified.
+-- @function [parent=#CTakeDamageInfo] IsDamageType
+-- @param  self
+-- @param  #number dmgType Damage type to test. See **DMG\_Enums**.
+-- @return #boolean Whether this damage contains specified damage type or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whenever the damageinfo contains explosion damage.
+-- @function [parent=#CTakeDamageInfo] IsExplosionDamage
+-- @param  self
+-- @return #boolean Is explosive damage.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whenever the damageinfo contains fall damage.
+-- @function [parent=#CTakeDamageInfo] IsFallDamage
+-- @param  self
+-- @return #boolean Is fall damage.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Scales the damage by the given value.
+-- @function [parent=#CTakeDamageInfo] ScaleDamage
+-- @param  self
+-- @param  #number scale Value to scale the damage with.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Changes the ammo type used by the weapon that inflicted the damage.
+-- @function [parent=#CTakeDamageInfo] SetAmmoType
+-- @param  self
+-- @param  #number ammoType Ammo type ID.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the attacker (character who originated the attack) of the damage, for
+-- example a player or an NPC.
+-- @function [parent=#CTakeDamageInfo] SetAttacker
+-- @param  self
+-- @param  #Entity ent The entity to be set as the attacker.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the amount of damage.
+-- @function [parent=#CTakeDamageInfo] SetDamage
+-- @param  self
+-- @param  #number damage The value to set the absolute damage to.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the bonus damage. Bonus damage isn't automatically applied, so this
+-- will have no outer effect by default.
+-- @function [parent=#CTakeDamageInfo] SetDamageBonus
+-- @param  self
+-- @param  #number damage The extra damage to be added.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the custom damage type. This is used by Day of Defeat: Source and Team
+-- Fortress 2 for extended damage info, but isn't used in Garry's Mod by default.
+-- @function [parent=#CTakeDamageInfo] SetDamageCustom
+-- @param  self
+-- @param  #number DamageType Any integer, can be based on your own custom enums.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the directional force of the damage.
+-- @function [parent=#CTakeDamageInfo] SetDamageForce
+-- @param  self
+-- @param  #Vector force The vector to set the force to.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the position of where the damage gets applied to.
+-- @function [parent=#CTakeDamageInfo] SetDamagePosition
+-- @param  self
+-- @param  #Vector pos The position where the damage will be applied.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the damage type.
+-- @function [parent=#CTakeDamageInfo] SetDamageType
+-- @param  self
+-- @param  #number type The damage type, see **DMG\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the inflicter of the damage for example a weapon. For hitscan/bullet
+-- weapons this should the weapon. For projectile (rockets, etc) weapons this
+-- should be the projectile.
+-- @function [parent=#CTakeDamageInfo] SetInflictor
+-- @param  self
+-- @param  #Entity inflicter The new inflicter.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the maximum damage the object can cause.
+-- @function [parent=#CTakeDamageInfo] SetMaxDamage
+-- @param  self
+-- @param  #number maxDamage Maximum damage value.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the origin of the damage.
+-- @function [parent=#CTakeDamageInfo] SetReportedPosition
+-- @param  self
+-- @param  #Vector pos The location of where the damage is originating.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Subtracts the specified amount from the damage.
+-- @function [parent=#CTakeDamageInfo] SubtractDamage
+-- @param  self
+-- @param  #number damage Value to subtract.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- A class used to store the player inputs, such as mouse movement, view angles,
+-- **IN\_Enums** buttons pressed and analog movement, the data from this class is
+-- then transfered to a CMoveData during actual movement simulation.
+-- Can be modified during **GM:CreateMove**, **GM:StartCommand** and used in read only
+-- with **GM:SetupMove** and **Player:GetCurrentCommand**.
+-- @type CUserCmd
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Removes all keys from the command.
+-- 
+-- **Note**: _If you are looking to affect player movement, you may need to use
+-- **CUserCmd:ClearMovement** instead of clearing the buttons._
+-- @function [parent=#CUserCmd] ClearButtons
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Clears the movement from the command. See also **CUserCmd:SetForwardMove**,
+-- **CUserCmd:SetSideMove** and **CUserCmd:SetUpMove**.
+-- @function [parent=#CUserCmd] ClearMovement
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns an increasing number representing the index of the user cmd. The
+-- value returned is occasionally 0 inside **GM:CreateMove**, so it's advised to
+-- check for a non-zero value if you wish to get the correct number.
+-- @function [parent=#CUserCmd] CommandNumber
+-- @param  self
+-- @return #number The command number.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a bitflag indicating which buttons are pressed.
+-- @function [parent=#CUserCmd] GetButtons
+-- @param  self
+-- @return #number Pressed buttons, see **IN\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- The speed the client wishes to move forward with, negative if the clients
+-- wants to move backwards.
+-- @function [parent=#CUserCmd] GetForwardMove
+-- @param  self
+-- @return #number The desired speed.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the current impulse from the client, usually 0.
+-- @function [parent=#CUserCmd] GetImpulse
+-- @param  self
+-- @return #number The impulse.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the scroll delta as whole number.
+-- @function [parent=#CUserCmd] GetMouseWheel
+-- @param  self
+-- @return #number Scroll delta.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the delta of the angular horizontal mouse movement of the player.
+-- @function [parent=#CUserCmd] GetMouseX
+-- @param  self
+-- @return #number X delta.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the delta of the angular vertical mouse movement of the player.
+-- @function [parent=#CUserCmd] GetMouseY
+-- @param  self
+-- @return #number Y delta.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- The speed the client wishes to move sideways with, positive if it wants to
+-- move right, negative if it wants to move left.
+-- @function [parent=#CUserCmd] GetSideMove
+-- @param  self
+-- @return #number The sideways move speed.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- The speed the client wishes to move up with, negative if the clients wants
+-- to move down.
+-- @function [parent=#CUserCmd] GetUpMove
+-- @param  self
+-- @return #number The up-down move speed.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the direction the player is looking in.
+-- @function [parent=#CUserCmd] GetViewAngles
+-- @param  self
+-- @return #Angle The player's looking direction.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- When players are not sending usercommands to the server (often due to lag),
+-- their last usercommand will be executed multiple times as a backup. This
+-- function returns true if that is happening. This will never return true clientside.
+-- @function [parent=#CUserCmd] IsForced
+-- @param  self
+-- @return #boolean Is forced.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns true if the specified button(s) is pressed.
+-- @function [parent=#CUserCmd] KeyDown
+-- @param  self
+-- @param  #number key Bit flag representing which button to check, see **IN\_Enums**.
+-- @return #boolean Is key down or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Removed a key bit from the current key bit flag.
+-- @function [parent=#CUserCmd] RemoveKey
+-- @param  self
+-- @param  #number button Bit flag to be removed from the key bit flag, see **IN\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Forces the associated player to select a weapon. This is used internally in
+-- the default HL2 weapon selection HUD. This may not work immediately if the
+-- current command is in prediction. Use **input.SelectWeapon** to switch the
+-- weapon from the client when the next available command can do so.
+-- 
+-- **Note**: _This is the ideal function to use to create a custom weapon
+-- selection HUD, as it allows prediction to run properly for **WEAPON:Deploy**
+-- and **GM:PlayerSwitchWeapon**._
+-- @function [parent=#CUserCmd] SelectWeapon
+-- @param  self
+-- @param  #Weapon weapon The weapon entity to select.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the buttons as a bit flag. See also **CUserCmd:GetButtons**.
+-- 
+-- **Note**: _If you are looking to affect player movement, you may need to use
+-- **CUserCmd:SetForwardMove** instead of setting the keys._
+-- @function [parent=#CUserCmd] SetButtons
+-- @param  self
+-- @param  #number buttons Bit flag representing which buttons are "down", see **IN\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets speed the client wishes to move forward with, negative if the clients
+-- wants to move backwards. See also **CUserCmd:ClearMovement**,
+-- **CUserCmd:SetSideMove** and **CUserCmd:SetUpMove**.
+-- @function [parent=#CUserCmd] SetForwardMove
+-- @param  self
+-- @param  #number speed The new speed to request.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the impulse command to be sent to the server. For example, 101 is an
+-- impulse that will give the player all Half-Life 2 weapons with sv_cheats set
+-- to 1. Impulse 100 will toggle their flashlight.
+-- @function [parent=#CUserCmd] SetImpulse
+-- @param  self
+-- @param  #number speed The impulse to send.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the scroll delta.
+-- @function [parent=#CUserCmd] SetMouseWheel
+-- @param  self
+-- @param  #number speed The scroll delta.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the delta of the angular horizontal mouse movement of the player. See
+-- also **CUserCmd:SetMouseY**.
+-- @function [parent=#CUserCmd] SetMouseX
+-- @param  self
+-- @param  #number speed Angular horizontal move delta.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the delta of the angular vertical mouse movement of the player. See
+-- also **CUserCmd:SetMouseX**.
+-- @function [parent=#CUserCmd] SetMouseY
+-- @param  self
+-- @param  #number speed Angular vertical move delta.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets speed the client wishes to move sidewards with, positive to move right,
+-- negative to move left. See also **CUserCmd:SetForwardMove** and **CUserCmd:SetUpMove**.
+-- @function [parent=#CUserCmd] SetSideMove
+-- @param  self
+-- @param  #number speed The new speed to request.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets speed the client wishes to move upwards with, negative to move down.
+-- See also **CUserCmd:SetSideMove** and **CUserCmd:SetForwardMove**.
+-- @function [parent=#CUserCmd] SetUpMove
+-- @param  self
+-- @param  #number speed The new speed to request.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the direction the client wants to move in.
+-- 
+-- **Note**: _The pitch (vertical) angle should be clamped to +/- 89° to
+-- prevent the player's view from glitching._
+-- @function [parent=#CUserCmd] SetViewAngles
+-- @param  self
+-- @param  #Angle viewAngle New view angles.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns tick count since joining the server.
+-- 
+-- **Note**: _This will always return 0 for bots._
+-- 
+-- **Note**: _Returns 0 clientside during prediction calls. If you are trying
+-- to use **CUserCmd:Set\***() on the client in a movement or command hook, keep
+-- doing so till **TickCount** returns a non-zero number to maintain prediction._
+-- @function [parent=#CUserCmd] TickCount
+-- @param  self
+-- @return #number The amount of ticks passed since joining the server.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- An object returned by **GetConVar**. It represents a console variable.
+-- @type ConVar
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Tries to convert the current string value of a **ConVar** to a boolean.
+-- @function [parent=#ConVar] GetBool
+-- @param  self
+-- @return #boolean The boolean value of the console variable.
+-- If the variable is numeric and not 0, the result will be true. Otherwise the result will be false.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the default value of the **ConVar**.
+-- @function [parent=#ConVar] GetDefault
+-- @param  self
+-- @return #string The default value of the console variable.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Attempts to convert the **ConVar** value to a float.
+-- @function [parent=#ConVar] GetFloat
+-- @param  self
+-- @return #number The float value of the console variable.
+-- If the value cannot be converted to a float, it will return 0.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the help text assigned to that convar.
+-- @function [parent=#ConVar] GetHelpText
+-- @param  self
+-- @return #string The help text.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Attempts to convert the **ConVar** value to a integer.
+-- @function [parent=#ConVar] GetInt
+-- @param  self
+-- @return #number The integer value of the console variable.
+-- If it fails to convert to an integer, it will return 0.
+-- All float/decimal values will be rounded down. (with math.floor)
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the name of the **ConVar**.
+-- @function [parent=#ConVar] GetName
+-- @param  self
+-- @return #string The name of the console variable.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the current **ConVar** value as a string.
+-- @function [parent=#ConVar] GetString
+-- @param  self
+-- @return #string The current console variable value as a string.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets a ConVar's value to 1 or 0 based on the input boolean. This can only be
+-- ran on **ConVars** created from within Lua.
+-- @function [parent=#ConVar] SetBool
+-- @param  self
+-- @param  #boolean value Value to set the ConVar to.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets a ConVar's value to to the input number. This can only be ran on
+-- ConVars created from within Lua.
+-- @function [parent=#ConVar] SetFloat
+-- @param  self
+-- @param  #number value Value to set the ConVar to.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets a ConVar's value to the input number after converting it to an integer.
+-- This can only be ran on ConVars created from within Lua.
+-- @function [parent=#ConVar] SetInt
+-- @param  self
+-- @param  #number value Value to set the ConVar to.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets a ConVar's value to the input string. This can only be ran on ConVars
+-- created from within Lua.
+-- @function [parent=#ConVar] SetString
+-- @param  self
+-- @param  #string value Value to set the ConVar to.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- This is a list of all available methods for entites, which includes Players,
+-- Weapons, NPCs and Vehicles.
+-- @type Entity
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Activates the entity. This needs to be used on some entities (like
+-- constraints) after being spawned.
+-- 
+-- **Note**: _For some entity types when this function is used after
+-- **Entity:SetModelScale**, the physics object will be recreated with the new
+-- scale. Source-sdk-2013_
+-- @function [parent=#Entity] Activate
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Add a callback function to a specific event. This is used instead of hooks
+-- to avoid calling empty functions unnecessarily. This also allows you to use
+-- certain hooks in engine entities (non-scripted entities).
+-- 
+-- **Warning**: _This method does not check if the function has already been
+-- added to this object before, so if you add the same callback twice, it will
+-- be run twice! Make sure to add your callback only once._
+-- @function [parent=#Entity] AddCallback
+-- @param  self
+-- @param  #string hook The hook name to hook onto.
+-- @param  #function func The function to call.
+-- @return #number The callback ID that was just added, which can later be used in **Entity:RemoveCallback**.
+-- Returns nothing if the passed callback function was invalid or when asking for a non-existent hook.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Applies an engine effect to an entity.
+-- @function [parent=#Entity] AddEffects
+-- @param  self
+-- @param  #number effect The effect to apply, see **EF\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Adds engine flags.
+-- @function [parent=#Entity] AddEFlags
+-- @param  self
+-- @param  #number flag Engine flag to add, see **EFL\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Adds flags to the entity.
+-- @function [parent=#Entity] AddFlags
+-- @param  self
+-- @param  #number flag Flag to add, see **FL\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Adds a gesture animation to the entity and plays it. See
+-- **Entity:AddGestureSequence** and **Entity:AddLayeredSequence** for functions that
+-- takes sequences instead of **ACT\_Enums**.
+-- 
+-- **Note**: _This function only works on BaseAnimatingOverlay entites!_
+-- @function [parent=#Entity] AddGesture
+-- @param  self
+-- @param  #number activity The activity to play as the gesture. See **ACT\_Enums**.
+-- @param  #boolean autokill _(Default: true)_
+-- @return #number Layer ID of the started gesture, used to manipulate the played gesture by other functions.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Adds a gesture animation to the entity and plays it. See **Entity:AddGesture**
+-- for a function that takes **ACT\_Enums**. See also **Entity:AddLayeredSequence**.
+-- 
+-- **Note**: _This function only works on BaseAnimatingOverlay entites!_
+-- @function [parent=#Entity] AddGestureSequence
+-- @param  self
+-- @param  #number sequence The sequence ID to play as the gesture. See **Entity:LookupSequence**.
+-- @param  #boolean autokill _(Default: true)_
+-- @return #number Layer ID of the started gesture, used to manipulate the played gesture by other functions.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Adds a gesture animation to the entity and plays it. See
+-- **Entity:AddGestureSequence** for a function that doesn't take priority. See
+-- **Entity:AddGesture** for a function that takes **ACT\_Enums**.
+-- 
+-- **Note**: _This function only works on BaseAnimatingOverlay entites!_
+-- @function [parent=#Entity] AddLayeredSequence
+-- @param  self
+-- @param  #number sequence The sequence ID to play as the gesture. See **Entity:LookupSequence**.
+-- @param  #number priority
+-- @return #number Layer ID of created layer.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Adds solid flag(s) to the entity.
+-- @function [parent=#Entity] AddSolidFlags
+-- @param  self
+-- @param  #number flags The flag(s) to apply, see **FSOLID\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Adds a PhysObject to the entity's motion controller so that
+-- **ENTITY:PhysicsSimulate** will be called for given PhysObject as well. You must
+-- first create a motion controller with **Entity:StartMotionController**. You can
+-- remove added PhysObjects by using **Entity:RemoveFromMotionController**.
+-- @function [parent=#Entity] AddToMotionController
+-- 
+-- **Note**: _Only works on a scripted Entity of anim type._
+-- @param  self
+-- @param  #PhysObj physObj The PhysObj to add to the motion controller.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns an angle based on the ones inputted that you can use to align an object.
+-- 
+-- **Note**: _This function doesn't change the angle of the entity on its own._
+-- @function [parent=#Entity] AlignAngles
+-- @param  self
+-- @param  #Angle from The angle you want to align from.
+-- @param  #Angle to The angle you want to align to.
+-- @return #Angle The resulting aligned angle.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Spawns a clientside ragdoll for the entity, positioning it in place of the
+-- original entity, and makes the entity invisible. It doesn't preserve flex
+-- values (face posing) as CSRagdolls don't support flex. It does not work on
+-- players. Use **Player:CreateRagdoll** instead. The original entity is not
+-- removed, and neither are any ragdolls previously generated with this function.
+-- To make the entity re-appear, run **Entity:SetNoDraw**(false).
+-- @function [parent=#Entity] BecomeRagdollOnClient
+-- @param  self
+-- @return #CSEnt The created ragdoll.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns true if the entity is being looked at by the local player and is
+-- within 256 units of distance.
+-- 
+-- **Note**: _This function is only available in entities that are based off of
+-- sandbox's base_gmodentity._
+-- 
+-- **Note**: _This function uses **Distance** instead of **DistToSqr** so it may not be
+-- suitable in situations where it's called often._
+-- @function [parent=#Entity] BeingLookedAtByLocalPlayer
+-- @param  self
+-- @return #boolean Is the entity being looked at by the local player and within 256 units.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Dispatches blocked events to this entity's blocked handler. This function is
+-- only useful when interacting with entities like func_movelinear.
+-- @function [parent=#Entity] Blocked
+-- @param  self
+-- @param  #Entity entity The entity that is blocking us.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns a centered vector of this entity, NPCs use this internally to aim at
+-- their targets.
+-- 
+-- **Note**: _This only works on players and NPCs._
+-- @function [parent=#Entity] BodyTarget
+-- @param  self
+-- @param  #Vector origin The vector of where the the attack comes from.
+-- @param  #boolean noisy Decides if it should return the centered vector with a random offset to it. _(Default: false)_
+-- @return #Vector The centered vector.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the entity's bone has the flag or not.
+-- @function [parent=#Entity] BoneHasFlag
+-- @param  self
+-- @param  #number boneID Bone ID to test flag of.
+-- @param  #number flag The flag to test, see **BONE\_Enums**.
+-- @return #boolean Whether the bone has that flag or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- This function takes the boneID and returns the length of it in an unrounded decimal.
+-- @function [parent=#Entity] BoneLength
+-- @param  self
+-- @param  #number boneID The ID of the bone you want the length of. You may
+-- want to get the length of the next bone (boneID + 1) for decent results.
+-- @return #number The length of the bone.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the distance between the center of the bounding box and the furthest
+-- bounding box corner.
+-- @function [parent=#Entity] BoundingRadius
+-- @param  self
+-- @return #number The radius of the bounding box.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Causes a specified function to be run if the entity is removed by any means.
+-- This can later be undone by **Entity:RemoveCallOnRemove** if you need it to not run.
+-- @function [parent=#Entity] CallOnRemove
+-- @param  self
+-- @param  #string identifier Identifier of the function within CallOnRemove.
+-- @param  #function removeFunc Function to be called on remove.
+-- @param  ... Optional arguments to pass to removeFunc.
+-- Do note that the first argument passed to the function will always be the entity being removed, and the arguments passed on here start after that.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Resets all pose parameters such as aim_yaw, aim_pitch and rotation.
+-- @function [parent=#Entity] ClearPoseParameters
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Declares that the collision rules of the entity have changed, and subsequent
+-- calls for **GM:ShouldCollide** with this entity may return a different value
+-- than they did previously.
+-- 
+-- **Warning**: _This function must not be called inside of **GM:ShouldCollide**.
+-- Instead, it must be called in advance when the condition is known to change._
+-- 
+-- **Warning**: _Failure to use this function correctly will result in a crash
+-- of the physics engine._
+-- @function [parent=#Entity] CollisionRulesChanged
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether the entity was created by map or not.
+-- @function [parent=#Entity] CreatedByMap
+-- @param  self
+-- @return #boolean Is created by map?
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Creates a clientside particle system attached to the entity. See also **CreateParticleSystem**.
+-- 
+-- **Note**: _The particle effect must be precached with **PrecacheParticleSystem**
+-- and the file its from must be added via **game.AddParticles** before it can be used!_
+-- @function [parent=#Entity] CreateParticleEffect
+-- @param  self
+-- @param  #string particle The particle name to create.
+-- @param  #number attachment Attachment ID to attach the particle to.
+-- @param  #table options=nil A table of tables (IDs 1 to 64) having the following structure:
+-- 
+-- * _#number attachtype_ : The particle attach type. See **PATTACH\_Enums**. _(Default: PATTACH\_ABSORIGIN)_
+-- * _#Entity entity_ : The parent entity? _(Default: NULL)_
+-- * _#Vector position_ : The offset position for given control point. _(Default: nil)_
+-- This only affects the control points of the particle effects and will do nothing if the effect doesn't use control points.
+-- @return #CNewParticleEffect The created particle system.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Draws the shadow of an entity.
+-- @function [parent=#Entity] CreateShadow
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Whenever the entity is removed, entityToRemove will be removed also.
+-- @function [parent=#Entity] DeleteOnRemove
+-- @param  self
+-- @param  #Entity entityToRemove The entity to be removed.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Removes the shadow for the entity. The shadow will be recreated as soon as
+-- the entity wakes. Doesn't affect shadows from flashlight/lamps/env_projectedtexture.
+-- @function [parent=#Entity] DestroyShadow
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Disables an active matrix.
+-- @function [parent=#Entity] DisableMatrix
+-- @param  self
+-- @param  #string matrixType The name of the matrix type to disable. The only known matrix type is "RenderMultiply".
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Performs a trace attack.
+-- @function [parent=#Entity] DispatchTraceAttack
+-- @param  self
+-- @param  #CTakeDamageInfo damageInfo The damage to apply.
+-- @param  #table traceRes Trace result to use to deal damage. See **TraceResult structure**.
+-- @param  #Vector dir Direction of the attack. _(Default: traceRes.HitNormal)_
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- This removes the argument entity from an ent's list of entities to 'delete
+-- on remove'.
+-- @function [parent=#Entity] DontDeleteOnRemove
+-- @param  self
+-- @param  #Entity entityToUnremove The entity to be removed from the list of entities to delete.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Draws the entity or model. If called inside **ENTITY:Draw** or
+-- **ENTITY:DrawTranslucent**, it only draws the entity's model itself. If called
+-- outside of those hooks, it will call both of said hooks depending on
+-- **Entity:GetRenderGroup**, drawing the entire entity again.
+-- 
+-- **Note**: _When drawing an entity more than once per frame in different
+-- positions, you should call **Entity:SetupBones** before each draw; Otherwise,
+-- the entity will retain its first drawn position._
+-- 
+-- **Note**: _This is a rendering function that requires a 3D rendering context.
+-- This means that it will only work in hooks with a 3D rendering context._
+-- @function [parent=#Entity] DrawModel
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets whether an entity's shadow should be drawn.
+-- @function [parent=#Entity] DrawShadow
+-- @param  self
+-- @param  #boolean shouldDraw True to enable, false to disable shadow drawing.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Move an entity down until it collides with something.
+-- 
+-- **Warning**: _The entity needs to already have something below it within 256 units._
+-- @function [parent=#Entity] DropToFloor
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Sets up a self.dt.NAME alias for a Data Table variable.
+-- 
+-- **Warning**: _You should use **Entity:NetworkVar** instead._
+-- @function [parent=#Entity] DTVar
+-- @param  self
+-- @param  #string Type The type of the DTVar being set up. It can be one of the following: 'Int', 'Float', 'Vector', 'Angle', 'Bool', 'Entity' or 'String'.
+-- @param  #number ID The ID of the DTVar. Can be between 0 and 3.
+-- @param  #string Name Name by which you will refer to DTVar. It must be a valid variable name. (No spaces!)
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Plays a sound on an entity. If run clientside, the sound will only be heard
+-- locally. If used on a player or NPC character with the mouth rigged, the
+-- character will "lip-sync". This does not work with all sound files. It is
+-- recommended to use sound scripts (see sound.Add) over direct file paths.
+-- This will allow you to use **Entity:StopSound** to stop the played sound scripts.
+-- @function [parent=#Entity] EmitSound
+-- @param  self
+-- @param  #string soundName The name of the sound to be played.
+-- 
+-- **Warning**: _The string will cannot have whitespace at the start or end. You can remove this with **string.Trim**._
+-- @param  #number soundLevel A modifier for the distance this sound will reach, acceptable range is 0 to 511. 100 means no adjustment to the level. _(Default: 75)_
+-- See **SNDLVL\_Enums**. Will not work if a sound script is used.
+-- @param  #number pitchPercent The pitch applied to the sound. _(Default: 100)_
+-- The acceptable range is from 0 to 255. 100 means the pitch is not changed.
+-- @param  #number volume The volume, from 0 to 1. _(Default: 1)_
+-- @param  #number channel The sound channel, see **CHAN\_Enums**. _(Default: CHAN\_AUTO, CHAN\_WEAPON for weapons)_
+-- Will not work if a sound script is used.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Toggles the constraints of this ragdoll entity on and off.
+-- @function [parent=#Entity] EnableConstraints
+-- @param  self
+-- @param  #boolean toggleConstraints Set to true to enable the constraints and false to disable them.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Flags an entity as using custom lua defined collisions. Fixes entities
+-- having spongy player collisions or not hitting traces, such as after
+-- **Entity:PhysicsFromMesh**.
+-- @function [parent=#Entity] EnableCustomCollisions
+-- @param  self
+-- @param  #boolean useCustom True to flag this entity.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Can be used to apply a custom **VMatrix** to the entity, mostly used for scaling
+-- the model by a **Vector**. To disable it, use **Entity:DisableMatrix**. If your old
+-- scales are wrong due to a recent update, use **Entity:SetLegacyTransform** as a
+-- quick fix.
+-- 
+-- **Note**: _The matrix can also be modified to apply a custom rotation and
+-- offset via the **VMatrix:SetAngles** and **VMatrix:SetTranslation** functions._
+-- @function [parent=#Entity] EnableMatrix
+-- @param  self
+-- @param  #string matrixType The name of the matrix type.
+-- The only implemented matrix type is "RenderMultiply".
+-- @param  #VMatrix matrix The matrix to apply before drawing the entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the unique entity index of an entity.
+-- 
+-- **Note**: _Entity indices are marked as unused after deletion, and can be
+-- reused by newly-created entities._
+-- @function [parent=#Entity] EntIndex
+-- @param  self
+-- @return #number The index of the entity.
+-- -1 for clientside-only or serverside-only entities.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Extinguishes the entity if it is on fire. Has no effect if called inside
+-- EntityTakeDamage. (and the attacker is the flame that's hurting the entity)
+-- @function [parent=#Entity] Extinguish
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the direction a player/npc/ragdoll is looking as a world-oriented angle.
+-- @function [parent=#Entity] EyeAngles
+-- @param  self
+-- @return #Angle The entity's eye angle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the position of an Player/NPC's view, or two vectors for ragdolls (one for
+-- each eye).
+-- @function [parent=#Entity] EyePos
+-- @param  self
+-- @return #Vector, #Vector View position of the entity, or the position of the first and second eyes for ragdolls.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Searches for bodygroup with given name.
+-- @function [parent=#Entity] FindBodygroupByName
+-- @param  self
+-- @param  #string name The bodygroup name to search for.
+-- @return #number Bodygroup ID, -1 if not found.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a transition from the given start and end sequence. This function
+-- was only used by HL1 entities and NPCs, before the advent of sequence
+-- blending and gestures.
+-- @function [parent=#Entity] FindTransitionSequence
+-- @param  self
+-- @param  #number currentSequence The currently playing sequence.
+-- @param  #number goalSequence The goal sequence.
+-- @return #number The transition sequence, -1 if not available.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Fires an entity's input. You can find inputs for most entities on the Valve
+-- Developer Wiki.
+-- @function [parent=#Entity] Fire
+-- @param  self
+-- @param  #string input The name of the input to fire.
+-- @param  #string param The value to give to the input, can also be a number. _(Default: "")_
+-- @param  #number delay Delay in seconds before firing. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Fires a bullet. When used in a WEAPON hook such as **WEAPON:Think** or
+-- **WEAPON:PrimaryAttack**, it will use **Player:LagCompensation** internally.
+-- 
+-- **Note**: _Lag compensation will not work if this function is called in a
+-- timer, regardless if the timer was made in a WEAPON hook._
+-- @function [parent=#Entity] FireBullets
+-- @param  self
+-- @param  #table bulletInfo The bullet data to be used. See the **Bullet structure**.
+-- @param  #boolean suppressHostEvents Has the effect of encasing the FireBullets call in **SuppressHostEvents**, only works in multiplayer. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Makes an entity follow another entity's bone. Internally this function calls
+-- **Entity:SetParent**(parent, boneid) and **Entity:AddEffects**(EF_FOLLOWBONE).
+-- 
+-- **Note**: _If the entity vibrates, you probably need to run
+-- **Entity:SetPredictable**(false) clientside._
+-- @function [parent=#Entity] FollowBone
+-- @param  self
+-- @param  #Entity parent The entity to follow the bone of. _(Default: NULL)_
+-- If unset, removes the FollowBone effect.
+-- @param  #number boneid The bone to follow.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Forces the Entity to be dropped, when it is being held by a player's
+-- gravitygun or physgun.
+-- @function [parent=#Entity] ForcePlayerDrop
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Advances the cycle of an animated entity by the given delta. Since cycle is
+-- a value between 0 and 1, delta should be as well. Animations that loop will
+-- automatically reset the cycle so you don't have to - ones that do not will
+-- stop animating once you reach the end of their sequence.
+-- @function [parent=#Entity] FrameAdvance
+-- @param  self
+-- @param  #number delta Amount to advance frame by.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the entity's velocity.
+-- 
+-- **Note**: _Actually binds to **CBaseEntity::GetLocalVelocity**() which retrieves
+-- the velocity of the entity due to its movement in the world from forces such
+-- as gravity. Does not include velocity from entity-on-entity collision._
+-- @function [parent=#Entity] GetAbsVelocity
+-- @param  self
+-- @return #Vector The velocity of the entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the angles of given entity.
+-- @function [parent=#Entity] GetAngles
+-- @param  self
+-- @return #Angle The angles of the entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a table containing the number of frames, flags, name, and FPS of an
+-- entity's animation ID.
+-- 
+-- **Note**: _Animation ID is not the same as sequence ID._
+-- 
+-- **Warning**: _Using an animation ID that is too far out of a model's range
+-- of animations can crash the client/server. When there are no animations left
+-- in the model the default animation info (animIndex=0) is returned._
+-- @function [parent=#Entity] GetAnimInfo
+-- @param  self
+-- @param  #number animIndex The animation ID to look up.
+-- @return #table Information about the animation.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the last time the entity had an animation update. Returns 0 if the
+-- entity doesn't animate.
+-- @function [parent=#Entity] GetAnimTime
+-- @param  self
+-- @return #number The last time the entity had an animation update.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the orientation and position of the attachment by its ID, returns
+-- nothing if the attachment does not exist.
+-- 
+-- **Note**: _The update rate of this function is limited by the setting of
+-- ENT.AutomaticFrameAdvance for Scripted Entities!_
+-- @function [parent=#Entity] GetAttachment
+-- @param  self
+-- @param  #number attachmentId The internal ID of the attachment.
+-- @return #table The angle and position of the attachment. See the **AngPos structure**.
+-- Most notably, the table contains the keys "Ang" and "Pos".
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a table containing all attachments of the given entitys model.
+-- Returns an empty table or nil in case it's model has no attachments.
+-- @function [parent=#Entity] GetAttachments
+-- @param  self
+-- @return #table Attachment data. See **AttachmentData structure**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the entity's base velocity which is their velocity due to forces
+-- applied by other entities. This includes entity-on-entity collision or
+-- riding a treadmill.
+-- @function [parent=#Entity] GetBaseVelocity
+-- @param  self
+-- @return #Vector The base velocity of the entity.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the blood color of this entity. This can be set with **Entity:SetBloodColor**.
+-- @function [parent=#Entity] GetBloodColor
+-- @param  self
+-- @return #number Color from **BLOOD\_COLOR\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the exact value for specific bodygroup of given entity.
+-- @function [parent=#Entity] GetBodygroup
+-- @param  self
+-- @param  #number id The id of bodygroup to get value of. Starts from 0.
+-- @return #number Current bodygroup. Starts from 0.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the count of possible values for this bodygroup. This is **not** the
+-- maximum value, since the bodygroups start with 0, not 1.
+-- @function [parent=#Entity] GetBodygroupCount
+-- @param  self
+-- @param  #number bodygroup The ID of bodygroup to retrieve count of.
+-- @return #number Count of values of passed bodygroup.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the name of specific bodygroup for given entity.
+-- @function [parent=#Entity] GetBodygroupName
+-- @param  self
+-- @param  #number id The id of bodygroup to get the name of.
+-- @return #string The name of the bodygroup.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a list of all attachments of the entity.
+-- @function [parent=#Entity] GetBodyGroups
+-- @param  self
+-- @return #table Bodygroups as a table of **BodyGroupData structures** if the entity can have bodygroups.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the value of the bone controller with the specified ID.
+-- 
+-- **Note**: _This is the precursor of pose parameters, and only works for Half
+-- Life 1: Source models supporting it._
+-- @function [parent=#Entity] GetBoneController
+-- @param  self
+-- @param  #number boneID ID of the bone controller. Goes from 0 to 3.
+-- @return #number The value set on the bone controller.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the amount of bones in the entity.
+-- @function [parent=#Entity] GetBoneCount
+-- @param  self
+-- @return #number The amount of bones in given entity; -1 on failure.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the matrix (position / rotation transform) of a given bone entity.
+-- @function [parent=#Entity] GetBoneMatrix
+-- @param  self
+-- @param  #number boneID The bone to retrieve matrix of. Bones clientside and serverside will differ
+-- @return #VMatrix The matrix. Some entities don't update animation every frame such as prop_physics and won't have accurate bone matrix.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns name of given bone id.
+-- @function [parent=#Entity] GetBoneName
+-- @param  self
+-- @param  #number index ID of bone to lookup name of.
+-- @return #string The name of given bone.
+-- nil in case we failed or entity doesn't have a model; "__INVALIDBONE__" in case the name cannot be read or the index is out of range.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns parent bone of given bone.
+-- @function [parent=#Entity] GetBoneParent
+-- @param  self
+-- @param  #number bone The bode ID of the bone to get parent of.
+-- @return #number Parent bone ID or -1 if we failed for some reason.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the position and angle of the given attachment, relative to the world.
+-- @function [parent=#Entity] GetBonePosition
+-- @param  self
+-- @param  #number boneIndex The bone index of the bone to get the position of. See **Entity:LookupBone**.
+-- @return #Vector, #Angle The bone's postion and angle relative to the world.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns info about given plane of non-nodraw brush model surfaces of the
+-- entity's model. Works on worldspawn as well.
+-- @function [parent=#Entity] GetBrushPlane
+-- @param  self
+-- @param  #number id The index of the plane to get info of. Starts from 0.
+-- @return #Vector, #Vector, #number The origin, normal, and distance of the plane.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the amount of planes of non-nodraw brush model surfaces of the
+-- entity's model.
+-- @function [parent=#Entity] GetBrushPlaneCount
+-- @param  self
+-- @return #number The amount of brush model planes of the entity's model.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the specified hook callbacks for this entity added with
+-- **Entity:AddCallback**. The callbacks can then be removed with **Entity:RemoveCallback**.
+-- @function [parent=#Entity] GetCallbacks
+-- @param  self
+-- @param  #string hook The hook to retrieve the callbacks from, see **Entity Callbacks** for the possible hooks.
+-- @return #table A table containing the callbackid and function of all the callbacks for the specified hook.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns ids of child bones of given bone.
+-- @function [parent=#Entity] GetChildBones
+-- @param  self
+-- @param  #number boneid Bone id to lookup children of.
+-- @return #table A table of bone ids.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the children of the entity - that is, every entity whose move parent is
+-- this entity.
+-- 
+-- **Note**: _This function returns Entity:SetMoveParent children, NOT **Entity:SetParent**!_
+-- _**Entity:SetParent** however also calls **Entity:SetMoveParent**._
+-- _This means that some entities in the returned list might have a NULL **Entity:GetParent**._
+-- _This also means that using this function on players will return their weapons on the client but not the server._
+-- @function [parent=#Entity] GetChildren
+-- @param  self
+-- @return #table A list of movement children entities.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the classname of a entity. This is often the name of the Lua file or
+-- folder containing the files for the entity.
+-- @function [parent=#Entity] GetClass
+-- @param  self
+-- @return #string The entity's classname.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns an entity's collision bounding box. In most cases, this will return
+-- the same bounding box as **Entity:GetModelBounds** unless the entity does not
+-- have a physics mesh or it has a PhysObj different from the default.
+-- @function [parent=#Entity] GetCollisionBounds
+-- @param  self
+-- @return #Vector, #Vector The minimum and maximum collision bounds.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the entity's collision group.
+-- @function [parent=#Entity] GetCollisionGroup
+-- @param  self
+-- @return #number The collision group. See **COLLISION\_GROUP\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the color the entity is set to.
+-- @function [parent=#Entity] GetColor
+-- @param  self
+-- @return #table The color of the entity as a **Color structure**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the two entities involved in a constraint ent, or nil if the entity
+-- is not a constraint.
+-- @function [parent=#Entity] GetConstrainedEntities
+-- @param  self
+-- @return #Entity, #Entity The 2 colliding entities.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the two entities physobjects involved in a constraint ent, or no
+-- value if the entity is not a constraint.
+-- @function [parent=#Entity] GetConstrainedPhysObjects
+-- @param  self
+-- @return #PhysObj, #PhysObj The 2 colliding entities.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns entity's creation ID. Unlike **Entity:EntIndex** or **Entity:MapCreationID**,
+-- it will always increase and old values won't be reused.
+-- @function [parent=#Entity] GetCreationID
+-- @param  self
+-- @return #number The creation ID.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the time the entity was created on, relative to **CurTime**.
+-- @function [parent=#Entity] GetCreationTime
+-- @param  self
+-- @return #number The time the entity was created on.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Gets the creator of the SENT.
+-- @function [parent=#Entity] GetCreator
+-- @param  self
+-- @return #Player The creator, NULL for no creator.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether this entity uses custom collision check set by **Entity:SetCustomCollisionCheck**.
+-- @function [parent=#Entity] GetCustomCollisionCheck
+-- @param  self
+-- @return #boolean Whether this entity uses custom collision check or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the frame of the currently played sequence. This will be a number
+-- between 0 and 1 as a representation of sequence progress.
+-- @function [parent=#Entity] GetCycle
+-- @param  self
+-- @return #number The frame of the currently played sequence.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- This is called internally by the **Entity:NetworkVar** system, you can use this
+-- in cases where using NetworkVar is not possible. Get an angle stored in the
+-- datatable of the entity.
+-- @function [parent=#Entity] GetDTAngle
+-- @param  self
+-- @param  #number key Goes from 0 to 63. Specifies what key to grab from datatable.
+-- @return #Angle Requested angle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- This is called internally by the **Entity:NetworkVar** system, you can use this
+-- in cases where using NetworkVar is not possible. Get a boolean stored in the
+-- datatable of the entity.
+-- @function [parent=#Entity] GetDTBool
+-- @param  self
+-- @param  #number key Goes from 0 to 63. Specifies what key to grab from datatable.
+-- @return #boolean Requested boolean.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- This is called internally by the **Entity:NetworkVar** system, you can use this
+-- in cases where using NetworkVar is not possible. Returns an entity stored in
+-- the datatable of the entity.
+-- @function [parent=#Entity] GetDTEntity
+-- @param  self
+-- @param  #number key Goes from 0 to 63. Specifies what key to grab from datatable.
+-- @return #Entity Requested entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- This is called internally by the **Entity:NetworkVar** system, you can use this
+-- in cases where using NetworkVar is not possible. Get a float stored in the
+-- datatable of the entity.
+-- @function [parent=#Entity] GetDTFloat
+-- @param  self
+-- @param  #number key Goes from 0 to 63. Specifies what key to grab from datatable.
+-- @return #number Requested float.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- This is called internally by the **Entity:NetworkVar** system, you can use this
+-- in cases where using NetworkVar is not possible. Get an integer stored in
+-- the datatable of the entity.
+-- @function [parent=#Entity] GetDTInt
+-- @param  self
+-- @param  #number key Goes from 0 to 63. Specifies what key to grab from datatable.
+-- @return #number 32-bit signed integer.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- This is called internally by the **Entity:NetworkVar** system, you can use this
+-- in cases where using NetworkVar is not possible. Get a string stored in the
+-- datatable of the entity.
+-- @function [parent=#Entity] GetDTString
+-- @param  self
+-- @param  #number key Goes from 0 to 3. Specifies what key to grab from datatable.
+-- @return #string Requested string.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- This is called internally by the **Entity:NetworkVar** system, you can use this
+-- in cases where using NetworkVar is not possible. Get a vector stored in the
+-- datatable of the entity.
+-- @function [parent=#Entity] GetDTVector
+-- @param  self
+-- @param  #number key Goes from 0 to 63. Specifies what key to grab from datatable.
+-- @return #Vector Requested vector.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a bit flag of all engine effect flags of the entity.
+-- @function [parent=#Entity] GetEffects
+-- @param  self
+-- @return #number Engine effect flags, see **EF\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a bit flag of all engine flags of the entity.
+-- @function [parent=#Entity] GetEFlags
+-- @param  self
+-- @return #number Engine flags, see **EFL\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the elasticity of this entity, used by some flying entities such as
+-- the Helicopter NPC to determine how much it should bounce around when colliding.
+-- @function [parent=#Entity] GetElasticity
+-- @param  self
+-- @return #number The entity's elasticity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns all flags of given entity.
+-- @function [parent=#Entity] GetFlags
+-- @param  self
+-- @return #number Flags of given entity as a bitflag, see **FL\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns acceptable value range for the flex.
+-- @function [parent=#Entity] GetFlexBounds
+-- @param  self
+-- @param  #number flex The ID of the flex to look up bounds of.
+-- @return #number, #number The minimum and maximum value for this flex.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the ID of the flex based on given name.
+-- @function [parent=#Entity] GetFlexIDByName
+-- @param  self
+-- @param  #string name The name of the flex to get the ID of. Case sensitive.
+-- @return #number The ID of flex, nil if no flex with given name was found.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns flex name.
+-- @function [parent=#Entity] GetFlexName
+-- @param  self
+-- @param  #number id The flex id to look up name of.
+-- @return #string The flex name.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the number of flexes this entity has.
+-- @function [parent=#Entity] GetFlexNum
+-- @param  self
+-- @return #number The number of flexes.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the flex scale of the entity.
+-- @function [parent=#Entity] GetFlexScale
+-- @param  self
+-- @return #number The flex scale.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns current weight (value) of the flex.
+-- @function [parent=#Entity] GetFlexWeight
+-- @param  self
+-- @param  #number flex The ID of the flex to get weight of.
+-- @return #number The current weight of the flex.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the forward vector of the entity, as a normalized direction vector.
+-- @function [parent=#Entity] GetForward
+-- @param  self
+-- @return #Vector The forward direction.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns how much friction an entity has. Entities default to 1 (100%) and
+-- can be higher or even negative.
+-- @function [parent=#Entity] GetFriction
+-- @param  self
+-- @return #number Entity's friction.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the gravity multiplier of the entity.
+-- @function [parent=#Entity] GetGravity
+-- @param  self
+-- @return #number Entity's gravity multiplier.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the object the entity is standing on.
+-- @function [parent=#Entity] GetGroundEntity
+-- @param  self
+-- @return #Entity The ground entity.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the entity's ground speed velocity, which is based on the entity's
+-- walk/run speed and/or the ground speed of their sequence (**Entity:GetSequenceGroundSpeed**).
+-- Will return an empty Vector if the entity isn't moving on the ground.
+-- @function [parent=#Entity] GetGroundSpeedVelocity
+-- @param  self
+-- @return #Vector The ground speed velocity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the bone the hit box is attached to.
+-- @function [parent=#Entity] GetHitBoxBone
+-- @param  self
+-- @param  #number hitbox The number of the hit box.
+-- @param  #number group The number of the hit box group. This should be 0 in most cases.
+-- Numbering for these groups start from 0. The total group count can be found with **Entity:GetHitBoxGroupCount**.
+-- @return #number The number of the bone. Will be nil if the hit box index was out of range.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the bounds (min and max corners) of a hit box.
+-- @function [parent=#Entity] GetHitBoxBounds
+-- @param  self
+-- @param  #number hitbox The number of the hit box.
+-- @param  #number group The group of the hit box. This should be 0 in most cases.
+-- @return #Vector, #Vector The hitbox mins and maxs, either will be nil if the index was out of range.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets how many hit boxes are in a given hit box group.
+-- @function [parent=#Entity] GetHitBoxCount
+-- @param  self
+-- @param  #number group The number of the hit box group.
+-- @return #number The number of hit boxes.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the number of hit box groups that an entity has.
+-- @function [parent=#Entity] GetHitBoxGroupCount
+-- @param  self
+-- @return #number Number of hit box groups.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns entity's current hit box set.
+-- @function [parent=#Entity] GetHitboxSet
+-- @param  self
+-- @return #number, #string The current hit box set id and name, both will be nil if the entity doesn't have hit boxes.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the amount of hitbox sets in the entity.
+-- @function [parent=#Entity] GetHitboxSetCount
+-- @param  self
+-- @return #number The amount of hitbox sets in the entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- An interface for accessing internal key values on entities. This function
+-- returns variables created with **DEFINE\_KEYFIELD** in C++ entities.
+-- @function [parent=#Entity] GetInternalVariable
+-- @param  self
+-- @param  #string VariableName Name of variable corresponding to an entity save value.
+-- @return #any The internal variable value.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns a table containing all key values the entity has.
+-- 
+-- **Note**: _This only includes engine defined key values. "targetname" is not
+-- an actual key value in-engine, use **Entity:GetName** for that instead. For
+-- custom key values, use **GM:EntityKeyValue** or **ENTITY:KeyValue** to capture and
+-- store them._
+-- @function [parent=#Entity] GetKeyValues
+-- @param  self
+-- @return #table A table of key values.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the animation cycle/frame for given layer.
+-- 
+-- **Note**: _This function only works on **BaseAnimatingOverlay** entites!_
+-- @function [parent=#Entity] GetLayerCycle
+-- @param  self
+-- @param  #number layerID The Layer ID.
+-- @return #number The animation cycle/frame for given layer.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the duration of given layer.
+-- 
+-- **Note**: _This function only works on **BaseAnimatingOverlay** entites!_
+-- @function [parent=#Entity] GetLayerDuration
+-- @param  self
+-- @param  #number layerID The Layer ID.
+-- @return #number The duration of the layer.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the current weight of the layer.
+-- 
+-- **Note**: _This function only works on **BaseAnimatingOverlay** entites!_
+-- @function [parent=#Entity] GetLayerWeight
+-- @param  self
+-- @param  #number layerID The Layer ID.
+-- @return #number The current weight of the layer.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the rotation of the entity relative to its parent entity.
+-- @function [parent=#Entity] GetLocalAngles
+-- @param  self
+-- @return #Angle Relative angle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the non-VPhysics angular velocity of the entity relative to its
+-- parent entity.
+-- @function [parent=#Entity] GetLocalAngularVelocity
+-- @param  self
+-- @return #Angle The velocity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns entity's position relative to it's parent.
+-- @function [parent=#Entity] GetLocalPos
+-- @param  self
+-- @return #Vector Relative position.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the entity's angle manipulation of the given bone. This is relative to
+-- the default angle, so the angle is zero when unmodified.
+-- @function [parent=#Entity] GetManipulateBoneAngles
+-- @param  self
+-- @param  #number boneID The bone's ID.
+-- @return #Angle The entity's angle manipulation of the given bone.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the jiggle amount of the entity's bone. Seems to be broken.
+-- @function [parent=#Entity] GetManipulateBoneJiggle
+-- @param  self
+-- @param  #number boneID The bone ID.
+-- @return #number Returns a value ranging from 0 to 255 depending on the value set with **Entity:ManipulateBoneJiggle**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the entity's position manipulation of the given bone. This is relative
+-- to the default position, so it is zero when unmodified.
+-- @function [parent=#Entity] GetManipulateBonePosition
+-- @param  self
+-- @param  #number boneId The bone's ID.
+-- @return #Vector The entity's position manipulation of the given bone.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the entity's scale manipulation of the given bone. Normal scale is Vector(1,1,1).
+-- @function [parent=#Entity] GetManipulateBoneScale
+-- @param  self
+-- @param  #number boneID The bone's ID.
+-- @return #Vector The entity's scale manipulation of the given bone.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the material override for this entity. Returns an empty string if no
+-- material override exists. Use **Entity:GetMaterials** to list it's default materials.
+-- @function [parent=#Entity] GetMaterial
+-- @param  self
+-- @return #string Entity's current material.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns all materials of the entity's model. This function is unaffected by
+-- **Entity:SetSubMaterial** as it returns the original materials.
+-- @function [parent=#Entity] GetMaterials
+-- @param  self
+-- @return #table A table containing full paths to the materials of the model.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the surface material of this entity.
+-- @function [parent=#Entity] GetMaterialType
+-- @param  self
+-- @return #number Surface material. See **MAT\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the max health that the entity was given. It can be set via **Entity:SetMaxHealth**.
+-- @function [parent=#Entity] GetMaxHealth
+-- @param  self
+-- @return #number Max health.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the model of given entity.
+-- 
+-- **Note**: _This does not necessarily return the model's path, as is the case
+-- for brush and virtual models._
+-- @function [parent=#Entity] GetModel
+-- @param  self
+-- @return #string The entity's model. Will be a filesystem path for most models.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the entity's model bounds. This is different than the collision
+-- bounds/hull. This is not scaled with **Entity:SetModelScale**, and will return
+-- the model's original, unmodified mins and maxs.
+-- @function [parent=#Entity] GetModelBounds
+-- @param  self
+-- @return #Vector, #Vector The minimum and maximum vectors of the bounds.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Gets the physics bone count of the entity's model. This is only applicable
+-- to ragdoll models and only to "anim" type Scripted Entities.
+-- @function [parent=#Entity] GetModelPhysBoneCount
+-- @param  self
+-- @return #number How many physics bones exist on the model.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the models radius.
+-- @function [parent=#Entity] GetModelRadius
+-- @param  self
+-- @return #number The radius of the model.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the entity's model render bounds. By default this will return the
+-- same bounds as **Entity:GetModelBounds**.
+-- @function [parent=#Entity] GetModelRenderBounds
+-- @param  self
+-- @return #Vector, #Vector The minimum and maximum vectors of the bounds.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the selected entity's model scale.
+-- @function [parent=#Entity] GetModelScale
+-- @param  self
+-- @return #number Scale of that entity's model.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the amount a momentary_rot_button entity is turned based on the given
+-- angle. 0 meaning completely turned closed, 1 meaning completely turned open.
+-- @function [parent=#Entity] GetMomentaryRotButtonPos
+-- @param  self
+-- @param  #Angle turnAngle The angle of rotation to compare - usually should be **Entity:GetAngles**.
+-- @return #number The amount the momentary_rot_button is turned, ranging from 0 to 1, or nil if the entity is not a momentary_rot_button.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the move collide type of the entity. The move collide is the way a
+-- physics object reacts to hitting an object - will it bounce, slide?
+-- @function [parent=#Entity] GetMoveCollide
+-- @param  self
+-- @return #number The move collide type, see **MOVECOLLIDE\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the movement parent of this entity.
+-- @function [parent=#Entity] GetMoveParent
+-- @param  self
+-- @return #Entity The movement parent of this entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the entity's movetype
+-- @function [parent=#Entity] GetMoveType
+-- @param  self
+-- @return #number Move type. See **MOVETYPE\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the mapping name of this entity.
+-- @function [parent=#Entity] GetName
+-- @param  self
+-- @return #string The name of the Entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets networked origin for entity.
+-- @function [parent=#Entity] GetNetworkOrigin
+-- @param  self
+-- @return #Vector The entity's networked origin.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns if the entity's rendering and transmitting has been disabled.
+-- 
+-- **Note**: _This is equivalent to calling **Entity:IsEffectActive**(EF\_NODRAW)._
+-- @function [parent=#Entity] GetNoDraw
+-- @param  self
+-- @return #boolean Whether the entity's rendering and transmitting has been disabled.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the body group count of the entity.
+-- @function [parent=#Entity] GetNumBodyGroups
+-- @param  self
+-- @return #number Amount of bodygroups the entitys model has.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the number of pose parameters this entity has.
+-- @function [parent=#Entity] GetNumPoseParameters
+-- @param  self
+-- @return #number Amount of pose parameters the entity has.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Retrieves a networked angle value at specified index on the entity that is
+-- set by **Entity:SetNWAngle**.
+-- @function [parent=#Entity] GetNWAngle
+-- @param  self
+-- @param  #string key The key that is associated with the value.
+-- @param  #any fallback The value to return if we failed to retrieve the value. (If it isn't set) _(Default: Angle(0,0,0))_
+-- @return #Angle The retrieved value.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Retrieves a networked boolean value at specified index on the entity that is
+-- set by **Entity:SetNWBool**.
+-- @function [parent=#Entity] GetNWBool
+-- @param  self
+-- @param  #string key The key that is associated with the value.
+-- @param  #any fallback The value to return if we failed to retrieve the value. (If it isn't set) _(Default: false)_
+-- @return #boolean The retrieved value.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Retrieves a networked entity value at specified index on the entity that is
+-- set by **Entity:SetNWEntity**.
+-- @function [parent=#Entity] GetNWEntity
+-- @param  self
+-- @param  #string key The key that is associated with the value.
+-- @param  #any fallback The value to return if we failed to retrieve the value. (If it isn't set) _(Default: NULL)_
+-- @return #Entity The retrieved value.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Retrieves a networked float value at specified index on the entity that is
+-- set by **Entity:SetNWFloat**.
+-- @function [parent=#Entity] GetNWFloat
+-- @param  self
+-- @param  #string key The key that is associated with the value.
+-- @param  #any fallback The value to return if we failed to retrieve the value. (If it isn't set) _(Default: 0)_
+-- @return #number The retrieved value.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Retrieves a networked integer (whole number) value that was previously set
+-- by **Entity:SetNWInt**.
+-- @function [parent=#Entity] GetNWInt
+-- @param  self
+-- @param  #string key The key that is associated with the value.
+-- @param  #any fallback The value to return if we failed to retrieve the value (If it isn't set). _(Default: 0)_
+-- @return #number The stored integer, or the fallback if it doesn't exist.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Retrieves a networked string value at specified index on the entity that is
+-- set by **Entity:SetNWString**.
+-- @function [parent=#Entity] GetNWString
+-- @param  self
+-- @param  #string key The key that is associated with the value.
+-- @param  #any fallback The value to return if we failed to retrieve the value. (If it isn't set) _(Default: "")_
+-- @return #string The retrieved value.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns callback function for given NWVar of this entity.
+-- 
+-- **Note**: _Currently this function only works for the NW2Var system
+-- (accessed by adding a 2 in between NW and Var for most NWVar functions),
+-- which will replace the original one at some point in the future._
+-- @function [parent=#Entity] GetNWVarProxy
+-- @param  self
+-- @param  #any key The key of the NWVar to get callback of.
+-- @return #function The callback of given NWVar, or nil if not found.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns all the networked variables in an entity.
+-- @function [parent=#Entity] GetNWVarTable
+-- @param  self
+-- @return #table Key-Value table of all networked variables.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Retrieves a networked vector value at specified index on the entity that is
+-- set by **Entity:SetNWVector**.
+-- @function [parent=#Entity] GetNWVector
+-- @param  self
+-- @param  #string key The key that is associated with the value.
+-- @param  #any fallback The value to return if we failed to retrieve the value. (If it isn't set) _(Default: Vector(0,0,0))_
+-- @return #Vector The retrieved value.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the owner entity of this entity.
+-- @function [parent=#Entity] GetOwner
+-- @param  self
+-- @return #Entity The owner entity of this entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the parent entity of this entity.
+-- @function [parent=#Entity] GetParent
+-- @param  self
+-- @return #Entity Entity's parent entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the attachment index of the entity's parent. Returns 0 if the entity
+-- is not parented to a specific attachment or if it isn't parented at all.
+-- 
+-- This is set by second argument of **Entity:SetParent** or the SetParentAttachment input.
+-- @function [parent=#Entity] GetParentAttachment
+-- @param  self
+-- @return #number The parented attachment index.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- If the entity is parented to an entity that has a model with multiple
+-- physics objects (like a ragdoll), this is used to retrieve what physics
+-- object number the entity is parented to on it's parent.
+-- @function [parent=#Entity] GetParentPhysNum
+-- @param  self
+-- @return #number The physics object id, or nil if the entity has no parent.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the entity is persistent or not.
+-- @function [parent=#Entity] GetPersistent
+-- @param  self
+-- @return #boolean True if the entity is set to be persistent.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns player who is claiming kills of physics damage the entity deals.
+-- @function [parent=#Entity] GetPhysicsAttacker
+-- @param  self
+-- @param  #number timeLimit The time to check if the entity was still a proper physics attacker.
+-- 
+-- **Note**: _Some entities such as the Combine Ball disregard the time limit and always return the physics attacker._
+-- @return #Player The player. If entity that was set is not a player, it will return NULL entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the entity's physics object, if the entity has physics.
+-- @function [parent=#Entity] GetPhysicsObject
+-- @param  self
+-- @return #PhysObj The entity's physics object.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the number of physics objects an entity has. (usually 1 for non-ragdolls)
+-- @function [parent=#Entity] GetPhysicsObjectCount
+-- @param  self
+-- @return #number Number of physics objects.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a specific physics object from an entity with multiple PhysObjects.
+-- (like ragdolls) See also **Entity:TranslateBoneToPhysBone**.
+-- @function [parent=#Entity] GetPhysicsObjectNum
+-- @param  self
+-- @param  #number physNum The number corresponding to the PhysObj to grab. Starts at 0.
+-- @return #PhysObj The physics object.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the playback rate of the main sequence on this entity, with 1.0
+-- being the default speed.
+-- @function [parent=#Entity] GetPlaybackRate
+-- @param  self
+-- @return #number The playback rate.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the position of entity in world.
+-- @function [parent=#Entity] GetPos
+-- @param  self
+-- @return #Vector The position of the entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the pose parameter value.
+-- @function [parent=#Entity] GetPoseParameter
+-- @param  self
+-- @param  #string name Pose parameter name to look up.
+-- @return #number Value of given pose parameter.
+-- This value will be from 0 - 1 on the client and from minimum range to maximum range on the server!
+-- You'll have to remap this value clientside to **Entity:GetPoseParameterRange**'s returns if you want get the actual pose parameter value.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns name of given pose parameter.
+-- @function [parent=#Entity] GetPoseParameterName
+-- @param  self
+-- @param  #number id Id of the pose paremeter.
+-- @return #string Name of given pose parameter.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns pose parameter range.
+-- @function [parent=#Entity] GetPoseParameterRange
+-- @param  self
+-- @param  #number id Pose parameter ID to look up.
+-- @return #number, #number The minimum and maximum value.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns whether this entity is predictable or not.
+-- See **Entity:SetPredictable** for more information.
+-- @function [parent=#Entity] GetPredictable
+-- @param  self
+-- @return #boolean Whether this entity is predictable or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the entity which the ragdoll came from. The opposite of **Player:GetRagdollEntity**.
+-- @function [parent=#Entity] GetRagdollOwner
+-- @param  self
+-- @return #Entity The entity who owns the ragdoll.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the entity's render angles, set by **Entity:SetRenderAngles** in a
+-- drawing hook.
+-- @function [parent=#Entity] GetRenderAngles
+-- @param  self
+-- @return #Angle The entity's render angles.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns render bounds of the entity. Can be overridden by **Entity:SetRenderBounds**.
+-- If the render bounds are not inside players view, the entity will not be drawn!
+-- @function [parent=#Entity] GetRenderBounds
+-- @param  self
+-- @return #number, #number The minimum and maximum vector if the bounds.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns current render FX of the entity.
+-- @function [parent=#Entity] GetRenderFX
+-- @param  self
+-- @return #number The current render FX of the entity. See **kRenderFx\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the render group of the entity.
+-- @function [parent=#Entity] GetRenderGroup
+-- @param  self
+-- @return #number The render group. See **RENDERGROUP\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the render mode of the entity.
+-- @function [parent=#Entity] GetRenderMode
+-- @param  self
+-- @return #number The render Mode. See **RENDERMODE\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the entity's render origin, set by **Entity:SetRenderOrigin** in a
+-- drawing hook.
+-- @function [parent=#Entity] GetRenderOrigin
+-- @param  self
+-- @param  #
+-- @return #Vector The entity's render origin.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the rightward vector of the entity, as a normalized direction vector.
+-- @function [parent=#Entity] GetRight
+-- @param  self
+-- @return #Vector Entity's right direction vector.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the min and max of the entity's axis-aligned bounding box.
+-- @function [parent=#Entity] GetRotatedAABB
+-- @param  self
+-- @return #Vector, #Vector The minimum and maximum extent of the bounding box.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a table of save values for an entity. These tables are not the same
+-- between the client and the server, and different entities may have different
+-- fields. You can get the list different fields an entity has by looking at
+-- it's source code (the 2013 SDK can be found online,
+-- https://github.com/ValveSoftware/source-sdk-2013). Accessible fields are
+-- defined by each **DEFINE\_FIELD** and **DEFINE\_KEYFIELD** inside the **DATADESC** block.  
+-- For each **DEFINE\_FIELD**, the save table will have a key with name of first argument.
+-- For each **DEFINE\_KEYFIELD**, the save table will have a key with name of the third argument.
+-- See **Entity:GetInternalVariable** for only retrieving one key of the save table.
+-- @function [parent=#Entity] GetSaveTable
+-- @param  self
+-- @return #table A table containing all save values in key/value format.
+-- The value may be a sequential table (starting with 1) if the field in question is an array in engine.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Return the index of the model sequence that is currently active for the entity.
+-- @function [parent=#Entity] GetSequence
+-- @param  self
+-- @return #number The index of the model sequence.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Return activity id out of sequence id. Opposite of **Entity:SelectWeightedSequence**.
+-- @function [parent=#Entity] GetSequenceActivity
+-- @param  self
+-- @param  #number seq The sequence ID.
+-- @return #number The activity ID, see **ACT\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the activity name for the given sequence id.
+-- @function [parent=#Entity] GetSequenceActivityName
+-- @param  self
+-- @param  #number sequenceId The sequence id.
+-- @return #string The **ACT\_Enums** as a string, returns "Not Found!" with an invalid sequence and "No model!" when no model is set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the amount of sequences (animations) the entity's model has.
+-- @function [parent=#Entity] GetSequenceCount
+-- @param  self
+-- @return #number The amount of sequences (animations) the entity's model has.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the ground speed of the entity's sequence.
+-- @function [parent=#Entity] GetSequenceGroundSpeed
+-- @param  self
+-- @param  #number sequenceId The sequence ID.
+-- @return #number The ground speed of this sequence.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a table of information about an entity's sequence.
+-- @function [parent=#Entity] GetSequenceInfo
+-- @param  self
+-- @param  #number sequenceId The sequence id of the entity.
+-- @return #table Table of information about the entity's sequence.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a list of all sequences (animations) the model has.
+-- @function [parent=#Entity] GetSequenceList
+-- @param  self
+-- @return #table The list of all sequences (animations) the model has. The indices start with 0!
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns an entity's sequence move distance (the change in position over the
+-- course of the entire sequence).
+-- @function [parent=#Entity] GetSequenceMoveDist
+-- @param  self
+-- @param  #number sequenceId The sequence index.
+-- @return #number The move distance of the sequence.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the delta movement and angles of a sequence of the entity's model.
+-- @function [parent=#Entity] GetSequenceMovement
+-- @param  self
+-- @param  #number sequenceId The sequence index. See **Entity:GetSequenceName**.
+-- @param  #number startCycle The sequence start cycle. 0 is the start of the animation, 1 is the end.
+-- @param  #number endCycle The sequence end cycle. 0 is the start of the animation, 1 is the end. Values like 2, etc are allowed.
+-- @return #boolen, #Vector, #Angle Value indicating success and the delta origin and angle of animation.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the change in heading direction in between the start and the end of
+-- the sequence.
+-- @function [parent=#Entity] GetSequenceMoveYaw
+-- @param  self
+-- @param  #number seq The sequence index. See **Entity:LookupSequence**.
+-- @return #number The yaw delta. Returns 99999 for no movement.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Return the name of the sequence for the index provided. Refer to
+-- **Entity:GetSequence** to find the current active sequence on this entity.
+-- @function [parent=#Entity] GetSequenceName
+-- @param  self
+-- @param  #number index The index of the sequence to look up.
+-- @return #string Name of the sequence.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Checks if the entity plays a sound when picked up by a player.
+-- @function [parent=#Entity] GetShouldPlayPickupSound
+-- @param  self
+-- @return #boolean True if it plays the pickup sound, false otherwise.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns if entity should create a server ragdoll on death or a client one.
+-- @function [parent=#Entity] GetShouldServerRagdoll
+-- @param  self
+-- @return #boolean Returns true if ragdoll will be created on server, false if on client
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the skin index of the current skin.
+-- @function [parent=#Entity] GetSkin
+-- @param  self
+-- @return #number The entity's skin index.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns solid type of an entity.
+-- @function [parent=#Entity] GetSolid
+-- @param  self
+-- @return #number The solid type. See the **SOLID\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns solid flag(s) of an entity.
+-- @function [parent=#Entity] GetSolidFlags
+-- @param  self
+-- @return #number The flag(s) of the entity, see **FSOLID\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns if we should show a spawn effect on this entity.
+-- @function [parent=#Entity] GetSpawnEffect
+-- @param  self
+-- @return #boolean The flag to allow or disallow the spawn effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the bitwise spawn flags used by the entity.
+-- @function [parent=#Entity] GetSpawnFlags
+-- @param  self
+-- @return #number The spawn flags of the entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the material override for the given index. Returns "" if no material
+-- override exists. Use **Entity:GetMaterials** to list it's default materials.
+-- @function [parent=#Entity] GetSubMaterial
+-- @param  self
+-- @param  #number index The index of the sub material. Acceptable values are from 0 to 31.
+-- @return #string The material that overrides this index, if any.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a list of models included into the entity's model in the .qc file.
+-- @function [parent=#Entity] GetSubModels
+-- @param  self
+-- @return #table The list of models included into the entity's model in the .qc file.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the table that contains all values saved within the entity.
+-- @function [parent=#Entity] GetTable
+-- @param  self
+-- @return #table Entity's entity table.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the last trace used in the collision callbacks such as
+-- **ENTITY:StartTouch**, **ENTITY:Touch** and **ENTITY:EndTouch**.
+-- 
+-- **Note**: _This returns the last collision trace used, regardless of the entity
+-- that caused it. As such, it's only reliable when used in the hooks mentioned above._
+-- @function [parent=#Entity] GetTouchTrace
+-- @param  self
+-- @return #table The **TraceResult structure**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns true if the TransmitWithParent flag is set or not.
+-- @function [parent=#Entity] GetTransmitWithParent
+-- @param  self
+-- @return #boolean Is the TransmitWithParent flag is set or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns if the entity is unfreezable, meaning it can't be frozen with the
+-- physgun. By default props are freezable, so this function will typically
+-- return false.
+-- @function [parent=#Entity] GetUnFreezable
+-- @param  self
+-- @return #boolean True if the entity is unfreezable, false otherwise.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the upward vector of the entity, as a normalized direction vector.
+-- @function [parent=#Entity] GetUp
+-- @param  self
+-- @return #Vector Entity's up direction vector.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Retrieves a value from entity's **Entity:GetTable**. Set by **Entity:SetVar**.
+-- @function [parent=#Entity] GetVar
+-- @param  self
+-- @param  #any key Key of the value to retrieve.
+-- @param  #any default A default value to fallback to if we couldn't retrieve the value from entity. _(Default: nil)_
+-- @return #any Retrieved value.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the entity's velocity.
+-- 
+-- **Note**: _Actually binds to **CBaseEntity::GetAbsVelocity**() on the server and
+-- **C_BaseEntity::EstimateAbsVelocity**() on the client. This returns the total
+-- velocity of the entity and is equal to local velocity + base velocity._
+-- @function [parent=#Entity] GetVelocity
+-- @param  self
+-- @return #Vector The velocity of the entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the position and angle of the entity as a 3x4 matrix (VMatrix is 4x4
+-- so the fourth row goes unused). The first three columns store the angle as a
+-- rotation matrix, and the fourth column stores the position vector.
+-- @function [parent=#Entity] GetWorldTransformMatrix
+-- @param  self
+-- @return #VMatrix The position and angle matrix.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Causes the entity to break into its current models gibs, if it has any. You
+-- must call **Entity:PrecacheGibs** on the entity before using this function, or
+-- it will not create any gibs. If called on server, the gibs will be spawned
+-- on the currently connected clients and will not be synchronized. Otherwise
+-- the gibs will be spawned only for the client the function is called on.
+-- 
+-- Note, that this function will not remove or hide the entity it is called on.
+-- For more expensive version of this function see **Entity:GibBreakServer**.
+-- @function [parent=#Entity] GibBreakClient
+-- @param  self
+-- @param  #Vector force The force to apply to the created gibs.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Causes the entity to break into its current models gibs, if it has any. You
+-- must call **Entity:PrecacheGibs** on the entity before using this function, or
+-- it will not create any gibs. The gibs will be spawned on the server and be
+-- synchronized with all clients. Note, that this function will not remove or
+-- hide the entity it is called on.
+-- 
+-- **Warning**: _Large numbers of serverside gibs will cause lag. You can avoid
+-- this cost by spawning the gibs on the client using **Entity:GibBreakClient**._
+-- 
+-- **Note**: _Despite existing on client, it doesn't actually do anything on client._
+-- @function [parent=#Entity] GibBreakServer
+-- @param  self
+-- @param  #Vector force The force to apply to the created gibs.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether or not the bone manipulation functions have ever been called
+-- on given entity.
+-- @function [parent=#Entity] HasBoneManipulations
+-- @param  self
+-- @return #boolean True if the entity has been bone manipulated, false otherwise.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether or not the the entity has had flex manipulations performed
+-- with **Entity:SetFlexWeight** or **Entity:SetFlexScale**.
+-- @function [parent=#Entity] HasFlexManipulatior
+-- @param  self
+-- @return #boolean True if the entity has flex manipulations, false otherwise.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether this entity has the specified spawnflags bits set.
+-- @function [parent=#Entity] HasSpawnFlags
+-- @param  self
+-- @param  #number spawnFlags The spawnflag bits to check, see **SF\_Enums**.
+-- @return #boolean Whether the entity has that spawnflag set or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the position of the head of this entity, NPCs use this internally to
+-- aim at their targets.
+-- 
+-- **Note**: _This only works on players and NPCs._
+-- @function [parent=#Entity] HeadTarget
+-- @param  self
+-- @param  #Vector origin The vector of where the attack comes from.
+-- @return #Vector The head position.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the health of the entity.
+-- @function [parent=#Entity] Health
+-- @param  self
+-- @return #number The entity's health.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the entity on fire.
+-- @function [parent=#Entity] Ignite
+-- @param  self
+-- @param  #number length How long to keep the entity ignited.
+-- Not supplying this argument will not ignite the entity at all.
+-- @param  #number radius The radius of the ignition, will ignite everything around the entity that is in this radius. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Initializes this entity as being clientside only. Only works on entities
+-- fully created clientside, and as such it has currently no use due to the
+-- lack of clientside ents.Create. This function is automatically called by
+-- **ents.CreateClientProp**, **ClientsideModel**, and **ClientsideScene**.
+-- @function [parent=#Entity] InitializeAsClientEntity
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Fires input to the entity with the ability to make another entity
+-- responsible. Similar to **Entity:Fire**.
+-- @function [parent=#Entity] Input
+-- @param  self
+-- @param  #string input The name of the input to fire.
+-- @param  #Entity activator The entity that is directly responsible.
+-- @param  #Entity inflictor The entity that is indirectly responsible. (often a player)
+-- @param  #any param The value to give to the input. Can be a String, Float or Integer. _(Default: nil)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Sets up Data Tables from entity to use with **Entity:NetworkVar**.
+-- @function [parent=#Entity] InstallDataTable
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Resets the entity's bone cache values in order to prepare for a model change.
+-- This should be called after calling **Entity:SetPoseParameter**.
+-- @function [parent=#Entity] InvalidateBoneCache
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns true if the entity has constraints attached to it.
+-- @function [parent=#Entity] IsConstrained
+-- @param  self
+-- @return #boolean Whether the entity is constrained or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns if entity is constraint or not.
+-- @function [parent=#Entity] IsConstraint
+-- @param  self
+-- @return #boolean Is the entity a constraint or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the entity is dormant or not. Client/server entities become
+-- dormant when they leave the PVS on the server. Client side entities can
+-- decide for themselves whether to become dormant. This mainly applies to PVS.
+-- @function [parent=#Entity] IsDormant
+-- @param  self
+-- @return #boolean Whether the entity is dormant or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether an entity has engine effect applied or not.
+-- @function [parent=#Entity] IsEffectActive
+-- @param  self
+-- @param  #number effect The effect to check for, see **EF\_Enums**.
+-- @return #boolean whether an entity has the engine effect applied or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Checks if given flag is set or not.
+-- @function [parent=#Entity] IsEFlagSet
+-- @param  self
+-- @param  #number flag The engine flag to test, see **EFL\_Enums**.
+-- @return #boolean Is set or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Checks if given flag(s) is set or not.
+-- @function [parent=#Entity] IsFlagSet
+-- @param  self
+-- @param  #number flag The engine flag(s) to test, see **FL\_Enums**.
+-- @return #boolean Is set or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether the entity is inside a wall or outside of the map.
+-- 
+-- **Note**: _Internally this function uses **util.IsInWorld**, that means that
+-- this function only checks **Entity:GetPos** of the entity. If an entity is only
+-- partially inside a wall, or has a weird GetPos offset, this function may not
+-- give reliable output._
+-- @function [parent=#Entity] IsInWorld
+-- @param  self
+-- @return #boolean Is the entity in world.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether the entity is lag compensated or not.
+-- @function [parent=#Entity] IsLagCompensated
+-- @param  self
+-- @return #boolean Whether the entity is lag compensated or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns true if the target is in line of sight. This will only work on
+-- CBaseCombatCharacter entities.
+-- @function [parent=#Entity] IsLineOfSightClear
+-- @param  self
+-- @param  #Vector target The target to test. You can also supply an Entity instead of a Vector.
+-- @return #boolean Returns true if the line of sight is clear.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Checks if the entity is an NPC or not.
+-- @function [parent=#Entity] IsNPC
+-- @param  self
+-- @return #boolean Whether the entity is an NPC.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the entity is on fire.
+-- @function [parent=#Entity] IsOnFire
+-- @param  self
+-- @return #boolean Whether the entity is on fire or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the entity is on ground or not. Internally, this checks if
+-- **FL_ONGROUND** is set on the entity. This function is an alias of **Entity:OnGround**.
+-- @function [parent=#Entity] IsOnGround
+-- @param  self
+-- @return #boolean Whether the entity is on ground or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Checks if the entity is a player or not.
+-- @function [parent=#Entity] IsPlayer
+-- @param  self
+-- @return #boolean Whether the entity is a player.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns true if the entity is being held by a player. Either by physics gun,
+-- gravity gun or use-key (+use).
+-- @function [parent=#Entity] IsPlayerHolding
+-- @param  self
+-- @return #boolean Is being held.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether there's a gesture is given activity being played.
+-- 
+-- **Note**: _This function only works on **BaseAnimatingOverlay** entites!_
+-- @function [parent=#Entity] IsPlayingGesture
+-- @param  self
+-- @param  #number activity The activity to test. See **ACT\_Enums**.
+-- @return #boolean Whether there's a gesture is given activity being played.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Checks if the entity is a ragdoll.
+-- @function [parent=#Entity] IsRagdoll
+-- @param  self
+-- @return #boolean Is ragdoll or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Checks if the entity is a SENT or a built-in entity.
+-- @function [parent=#Entity] IsScripted
+-- @param  self
+-- @return #boolean Returns true if entity is scripted (SENT), false if not (A built-in engine entity).
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns if the entity is solid or not. Very useful for determining if the
+-- entity is a trigger or not.
+-- @function [parent=#Entity] IsSolid
+-- @param  self
+-- @return #boolean Whether the entity is solid or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the entity is a valid entity or not. An entity is valid if:
+-- 
+-- * It is not a NULL entity
+-- * It is not the worldspawn entity (**game.GetWorld**)
+-- * Instead of calling this method directly, it's a good idea to call the global IsValid instead.
+-- * It will check whether the given variable contains an object (an Entity) or nothing at all for you.
+-- @function [parent=#Entity] IsValid
+-- @param  self
+-- @return #boolean True if the entity is valid, false otherwise.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether the given layer ID is valid and exists on this entity.
+-- 
+-- **Note**: _This function only works on **BaseAnimatingOverlay** entites!_
+-- @function [parent=#Entity] IsValidLayer
+-- @param  self
+-- @param  #number layerID The Layer ID.
+-- @return #boolean Whether the given layer ID is valid and exists on this entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Checks if the entity is a vehicle or not.
+-- @function [parent=#Entity] IsVehicle
+-- @param  self
+-- @return #boolean Whether the entity is a vehicle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Checks if the entity is a weapon or not.
+-- @function [parent=#Entity] IsWeapon
+-- @param  self
+-- @return #boolean Whether the entity is a weapon.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the entity is a widget or not. This is used by the "Edit
+-- Bones" context menu property.
+-- @function [parent=#Entity] IsWidget
+-- @param  self
+-- @return #boolean Whether the entity is a widget or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns if the entity is the map's Entity[0] worldspawn.
+-- @function [parent=#Entity] IsWorld
+-- @param  self
+-- @return #boolean Is world spawn.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Converts a vector local to an entity into a worldspace vector.
+-- @function [parent=#Entity] LocalToWorld
+-- @param  self
+-- @param  #Vector lpos The local vector.
+-- @return #Vector The translated to world coordinates vector.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Converts a local angle (local to the entity) to a world angle.
+-- @function [parent=#Entity] LocalToWorldAngles
+-- @param  self
+-- @param  #Angle ang The local angle.
+-- @return #Angle The world angle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the attachment index of the given attachment name, returns 0 if the
+-- attachment does not exist, or -1 if the model is invalid.
+-- @function [parent=#Entity] LookupAttachment
+-- @param  self
+-- @param  #string attachmentName The name of the attachment.
+-- @return #number The attachment's index.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the bone index of the given bone name, returns nothing if the bone does
+-- not exist.
+-- @function [parent=#Entity] LookupBone
+-- @param  self
+-- @param  #string boneName The name of the bone.  
+-- Common generic bones (for player models and some HL2 models):
+-- 
+-- * ValveBiped.Bip01_Head1
+-- * ValveBiped.Bip01_Spine
+-- * ValveBiped.Anim_Attachment_RH
+-- Common hand bones (left hand equivalents also available, replace _R_ with _L_):
+-- 
+-- * ValveBiped.Bip01_R_Hand
+-- * ValveBiped.Bip01_R_Forearm
+-- * ValveBiped.Bip01_R_Foot
+-- * ValveBiped.Bip01_R_Thigh
+-- * ValveBiped.Bip01_R_Calf
+-- * ValveBiped.Bip01_R_Shoulder
+-- * ValveBiped.Bip01_R_Elbow
+-- @return #number Index of the given bone name.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns sequence ID from its name.
+-- @function [parent=#Entity] LookupSequence
+-- @param  self
+-- @param  #string name Sequence name.
+-- @return #number, #number Sequence ID for the given name and the sequence duraction. -1 and 0 for invalid sequences.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Turns the **Entity:GetPhysicsObject** into a physics shadow. It's used
+-- internally for the Player's and NPC's physics object, and certain HL2
+-- entities such as the crane. A physics shadow can be used to have static
+-- entities that never move by setting both arguments to false.
+-- 
+-- **Note**: _Unlike **Entity:PhysicsInitShadow**, this function doesn't remove the
+-- current physics object._
+-- @function [parent=#Entity] MakePhysicsObjectAShadow
+-- @param  self
+-- @param  #boolean allowPhysicsMovement Whether to allow the physics shadow to move under stress.
+-- @param  #boolean allowPhysicsRotation Whether to allow the physics shadow to rotate under stress.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets custom bone angles.
+-- 
+-- **Note**: _The repeated use of bone manipulation in multiplayer games is
+-- highly discouraged due to the huge produced network traffic._
+-- @function [parent=#Entity] ManipulateBoneAngles
+-- @param  self
+-- @param  #number boneID Index of the bone you want to manipulate.
+-- @param  #Angle ang Angle to apply.
+-- The angle is relative to the original bone angle, not relative to the world or the entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Manipulates the bone's jiggle value(s).
+-- @function [parent=#Entity] ManipulateBoneJiggle
+-- @param  self
+-- @param  #number boneID Index of the bone you want to manipulate.
+-- @param  #number enabled 0 = No Jiggle, 1 = Jiggle
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets custom bone offsets.
+-- @function [parent=#Entity] ManipulateBonePosition
+-- @param  self
+-- @param  #number boneID Index of the bone you want to manipulate.
+-- @param  #Vector pos Position vector to apply.
+-- Note that the position is relative to the original bone position, not relative to the world or the entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets custom bone scale.
+-- 
+-- **Warning**: _When used serverside, this method produces a huge network consumption!_
+-- @function [parent=#Entity] ManipulateBoneScale
+-- @param  self
+-- @param  #number boneID Index of the bone you want to manipulate.
+-- @param  #Vector scale Scale vector to apply.
+-- Note that the scale is relative to the original bone scale, not relative to the world or the entity.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns entity's map creation ID. Unlike **Entity:EntIndex** or **Entity:GetCreationID**,
+-- it will always be the same on same map, no matter how much you clean up or
+-- restart it. To be used in conjunction with **ents.GetMapCreatedEntity**.
+-- @function [parent=#Entity] MapCreationID
+-- @param  self
+-- @return #number The map creation ID or -1 if the entity is not compiled into the map.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Refreshes the shadow of the entity.
+-- @function [parent=#Entity] MarkShadowAsDirty
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Fires the muzzle flash effect of the weapon the entity is carrying. This
+-- only creates a light effect and is often called alongside **Weapon:SendWeaponAnim**.
+-- @function [parent=#Entity] MuzzleFlash
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Performs a Ray OBBox intersection from the given position to the origin of
+-- the OBBox with the entity and returns the hit position on the OBBox.
+-- @function [parent=#Entity] NearestPoint
+-- @param  self
+-- @param  #Vector position The vector to start the intersection from.
+-- @return #Vector The nearest hit point of the entity's bounding box in world coordinates.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Creates a network variable on the entity and adds Set/Get functions for it.
+-- This function should only be called in **ENTITY:SetupDataTables**.
+-- @function [parent=#Entity] NetworkVar
+-- @param  self
+-- @param  #string type Supported choices:
+-- 
+-- * "String"
+-- * "Bool"
+-- * "Float"
+-- * "Int" (32-bit signed integer)
+-- * "Vector"
+-- * "Angle"
+-- * "Entity"
+-- @param  #number slot Each network var has to have a unique slot.
+-- The slot is per type - so you can have an int in slot 0, a bool in slot 0 and a float in slot 0 etc. but you can't have two ints in slot 0 instead you would do a int in slot 0 and another int in slot 1.
+-- The max slots right now are 32 - so you should pick a number between 0 and 31. An exception to this is strings which has a max slots of 4.
+-- @param  #string name The name will affect how you access it.
+-- If you call it "Foo" you would add two new functions on your entity - SetFoo and GetFoo.
+-- So be careful that what you call it won't collide with any existing functions (don't call it "Pos" for example).
+-- @param  #table extended A table of extended information. _(Default: nil)_
+-- 
+-- * _KeyName_ : If the table contains a "KeyName" key the value can be set using **Entity:SetKeyValue**.
+--   This is useful if you're making an entity that you want to be loaded in a map. The sky entity uses this.
+-- * _Edit_ : The edit key lets you mark this variable as editable.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Creates a callback that will execute when the given network variable changes
+-- - that is, when the Set<name> function is run.
+-- 
+-- **Note**: _The callback is executed before the value is changed, and is
+-- called even if the new and old values are the same._
+-- 
+-- **Note**: _This function does not exist on entities in which
+-- **Entity:InstallDataTable** has not been called. By default, this means this
+-- function only exists on SENTs (both serverside and clientside) and on
+-- players with a Player Class (serverside and clientside **LocalPlayer** only!).
+-- It is therefore safest to only use this in **ENTITY:SetupDataTables**._
+-- 
+-- **Warning**: _A clientside NetworkVarNotify will not be called when the
+-- network var is changed serverside! This makes the function less useful.
+-- This is a bug._
+-- @function [parent=#Entity] NetworkVarNotify
+-- @param  self
+-- @param  #string name Name of variable to track changes of.
+-- @param  #function callback The function to call when the variable changes.  
+-- It is passed 4 arugments:
+-- 
+-- * _#Entity entity_ : Entity whos variable changed. (This will be variable called "self" in **ENT:CallBack** format.)
+-- * _#string name_ : Name of changed variable.
+-- * _#any old_ : Old/current variable value.
+-- * _#any new_ : New variable value that it was set to.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- In the case of a scripted entity, this will cause the next **ENTITY:Think**
+-- event to be run at the given time. Does not work clientside!
+-- Use **Entity:SetNextClientThink** instead.
+-- @function [parent=#Entity] NextThink
+-- @param  self
+-- @param  #number timestamp The relative to CurTime timestamp, at which the next think should occur.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the center of an entity's bounding box as a local vector.
+-- @function [parent=#Entity] OBBCenter
+-- @param  self
+-- @return #Vector Bounding box center.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the highest corner of an entity's bounding box as a local vector.
+-- @function [parent=#Entity] OBBMaxs
+-- @param  self
+-- @return #Vector The local position of the highest corner of the entity's oriented bounding box.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the lowest corner of an entity's bounding box as a local vector.
+-- @function [parent=#Entity] OBBMins
+-- @param  self
+-- @return #Vector The local position of the lowest corner of the entity's oriented bounding box.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the entity's capabilities as a bitfield. In the engine this function
+-- is mostly used to check the use type, the save/restore system and level
+-- transitions flags. Even though the function is defined shared, it is not
+-- guaranteed to return the same value across states.
+-- @function [parent=#Entity] ObjectCaps
+-- @param  self
+-- @return #number The bitfield, a combination of the **FCAP\_** flags.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns true if the entity is on the ground, and false if it isn't.
+-- Internally, this checks if **FL\_ONGROUND** is set on the entity. This is only
+-- updated for players and NPCs, and thus won't inherently work for other entities.
+-- @function [parent=#Entity] OnGround
+-- @param  self
+-- @return #boolean Whether the entity is on the ground or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Tests whether the damage passes the entity filter. This will call
+-- **ENTITY:PassesDamageFilter** on scripted entities of the type "filter".
+-- 
+-- **Note**: _This function only works on entities of the type "filter".
+-- (filter\_* entities, including base game filter entities)_
+-- @function [parent=#Entity] PassesDamageFilter
+-- @param  self
+-- @param  #CTakeDamageInfo dmg The damage info to test.
+-- @return #boolean Whether the damage info passes the entity filter.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Tests whether the entity passes the entity filter. This will call
+-- **ENTITY:PassesFilter** on scripted entities of the type "filter".
+-- 
+-- **Note**: _This function only works on entities of the type "filter".
+-- (filter\_* entities, including base game filter entities)_
+-- @function [parent=#Entity] PassesFilter
+-- @param  self
+-- @param  #Entity caller The initiator of the test.
+-- For example the trigger this filter entity is used in.
+-- @param  #Entity ent The entity to test against the entity filter.
+-- @return #boolean Whether the entity info passes the entity filter.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Destroys the current physics object of an entity.
+-- @function [parent=#Entity] PhysicsDestroy
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Initializes the physics mesh of the entity from a triangle soup defined by a
+-- table of vertices. The resulting mesh is hollow, may contain holes, and
+-- always has a volume of 0. While this is very useful for static geometry such
+-- as terrain displacements, it is advised to use **Entity:PhysicsInitConvex** or
+-- **Entity:PhysicsInitMultiConvex** for moving solid objects instead.
+-- 
+-- **Entity:EnableCustomCollisions** needs to be called if you want players to
+-- collide with the entity correctly.
+-- @function [parent=#Entity] PhysicsFromMesh
+-- @param  self
+-- @param  #table vertices A table consisting of MeshVertex structure (only the pos element is taken into account).
+-- Every 3 vertices define a triangle in the physics mesh.
+-- @return #boolean Returns true on success, nil otherwise.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Initializes the physics object of the entity using its current model.
+-- Deletes the previous physics object if it existed and the new object
+-- creation was successful. If the entity's current model has no physics mesh
+-- associated to it, no physics object will be created and the previous object
+-- will still exist, if applicable.
+-- 
+-- **Note**: _When called clientside, this will not create a valid PhysObj if
+-- the model hasn't been precached serverside._
+-- 
+-- **Note**: _If successful, this function will automatically call_
+-- _**Entity:SetSolid**(solidType) and **Entity:SetSolidFlags**(0)._
+-- @function [parent=#Entity] PhysicsInit
+-- @param  self
+-- @param  #number solidType The solid type of the physics object to create, see **SOLID\_Enums**. Should be **SOLID\_VPHYSICS** in most cases.
+-- 
+-- Using **SOLID\_NONE** will only delete the current physics object - it does not create a new one.
+-- @return #boolean Returns true on success, false otherwise.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Makes the physics object of the entity a AABB.
+-- 
+-- **Note**: _If the volume of the resulting box is 0 (the mins and maxs are
+-- the same), the mins and maxs will be changed to Vector(-1, -1, -1) and 
+-- Vector(1,1,1), respectively._
+-- 
+-- **Note**: _This function will automatically destroy any previous physics
+-- objects if successful and call **Entity:SetSolid**(SOLID\_BBOX),
+-- **Entity:SetMoveType**(MOVETYPE\_VPHYSICS), and **Entity:SetCollisionBounds**(mins,maxs)._
+-- @function [parent=#Entity] PhysicsInitBox
+-- @param  self
+-- @param  #Vector mins The minimum position of the box. This is automatically ordered with the maxs.
+-- @param  #Vector maxs The maximum position of the box. This is automatically ordered with the mins.
+-- @return #boolean Returns true on success, nil otherwise. This fails when the game cannot create any more PhysCollides.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Initializes the physics mesh of the entity with a convex mesh defined by a
+-- table of points. The resulting mesh is the convex hull of all the input points.
+-- If successful, the previous physics object will be removed. This is the
+-- standard way of creating moving physics objects with a custom convex shape.
+-- For more complex, concave shapes, see **Entity:PhysicsInitMultiConvex**.
+-- @function [parent=#Entity] PhysicsInitConvex
+-- @param  self
+-- @param  #table points A table of eight Vectors, in local coordinates, to be used in the computation of the convex mesh. Order does not matter.
+-- @return #boolean Returns true on success, nil otherwise.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- An advanced version of **Entity:PhysicsInitConvex** which initializes a physics
+-- object from multiple convex meshes. This should be used for physics objects
+-- with a custom shape which cannot be represented by a single convex mesh.
+-- If successful, the previous physics object will be removed.
+-- @function [parent=#Entity] PhysicsInitMultiConvex
+-- @param  self
+-- @param  #table vertices A table consisting of tables of Vectors.
+-- Each sub-table defines a set of points to be used in the computation of one convex mesh.
+-- @return #boolean Returns true on success, nil otherwise.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Initializes the entity's physics object as a physics shadow. Removes the
+-- previous physics object if successful. This is used internally for the
+-- Player's and NPC's physics object, and certain HL2 entities such as the crane.
+-- A physics shadow can be used to have static entities that never move by
+-- setting both arguments to false.
+-- @function [parent=#Entity] PhysicsInitShadow
+-- @param  self
+-- @param  #boolean allowPhysicsMovement Whether to allow the physics shadow to move under stress. _(Default: true)_
+-- @param  #boolean allowPhysicsRotation Whether to allow the physics shadow to rotate under stress. _(Default: true)_
+-- @return #boolean Return true on success, nil otherwise.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Makes the physics object of the entity a sphere.
+-- 
+-- **Note**: _This function will automatically destroy any previous physics
+-- objects and call **Entity:SetSolid**(SOLID\_BBOX) and Entity:**SetMoveType**(MOVETYPE\_VPHYSICS)._
+-- @function [parent=#Entity] PhysicsInitSphere
+-- @param  self
+-- @param  #number radius The radius of the sphere.
+-- @param  #string physmat Physical material from surfaceproperties.txt or added with **physenv.AddSurfaceData**.
+-- @return #boolean Returns true on success, false otherwise.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Initializes a static physics object of the entity using its current model.
+-- If successful, the previous physics object is removed. This is what used by
+-- entities such as func\_breakable, prop\_dynamic, item\_suitcharger, prop\_thumper
+-- and npc\_rollermine while it is in its "buried" state in the Half-Life 2 Campaign.
+-- 
+-- If the entity's current model has no physics mesh associated to it, no
+-- physics object will be created.
+-- 
+-- **Note**: _This function will automatically call **Entity:SetSolid**(solidType)._
+-- @function [parent=#Entity] PhysicsInitStatic
+-- @param  self
+-- @param  #number solidType The solid type of the physics object to create, see **SOLID\_Enums**. Should be **SOLID\_VPHYSICS** in most cases.
+-- @return #boolean Returns true on success, false otherwise. This will fail if the entity's current model has no associated physics mesh.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Wakes up the entity's physics object.
+-- @function [parent=#Entity] PhysWake
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Makes the entity play a .vcd scene.
+-- @function [parent=#Entity] PlayScene
+-- @param  self
+-- @param  #string scene Filepath to scene.
+-- @param  #number delay Delay in seconds until the scene starts playing. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Changes an entities angles so that it faces the target entity.
+-- @function [parent=#Entity] PointAtEntity
+-- @param  self
+-- @param  #Entity target The entity to face.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Precaches gibs for the entity's model. Normally this function should be ran
+-- when the entity is spawned, for example the **ENTITY:Initialize**, after
+-- **Entity:SetModel** is called. This is required for **Entity:GibBreakServer** and
+-- **Entity:GibBreakClient** to work.
+-- @function [parent=#Entity] PrecacheGibs
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Normalizes the ragdoll. This is used alongside Kinect in
+-- **Entity:SetRagdollBuildFunction**, for more info see ragdoll_motion entity.
+-- @function [parent=#Entity] RagdollSolve
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the function to build the ragdoll. This is used alongside Kinect in
+-- **Entity:SetRagdollBuildFunction**, for more info see ragdoll_motion entity.
+-- @function [parent=#Entity] RagdollStopControlling
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Makes the physics objects follow the set bone positions. This is used
+-- alongside Kinect in **Entity:SetRagdollBuildFunction**, for more info see
+-- ragdoll_motion entity.
+-- @function [parent=#Entity] RagdollUpdatePhysics
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Removes the entity it is used on.
+-- @function [parent=#Entity] Remove
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Removes all decals from the entities surface.
+-- @function [parent=#Entity] RemoveAllDecals
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Removes and stops all gestures.
+-- 
+-- **Note**: _This function only works on **BaseAnimatingOverlay** entites!_
+-- @function [parent=#Entity] RemoveAllGestures
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Removes a callback previously added with **Entity:AddCallback**.
+-- @function [parent=#Entity] RemoveCallback
+-- @param  self
+-- @param  #string hook The hook name to remove.
+-- @param  #number callbackid The callback id previously retrieved with the return of **Entity:AddCallback** or **Entity:GetCallbacks**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Removes a function previously added via **Entity:CallOnRemove**.
+-- @function [parent=#Entity] RemoveCallOnRemove
+-- @param  self
+-- @param  #string identifier Identifier of the function within CallOnRemove.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Removes an engine effect applied to an entity.
+-- @function [parent=#Entity] RemoveEffects
+-- @param  self
+-- @param  #number effect The effect to remove, see **EF\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Removes specified engine flag.
+-- @function [parent=#Entity] RemoveEFlags
+-- @param  self
+-- @param  #number flag The flag to remove, see **EFL\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Removes specified flag(s) from the entity.
+-- @function [parent=#Entity] RemoveFlags
+-- @param  self
+-- @param  #number flag The flag(s) to remove, see **FL\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Removes a **PhysObject** from the entity's motion controller so that
+-- **ENTITY:PhysicsSimulate** will no longer be called for given **PhysObject**.
+-- You must first create a motion controller with **Entity:StartMotionController**.
+-- 
+-- **Note**: _Only works on a scripted Entity of "anim" type._
+-- @function [parent=#Entity] RemoveFromMotionController
+-- @param  self
+-- @param  #PhysObj physObj The **PhysObj** to remove from the motion controller.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Removes and stops the gesture with given activity.
+-- 
+-- **Note**: _This function only works on **BaseAnimatingOverlay** entites!_
+-- @function [parent=#Entity] RemoveGesture
+-- @param  self
+-- @param  #number activity The activity remove. See **ACT\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Removes solid flag(s) from the entity.
+-- @function [parent=#Entity] RemoveSolidFlags
+-- @param  self
+-- @param  #number flags The flag(s) to remove, see **FSOLID\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Plays an animation on the entity. This may not always work on engine entities.
+-- 
+-- **Warning**: _This will not reset the animation on viewmodels, use
+-- **Entity:SendViewModelMatchingSequence** instead._
+-- 
+-- **Note**: _This will not work properly if called directly after calling
+-- **Entity:SetModel**. Consider waiting until the next Tick._
+-- 
+-- **Note**: _Will not work on players due to the animations being reset every
+-- frame by the base gamemode animation system. See **GM:CalcMainActivity**._
+-- @function [parent=#Entity] ResetSequence
+-- @param  self
+-- @param  #number sequence The sequence to play. Also accepts strings.
+-- **Note**: _If set to a string, the function will automatically call
+-- **Entity:LookupSequence** to retrieve the sequence ID as a number._
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Reset entity sequence info such as playback rate, ground speed, last event
+-- check, etc.
+-- @function [parent=#Entity] ResetSequenceInfo
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Makes the entity/weapon respawn. Only usable on HL2 pickups and any weapons.
+-- Seems to be buggy with weapons. Very unreliable.
+-- @function [parent=#Entity] Respawn
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Restarts the entity's animation gesture. If the given gesture is already
+-- playing, it will reset it and play it from the beginning.
+-- 
+-- **Note**: _This function only works on **BaseAnimatingOverlay** entites._
+-- @function [parent=#Entity] RestartGesture
+-- @param  self
+-- @param  #number activity The activity number to send to the entity. See **ACT\_Enums** and **Entity:GetSequenceActivity**.
+-- @param  #boolean addIfMissing Add/start the gesture to if it has not been yet started. _(Default: true)_
+-- @param  #boolean autokill _(Default: true)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns sequence ID corresponding to given activity ID. Opposite of 
+-- **Entity:GetSequenceActivity**. Similar to **Entity:LookupSequence**. See also 
+-- **Entity:SelectWeightedSequenceSeeded**.
+-- @function [parent=#Entity] SelectWeightedSequence
+-- @param  self
+-- @param  #number act The activity ID, see **ACT\_Enums**.
+-- @return #number The sequence ID.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the sequence ID corresponding to given activity ID, and uses the
+-- provided seed for random selection. The seed should be the same server-side
+-- and client-side if used in a predicted environment. See
+-- **Entity:SelectWeightedSequence** for a provided-seed version of this function.
+-- @function [parent=#Entity] SelectWeightedSequenceSeeded
+-- @param  self
+-- @param  #number act The activity ID, see **ACT\_Enums**.
+-- @param  #number seed The seed to use for randomly selecting a sequence in the case the activity ID has multiple sequences bound to it.
+-- **Entity:SelectWeightedSequence** uses the same seed as **util.SharedRandom** internally for this.
+-- @return #number The sequence ID.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sends sequence animation to the view model. It is recommended to use this
+-- for view model animations, instead of **Entity:ResetSequence**. This function is
+-- only usable on view models.
+-- @function [parent=#Entity] SendViewModelMatchingSequence
+-- @param  self
+-- @param  #number seq The sequence ID returned by **Entity:LookupSequence** or **Entity:SelectWeightedSequence**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns length of currently played sequence.
+-- @function [parent=#Entity] SequenceDuration
+-- @param  self
+-- @param  #number seqid A sequence ID to return the length specific sequence of instead of the entity's main/currently playing sequence. _(Default: nil)_
+-- @return #number The length of the sequence.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the entity's velocity.
+-- 
+-- **Note**: _Actually binds to **CBaseEntity::SetLocalVelocity**() which sets the
+-- entity's velocity due to movement in the world from forces such as gravity.
+-- Does not include velocity from entity-on-entity collision or other world movement._
+-- @function [parent=#Entity] SetAbsVelocity
+-- @param  self
+-- @param  #Vector velocity The new velocity to set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the angles of the entity.
+-- 
+-- **Note**: _To set a player's angles, use **Player:SetEyeAngles** instead._
+-- @function [parent=#Entity] SetAngles
+-- @param  self
+-- @param  #Angle angles The new angles.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets a player's third-person animation. Mainly used by Weapons to start the
+-- player's weapon attack and reload animations.
+-- @function [parent=#Entity] SetAnimation
+-- @param  self
+-- @param  #number playerAnim Player animation, see **PLAYER\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the time (relative to **CurTime**) of the current animation frame, which
+-- is used to determine **Entity:GetCycle**.
+-- @function [parent=#Entity] SetAnimTime
+-- @param  self
+-- @param  #number time The current animation time.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This feature is deprecated.**  
+-- _You should avoid using it as it may be removed in a future version._
+-- _You should be using **Entity:SetParent** instead._
+-- 
+-- Parents the sprite to an attachment on another model. Works only on env_sprite.
+-- Despite existing on client, it doesn't actually do anything on client.
+-- @function [parent=#Entity] SetAttachment
+-- @param  self
+-- @param  #Entity ent The entity to attach/parent to.
+-- @param  #number attachment The attachment ID to parent to.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the blood color this entity uses.
+-- @function [parent=#Entity] SetBloodColor
+-- @param  self
+-- @param  #number bloodColor An integer corresponding to **BLOOD\_COLOR\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets an entities' bodygroup.
+-- @function [parent=#Entity] SetBodygroup
+-- @param  self
+-- @param  #number bodygroup The id of the bodygroup you're setting. Starts from 0.
+-- @param  #number value The value you're setting the bodygroup to. Starts from 0.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the bodygroups from a string. A convenience function for **Entity:SetBodygroup**.
+-- @function [parent=#Entity] SetBodyGroups
+-- @param  self
+-- @param  #string bodygroups Body groups to set. Each single-digit number in the string represents a separate bodygroup.
+-- This make it impossible to set any bodygroup to a value higher than 9! For that you need to use **Entity:SetBodygroup**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the specified value on the bone controller with the given ID of this
+-- entity, it's used in HL1 to change the head rotation of NPCs, turret aiming
+-- and so on.
+-- 
+-- **Note**: _This is the precursor of pose parameters, and only works for Half Life 1: Source models supporting it._
+-- @function [parent=#Entity] SetBoneController
+-- @param  self
+-- @param  #number boneControllerID The ID of the bone controller to set the value to. Goes from 0 to 3.
+-- @param  #number value The value to set on the specified bone controller.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the bone matrix of given bone to given matrix. See also
+-- **Entity:GetBoneMatrix**. Does nothing on server.
+-- @function [parent=#Entity] SetBoneMatrix
+-- @param  self
+-- @param  #number boneid The ID of the bone.
+-- @param  #VMatrix matrix The matrix to set.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the bone position and angles.
+-- @function [parent=#Entity] SetBonePosition
+-- @param  self
+-- @param  #number bone The bone ID to manipulate.
+-- @param  #Vector pos The position to set.
+-- @param  #Angle ang The angles to set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the collision bounds for the entity, which are used for triggers
+-- (**Entity:SetTrigger**, **ENTITY:Touch**), determining if rendering is necessary
+-- clientside, and collision (If Entity:SetSolid set as **SOLID\_BBOX**).
+-- 
+-- Input bounds are relative to **Entity:GetPos**! See also **Entity:SetCollisionBoundsWS**.
+-- @function [parent=#Entity] SetCollisionBounds
+-- @param  self
+-- @param  #Vector mins The minimum vector of the bounds. The vector must be smaller than second argument on all axises.
+-- @param  #Vector maxs The maximum vector of the bounds. The vector must be bigger than first argument on all axises.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the collision bounds for the entity, which are used for triggers
+-- (**Entity:SetTrigger**, **ENTITY:Touch**), determining if rendering is necessary
+-- clientside, and collision (If **Entity:SetSolid** set as SOLID_BBOX).
+-- 
+-- Input bounds are in world coordinates! See also **Entity:SetCollisionBounds**.
+-- @function [parent=#Entity] SetCollisionBoundsWS
+-- @param  self
+-- @param  #Vector vec1 The first vector of the bounds.
+-- @param  #Vector vec2 The second vector of the bounds.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the entity's collision group.
+-- @function [parent=#Entity] SetCollisionGroup
+-- @param  self
+-- @param  #number group Collision group of the entity, see **COLLISION\_GROUP\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the color of an entity.
+-- @function [parent=#Entity] SetColor
+-- @param  self
+-- @param  #table color The color to set. See the **Color structure**. _(Default: Color(255,0,255,255))_
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the creator of the SENT.
+-- @function [parent=#Entity] SetCreator
+-- @param  self
+-- @param  #Player ply The creator.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Marks the entity to call **GM:ShouldCollide**.
+-- @function [parent=#Entity] SetCustomCollisionCheck
+-- @param  self
+-- @param  #boolean enable Enable or disable the custom collision check.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the progress of the current animation to a specific value between 0 and 1.
+-- @function [parent=#Entity] SetCycle
+-- @param  self
+-- @param  #number value The desired cycle value.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- This is called internally by the **Entity:NetworkVar** system, you can use this
+-- in cases where using NetworkVar is not possible. Sets the specified angle on
+-- the entity's datatable.
+-- @function [parent=#Entity] SetDTAngle
+-- @param  self
+-- @param  #number key Goes from 0 to 31.
+-- @param  #Angle ang The angle to write on the entity's datatable.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- This is called internally by the **Entity:NetworkVar** system, you can use this
+-- in cases where using NetworkVar is not possible. Sets the specified bool on
+-- the entity's datatable.
+-- @function [parent=#Entity] SetDTBool
+-- @param  self
+-- @param  #number key Goes from 0 to 31.
+-- @param  #boolean bool The boolean to write on the entity's metatable.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- This is called internally by the **Entity:NetworkVar** system, you can use this
+-- in cases where using NetworkVar is not possible. Sets the specified entity
+-- on this entity's datatable.
+-- @function [parent=#Entity] SetDTEntity
+-- @param  self
+-- @param  #number key Goes from 0 to 31.
+-- @param  #Entity ent The entity to write on this entity's datatable.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- This is called internally by the **Entity:NetworkVar** system, you can use this
+-- in cases where using NetworkVar is not possible. Sets the specified float on
+-- the entity's datatable.
+-- @function [parent=#Entity] SetDTFloat
+-- @param  self
+-- @param  #number key Goes from 0 to 31.
+-- @param  #number float The float to write on the entity's datatable.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- This is called internally by the **Entity:NetworkVar** system, you can use this
+-- in cases where using NetworkVar is not possible. Sets the specified integer
+-- on the entity's datatable.
+-- @function [parent=#Entity] SetDTInt
+-- @param  self
+-- @param  #number key Goes from 0 to 31.
+-- @param  #number integer The integer to write on the entity's datatable. This will be cast to a 32-bit signed integer internally.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- This is called internally by the **Entity:NetworkVar** system, you can use this
+-- in cases where using NetworkVar is not possible. Sets the specified string
+-- on the entity's datatable.
+-- 
+-- **Note**: _The length of these strings are capped at 512 characters._
+-- @function [parent=#Entity] SetDTString
+-- @param  self
+-- @param  #number key Goes from 0 to 3.
+-- @param  #string str The string to write on the entity's datatable, can't be more than 512 characters per string.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- This is called internally by the **Entity:NetworkVar** system, you can use this
+-- in cases where using NetworkVar is not possible. Sets the specified vector
+-- on the entity's datatable.
+-- @function [parent=#Entity] SetDTVector
+-- @param  self
+-- @param  #number key Goes from 0 to 31.
+-- @param  #Vector vec The vector to write on the entity's datatable.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the elasticity of this entity, used by some flying entities such as the
+-- Helicopter NPC to determine how much it should bounce around when colliding.
+-- @function [parent=#Entity] SetElasticity
+-- @param  self
+-- @param  #number elasticity The elasticity to set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Allows you to set the Start or End entity attachment for the rope.
+-- @function [parent=#Entity] SetEntity
+-- @param  self
+-- @param  #string name The name of the variable to modify. Accepted names are StartEntity and EndEntity.
+-- @param  #Entity entity The entity to apply to the specific attachment.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the position an entity's eyes look toward.
+-- @function [parent=#Entity] SetEyeTarget
+-- @param  self
+-- @param  #Vector pos The world position the entity is looking toward.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the flex scale of the entity.
+-- @function [parent=#Entity] SetFlexScale
+-- @param  self
+-- @param  #number scale The new flex scale to set to.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the flex weight.
+-- @function [parent=#Entity] SetFlexWeight
+-- @param  self
+-- @param  #number flex The ID of the flex to modify weight of.
+-- @param  #number weight The new weight to set.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets how much friction an entity has when sliding against a surface.
+-- Entities default to 1 (100%) and can be higher or even negative.
+-- 
+-- **Note**: _Works only for MOVETYPE\_STEP entities._
+-- @function [parent=#Entity] SetFriction
+-- @param  self
+-- @param  #number friction Friction multiplier.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the gravity multiplier of the entity.
+-- @function [parent=#Entity] SetGravity
+-- @param  self
+-- @param  #number gravityMultiplier Value which specifies the gravity multiplier.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the ground the entity is standing on.
+-- @function [parent=#Entity] SetGroundEntity
+-- @param  self
+-- @param  #Entity ground The ground entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the health of the entity.
+-- 
+-- **Note**: _You may want to take **Entity:GetMaxHealth** into account when
+-- calculating what to set health to, in case a gamemode has a different max
+-- health than 100._
+-- @function [parent=#Entity] SetHealth
+-- @param  self
+-- @param  #number newHealth New health value.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the current Hitbox set for the entity.
+-- @function [parent=#Entity] SetHitboxSet
+-- @param  self
+-- @param  #number id The new hitbox set to set. Can be a name as a string, or the ID as a number.
+-- If the operation failed, the function will silently fail.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Enables or disable the inverse kinematic usage of this entity.
+-- @function [parent=#Entity] SetIK
+-- @param  self
+-- @param  #boolean useIK The state of the IK. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets key value for the entity.
+-- @function [parent=#Entity] SetKeyValue
+-- @param  self
+-- @param  #string key The key.
+-- @param  #string value The value.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- This allows the entity to be lag compensated during **Player:LagCompensation**.
+-- 
+-- **Note**: _Players are lag compensated by default and there's no need to
+-- call this function for them. It's best to not enable lag compensation on
+-- parented entities, as the system does not handle it that well (they will be
+-- moved back but then the entity will lag behind). Parented entities move back
+-- with the parent if its lag compensated, so if you are making some kind of
+-- armor piece you shouldn't do anything._
+-- 
+-- As a side note for parented entities, if your entity can be shot at, keep in
+-- mind that its collision bounds need to be bigger than the bone's hitbox the
+-- entity is parented to, or hull/line traces (such as the crowbar attack or
+-- bullets) might not hit at all.
+-- @function [parent=#Entity] SetLagCompensated
+-- @param  self
+-- @param  #boolean enable Whether the entity should be lag compensated or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- **Note**: _This function only works on **BaseAnimatingOverlay** entites!_
+-- @function [parent=#Entity] SetLayerBlendIn
+-- @param  self
+-- @param  #number layerID The Layer ID.
+-- @param  #number blendIn
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- **Note**: _This function only works on **BaseAnimatingOverlay** entites!_
+-- @function [parent=#Entity] SetLayerBlendOut
+-- @param  self
+-- @param  #number layerID The Layer ID.
+-- @param  #number blendOut
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the animation cycle/frame of given layer.
+-- 
+-- **Note**: _This function only works on **BaseAnimatingOverlay** entites!_
+-- @function [parent=#Entity] SetLayerCycle
+-- @param  self
+-- @param  #number layerID The Layer ID.
+-- @return #number cycle The new animation cycle/frame for given layer.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the duration of given layer. This internally overrides the **Entity:SetLayerPlaybackRate**.
+-- 
+-- **Note**: _This function only works on **BaseAnimatingOverlay** entites!_
+-- @function [parent=#Entity] SetLayerDuration
+-- @param  self
+-- @param  #number layerID The Layer ID.
+-- @param  #number duration The new duration of the layer in seconds.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets whether the layer should loop or not.
+-- 
+-- **Note**: _This function only works on **BaseAnimatingOverlay** entites!_
+-- @function [parent=#Entity] SetLayerLooping
+-- @param  self
+-- @param  #number layerID The Layer ID.
+-- @param  #boolean loop Whether the layer should loop or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the layer player back rate. See also **Entity:SetLayerDuration**.
+-- 
+-- **Note**: _This function only works on **BaseAnimatingOverlay** entites!_
+-- @function [parent=#Entity] SetLayerPlaybackRate
+-- @param  self
+-- @param  #number layerID The Layer ID.
+-- @param  #number rate The new playback rate.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the priority of given layer.
+-- 
+-- **Note**: _This function only works on **BaseAnimatingOverlay** entites!_
+-- @function [parent=#Entity] SetLayerPriority
+-- @param  self
+-- @param  #number layerID The Layer ID.
+-- @param  #number priority The new priority of the layer.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the layer weight. This influences how strongly the animation should be
+-- overriding the normal animations of the entity.
+-- @function [parent=#Entity] SetLayerWeight
+-- @param  self
+-- @param  #number layerID The Layer ID.
+-- @param  #number weight The new layer weight.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- This forces an entity to use the bone transformation behaviour from versions
+-- prior to 2014-07-08. This behaviour affects **Entity:EnableMatrix** and
+-- **Entity:SetModelScale** and is incorrect, therefore this function be used
+-- exclusively as a quick fix for old scripts that rely on it.
+-- @function [parent=#Entity] SetLegacyTransform
+-- @param  self
+-- @param  #boolean enabled Whether the entity should use the old bone transformation behaviour or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets angles relative to angles of **Entity:GetParent**.
+-- @function [parent=#Entity] SetLocalAngles
+-- @param  self
+-- @param  #Angle ang The local angle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the entity's angular velocity (rotation speed).
+-- @function [parent=#Entity] SetLocalAngularVelocity
+-- @param  self
+-- @param  #Angle angVel The angular velocity to set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets local position relative to the parented position. This is for use with
+-- **Entity:SetParent** to offset position.
+-- @function [parent=#Entity] SetLocalPos
+-- @param  self
+-- @param  #Vector pos The local position.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the entity's local velocity which is their velocity due to movement in
+-- the world from forces such as gravity. Does not include velocity from
+-- entity-on-entity collision or other world movement.
+-- 
+-- **Warning**: _Same as **Entity:SetAbsVelocity**, but clamps the given velocity,
+-- and is not recommended to be used because of that._
+-- @function [parent=#Entity] SetLocalVelocity
+-- @param  self
+-- @param  #Vector velocity The new velocity to set.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the Level Of Detail model to use with this entity. This may not work
+-- for all models if the model doesn't include any LOD sub models. This
+-- function works exactly like the clientside r_lod convar and takes priority
+-- over it.
+-- @function [parent=#Entity] SetLOD
+-- @param  self
+-- @param  #number lod The Level Of Detail model ID to use. -1 leaves the engine to automatically set the Level of Detail. _(Default: -1)_
+-- The Level Of Detail may range from 0 to 8, with 0 being the highest quality and 8 the lowest.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the rendering material override of the entity. To set a Lua material
+-- created with **CreateMaterial**, just prepend a "!" to the material name.
+-- 
+-- **Note**: _If you wish to override a single material on the model, use
+-- **Entity:SetSubMaterial** instead._
+-- 
+-- **Note**: _Please note that to apply materials to models, that material must
+-- have VertexLitGeneric shader. For that reason you cannot apply map textures
+-- onto models, map textures use a different material shader - LightmappedGeneric._
+-- @function [parent=#Entity] SetMaterial
+-- @param  self
+-- @param  #string materialName New material name. Use an empty string ("") to reset to the default materials.
+-- @param  #boolean forceMaterial Use it if you wish to apply material other than VertexLitGeneric (such as tools/toolswhite). _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the maximum health for entity. Note, that you can still set entity's
+-- health above this amount with **Entity:SetHealth**.
+-- @function [parent=#Entity] SetMaxHealth
+-- @param  self
+-- @param  #number maxhealth What the max health should be.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the model of the entity.
+-- @function [parent=#Entity] SetModel
+-- @param  self
+-- @param  #string modelName New model value.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Alter the model name returned by **Entity:GetModel**. Does not affect the
+-- entity's actual model.
+-- @function [parent=#Entity] SetModelName
+-- @param  self
+-- @param  #string modelname The new model name.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Scales the model of the entity, if the entity is a Player or an NPC the
+-- hitboxes will be scaled as well. For some entities, calling **Entity:Activate**
+-- after this will scale the collision bounds and PhysObj as well; be wary as
+-- there's no optimization being done internally and highly complex collision
+-- models might crash the server. To resize the entity along any axis, use
+-- **Entity:EnableMatrix** instead.
+-- 
+-- This is the same system used in TF2 for the Mann Vs Machine robots. If your
+-- old scales are wrong due to a recent update, use **Entity:SetLegacyTransform**
+-- as a quick fix.
+-- @function [parent=#Entity] SetModelScale
+-- @param  self
+-- @param  #number scale A float to scale the model by. 0 will not draw anything. < 0 will draw the model inverted.
+-- @param  #number deltaTime Transition time of the scale change, set to 0 to modify the scale right away. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the move collide type of the entity. The move collide is the way a
+-- physics object reacts to hitting an object - will it bounce, slide?
+-- @function [parent=#Entity] SetMoveCollide
+-- @param  self
+-- @param  #number moveCollideType The move collide type, see **MOVECOLLIDE\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the Movement Parent of an entity to another entity. Similar to
+-- **Entity:SetParent**, except the object's coordinates are not translated
+-- automatically before parenting.
+-- @function [parent=#Entity] SetMoveParent
+-- @param  self
+-- @param  #Entity Parent The entity to change this entity's Movement Parent to.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the entity's move type. This should be called before initializing the
+-- physics object on the entity, unless it will override SetMoveType such as
+-- **Entity:PhysicsInitBox**. Despite existing on client, it doesn't actually do
+-- anything on client.
+-- @function [parent=#Entity] SetMoveType
+-- @param  self
+-- @param  #number movetype The new movetype, see **MOVETYPE\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the mapping name of the entity.
+-- @function [parent=#Entity] SetName
+-- @param  self
+-- @param  #string mappingName The name to set for the entity.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Alters the entity's perceived serverside angle on the client.
+-- @function [parent=#Entity] SetNetworkAngles
+-- @param  self
+-- @param  #Angle angle Networked angle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This feature is deprecated.**  
+-- _You should avoid using it as it may be removed in a future version._
+-- _You should use **Entity:SetNWAngle** instead._
+-- 
+-- Sets a networked angle value at specified index on the entity. The value then
+-- can be accessed with **Entity:GetNetworkedAngle** both from client and server.
+-- 
+-- **Note**: _Running this function clientside will only set it clientside for
+-- the client it is called on._
+-- @function [parent=#Entity] SetNetworkedAngle
+-- @param  self
+-- @param  #string key The key to associate the value with.
+-- @param  #Angle value The value to set. _(Default: Angle(0,0,0))_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This feature is deprecated.**  
+-- _You should avoid using it as it may be removed in a future version._
+-- _You should use **Entity:SetNWBool** instead._
+-- 
+-- Sets a networked boolean value at specified index on the entity. The value
+-- then can be accessed with **Entity:GetNetworkedBool** both from client and server.
+-- 
+-- **Note**: _Running this function clientside will only set it clientside for
+-- the client it is called on._
+-- @function [parent=#Entity] SetNetworkedBool
+-- @param  self
+-- @param  #string key The key to associate the value with.
+-- @param  #boolean value The value to set. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This feature is deprecated.**  
+-- _You should avoid using it as it may be removed in a future version._
+-- _You should use **Entity:SetNWEntity** instead._
+-- 
+-- Sets a networked entity value at specified index on the entity. The value
+-- then can be accessed with **Entity:GetNetworkedEntity** both from client and server.
+-- 
+-- **Note**: _Running this function clientside will only set it clientside for
+-- the client it is called on._
+-- @function [parent=#Entity] SetNetworkedEntity
+-- @param  self
+-- @param  #string key The key to associate the value with.
+-- @param  #Entity value The value to set. _(Default: NULL)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This feature is deprecated.**  
+-- _You should avoid using it as it may be removed in a future version._
+-- _You should use **Entity:SetNWFloat** instead._
+-- 
+-- Sets a networked float value at specified index on the entity. The value
+-- then can be accessed with **Entity:GetNetworkedFloat** both from client and server.
+-- Seems to be the same as **Entity:GetNetworkedInt**.
+-- 
+-- **Note**: _Running this function clientside will only set it clientside for
+-- the client it is called on._
+-- @function [parent=#Entity] SetNetworkedFloat
+-- @param  self
+-- @param  #string key The key to associate the value with.
+-- @param  #number value The value to set. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This feature is deprecated.**  
+-- _You should avoid using it as it may be removed in a future version._
+-- _You should use **Entity:SetNWInt** instead._
+-- 
+-- Sets a networked integer value at specified index on the entity. The value
+-- then can be accessed with **Entity:GetNetworkedInt** both from client and server.
+-- 
+-- **Note**: _Running this function clientside will only set it clientside for
+-- the client it is called on._
+-- @function [parent=#Entity] SetNetworkedInt
+-- @param  self
+-- @param  #string key The key to associate the value with.
+-- @param  #number value The value to set. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets a networked number at the specified index on the entity.
+-- @function [parent=#Entity] SetNetworkedNumber
+-- @param  self
+-- @param  #any index The index that the value is stored in.
+-- @param  #number number The value to network.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This feature is deprecated.**  
+-- _You should avoid using it as it may be removed in a future version._
+-- _You should use **Entity:SetNWString** instead._
+-- 
+-- Sets a networked string value at specified index on the entity. The value
+-- then can be accessed with **Entity:GetNetworkedString** both from client and server.
+-- 
+-- **Note**: _Running this function clientside will only set it clientside for
+-- the client it is called on._
+-- @function [parent=#Entity] SetNetworkedString
+-- @param  self
+-- @param  #string key The key to associate the value with.
+-- @param  #string value The value to set. _(Default: "")_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This feature is deprecated.**  
+-- _You should avoid using it as it may be removed in a future version._
+-- _You should be using **Entity:SetNWVarProxy** instead._
+-- 
+-- Sets callback function to be called when given NWVar changes.
+-- 
+-- **Note**: _Currently this function only works for the NW2Var system
+-- (accessed by adding a 2 in between Networked and Var for most NetworkedVar
+-- functions), which will replace the original one at some point in the future._
+-- @function [parent=#Entity] SetNetworkedVarProxy
+-- @param  self
+-- @param  #string name The name of the NWVar to add callback for.
+-- @param  #function callback The function to be called when the NWVar changes.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This feature is deprecated.**  
+-- _You should avoid using it as it may be removed in a future version._
+-- _You should use **Entity:SetNWVector** instead._
+-- 
+-- Sets a networked vector value at specified index on the entity. The value
+-- then can be accessed with **Entity:GetNetworkedVector** both from client and server.
+-- 
+-- **Note**: _Running this function clientside will only set it clientside for
+-- the client it is called on._
+-- @function [parent=#Entity] SetNetworkedVector
+-- @param  self
+-- @param  #string key The key to associate the value with.
+-- @param  #Vector value The value to set. _(Default: Vector(0,0,0))_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Virtually changes entity position for clients. Does the same thing as
+-- **Entity:SetPos** when used serverside.
+-- @function [parent=#Entity] SetNetworkOrigin
+-- @param  self
+-- @param  #Vector origin The position to make clients think this entity is at.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the next time the clientside **ENTITY:Think** is called.
+-- @function [parent=#Entity] SetNextClientThink
+-- @param  self
+-- @param  #number nextthink The next time, relative to **CurTime**, to execute the **ENTITY:Think** clientside.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets if the entity's model should render at all. If set on the server, this
+-- entity will no longer network to clients, and for all intents and purposes
+-- cease to exist clientside.
+-- @function [parent=#Entity] SetNoDraw
+-- @param  self
+-- @param  #boolean shouldNotDraw true disables drawing.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets whether the entity is solid or not.
+-- @function [parent=#Entity] SetNotSolid
+-- @param  self
+-- @param  #boolean IsNotSolid True will make the entity not solid, false will make it solid.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets a networked angle value on the entity. The value can then be accessed
+-- with **Entity:GetNWAngle** both from client and server.
+-- 
+-- **Note**: _Running this function clientside will only set it for the client
+-- it is called on._
+-- @function [parent=#Entity] SetNWAngle
+-- @param  self
+-- @param  #string key The key to associate the value with.
+-- @param  #Angle value The value to set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets a networked boolean value on the entity. The value can then be accessed
+-- with **Entity:GetNWBool** both from client and server.
+-- 
+-- **Note**: _Running this function clientside will only set it for the client
+-- it is called on._
+-- @function [parent=#Entity] SetNWBool
+-- @param  self
+-- @param  #string key The key to associate the value with.
+-- @param  #boolean value The value to set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets a networked entity value on the entity. The value can then be accessed
+-- with **Entity:GetNWEntity** both from client and server.
+-- 
+-- **Note**: _Running this function clientside will only set it for the client
+-- it is called on._
+-- @function [parent=#Entity] SetNWEntity
+-- @param  self
+-- @param  #string key The key to associate the value with.
+-- @param  #Entity value The value to set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets a networked float (number) value on the entity. The value can then be
+-- accessed with **Entity:GetNWFloat** both from client and server. Unlike
+-- **Entity:SetNWInt**, floats don't have to be whole numbers.
+-- 
+-- **Note**: _Running this function clientside will only set it for the client
+-- it is called on._
+-- @function [parent=#Entity] SetNWFloat
+-- @param  self
+-- @param  #string key The key to associate the value with.
+-- @param  #number value The value to set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets a networked integer (whole number) value on the entity. The value can
+-- then be accessed with **Entity:GetNWInt** both from client and server. See
+-- **Entity:SetNWFloat** for numbers that aren't integers.
+-- 
+-- **Note**: _Running this function clientside will only set it for the client
+-- it is called on._
+-- @function [parent=#Entity] SetNWInt
+-- @param  self
+-- @param  #string key The key to associate the value with.
+-- @param  #number value The value to set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets a networked string value on the entity. The value can then be accessed
+-- with **Entity:GetNWString** both from client and server.
+-- 
+-- **Note**: _Running this function clientside will only set it for the client
+-- it is called on._
+-- @function [parent=#Entity] SetNWString
+-- @param  self
+-- @param  #string key The key to associate the value with.
+-- @param  #string value The value to set, up to 199 characters.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets a function to be called when the NWVar changes.
+-- 
+-- **Note**: _Currently this function only works for the NW2Var system
+-- (accessed by adding a 2 in between NW and Var for most NWVar functions),
+-- which will replace the original one at some point in the future._
+-- @function [parent=#Entity] SetNWVarProxy
+-- @param  self
+-- @param  #any key The key of the NWVar to add callback for.
+-- @param  #function callback The function to be called when the NWVar changes.
+-- It has 3 arguments:
+-- 
+-- * _#Entity ent_ : The entity.
+-- * _#string name_ : Name of the NWVar that has changed.
+-- * _#any oldval_ : The old value.
+-- * _#any newval_ : The new value.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets a networked vector value on the entity. The value can then be accessed
+-- with **Entity:GetNWVector** both from client and server.
+-- 
+-- **Note**: _Running this function clientside will only set it for the client
+-- it is called on._
+-- @function [parent=#Entity] SetNWVector
+-- @param  self
+-- @param  #string key The key to associate the value with.
+-- @return #Vector value The value to set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the owner of this entity, disabling all physics interaction with it.
+-- 
+-- **Note**: _This function is generally used to disable physics interactions
+-- on projectiles being fired by their owner, but can also be used for normal
+-- ownership in case physics interactions are not involved at all. The Gravity
+-- gun will be able to pick up the entity even if the owner can't collide with it._
+-- @function [parent=#Entity] SetOwner
+-- @param  self
+-- @param  #Entity owner The entity to be set as owner. _(Default: NULL)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the parent of this entity, making it move with its parent.
+-- @function [parent=#Entity] SetParent
+-- @param  self
+-- @param  #Entity parent The entity to parent to. Setting this to nil will clear the parent. _(Default: NULL)_
+-- @param  #number attachmentId The attachment id to use when parenting, defaults to -1 or whatever the parent had set previously. _(Default: -1)_
+-- 
+-- **Note**: _You must call **Entity:SetMoveType**(MOVETYPE\_NONE) on the child for this argument to have any effect!_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the parent of an entity to another entity with the given physics bone
+-- number. Similar to **Entity:SetParent**, except it is parented to a physbone.
+-- This function is useful mainly for ragdolls.
+-- 
+-- **Note**: _Despite this function being available server side, it doesn't
+-- actually do anything server side._
+-- @function [parent=#Entity] SetParentPhysNum
+-- @param  self
+-- @param  #number bone Physics bone number to attach to.
+-- Use 0 for objects with only one physics bone. See **Entity:GetPhysicsObjectNum**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets whether or not the given entity is persistent. A persistent entity will
+-- be saved on server shutdown and loaded back when the server starts up.
+-- Additionally, by default persistent entities cannot be grabbed with the
+-- physgun and tools cannot be used on them.
+-- 
+-- In sandbox, this can be set on an entity by opening the context menu, right
+-- clicking the entity, and choosing "Make Persistent".
+-- 
+-- **Note**: _Persistence can only be enabled with the sbox\_persist convar,
+-- which works as an identifier for the current set of persistent entities.
+-- An empty identifier (which is the default value) disables this feature._
+-- 
+-- **Note**: _This feature only works in Sandbox and Sandbox-derived gamemodes._
+-- @function [parent=#Entity] SetPersistent
+-- @param  self
+-- @param  #boolean persist Whether or not the entity should be persistent.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- When called on a constraint entity, sets the two physics objects to be
+-- constrained. Usage is not recommended as the Constraint library provides
+-- easier ways to deal with constraints.
+-- @function [parent=#Entity] SetPhysConstraintObjects
+-- @param  self
+-- @param  #PhysObj Phys1 The first physics object to be constrained.
+-- @param  #PhysObj Phys2 The second physics object to be constrained.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the player who gets credit if this entity kills something with physics
+-- damage within the time limit.
+-- 
+-- **Note**: _This can only be called on props._
+-- @function [parent=#Entity] SetPhysicsAttacker
+-- @param  self
+-- @param  #Player ent Player who gets the kills. Setting this to a non-player entity will not work.
+-- @return #number timeLimit Time in seconds until the entity forgets its physics attacker and prevents it from getting the kill credit. _(Default: 5)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Allows you to set how fast an entity's animation will play, with 1.0 being
+-- the default speed.
+-- @function [parent=#Entity] SetPlaybackRate
+-- @param  self
+-- @param  #number fSpeed How fast the animation will play.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Moves the entity to the specified position.
+-- 
+-- **Note**: _If the new position doesn't take effect right away, you can use
+-- **Entity:SetupBones** to force it to do so. This issue is especially common when
+-- trying to render the same entity twice or more in a single frame at different positions._
+-- 
+-- **Warning**: _Entities with **Entity:GetSolid** of SOLID\_BBOX will have their angles reset!_
+-- @function [parent=#Entity] SetPos
+-- @param  self
+-- @param  #Vector position The position to move the entity to.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the specified pose parameter to the specified value. You should call
+-- **Entity:InvalidateBoneCache** after calling this function.
+-- 
+-- **Note**: _Avoid calling this in draw hooks, especially when animating
+-- things, as it might cause visual artifacts._
+-- @function [parent=#Entity] SetPoseParameter
+-- @param  self
+-- @param  #string poseName Name of the pose parameter.
+-- @param  #number poseValue The value to set the pose to.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets whether an entity should be predictable or not. When an entity is set
+-- as predictable, its DT vars can be changed during predicted hooks. This is
+-- useful for entities which can be controlled by player input. Any datatable
+-- value that mismatches from the server will be overridden and a prediction
+-- error will be spewed. Weapons are predictable by default, and the drive
+-- system uses this function to make the controlled prop predictable as well.
+-- 
+-- **Note**: _This function resets the datatable variables everytime it's
+-- called, it should ideally be called when a player starts using the entity
+-- and when it stops._
+-- 
+-- **Note**: _Entities set as predictable with this function will be unmarked
+-- when the user lags and receives a full packet update, to handle such case
+-- visit **GM:NotifyShouldTransmit**._
+-- @function [parent=#Entity] SetPredictable
+-- @param  self
+-- @param  #boolean setPredictable Whether to make this entity predictable or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Prevents the server from sending any further information about the entity to
+-- a player.
+-- @function [parent=#Entity] SetPreventTransmit
+-- @param  self
+-- @param  #Player player The player to stop networking the entity to.
+-- @param  #boolean stopTransmitting true to stop the entity from networking, false to make it network again.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the bone angles. This is used alongside Kinect in
+-- **Entity:SetRagdollBuildFunction**, for more info see ragdoll_motion entity.
+-- @function [parent=#Entity] SetRagdollAng
+-- @param  self
+-- @param  #number boneid Bone ID.
+-- @param  #Angle pos Angle to set.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the function to build the ragdoll. This is used alongside Kinect, for
+-- more info see ragdoll_motion entity.
+-- @function [parent=#Entity] SetRagdollBuildFunction
+-- @param  self
+-- @param  #function func The build function.
+-- This function has one argument:
+-- 
+-- * _#Entity ragdoll_ : The ragdoll to build.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the bone position. This is used alongside Kinect in
+-- **Entity:SetRagdollBuildFunction**, for more info see ragdoll_motion entity.
+-- @function [parent=#Entity] SetRagdollPos
+-- @param  self
+-- @param  #number boneid Bone ID.
+-- @param  #Vector pos Position to set.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the render angles of the Entity.
+-- @function [parent=#Entity] SetRenderAngles
+-- @param  self
+-- @param  #Angle newAngles The new render angles to be set to.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the render bounds for the entity. For world space coordinates see **Entity:SetRenderBoundsWS**.
+-- @function [parent=#Entity] SetRenderBounds
+-- @param  self
+-- @param  #Vector mins The minimum corner of the bounds, relative to origin of the entity.
+-- @param  #Vector maxs The maximum corner of the bounds, relative to origin of the entity.
+-- @param  #Vector add If defined, adds this vector to maxs and subtracts this vector from mins. _(Default: Vector(0,0,0))_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the render bounds for the entity in world space coordinates. For
+-- relative coordinates see **Entity:SetRenderBounds**.
+-- @function [parent=#Entity] SetRenderBoundsWS
+-- @param  self
+-- @param  #Vector mins The minimum corner of the bounds, relative to origin of the world/map.
+-- @param  #Vector maxs The maximum corner of the bounds, relative to origin of the world/map.
+-- @param  #Vector add If defined, adds this vector to maxs and subtracts this vector from mins. _(Default: Vector(0,0,0))_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Used to specify a plane, past which an object will be visually clipped.
+-- @function [parent=#Entity] SetRenderClipPlane
+-- @param  self
+-- @param  #Vector planeNormal The normal of the plane. Anything behind the normal will be clipped.
+-- @param  #number planePosition The position of the plane.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Enables the use of clipping planes to "cut" objects.
+-- @function [parent=#Entity] SetRenderClipPlaneEnabled
+-- @param  self
+-- @param  #boolean enabled Enable or disable clipping planes.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets entity's render FX.
+-- @function [parent=#Entity] SetRenderFX
+-- @param  self
+-- @param  #number renderFX The new render FX to set. See **kRenderFx\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the render mode of the entity.
+-- @function [parent=#Entity] SetRenderMode
+-- @param  self
+-- @param  #number renderMode New render mode to set. See **RENDERMODE\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Set the origin in which the Entity will be drawn from.
+-- @function [parent=#Entity] SetRenderOrigin
+-- @param  self
+-- @param  #Vector newOrigin The new origin in world coordinates where the Entity's model will now be rendered from.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets a save value for an entity.
+-- @function [parent=#Entity] SetSaveValue
+-- @param  self
+-- @param  #string name Name of the save value to set.
+-- @param  #any value Value to set.
+-- @return #boolean Key successfully set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the entity's model sequence. If the specified sequence is already
+-- active, the animation will not be restarted. See **Entity:ResetSequence** for a
+-- function that restarts the animation even if it is already playing. In some 
+-- cases you want to run Entity:ResetSequenceInfo to make this function run.
+-- 
+-- **Note**: _This will not work properly if called directly after calling
+-- **Entity:SetModel**. Consider waiting until the next Tick._
+-- 
+-- **Note**: _Will not work on players due to the animations being reset every
+-- frame by the base gamemode animation system in **GM:CalcMainActivity**. For
+-- Players, use in **GM:UpdateAnimation** instead._
+-- @function [parent=#Entity] SetSequence
+-- @param  self
+-- @param  #number sequenceId The sequence to play. Also accepts strings.
+-- 
+-- **Note**: _If set to a string, the function will automatically call **Entity:LookupSequence** to retrieve the sequence ID as a number._
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets whether or not the entity should make a physics contact sound when it's
+-- been picked up by a player.
+-- @function [parent=#Entity] SetShouldPlayPickupSound
+-- @param  self
+-- @param  #boolean playsound True to play the pickup sound, false otherwise. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets if entity should create a server ragdoll on death or a client one.
+-- @function [parent=#Entity] SetShouldServerRagdoll
+-- @param  self
+-- @param  #boolean serverragdoll Set true if ragdoll should be created on server, false if on client.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the skin of the entity.
+-- @function [parent=#Entity] SetSkin
+-- @param  self
+-- @param  #number skinIndex Index of the skin to use.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the solidity of an entity.
+-- @function [parent=#Entity] SetSolid
+-- @param  self
+-- @param  #number solid_type The solid type. See the **SOLID\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets solid flag(s) for the entity. This overrides any other flags the entity
+-- might have had. See **Entity:AddSolidFlags** for adding flags.
+-- @function [parent=#Entity] SetSolidFlags
+-- @param  self
+-- @param  #number flags The flag(s) to set. See **FSOLID\_Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets whether the entity should use a spawn effect. See also **Entity:GetSpawnEffect**.
+-- 
+-- **Note**: _This function doesn't actually give the entity a spawn effect,
+-- but it's merely a networked bool._
+-- @function [parent=#Entity] SetSpawnEffect
+-- @param  self
+-- @param  #boolean spawnEffect Sets if we should show a spawn effect.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Overrides a single material on the model of this entity. To set a Lua
+-- material created with **CreateMaterial**, just prepend a "!" to the material name.
+-- @function [parent=#Entity] SetSubMaterial
+-- @param  self
+-- @param  #number index Index of the material to override, acceptable values are from 0 to 31. _(Default: nil)_
+-- Indexes are by **Entity:GetMaterials**, but you have to subtract 1 from them.
+-- If called with no arguments, all sub materials will be reset.
+-- @param  #string material The material to override the default one with. Set to nil to revert to default material. _(Default: nil)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Changes the table that can be accessed by indexing an entity. Each entity
+-- starts with its own table by default.
+-- @function [parent=#Entity] SetTable
+-- @param  self
+-- @param  #table tab Table for the entity to use.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- When this flag is set the entity will only transmit to the player when its
+-- parent is transmitted. This is useful for things like viewmodel attachments
+-- since without this flag they will transmit to everyone (and cause the
+-- viewmodels to transmit to everyone too).
+-- 
+-- **Note**: _In the case of scripted entities, this will override
+-- **ENTITY:UpdateTransmitState**._
+-- @function [parent=#Entity] SetTransmitWithParent
+-- @param  self
+-- @param  #boolean onoff Will set the TransmitWithParent flag on or off.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Marks the entity as a trigger, so it will generate **ENTITY:StartTouch**,
+-- **ENTITY:Touch** and **ENTITY:EndTouch** callbacks. Internally this is stored as
+-- **FSOLID\_Enums** flag.
+-- @function [parent=#Entity] SetTrigger
+-- @param  self
+-- @param  #boolean maketrigger Make the entity trigger or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets whether an entity can be unfrozen, meaning that it cannot be unfrozen
+-- using the physgun.
+-- @function [parent=#Entity] SetUnFreezable
+-- @param  self
+-- @param  #boolean freezable True to make the entity unfreezable, false otherwise. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Forces the entity to reconfigure its bones. You might need to call this
+-- after changing your model's scales or when manually drawing the entity
+-- multiple times at different positions.
+-- 
+-- **Note**: _This calls the BuildBonePositions callback added via
+-- **Entity:AddCallback**, so avoid calling this function inside it to prevent an
+-- infinite loop._
+-- @function [parent=#Entity] SetupBones
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Initializes the class names of an entity's phoneme mappings (mouth movement
+-- data). This is called by default with argument "phonemes" when a flex-based
+-- entity (such as an NPC) is created.
+-- @function [parent=#Entity] SetupPhonemeMappings
+-- @param  self
+-- @param  #string fileRoot The file prefix of the phoneme mappings (relative to "garrysmod/expressions/").
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the use type of an entity, affecting how often **ENTITY:Use** will be
+-- called for Lua entities.
+-- @function [parent=#Entity] SetUseType
+-- @param  self
+-- @param  #number useType The use type to apply to the entity. Uses **\_USE Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Allows to quickly set variable to entity's Entity:GetTable.
+-- 
+-- **Note**: _This will not network the variable to client(s). You want
+-- **Entity:SetNWString** and similar functions for that._
+-- @function [parent=#Entity] SetVar
+-- @param  self
+-- @param  #any key Key of the value to set.
+-- @param  #any value Value to set the variable to.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the entity's velocity.
+-- 
+-- **Note**: _Actually binds to **CBaseEntity::SetBaseVelocity**() which sets the
+-- entity's velocity due to forces applied by other entities._
+-- 
+-- **Warning**: _If applied to a player, this will actually **ADD** velocity,
+-- not set it._
+-- @function [parent=#Entity] SetVelocity
+-- @param  self
+-- @param  #Vector velocity The new velocity to set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the model and associated weapon to this viewmodel entity. This is used
+-- internally when the player switches weapon.
+-- 
+-- **Note**: _View models are not drawn without a weapons associated to them._
+-- 
+-- **Warning**: _This will silently fail if the entity is not a viewmodel._
+-- @function [parent=#Entity] SetWeaponModel
+-- @param  self
+-- @param  #string viewModel The model string to give to this viewmodel.
+-- Example: "models/weapons/c_smg1.mdl"
+-- @param  #Weapon weapon The weapon entity to associate this viewmodel to. _(Default: NULL)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the amount of skins the entity has.
+-- @function [parent=#Entity] SkinCount
+-- @param  self
+-- @return #number The skin count.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Moves the model instance from the source entity to this entity. This can be
+-- used to transfer decals that have been applied on one entity to another.
+-- Both entities must have the same model.
+-- @function [parent=#Entity] SnatchModelInstance
+-- @param  self
+-- @param  #Entity srcEntity Entity to move the model instance from.
+-- @return #boolean Whether the operation was successful or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Initializes the entity and starts its networking. If called on a player, it
+-- will respawn them. This calls **ENTITY:Initialize** on Lua-defined entities.
+-- @function [parent=#Entity] Spawn
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Starts a "looping" sound. As with any other sound playing methods, this
+-- function expects the sound file to be looping itself and will not
+-- automatically loop a non looping sound file as one might expect. This
+-- function is almost identical to **CreateSound**, with the exception of the sound
+-- being created in the STATIC channel and with normal attenuation.
+-- See also **Entity:StopLoopingSound**.
+-- @function [parent=#Entity] StartLoopingSound
+-- @param  self
+-- @param  #string sound Sound to play. Can be either a sound script or a filepath.
+-- @return #number The ID number of started sound starting with 0, or -1 if we failed for some reason.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Starts a motion controller in the physics engine tied to this entity's
+-- PhysObj, which enables the use of **ENTITY:PhysicsSimulate**. The motion
+-- controller can later be destroyed via **Entity:StopMotionController**. Motion
+-- controllers are used internally to control other Entities' PhysObjects, such
+-- as the Gravity Gun, +use pickup and the Physics Gun. This function should be
+-- called every time you recreate the Entity's PhysObj. Or alternatively you
+-- should call **Entity:AddToMotionController** on the new PhysObj.  
+-- Also see **Entity:AddToMotionController** and **Entity:RemoveFromMotionController**.
+-- 
+-- **Note**: _Only works on a scripted Entity of anim type._
+-- @function [parent=#Entity] StartMotionController
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Stops all particle effects parented to the entity and immediately destroys them.
+-- @function [parent=#Entity] StopAndDestroyParticles
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Stops a sound created by Entity:StartLoopingSound.
+-- @function [parent=#Entity] StopLoopingSound
+-- @param  self
+-- @param  #number id The sound ID returned by **Entity:StartLoopingSound**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Stops the motion controller created with **Entity:StartMotionController**.
+-- @function [parent=#Entity] StopMotionController
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Stops all particle effects parented to the entity. This is ran automatically
+-- on every client by **Entity:StopParticles** if called on the server.
+-- @function [parent=#Entity] StopParticleEmission
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Stops any attached to the entity .pcf particles using **ParticleEffectAttach**.
+-- On client, this is the same as **Entity:StopParticleEmission**. (and you should
+-- use **Entity:StopParticleEmission** instead)  
+-- On server, this is the same as running **Entity:StopParticleEmission** on
+-- every client.
+-- @function [parent=#Entity] StopParticles
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Stops all particle effects parented to the entity with given name.
+-- @function [parent=#Entity] StopParticlesNamed
+-- @param  self
+-- @param  #string name The name of the particle to stop.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Stops all particle effects parented to the entity with given name on given attachment.
+-- @function [parent=#Entity] StopParticlesWithNameAndAttachment
+-- @param  self
+-- @param  #string name The name of the particle to stop.
+-- @param  #number attachment The attachment of the entity to stop particles on.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Stops emitting the given sound script from the entity, especially useful for
+-- looping sound scripts.
+-- 
+-- **Note**: _This only works with sound scripts (**sound.Add**), using a file path
+-- will not work!_
+-- @function [parent=#Entity] StopSound
+-- @param  self
+-- @param  #string soundscript The name of the sound script to stop playback of.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Applies the specified amount of damage to the entity with **DMG\_GENERIC** flag.
+-- @function [parent=#Entity] TakeDamage
+-- @param  self
+-- @param  #number damageAmount The amount of damage to be applied.
+-- @param  #Entity attacker The entity that initiated the attack that caused the damage.
+-- @param  #Entity inflictor The entity that applied the damage, eg. a weapon.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Applies the damage specified by the damage info to the entity.
+-- @function [parent=#Entity] TakeDamageInfo
+-- @param  self
+-- @param  #CTakeDamageInfo damageInfo The damage to apply.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Applies physics damage to the entity.
+-- @function [parent=#Entity] TakePhysicsDamage
+-- @param  self
+-- @param  #CTakeDamageInfo dmginfo The damage to apply.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Check if the given position or entity is within this entity's PVS.
+-- 
+-- **Note**: _The function won't take in to account **AddOriginToPVS** and the like._
+-- @function [parent=#Entity] TestPVS
+-- @param  self
+-- @param  #any testPoint Entity or Vector to test against.
+-- If an entity is given, this function will test using its bounding box.
+-- @return #boolean True if the testPoint is within our PVS.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the ID of a PhysObj attached to the given bone. To be used with
+-- **Entity:GetPhysicsObjectNum**. See **Entity:TranslatePhysBoneToBone** for
+-- reverse function.
+-- @function [parent=#Entity] TranslateBoneToPhysBone
+-- @param  self
+-- @param  #number boneID The ID of a bone to look up the "physics root" bone of.
+-- @return #number The PhysObj ID of the given bone. -1 if we somehow cannot translate.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the boneID of the bone the given PhysObj is attached to. See
+-- **Entity:TranslateBoneToPhysBone** for reverse function.
+-- @function [parent=#Entity] TranslatePhysBoneToBone
+-- @param  self
+-- @param  #number physNum The PhysObj number on the entity.
+-- @return #number The boneID of the bone the PhysObj is attached to.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Activates the entity, as if a player pressed the Use key (Default E) on it.
+-- @function [parent=#Entity] Use
+-- @param  self
+-- @param  #Player Activator The player to credit with activating the entity.
+-- @param  #Entity Caller Used when an entity instead of a player should trigger the use.
+-- @param  #number UseType The type of use to trigger. See **USE\_Enums**.
+-- @param  #number Integer You can usually set this to 1.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Animations will be handled purely clientside instead of a fixed animtime,
+-- enabling interpolation. This does not affect layers and gestures.
+-- 
+-- **Note**: _Does nothing on server._
+-- @function [parent=#Entity] UseClientSideAnimation
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Enables or disables trigger bounds. This will give the entity a "trigger box"
+-- that extends around its bounding box by iBloatSize units in X/Y and
+-- (iBloatSize/2) in +Z (-Z remains the same). The trigger box is world aligned
+-- and will work regardless of the object's solidity and collision group. It
+-- will be visible as a light blue box when the ent_bbox console command is used.
+-- Valve use trigger boxes for all pickup items. Their bloat size is 24, a
+-- surprisingly large figure.
+-- @function [parent=#Entity] UseTriggerBounds
+-- @param  self
+-- @param  #boolean enable Should we enable or disable the bounds.
+-- @param  #number bloat The distance/size of the trigger bounds. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the index of this view model, it can be used to identify which one
+-- of the player's view models this entity is.
+-- @function [parent=#Entity] ViewModelIndex
+-- @param  self
+-- @return #number View model index, ranges from 0 to 2, nil if the entity is not a view model.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether the target/given entity is visible from the this entity.
+-- This is meant to be used only with NPCs.  
+-- Differences from a simple trace include:
+-- 
+-- * If target has FL\_NOTARGET, returns false
+-- * If ai_ignoreplayers is turned on and target is a player, returns false
+-- * Reacts to ai\_LOS\_mode:
+--  * If 1, does a simple trace with COLLISION\_GROUP\_NONE and MASK\_BLOCKLOS
+--  * If not, does a trace with MASK\_BLOCKLOS\_AND\_NPCS ( - CONTENTS\_BLOCKLOS is target is player ) and a custom LOS filter. (**CTraceFilterLOS**)
+-- * Returns true if hits a vehicle the target is driving
+-- @function [parent=#Entity] Visible
+-- @param  self
+-- @param  #Entity target Entity to check for visibility to.
+-- @return #boolean If the entities can see each other.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns true if supplied vector is visible from the entity's line of sight.
+-- This is achieved similarly to a trace.
+-- @function [parent=#Entity] VisibleVec
+-- @param  self
+-- @param  #Vector pos The position to check for visibility.
+-- @return #boolean Within line of sight.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns an integer that represents how deep in water the entity is.
+-- 
+-- * 0 - The entity isn't in water.
+-- * 1 - Slightly submerged (at least to the feet).
+-- * 2 - The majority of the entity is submerged (at least to the waist).
+-- * 3 - Completely submerged.
+-- @function [parent=#Entity] WaterLevel
+-- @param  self
+-- @return #number The water level.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the activity of the entity's active weapon.
+-- 
+-- **Note**: _This does nothing on the client._
+-- 
+-- **Note**: _Only works for CBaseCombatCharacter entities, which includes
+-- players and NPCs._
+-- @function [parent=#Entity] Weapon_SetActivity
+-- @param  self
+-- @param  #number act Activity number. See **ACT\_Enums**.
+-- @param  #number duration How long the animation should take in seconds.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Calls and returns **WEAPON:TranslateActivity** on the weapon the entity (player
+-- or NPC) carries. Despite existing on client, it doesn't actually do anything
+-- on client.
+-- @function [parent=#Entity] Weapon_TranslateActivity
+-- @param  self
+-- @param  #number act The activity to translate.
+-- @return #number The translated activity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns two vectors representing the minimum and maximum extent of the
+-- entity's bounding box.
+-- @function [parent=#Entity] WorldSpaceAABB
+-- @param  self
+-- @return #Vector, #Vector The minimum and maximum vector for the entity's bounding box.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the center of the entity according to its collision model.
+-- @function [parent=#Entity] WorldSpaceCenter
+-- @param  self
+-- @return #Vector The center of the entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Converts a worldspace vector into a vector local to an entity.
+-- @function [parent=#Entity] WorldToLocal
+-- @param  self
+-- @param  #Vector wpos The world vector.
+-- @return #Vector The local vector.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Converts world angles to local angles (local to the entity).
+-- @function [parent=#Entity] WorldToLocalAngles
+-- @param  self
+-- @param  #Angle ang The world angles.
+-- @return #Angle The local angles.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type File
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type IGModAudioChannel
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type IMaterial
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type IMesh
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type IRestore
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type ISave
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type ITexture
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type IVideoWriter
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type MarkupObject
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type NPC
+-- @extends Entity
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type NextBot
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type Panel
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type PathFollower
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type PhysCollide
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type PhysObj
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type Player
+-- @extends Entity
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type ProjectedTexture
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type Schedule
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type Stack
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type Task
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type Tool
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type VMatrix
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type Vector
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type Vehicle
+-- @extends Entity
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type Weapon
+-- @extends Entity
+-- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_ | _Server_
+-- 
+-- @type bf_read
+-- @field 
+
 
 return nil

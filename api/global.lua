@@ -853,11 +853,6 @@
 -- @field[parent = #global] util#util util preloaded module
 
 ------------------------------------------------------------------------------
--- util.worldpicker is for picking an entity in the world while GUI is open.
--- This is a global variable which holds the preloaded @{util.worldpicker} module.
--- @field[parent = #global] util.worldpicker#util.worldpicker util.worldpicker preloaded module
-
-------------------------------------------------------------------------------
 -- The vgui library allows you to script and create your own panels using
 -- Valve's GUI system.
 -- This is a global variable which holds the preloaded @{vgui} module.
@@ -1237,7 +1232,7 @@
 -- @param  #string default Default value of the ConVar.
 -- @param  #boolean shouldsave Should the ConVar be saved across sessions. _(Default: true)_
 -- @param  #boolean userinfo Should the **ConVar** and its containing data be sent to the server when it has changed. _(Default: false)_  
--- This make the convar accessible from server using **Player:GetInfoNum** and similar functions.
+-- This makes the convar accessible from server using **Player:GetInfoNum** and similar functions.
 -- @param  #string helptext Help text to display in the console. _(Default: "")_
 -- @return #ConVar Created convar.
 
@@ -1422,10 +1417,10 @@
 -- Makes the panel (usually an input of sorts) respond to changes in console
 -- variables by adding next functions to the panel:
 -- 
--- * Panel:SetConVar
--- * Panel:ConVarChanged
--- * Panel:ConVarStringThink
--- * Panel:ConVarNumberThink
+-- * **Panel:SetConVar**
+-- * **Panel:ConVarChanged**
+-- * **Panel:ConVarStringThink**
+-- * **Panel:ConVarNumberThink**
 -- 
 -- The console variable value is saved in the m_strConVar property of the panel.
 -- 
@@ -5759,7 +5754,7 @@
 -- @param  #Entity ent The entity to attach the control point to.
 -- @param  #number partAttachment See **PATTACH\_ Enums**.
 -- @param  #number entAttachment The attachment ID on the entity to attach the particle system to. _(Default: 0)_
--- @param  #Vector offset The offset from the Entity:GetPos of the entity we are attaching this CP to. _(Default: Vector(0, 0, 0))_
+-- @param  #Vector offset The offset from the **Entity:GetPos** of the entity we are attaching this CP to. _(Default: Vector(0, 0, 0))_
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -6653,6 +6648,7 @@
 -- @function [parent=#CUserCmd] SetForwardMove
 -- @param  self
 -- @param  #number speed The new speed to request.
+-- The client will not be able to move faster than their set walk/sprint speed.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -6781,7 +6777,7 @@
 -- @param  self
 -- @return #number The integer value of the console variable.
 -- If it fails to convert to an integer, it will return 0.
--- All float/decimal values will be rounded down. (with math.floor)
+-- All float/decimal values will be rounded down. (with **math.floor**)
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -7217,8 +7213,11 @@
 -- Plays a sound on an entity. If run clientside, the sound will only be heard
 -- locally. If used on a player or NPC character with the mouth rigged, the
 -- character will "lip-sync". This does not work with all sound files. It is
--- recommended to use sound scripts (see sound.Add) over direct file paths.
+-- recommended to use sound scripts (see **sound.Add**) over direct file paths.
 -- This will allow you to use **Entity:StopSound** to stop the played sound scripts.
+-- 
+-- **Note**: _When using this function with weapons, use the Weapon itself as
+-- the entity, not its owner!_
 -- @function [parent=#Entity] EmitSound
 -- @param  self
 -- @param  #string soundName The name of the sound to be played.
@@ -7356,6 +7355,9 @@
 -- 
 -- **Note**: _If the entity vibrates, you probably need to run
 -- **Entity:SetPredictable**(false) clientside._
+-- 
+-- **Warning**: _This function will not work if the target bone's parent bone
+-- is invalid or if the bone is not used by VERTEX LOD0._
 -- @function [parent=#Entity] FollowBone
 -- @param  self
 -- @param  #Entity parent The entity to follow the bone of. _(Default: NULL)_
@@ -7433,7 +7435,7 @@
 -- nothing if the attachment does not exist.
 -- 
 -- **Note**: _The update rate of this function is limited by the setting of
--- ENT.AutomaticFrameAdvance for Scripted Entities!_
+-- **ENT.AutomaticFrameAdvance** for Scripted Entities!_
 -- @function [parent=#Entity] GetAttachment
 -- @param  self
 -- @param  #number attachmentId The internal ID of the attachment.
@@ -7604,7 +7606,7 @@
 -- Gets the children of the entity - that is, every entity whose move parent is
 -- this entity.
 -- 
--- **Note**: _This function returns Entity:SetMoveParent children, NOT **Entity:SetParent**!_
+-- **Note**: _This function returns **Entity:SetMoveParent** children, NOT **Entity:SetParent**!_
 -- _**Entity:SetParent** however also calls **Entity:SetMoveParent**._
 -- _This means that some entities in the returned list might have a NULL **Entity:GetParent**._
 -- _This also means that using this function on players will return their weapons on the client but not the server._
@@ -7992,6 +7994,7 @@
 -- 
 -- An interface for accessing internal key values on entities. This function
 -- returns variables created with **DEFINE\_KEYFIELD** in C++ entities.
+-- See **Entity:GetSaveTable** for a more detailed explanation.
 -- @function [parent=#Entity] GetInternalVariable
 -- @param  self
 -- @param  #string VariableName Name of variable corresponding to an entity save value.
@@ -9978,7 +9981,7 @@
 -- 
 -- Sets the collision bounds for the entity, which are used for triggers
 -- (**Entity:SetTrigger**, **ENTITY:Touch**), determining if rendering is necessary
--- clientside, and collision (If Entity:SetSolid set as **SOLID\_BBOX**).
+-- clientside, and collision (If **Entity:SetSolid** set as **SOLID\_BBOX**).
 -- 
 -- Input bounds are relative to **Entity:GetPos**! See also **Entity:SetCollisionBoundsWS**.
 -- @function [parent=#Entity] SetCollisionBounds
@@ -10691,6 +10694,12 @@
 -- _Client_ | _Server_
 -- 
 -- Sets the parent of this entity, making it move with its parent.
+-- 
+-- **Note**: _This does not work on the world._
+-- 
+-- **Warning**: _This can cause undefined physics behaviour when used on
+-- entities that don't support parenting. See the Valve developer wiki for
+-- more information._
 -- @function [parent=#Entity] SetParent
 -- @param  self
 -- @param  #Entity parent The entity to parent to. Setting this to nil will clear the parent. _(Default: NULL)_
@@ -10940,7 +10949,7 @@
 -- Sets the entity's model sequence. If the specified sequence is already
 -- active, the animation will not be restarted. See **Entity:ResetSequence** for a
 -- function that restarts the animation even if it is already playing. In some 
--- cases you want to run Entity:ResetSequenceInfo to make this function run.
+-- cases you want to run **Entity:ResetSequenceInfo** to make this function run.
 -- 
 -- **Note**: _This will not work properly if called directly after calling
 -- **Entity:SetModel**. Consider waiting until the next Tick._
@@ -11096,7 +11105,7 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- Allows to quickly set variable to entity's Entity:GetTable.
+-- Allows to quickly set variable to entity's **Entity:GetTable**.
 -- 
 -- **Note**: _This will not network the variable to client(s). You want
 -- **Entity:SetNWString** and similar functions for that._
@@ -11108,7 +11117,8 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- Sets the entity's velocity.
+-- Sets the entity's velocity. For entities with physics, consider using
+-- **PhysObj:SetVelocity** on the PhysObj of the entity.
 -- 
 -- **Note**: _Actually binds to **CBaseEntity::SetBaseVelocity**() which sets the
 -- entity's velocity due to forces applied by other entities._
@@ -11201,7 +11211,7 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- Stops a sound created by Entity:StartLoopingSound.
+-- Stops a sound created by **Entity:StartLoopingSound**.
 -- @function [parent=#Entity] StopLoopingSound
 -- @param  self
 -- @param  #number id The sound ID returned by **Entity:StartLoopingSound**.
@@ -11376,7 +11386,7 @@
 -- * If ai_ignoreplayers is turned on and target is a player, returns false
 -- * Reacts to ai\_LOS\_mode:
 --  * If 1, does a simple trace with COLLISION\_GROUP\_NONE and MASK\_BLOCKLOS
---  * If not, does a trace with MASK\_BLOCKLOS\_AND\_NPCS ( - CONTENTS\_BLOCKLOS is target is player ) and a custom LOS filter. (**CTraceFilterLOS**)
+--  * If not, does a trace with MASK\_BLOCKLOS\_AND\_NPCS ( - CONTENTS\_BLOCKLOS is target is player) and a custom LOS filter. (**CTraceFilterLOS**)
 -- * Returns true if hits a vehicle the target is driving
 -- @function [parent=#Entity] Visible
 -- @param  self
@@ -11470,7 +11480,7 @@
 -- _Client_ | _Server_
 -- 
 -- This is the file object. It used used primarily to read or write binary data
--- from files. The object is returned by file.Open.
+-- from files. The object is returned by **file.Open**.
 -- @type File
 
 -------------------------------------------------------------------------------
@@ -15144,7 +15154,7 @@
 -- **Note**: _This function does NOT evaluate expression (ex: allow you to
 -- pass variables from JavaScript (JS) to Lua context). Because a return value
 -- is nil/no value (a.k.a. void). If you wish to pass/return values from JS to
--- Lua, you may want to use DHTML.AddFunction function to accomplish that job._
+-- Lua, you may want to use **DHTML.AddFunction** function to accomplish that job._
 -- @function [parent=#Panel] RunJavascript
 -- @param  self
 -- @param  #string js Specify JavaScript code to be executed.
@@ -15565,7 +15575,8 @@
 -- @param  self
 -- @param  #string ModelPath The path of the model to set.
 -- @param  #number skin The skin to set. _(Default: 0)_
--- @param  #string bodygroups The body groups to set. Each single-digit number in the string represents a separate bodygroup, up to 9 in total. _(Default: "")_
+-- @param  #string bodygroups The body groups to set. _(Default: "")_
+-- Each single-digit number in the string represents a separate bodygroup, up to 9 in total.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -15696,7 +15707,7 @@
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
--- Sets the size of the panel. Calls Panel:OnSizeChanged and marks this panel
+-- Sets the size of the panel. Calls **Panel:OnSizeChanged** and marks this panel
 -- for layout (**Panel:InvalidateLayout**). See also **Panel:SetWidth** and **Panel:SetHeight**.
 -- 
 -- **Note**: _If you wish to position and re-size panels without much guesswork and
@@ -20360,7 +20371,7 @@
 -- _Client_
 -- 
 -- Returns where on the screen the specified position vector would appear. A
--- related function is gui.ScreenToVector, which converts a 2D coordinate to a
+-- related function is **gui.ScreenToVector**, which converts a 2D coordinate to a
 -- 3D direction.
 -- 
 -- **Note**: _Should be called from a 3D rendering environment or after
@@ -21068,7 +21079,7 @@
 -- _Client_ | _Server_
 -- 
 -- Sets the hold type of the weapon. This function also calls
--- **WEAPON:SetWeaponHoldType** and properly networks it to all clients.
+-- **Weapon:SetWeaponHoldType** and properly networks it to all clients.
 -- 
 -- **Note**: _This only works on scripted weapons._
 -- @function [parent=#Weapon] SetHoldType

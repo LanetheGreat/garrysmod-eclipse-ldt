@@ -161,7 +161,7 @@
 -- @function [parent=#util] Decompress
 -- @param  #string compressedString The compressed string to decompress.
 -- @param  #number maxSize The maximal size in bytes it will decompress. _(Default: nil)_
--- @return #string The original, decompressed string.
+-- @return #string The original, decompressed string or an empty string on failure or invalid input.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -212,9 +212,10 @@
 -- * _ss
 -- @function [parent=#util] GetModelInfo
 -- @param  #string mdl Model path.
--- @return #table The model info.
--- * _#number SkinCount_
--- * _#string KeyValues_ : ( Constraint Info, valve KeyValues format )
+-- @return #table The model info as a table with the following keys:
+-- 
+-- * _#number SkinCount_ : Identical to **Entity:SkinCount**.
+-- * _#string KeyValues_ : Valve key-value formatted info about the model (Constraint Info, etc)
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_
@@ -260,7 +261,8 @@
 -- Returns data of a surface property at given ID.
 -- @function [parent=#util] GetSurfaceData
 -- @param  #number id Surface property ID. You can get it from **TraceResult structure**.
--- @return #table The data or no value if there is no valid surface property at given index. See **SurfacePropertyData structure**.
+-- @return #table The data or no value if there is no valid surface property at given index.
+-- See **SurfacePropertyData structure**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -349,6 +351,24 @@
 -- _Client_ | _Server_
 -- 
 -- Checks if the specified model is valid.
+-- A model is considered invalid in following cases:
+-- 
+-- * Starts with a space or maps
+-- * Doesn't start with models
+-- * Contains any of the following:
+--  * \_gestures
+--  * \_animations
+--  * \_postures
+--  * \_gst
+--  * \_pst
+--  * \_shd
+--  * \_ss
+--  * \_anm
+--  * .bsp
+--  * cs\_fix
+-- * On server: If the model isn't precached, or if the model file doesn't exist on the disk
+-- * If precache failed
+-- * Model is the error model
 -- @function [parent=#util] IsValidModel
 -- @param  #string modelName Name/Path of the model to check.
 -- @return #boolean Whether the model is valid or not. Returns false clientside if the model is not precached by the server.
@@ -393,9 +413,11 @@
 -- _Client_ | _Menu_ | _Server_
 -- 
 -- Converts a KeyValue string to a Lua table.
+-- 
+-- **Note**: _Table keys will not repeat, see **util.KeyValuesToTablePreserveOrder**._
 -- @function [parent=#util] KeyValuesToTable
 -- @param  #string keyValues The KeyValue string to convert.
--- @param  #boolean usesEscapeSequences _(Default: false)_
+-- @param  #boolean usesEscapeSequences If set to true, will replace \t, \n, \" and \\\\ in the input text with their escaped variants. _(Default: false)_
 -- @param  #boolean preserveKeyCase Whether we should preserve key case or not. _(Default: false)_
 -- @return #table The converted table.
 
@@ -403,12 +425,9 @@
 -- _Client_ | _Menu_ | _Server_
 -- 
 -- Similar to **util.KeyValuesToTable** but it also preserves order of keys.
--- 
--- **Note**: _This creates a table of the same structure, but replaces keys
--- with a table containing their value and their order._
 -- @function [parent=#util] KeyValuesToTablePreserveOrder
 -- @param  #string keyValues The KeyValue string to convert.
--- @param  #boolean usesEscapeSequences _(Default: false)_
+-- @param  #boolean usesEscapeSequences If set to true, will replace \t, \n, \" and \\\\ in the input text with their escaped variants. _(Default: false)_
 -- @param  #boolean preserveKeyCase Whether we should preserve key case or not. _(Default: false)_
 -- @return #table The converted table.
 
@@ -587,7 +606,6 @@
 -- @param  #number textureRes The resolution of trails texture.
 -- A good value can be calculated using this formula: 1 / ( startWidth + endWidth ) * 0.5
 -- @param  #string texture Path to the texture to use as a trail.
--- **Note**: _You should also include the ".vmt" or the game WILL crash!_
 -- @return #Entity Entity of created trail. (env\_spritetrail)
 
 -------------------------------------------------------------------------------
@@ -629,10 +647,10 @@
 -- 
 -- Converts a table to a JSON string.
 -- 
+-- **Warning**: _All integers will be converted to decimals (5 -> 5.0)._
+-- 
 -- **Warning**: _All keys are strings in the JSON format, so all keys will be
 -- converted to strings!_
--- 
--- **Warning**: _All integers will be converted to decimals (5 -> 5.0)._
 -- @function [parent=#util] TableToJSON
 -- @param  #table table Table to convert.
 -- @param  #boolean prettyPrint Format and indent the JSON. _(Default: false)_
@@ -710,5 +728,10 @@
 -- @function [parent=#util] TypeToString
 -- @param  #any input What to convert.
 -- @return #string Converted string.
+
+------------------------------------------------------------------------------
+-- Utility functions.
+-- This is a submodule variable which holds the preloaded @{worldpicker} module.
+-- @field[parent = #util] worldpicker#worldpicker worldpicker preloaded module
 
 return nil

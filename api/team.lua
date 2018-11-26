@@ -130,7 +130,7 @@
 -- 
 -- Sets valid spawnpoint classes for use by a team.
 -- 
--- **Note**: _GM.TeamBased must be set to true for this to work._
+-- **Note**: _**GM.TeamBased** must be set to true for this to work._
 -- @function [parent=#team] SetSpawnPoint
 -- @param  #number index Index of the team.
 -- @param  #any classes A spawnpoint classname or table of spawnpoint classnames.

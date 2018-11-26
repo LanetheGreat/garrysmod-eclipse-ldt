@@ -960,9 +960,8 @@
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
--- Sets the material to be used in any upcoming render operation using the Lib library.
--- 
--- Not to be confused with **surface.SetMaterial**.
+-- Sets the material to be used in any upcoming render operation using the
+-- render library. Not to be confused with **surface.SetMaterial**.
 -- 
 -- **Note**: _This is a rendering function that requires a 3D rendering context._
 -- _This means that it will only work in hooks with a 3D rendering context._

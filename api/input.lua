@@ -21,6 +21,14 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_
 -- 
+-- Gets the button code from a button name. This is opposite of **input.GetKeyName**.
+-- @function [parent=#input] GetKeyCode
+-- @param  #string button The internal button name, such as "e" or "shift".
+-- @return #number The button code, see **BUTTON\_CODE\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
 -- Gets the button name from a numeric button code. The name needs to be
 -- translated with **language.GetPhrase** before being displayed.
 -- 
@@ -152,10 +160,8 @@
 -- 
 -- Returns whether a mouse key was double pressed in the same frame this
 -- function was called. If this function returns true, **input.WasMousePressed**
--- will return false.
--- 
--- This function only works in Move hooks, and will detect mouse events even in
--- main menu or when a typing in a text field.
+-- will return false. This function only works in Move hooks, and will detect
+-- mouse events even in main menu or when a typing in a text field.
 -- @function [parent=#input] WasMouseDoublePressed
 -- @param  #number button The mouse button to test, see **MOUSE\_ Enums**.
 -- @return #boolean Whether the mouse key was double pressed or not.
@@ -165,12 +171,20 @@
 -- 
 -- Returns whether a mouse key was initially pressed in the same frame this
 -- function was called. If **input.WasMouseDoublePressed** returns true, this
--- function will return false.
--- 
--- This function only works in Move hooks, and will detect mouse events even in
--- main menu or when a typing in a text field.
+-- function will return false. This function only works in Move hooks, and will
+-- detect mouse events even in main menu or when a typing in a text field.
 -- @function [parent=#input] WasMousePressed
 -- @param  #number button The mouse button to test, see **MOUSE\_ Enums**.
 -- @return #boolean True if the mouse key was initially pressed the same frame that this function was called, false otherwise.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Menu_
+-- 
+-- Returns whether a mouse key was released in the same frame this function was
+-- called. This function only works in Move hooks, and will detect mouse events
+-- even in main menu or when a typing in a text field.
+-- @function [parent=#input] WasMouseReleased
+-- @param  #number key The key to test, see **MOUSE\_ Enums**.
+-- @return #boolean True if the mouse key was released the same frame that this function was called, false otherwise.
 
 return nil

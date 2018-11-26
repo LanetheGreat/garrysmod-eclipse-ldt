@@ -19,9 +19,13 @@
 -- _Client_ | _Server_
 -- 
 -- Registers a new decal.
+-- 
+-- **Warning**: _There's a rather low limit of around 256 for decals that may
+-- be registered and they are not cleared on map load._
 -- @function [parent=#game] AddDecal
 -- @param  #string decalName The name of the decal.
--- @param  #string materialName The material to be used for the decal. May also be a list of material names, in which case a random material from that list will be chosen every time the decal is placed.
+-- @param  #string materialName The material to be used for the decal.
+-- May also be a list of material names, in which case a random material from that list will be chosen every time the decal is placed.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_

@@ -17,36 +17,17 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_
 -- 
--- Returns a string or a table containing date and time, formatted according
--- to the given string `format`.
---
--- If the `time` argument is present, this is the time to be formatted
--- (see the **os.time** function for a description of this value). Otherwise,
--- `date` formats the current time.
---
--- If `format` starts with '`!`', then the date is formatted in Coordinated
--- Universal Time. After this optional character, if `format` is the string
--- "`*t`", then `date` returns a table with the following fields:
---
---   * `year` (four digits)
---   * `month` (1--12)
---   * `day` (1--31)
---   * `hour` (0--23)
---   * `min` (0--59)
---   * `sec` (0--61)
---   * `wday` (weekday, Sunday is 1)
---   * `yday` (day of the year)
---   * `isdst` (daylight saving flag, a boolean).
---
--- If `format` is not "`*t`", then `date` returns the date as a string,
--- formatted according to the same rules as the C function `strftime`.
--- When called without arguments, `date` returns a reasonable date and time
--- representation that depends on the host system and on the current locale
--- (that is, **os.date**() is equivalent to **os.date**("%c")).
+-- Returns the date/time as a formatted string or in a table.
 -- @function [parent=#os] date
--- @param #string format format of date. (optional)
--- @param #number time time to format. (default value is current time) 
--- @return #string a formatted string representation of `time`. 
+-- @param #string format The format string.
+-- If this is equal to '*t' or '!*t' then this function will return a **DateData
+-- structure**, otherwise it will return a string. If this starts with an '!',
+-- the returned data will use the UTC timezone rather than the local timezone.
+-- See http://www.mkssoftware.com/docs/man3/strftime.3.asp for available format flags.
+-- @param #number time Time to use for the format.
+-- @return #string Formatted date.
+-- 
+-- **Note**: _This will be a DateData structure if the first argument equals to '*t' or '!*t'._
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_

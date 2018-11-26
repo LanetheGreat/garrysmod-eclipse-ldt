@@ -14,9 +14,9 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- Returns true if given entity can be targeted by the player via the properties system.
--- 
--- This should be used serverside in your properties to prevent abuse by clientside scripting.
+-- Returns true if given entity can be targeted by the player via the
+-- properties system. This should be used serverside in your properties to
+-- prevent abuse by clientside scripting.
 -- @function [parent=#properties] CanBeTargeted
 -- @param  #Entity ent The entity to test.
 -- @param  #Player ply If given, will also perform a distance check based on the entity's Orientated Bounding Box.

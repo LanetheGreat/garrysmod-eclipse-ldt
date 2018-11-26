@@ -171,6 +171,13 @@
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
+-- Returns the current alpha multiplier affecting drawing operations.
+-- @function [parent=#surface] GetAlphaMultiplier
+-- @return #number The multiplier ranging from 0 to 1.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
 -- Gets the HUD texture with the specified name.
 -- @function [parent=#surface] GetHUDTexture
 -- @param  #string name The name of the texture.
@@ -214,7 +221,7 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_
 -- 
--- Sets a multiplier that will influence all upcoming drawing operations.
+-- Sets the alpha multiplier that will influence all upcoming drawing operations.
 -- @function [parent=#surface] SetAlphaMultiplier
 -- @param  #number multiplier The multiplier ranging from 0 to 1.
 

@@ -10,7 +10,8 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_
 -- 
--- Adds the contents from one table into another. See also **table.Inherit** and **table.Merge**.
+-- Adds the contents from one table into another. The target table will be
+-- modified. See also **table.Inherit** and **table.Merge**.
 -- @function [parent=#table] Add
 -- @param  #table target The table to insert the new values into.
 -- @param  #table source The table to retrieve the values from.

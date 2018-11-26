@@ -114,7 +114,8 @@
 -- clientside to refresh the lightmaps to this new color.
 -- @function [parent=#engine] LightStyle
 -- @param  #number lightstyle The lightstyle to edit. 0 to 63. If you want to edit map lighting, you want to set this to 0.
--- @param  #string pattern The pattern to change the lightstyle to. "a" is the darkest, "z" is the brightest. You can use stuff like "abcxyz" to make flashing patterns. The normal brightness for a map is "m". Values over "z" are allowed, "~" for instance.
+-- @param  #string pattern The pattern to change the lightstyle to. "a" is the darkest, "z" is the brightest.
+-- You can use stuff like "abcxyz" to make flashing patterns. The normal brightness for a map is "m". Values over "z" are allowed, "~" for instance.
 
 -------------------------------------------------------------------------------
 -- _Client_

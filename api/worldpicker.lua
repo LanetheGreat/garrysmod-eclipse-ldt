@@ -1,12 +1,12 @@
 -------------------------------------------------------------------------------
 -- util.worldpicker is for picking an entity in the world while GUI is open.
--- @module util.worldpicker
+-- @module worldpicker
 
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
 -- Returns if the user is currently picking an entity.
--- @function [parent=#util.worldpicker] Active
+-- @function [parent=#worldpicker] Active
 -- @return #boolean Is world picking.
 
 -------------------------------------------------------------------------------
@@ -17,7 +17,7 @@
 -- 
 -- Finishes the world picking. This is called when a user presses their mouse
 -- after calling **util.worldpicker.Start**.
--- @function [parent=#util.worldpicker] Finish
+-- @function [parent=#worldpicker] Finish
 -- @param  #table tr **TraceResult structure** from the mouse press.
 
 -------------------------------------------------------------------------------
@@ -25,7 +25,7 @@
 -- 
 -- Starts picking an entity in the world. This will suppress the next mouse
 -- click, and instead use it as a direction in the trace sent to the callback.
--- @function [parent=#util.worldpicker] Start
+-- @function [parent=#worldpicker] Start
 -- @param  #function callback Function to call after an entity choice has been made.
 -- Argument is:
 -- 

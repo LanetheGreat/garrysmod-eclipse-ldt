@@ -8,12 +8,16 @@
 -- _Client_
 -- 
 -- Applies a "halo" glow effect to one or multiple entities.
+-- 
+-- **Warning**: _Using this function outside of the **GM:PreDrawHalos** hook can
+-- cause instability or crashes._
 -- @function [parent=#halo] Add
 -- @param  #table entities A table of entities to add the halo effect to.
 -- @param  #table color The desired color of the halo. See **Color structure**.
 -- @param  #number blurX The strength of the halo's blur on the x axis. _(Default: 2)_
 -- @param  #number blurY The strength of the halo's blur on the y axis. _(Default: 2)_
--- @param  #number passes The number of times the halo should be drawn per frame. Increasing this may hinder player FPS. _(Default: 1)_
+-- @param  #number passes The number of times the halo should be drawn per frame. _(Default: 1)_
+-- Increasing this may hinder player FPS.
 -- @param  #boolean additive Sets the render mode of the halo to additive. _(Default: true)_
 -- @param  #boolean ignoreZ Renders the halo through anything when set to true. _(Default: false)_
 

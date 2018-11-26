@@ -8,12 +8,9 @@
 -- 
 -- Adds surface properties to the game's physics environment.
 -- 
--- **Note**: _The game has a limit of 128 surface properties - this includes
--- properties loaded automatically from surfaceproperties.txt. Due to this,
--- there's only a small amount of open slots that can be registered with GMod's
--- provided surfaceproperties.txt._
 -- @function [parent=#physenv] AddSurfaceData
 -- @param  #string properties The properties to add.
+-- Each one should include "base" or the game will crash due to some values being missing.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_

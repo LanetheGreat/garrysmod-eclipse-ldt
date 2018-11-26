@@ -165,7 +165,11 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- Reads a value from the net message with the specified type.
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- _Used internally by **net.ReadTable**._
+-- 
+-- Reads a value from the net message with the specified type, written by **net.WriteType**.
 -- 
 -- **Warning**: _You **must** read information in same order as you write it._
 -- @function [parent=#net] ReadType

@@ -3,7 +3,7 @@
 -- someone attempts to duplicate your custom entity with the duplicator tool.
 -- It can also be used by 3rd party duplicator tools to make use of the built
 -- in system.
--- @module duplicator.lua
+-- @module duplicator
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_

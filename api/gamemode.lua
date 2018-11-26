@@ -16,7 +16,7 @@
 -- @function [parent=#gamemode] Call
 -- @param  #string name The name of the hook to call.
 -- @param  ... Arguments to pass to the hook function(s).
--- @return #any The result of the hook function - can be up to 6 values. Returns false if the gamemode function doesn't exist (i.e. nothing happened), but remember - a hook can also return false.
+-- @return #any The result of the hook function - can be up to 6 values. Returns false if the gamemode function doesn't exist (ex: nothing happened), but remember - a hook can also return false.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_

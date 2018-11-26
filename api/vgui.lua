@@ -68,7 +68,7 @@
 -- 
 -- **Warning**: _This returns a cached value that is only updated after
 -- rendering and before the next VGUI Think/Layout pass._
--- _i.e. it lags one frame behind panel layout and is completely unhelpful for
+-- _ex: it lags one frame behind panel layout and is completely unhelpful for
 -- **PANEL:Paint** if your panels are moving around under the mouse a lot every frame._
 -- @function [parent=#vgui] GetHoveredPanel
 -- @return #Panel The panel that the user is currently hovering over with their cursor.

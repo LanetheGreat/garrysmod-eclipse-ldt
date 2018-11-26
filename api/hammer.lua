@@ -7,7 +7,10 @@
 -- 
 -- Sends command to Hammer, if Hammer is running with the current map loaded.
 -- @function [parent=#hammer] SendCommand
--- @param  #string cmd Command to send including arguments. All commands are in the format "command var1 var2 etc". All commands that pick an entity with x y z , must use the exact position including decimals. i.e. -354.4523 123.4 -1224.325452
+-- @param  #string cmd Command to send including arguments.
+-- All commands are in the format "command var1 var2 etc".
+-- All commands that pick an entity with x y z , must use the exact position including decimals.
+-- ex: -354.4523 123.4 -1224.325452
 -- List of commands:
 -- 
 -- * **"session_begin mapName mapVersion"** - Starts a hammer edit, locking the editor. mapName is the current map without path or suffix, mapVersion is the current version in the .vmf file.

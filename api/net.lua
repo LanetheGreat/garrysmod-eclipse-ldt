@@ -169,7 +169,7 @@
 -- 
 -- **Warning**: _You **must** read information in same order as you write it._
 -- @function [parent=#net] ReadType
--- @param  #number typeID The type of value to be read, using **TYPE\_Enums**. _(Default: **net.ReadUInt**(8))_
+-- @param  #number typeID The type of value to be read, using **TYPE\_ Enums**. _(Default: **net.ReadUInt**(8))_
 -- @return #any The value, or the respective blank value based on the type you're reading if the value could not be read.
 
 -------------------------------------------------------------------------------

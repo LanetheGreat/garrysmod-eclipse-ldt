@@ -12,7 +12,7 @@
 -- @param  #Angle ang The angles of the magnet.
 -- @param  #string model The model of the maget.
 -- @param  #string material Name of the material to use while rendering the magnet.
--- @param  #number key The key to toggle the magnet, see **KEY\_Enums**.
+-- @param  #number key The key to toggle the magnet, see **KEY\_ Enums**.
 -- @param  #number maxObjects Maximum amount of objects the magnet can hold.
 -- @param  #number strength Strength of the magnet.
 -- @param  #number nopull If > 0, disallows the magnet to pull objects towards it. _(Default: 0)_

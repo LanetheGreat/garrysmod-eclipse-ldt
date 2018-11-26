@@ -165,7 +165,7 @@
 -- 
 -- Returns extension of the file.
 -- @function [parent=#string] GetExtensionFromFilename
--- @param  #string file String eg. file-path to get the file extensions from.
+-- @param  #string file String ex: file-path to get the file extensions from.
 -- @return #string The file extension, if there is one.
 
 -------------------------------------------------------------------------------
@@ -173,7 +173,7 @@
 -- 
 -- Returns file name and extension.
 -- @function [parent=#string] GetFileFromFilename
--- @param  #string pathString The string eg. file-path to get the file-name from.
+-- @param  #string pathString The string ex: file-path to get the file-name from.
 -- @return #string The file name.
 
 -------------------------------------------------------------------------------
@@ -183,21 +183,6 @@
 -- @function [parent=#string] GetPathFromFilename
 -- @param  #string Inputstring String to get path from.
 -- @return #string The file path.
-
--------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
--- 
--- **This feature is deprecated.**  
--- _You should avoid using it as it may be removed in a future version._
--- _This function is removed in Lua versions later than what GMod is currently using._
--- _Use **string.gmatch** instead._
--- 
--- Returns an iterator function that is called for every complete match of the
--- pattern, all sub matches will be passed as to the loop.
--- @function [parent=#string] gfind
--- @param  #string data The string to search in.
--- @param  #string pattern The pattern to search for.
--- @return #function The iterator function that can be used in a for-in loop.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_

@@ -76,7 +76,7 @@
 -- Returns the damage type of given ammo type.
 -- @function [parent=#game] GetAmmoDamageType
 -- @param  #number id Ammo ID to retrieve the damage type of. Starts from 1.
--- @return #number See **DMG\_Enums**.
+-- @return #number See **DMG\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -149,7 +149,7 @@
 -- @param  #string name The name of the Global State to retrieve the state of.  
 -- If the Global State by that name does not exist, **GLOBAL\_DEAD** will be returned.  
 -- See **Global States** for a list of default global states.
--- @return #number The state of the Global State. See **GLOBAL\_Enums**.
+-- @return #number The state of the Global State. See **GLOBAL\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -285,7 +285,7 @@
 -- @function [parent=#game] SetGlobalState
 -- @param  #string name The name of the Global State to set. If the Global State by that name does not exist, it will be created.  
 -- See **Global States** for a list of default global states.
--- @param  #number state The state of the Global State. See **GLOBAL\_Enums**.
+-- @param  #number state The state of the Global State. See **GLOBAL\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Server_

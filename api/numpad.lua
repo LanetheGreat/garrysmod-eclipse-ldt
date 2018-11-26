@@ -8,7 +8,7 @@
 -- Activates numpad key owned by the player.
 -- @function [parent=#numpad] Activate
 -- @param  #Player ply The player whose numpad should be simulated.
--- @param  #number key The key to press, see **KEY\_Enums**.
+-- @param  #number key The key to press, see **KEY\_ Enums**.
 -- @param  #boolean isButton Should this keypress pretend to be a from a gmod_button? (causes **numpad.FromButton** to return true)
 
 -------------------------------------------------------------------------------
@@ -17,7 +17,7 @@
 -- Deactivates numpad key owned by the player.
 -- @function [parent=#numpad] Deactivate
 -- @param  #Player ply The player whose numpad should be simulated.
--- @param  #number key The key to press, see **KEY\_Enums**.
+-- @param  #number key The key to press, see **KEY\_ Enums**.
 -- @param  #boolean isButton Should this keypress pretend to be a from a gmod_button? (causes **numpad.FromButton** to return true)
 
 -------------------------------------------------------------------------------
@@ -37,7 +37,7 @@
 -- See **numpad.OnUp** for key released action.
 -- @function [parent=#numpad] OnDown
 -- @param  #Player ply The player whose numpad should be watched.
--- @param  #number key The key, corresponding to **KEY\_Enums**.
+-- @param  #number key The key, corresponding to **KEY\_ Enums**.
 -- @param  #string name The name of the function to run, corresponding with the one used in **numpad.Register**.
 -- @param  ... Arguments to pass to the function passed to **numpad.Register**.
 -- @return #number The impulse ID.
@@ -49,7 +49,7 @@
 -- See **numpad.OnDown** for key pressed action.
 -- @function [parent=#numpad] OnUp
 -- @param  #Player ply The player whose numpad should be watched.
--- @param  #number key The key, corresponding to **KEY\_Enums**.
+-- @param  #number key The key, corresponding to **KEY\_ Enums**.
 -- @param  #string name The name of the function to run, corresponding with the one used in **numpad.Register**.
 -- @param  ... Arguments to pass to the function passed to **numpad.Register**.
 -- @return #number The impulse ID.
@@ -81,6 +81,6 @@
 -- Either runs **numpad.Activate** or **numpad.Deactivate** depending on the key's current state.
 -- @function [parent=#numpad] Toggle
 -- @param  #Player ply The player whose numpad should be simulated.
--- @param  #number key The key to press, corresponding to **KEY\_Enums**.
+-- @param  #number key The key to press, corresponding to **KEY\_ Enums**.
 
 return nil

@@ -892,13 +892,13 @@
 -- @param  #table tab The table to add the accessor functions too.
 -- @param  #any key The key of the table to be get/set.
 -- @param  #string name The name of the functions. (will be prefixed with Get and Set)
--- @param  #number force The type the setter should force to, see **FORCE\_Enums**. _(Default: nil)_
+-- @param  #number force The type the setter should force to, see **FORCE\_ Enums**. _(Default: nil)_
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_
 -- 
 -- Defines a global entity class variable with an automatic value in order to
--- prevent collisions with other **CLASS\_Enums**. You should prefix your variable
+-- prevent collisions with other **CLASS\_ Enums**. You should prefix your variable
 -- with CLASS_ for consistency.
 -- @function [parent=#global] Add_NPC_Class
 -- @param  #string name The name of the new enum/global variable.
@@ -923,7 +923,7 @@
 -- @function [parent=#global] AddConsoleCommand
 -- @param  #string name The name of the console command to add.
 -- @param  #string helpText The help text.
--- @param  #number flags Concommand flags using **FCVAR\_Enums**.
+-- @param  #number flags Concommand flags using **FCVAR\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -1096,7 +1096,7 @@
 -- **Warning**: _Model must be precached with **util.PrecacheModel** on the server before usage._
 -- @function [parent=#global] ClientsideModel
 -- @param  #string model The file path to the model.
--- @param  #number renderGroup The rendergroup of the entity, see **RENDERGROUP\_Enums**. _(Default: RENDERGROUP\_OTHER)_
+-- @param  #number renderGroup The rendergroup of the entity, see **RENDERGROUP\_ Enums**. _(Default: RENDERGROUP\_OTHER)_
 -- @return #CSEnt Created client-side model. (C_BaseFlex)
 
 -------------------------------------------------------------------------------
@@ -1107,7 +1107,7 @@
 -- **Warning**: _Model must be precached with **util.PrecacheModel** on the server before usage._
 -- @function [parent=#global] ClientsideRagdoll
 -- @param  #string model The file path to the model.
--- @param  #number renderGroup The **RENDERGROUP\_Enums** to assign. _(Default: RENDER\_GROUP\_OPAQUE)_
+-- @param  #number renderGroup The **RENDERGROUP\_ Enums** to assign. _(Default: RENDER\_GROUP\_OPAQUE)_
 -- @return #CSEnt The newly created client-side ragdoll. (C_ClientRagdoll)
 
 -------------------------------------------------------------------------------
@@ -1250,7 +1250,7 @@
 -- @param  #string name Name of the convar.
 -- This cannot be a name of an engine console command or console variable. It will silently fail if it is. If it is the same name as another lua ConVar, it will return that ConVar object.
 -- @param  #string value Default value of the convar. Can also be a number.
--- @param  #number flags Flags of the convar, either as bitflag or as table. See **FCVAR\_Enums**. _(Default: FCVAR\_NONE)_
+-- @param  #number flags Flags of the convar, either as bitflag or as table. See **FCVAR\_ Enums**. _(Default: FCVAR\_NONE)_
 -- @param  #string helptext The help text to show in the console. _(Default: "")_
 -- @return #ConVar The convar created.
 
@@ -1280,7 +1280,7 @@
 -- @function [parent=#global] CreateParticleSystem
 -- @param  #Entity ent The entity to attach the control point to.
 -- @param  #string effect The name of the effect to create. It must be precached.
--- @param  #number partAttachment See **PATTACH\_Enums**.
+-- @param  #number partAttachment See **PATTACH\_ Enums**.
 -- @param  #number entAttachment The attachment ID on the entity to attach the particle system to. _(Default: 0)_
 -- @param  #Vector offset The offset from the **Entity:GetPos** of the entity we are attaching this CP to. _(Default: Vector(0,0,0))_
 -- @return #CNewParticleEffect The created particle system.
@@ -1430,7 +1430,7 @@
 -- The console variable value is saved in the m_strConVar property of the panel.
 -- 
 -- The panel should call **Panel:ConVarStringThink** or **Panel:ConVarNumberThink** in
--- its **PANEL:Think** hook and should call **Panel:ConVarChanged** when the panel's
+-- its **Panel:Think** hook and should call **Panel:ConVarChanged** when the panel's
 -- value has changed.
 -- @function [parent=#global] Derma_Install_Convar_Functions
 -- @param  #Panel target The panel the functions should be added to.
@@ -1659,10 +1659,10 @@
 -- @param  #string soundName The sound to play.
 -- @param  #Vector position The position to play at.
 -- @param  #number entity The entity to emit the sound from. Must be **Entity:EntIndex**.
--- @param  #number channel The sound channel, see **CHAN\_Enums**. _(Default: CHAN\_AUTO)_
+-- @param  #number channel The sound channel, see **CHAN\_ Enums**. _(Default: CHAN\_AUTO)_
 -- @param  #number volume The volume of the sound, from 0 to 1. _(Default: 1)_
--- @param  #number soundLevel The sound level of the sound, see **SNDLVL\_Enums**. _(Default: 75)_
--- @param  #number soundFlags The flags of the sound, see **SND\_Enums**. _(Default: 0)_
+-- @param  #number soundLevel The sound level of the sound, see **SNDLVL\_ Enums**. _(Default: 75)_
+-- @param  #number soundFlags The flags of the sound, see **SND\_ Enums**. _(Default: 0)_
 -- @param  #number pitch The pitch of the sound, 0-255. _(Default: 100)_
 
 -------------------------------------------------------------------------------
@@ -1673,10 +1673,10 @@
 -- @param  #string soundName The sound to play.
 -- @param  #Vector position The position to play at.
 -- @param  #number entity The entity to emit the sound from. Must be **Entity:EntIndex**.
--- @param  #number channel The sound channel, see **CHAN\_Enums**. _(Default: CHAN\_AUTO)_
+-- @param  #number channel The sound channel, see **CHAN\_ Enums**. _(Default: CHAN\_AUTO)_
 -- @param  #number volume The volume of the sound, from 0 to 1. _(Default: 1)_
--- @param  #number soundLevel The sound level of the sound, see **SNDLVL\_Enums**. _(Default: 75)_
--- @param  #number soundFlags The flags of the sound, see **SND\_Enums**. _(Default: 0)_
+-- @param  #number soundLevel The sound level of the sound, see **SNDLVL\_ Enums**. _(Default: 75)_
+-- @param  #number soundFlags The flags of the sound, see **SND\_ Enums**. _(Default: 0)_
 -- @param  #number pitch The pitch of the sound, 0-255. _(Default: 100)_
 
 -------------------------------------------------------------------------------
@@ -1749,7 +1749,7 @@
 -- 
 -- Returns the meta table for the class with the matching name. Internally
 -- returns **debug.getregistry**()[metaName]. You can find a list of meta
--- tables that can be retrieved with this function on **TYPE\_Enums**. The name in
+-- tables that can be retrieved with this function on **TYPE\_ Enums**. The name in
 -- the description is the string to use with this function.
 -- @function [parent=#global] FindMetaTable
 -- @param  #string metaName The object type to retrieve the meta table of.
@@ -1922,7 +1922,7 @@
 -- @return #Entity The global value, or the default if the global value is not set.
 
 -------------------------------------------------------------------------------
--- _Client_ |  _Server_
+-- _Client_ | _Server_
 -- 
 -- Returns a float that is shared between the server and all clients.
 -- @function [parent=#global] GetGlobalFloat
@@ -2036,11 +2036,11 @@
 -- **Warning**: _The name is treated like a path and gets its extension discarded. "name.1" and "name.2" are considered the same name and will result in the same render target being reused._
 -- @param  #number width The width of the render target, must be power of 2.
 -- @param  #number height The height of the render target, must be power of 2.
--- @param  #number sizeMode Bitflag that influences the sizing of the render target, see **RT\_SIZE\_Enums**.
--- @param  #number depthMode Bitflag that determines the depth buffer usage of the render target **MATERIAL\_RT\_DEPTH\_Enums**.
--- @param  #number textureFlags Bitflag that configurates the texture, see **TEXTUREFLAGS\_Enums**.
--- @param  #number rtFlags Flags that controll the HDR behaviour of the render target, see **CREATERENDERTARGETFLAGS\_Enums**.
--- @param  #number imageFormat Image format, see **IMAGE\_FORMAT\_Enums**.
+-- @param  #number sizeMode Bitflag that influences the sizing of the render target, see **RT\_SIZE\_ Enums**.
+-- @param  #number depthMode Bitflag that determines the depth buffer usage of the render target **MATERIAL\_RT\_DEPTH\_ Enums**.
+-- @param  #number textureFlags Bitflag that configurates the texture, see **TEXTUREFLAGS\_ Enums**.
+-- @param  #number rtFlags Flags that controll the HDR behaviour of the render target, see **CREATERENDERTARGETFLAGS\_ Enums**.
+-- @param  #number imageFormat Image format, see **IMAGE\_FORMAT\_ Enums**.
 -- @return #ITexture The new render target.
 
 -------------------------------------------------------------------------------
@@ -2145,7 +2145,7 @@
 -- 
 -- Returns whether the given object does or doesn't have a metatable of a color.
 -- 
--- **Important**: _Engine functions (i.e. those not written in plain Lua) that
+-- **Important**: _Engine functions (ex: those not written in plain Lua) that
 -- return color objects do not currently set the color metatable and this
 -- function will return false if you use it on them._
 -- @function [parent=#global] IsColor
@@ -2689,7 +2689,7 @@
 -- and the file its from must be added via **game.AddParticles** before it can be used!_
 -- @function [parent=#global] ParticleEffectAttach
 -- @param  #string particleName The name of the particle effect.
--- @param  #number attachType Attachment type using **PATTACH\_Enums**.
+-- @param  #number attachType Attachment type using **PATTACH\_ Enums**.
 -- @param  #Entity entity The entity to be used in the way specified by the attachType.
 -- @param  #number attachmentID The id of the attachment to be used in the way specified by the attachType.
 
@@ -2787,7 +2787,7 @@
 -- This uses the archaic user message system (umsg library) and hence is
 -- limited to ≈250 characters.
 -- @function [parent=#global] PrintMessage
--- @param  #number type Which type of message should be sent to the players. See **HUD\_Enums**.
+-- @param  #number type Which type of message should be sent to the players. See **HUD\_ Enums**.
 -- @param  #string message Message to be sent to the players.
 
 -------------------------------------------------------------------------------
@@ -2813,7 +2813,7 @@
 -- 
 -- Runs a function without stopping the whole script on error. This function is
 -- similar to pcall and xpcall except the errors are still printed and sent to
--- the error handler (i.e. sent to server console if clientside and
+-- the error handler (ex: sent to server console if clientside and
 -- **GM:OnLuaError** called).
 -- @function [parent=#global] ProtectedCall
 -- @param  #function func Function to run.
@@ -3023,16 +3023,6 @@
 -- @param  #string identifier The name that should appear in any error messages caused by this code. _(Default: "RunString")_
 -- @param  #boolean handleError If false, this function will return a string containing any error messages instead of throwing an error. _(Default: true)_
 -- @return #string If handleError is false, the error message (if any).
-
--------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
--- 
--- **This feature is deprecated.**  
--- _You should avoid using it as it may be removed in a future version._
--- _Use **RunString** instead._
--- 
--- Alias of **RunString**.
--- @function [parent=#global] RunStringEx
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_
@@ -3298,19 +3288,6 @@
 -- @return #string Escaped input.
 
 -------------------------------------------------------------------------------
--- _Client_
--- 
--- **This feature is deprecated.**  
--- _You should avoid using it as it may be removed in a future version._
--- _You should be using **ScreenScale** instead._
--- 
--- Returns a number based on the Size argument and your screen's width. Alias
--- of **ScreenScale**.
--- @function [parent=#global] SScale
--- @param  #number Size The number you want to scale.
--- @return #number The scaled number.
-
--------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_
 -- 
 -- Returns the ordinal suffix of a given number.
@@ -3438,7 +3415,7 @@
 -- Gets the associated type ID of the variable.
 -- @function [parent=#global] TypeID
 -- @param  #any variable The variable to get the type ID of.
--- @return #number The type ID of the variable. See the **TYPE\_Enums**.
+-- @return #number The type ID of the variable. See the **TYPE\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_
@@ -3464,47 +3441,6 @@
 -- Runs JavaScript on the loading screen panel. (**GetLoadPanel**)
 -- @function [parent=#global] UpdateLoadPanel
 -- @param  #string javascript JavaScript to run on the loading panel.
-
--------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
--- 
--- **This feature is deprecated.**  
--- _You should avoid using it as it may be removed in a future version._
--- _You should use **IsUselessModel** instead._
--- 
--- Returns whether or not a model is useless by checking that the file path is
--- that of a proper model. If the string ".mdl" is not found in the model name,
--- the function will return true. The function will also return true if any of
--- the following strings are found in the given model name:
--- 
--- * "_gesture"
--- * "_anim"
--- * "_gst"
--- * "_pst"
--- * "_shd"
--- * "_ss"
--- * "_posture"
--- * "_anm"
--- * "ghostanim"
--- * "_paths"
--- * "_shared"
--- * "anim_"
--- * "gestures_"
--- * "shared_ragdoll_"
--- @function [parent=#global] UTIL_IsUselessModel
--- @param  #string modelName The model name to be checked.
--- @return #boolean Whether or not the model is useless.
-
--------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
--- 
--- **This feature is deprecated.**  
--- _You should avoid using it as it may be removed in a future version._
--- _You should use **IsValid** instead._
--- 
--- Returns if a panel is safe to use.
--- @function [parent=#global] ValidPanel
--- @param  #Panel panel The panel to validate.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_
@@ -3756,7 +3692,7 @@
 -- Returns the damage type of the effect.
 -- @function [parent=#CEffectData] GetDamageType
 -- @param  self
--- @return #number Damage type of the effect, see **DMG\_Enums**.
+-- @return #number Damage type of the effect, see **DMG\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Server_
@@ -3887,7 +3823,7 @@
 -- Sets the damage type of the effect to be created with this effect data.
 -- @function [parent=#CEffectData] SetDamageType
 -- @param  self
--- @param  #number damageType Damage type, see **DMG\_Enums**.
+-- @param  #number damageType Damage type, see **DMG\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Server_
@@ -4738,7 +4674,7 @@
 -- Adds keys to the move data, as if player pressed them.
 -- @function [parent=#CMoveData] AddKey
 -- @param  self
--- @param  #number keys Keys to add, see **IN\_Enums**.
+-- @param  #number keys Keys to add, see **IN\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -4762,7 +4698,7 @@
 -- Gets which buttons are down.
 -- @function [parent=#CMoveData] GetButtons
 -- @param  self
--- @return #number An integer representing which buttons are down, see **IN\_Enums**.
+-- @return #number An integer representing which buttons are down, see **IN\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -4826,7 +4762,7 @@
 -- Get which buttons were down last frame.
 -- @function [parent=#CMoveData] GetOldButtons
 -- @param  self
--- @return #number An integer representing which buttons were down, see **IN\_Enums**.
+-- @return #number An integer representing which buttons were down, see **IN\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -4866,7 +4802,7 @@
 -- Returns whether the key is down or not.
 -- @function [parent=#CMoveData] KeyDown
 -- @param  self
--- @param  #number key The key to test, see **IN\_Enums**.
+-- @param  #number key The key to test, see **IN\_ Enums**.
 -- @return #boolean Is the key down or not.
 
 -------------------------------------------------------------------------------
@@ -4876,7 +4812,7 @@
 -- down, try **CMoveData:KeyDown**.
 -- @function [parent=#CMoveData] KeyPressed
 -- @param  self
--- @param  #number key The key to test, see **IN\_Enums**.
+-- @param  #number key The key to test, see **IN\_ Enums**.
 -- @return #boolean Was the key pressed or not.
 
 -------------------------------------------------------------------------------
@@ -4885,7 +4821,7 @@
 -- Returns whether the key was released.
 -- @function [parent=#CMoveData] KeyReleased
 -- @param  self
--- @param  #number key A key to test, see **IN\_Enums**.
+-- @param  #number key A key to test, see **IN\_ Enums**.
 -- @return #boolean Was the key released or not.
 
 -------------------------------------------------------------------------------
@@ -4896,7 +4832,7 @@
 -- **CMoveData:KeyReleased** is true.
 -- @function [parent=#CMoveData] KeyWasDown
 -- @param  self
--- @param  #number key The key to test, see **IN\_Enums**.
+-- @param  #number key The key to test, see **IN\_ Enums**.
 -- @return #boolean Was the key down or not.
 
 -------------------------------------------------------------------------------
@@ -4921,7 +4857,7 @@
 -- Sets the pressed buttons on the move data.
 -- @function [parent=#CMoveData] SetButtons
 -- @param  self
--- @param  #number buttons A number representing which buttons are down, see **IN\_Enums**.
+-- @param  #number buttons A number representing which buttons are down, see **IN\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -4998,7 +4934,7 @@
 -- which are being held down.
 -- @function [parent=#CMoveData] SetOldButtons
 -- @param  self
--- @param  #number buttons A number representing which buttons were down, see **IN\_Enums**.
+-- @param  #number buttons A number representing which buttons were down, see **IN\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -5072,11 +5008,11 @@
 -------------------------------------------------------------------------------
 -- _Server_
 -- 
--- Returns the **NavDir\_Enums** direction that the given vector faces on this **CNavArea**.
+-- Returns the **NavDir\_ Enums** direction that the given vector faces on this **CNavArea**.
 -- @function [parent=#CNavArea] ComputeDirection
 -- @param  self
 -- @param  #Vector pos The position to compute direction towards.
--- @return #number The direction the vector is in relation to this **CNavArea**. See **NavDir\_Enums**.
+-- @return #number The direction the vector is in relation to this **CNavArea**. See **NavDir\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Server_
@@ -5154,7 +5090,7 @@
 -- areas from all sides/directions.
 -- @function [parent=#CNavArea] GetAdjacentAreasAtSide
 -- @param  self
--- @param  #number navDir The direction, in which to look for **CNavAreas**, see **NavDir\_Enums**.
+-- @param  #number navDir The direction, in which to look for **CNavAreas**, see **NavDir\_ Enums**.
 -- @return #table A table of all **CNavArea** that have a (one and two way) connection from this **CNavArea** in given direction.
 -- Returns an empty table if this area has no outgoing connections to any other areas in given direction.
 
@@ -5176,7 +5112,7 @@
 -- function that returns **CNavArea** count from/in all sides/directions.
 -- @function [parent=#CNavArea] GetAdjacentCountAtSide
 -- @param  self
--- @param  #number navDir The direction, in which to look for **CNavAreas**, see **NavDir\_Enums**.
+-- @param  #number navDir The direction, in which to look for **CNavAreas**, see **NavDir\_ Enums**.
 -- @return #number The amount of **CNavAreas** that have a connection (one or two way) from this **CNavArea** in given direction.
 
 -------------------------------------------------------------------------------
@@ -5185,7 +5121,7 @@
 -- Returns the attribute mask for the given **CNavArea**.
 -- @function [parent=#CNavArea] GetAttributes
 -- @param  self
--- @return #boolean Attribute mask for this **CNavArea**, see **NAV\_MESH\_Enums** for the specific flags.  
+-- @return #boolean Attribute mask for this **CNavArea**, see **NAV\_MESH\_ Enums** for the specific flags.  
 -- **Note**: _A navmesh that was generated with nav\_quicksave set to 1 will have all **CNavAreas** attribute masks set to 0._
 
 -------------------------------------------------------------------------------
@@ -5211,7 +5147,7 @@
 -- Returns the vector position of the corner for the given **CNavArea**.
 -- @function [parent=#CNavArea] GetCorner
 -- @param  self
--- @param  #number cornerid The target corner to get the position of, takes **NavCorner\_Enums**.
+-- @param  #number cornerid The target corner to get the position of, takes **NavCorner\_ Enums**.
 -- @return #Vector The corner position.
 
 -------------------------------------------------------------------------------
@@ -5285,7 +5221,7 @@
 -- connections from all sides/directions.
 -- @function [parent=#CNavArea] GetIncomingConnectionsAtSide
 -- @param  self
--- @param  #number navDir The direction, from which to look for **CNavArea**'s, see **NavDir\_Enums**.
+-- @param  #number navDir The direction, from which to look for **CNavArea**'s, see **NavDir\_ Enums**.
 -- @return #table A table of all **CNavArea**'s with one-way connection to this **CNavArea** from given direction.
 -- Returns an empty table if there are no one-way incoming connections to this **CNavArea** from given direction.
 
@@ -5327,7 +5263,7 @@
 -- Returns how this **CNavArea** is connected to its parent.
 -- @function [parent=#CNavArea] GetParentHow
 -- @param  self
--- @return #number See **NavTraverseType\_Enums**.
+-- @return #number See **NavTraverseType\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Server_
@@ -5344,7 +5280,7 @@
 -- from this **CNavArea** in given direction.
 -- @function [parent=#CNavArea] GetRandomAdjacentAreaAtSide
 -- @param  self
--- @param  #number navDir The direction, in which to look for **CNavArea**'s, see **NavDir\_Enums**.
+-- @param  #number navDir The direction, in which to look for **CNavArea**'s, see **NavDir\_ Enums**.
 -- @return #CNavArea The random **CNavArea** that has an outgoing (one or two way) connection from this **CNavArea** in given direction, if any.
 
 -------------------------------------------------------------------------------
@@ -5395,7 +5331,7 @@
 -- Returns true if the given **CNavArea** has this attribute flag set.
 -- @function [parent=#CNavArea] HasAttributes
 -- @param  self
--- @param  #number attribs Attribute mask to check for, see **NAV\_MESH\_Enums**.
+-- @param  #number attribs Attribute mask to check for, see **NAV\_MESH\_ Enums**.
 -- @return #boolean True if the **CNavArea** matches the given mask. False otherwise.
 
 -------------------------------------------------------------------------------
@@ -5436,7 +5372,7 @@
 -- @function [parent=#CNavArea] IsConnectedAtSide
 -- @param  self
 -- @param  #CNavArea navArea The **CNavArea** to test against.
--- @param  #number navDirType The direction, in which to look for the connection. See **NavDir\_Enums**
+-- @param  #number navDirType The direction, in which to look for the connection. See **NavDir\_ Enums**
 -- @return #boolean Whether this **CNavArea** has an outgoing (one or two way) connection to given **CNavArea** in given direction.
 
 -------------------------------------------------------------------------------
@@ -5531,7 +5467,7 @@
 -- Drops a corner or all corners of a **CNavArea** to the ground below it.
 -- @function [parent=#CNavArea] PlaceOnGround
 -- @param  self
--- @param  #number corner The corner(s) to drop, uses **NavCorner\_Enums**.
+-- @param  #number corner The corner(s) to drop, uses **NavCorner\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Server_
@@ -5562,7 +5498,7 @@
 -- Sets the attributes for given CNavArea.
 -- @function [parent=#CNavArea] SetAttributes
 -- @param  self
--- @param  #number attribs The attribute bitflag. See **NAV\_MESH\_Enums**.
+-- @param  #number attribs The attribute bitflag. See **NAV\_MESH\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Server_
@@ -5570,7 +5506,7 @@
 -- Sets the position of a corner of a nav area.
 -- @function [parent=#CNavArea] SetCorner
 -- @param  self
--- @param  #number corner The corner to set, uses **NavCorner\_Enums**.
+-- @param  #number corner The corner to set, uses **NavCorner\_ Enums**.
 -- @param  #Vector position The new position to set.
 
 -------------------------------------------------------------------------------
@@ -5745,7 +5681,7 @@
 -- @function [parent=#CNavLadder] IsConnectedAtSide
 -- @param  self
 -- @param  #CNavArea navArea The **CNavArea** to test against.
--- @param  #number navDirType The direction, in which to look for the connection. See **NavDir\_Enums**.
+-- @param  #number navDirType The direction, in which to look for the connection. See **NavDir\_ Enums**.
 -- @return #boolean Whether this **CNavLadder** has an outgoing (one or two way) connection to given **CNavArea** in given direction.
 
 -------------------------------------------------------------------------------
@@ -5821,7 +5757,7 @@
 -- @param  self
 -- @param  #number cpID The control point ID, 0 to 63.
 -- @param  #Entity ent The entity to attach the control point to.
--- @param  #number partAttachment See **PATTACH\_Enums**.
+-- @param  #number partAttachment See **PATTACH\_ Enums**.
 -- @param  #number entAttachment The attachment ID on the entity to attach the particle system to. _(Default: 0)_
 -- @param  #Vector offset The offset from the Entity:GetPos of the entity we are attaching this CP to. _(Default: Vector(0, 0, 0))_
 
@@ -6207,7 +6143,7 @@
 -- Returns the current sound level.
 -- @function [parent=#CSoundPatch] GetSoundLevel
 -- @param  self
--- @return #number The current sound level, see **SNDLVL\_Enums**.
+-- @return #number The current sound level, see **SNDLVL\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -6256,7 +6192,7 @@
 -- Sets the sound level in decibel.
 -- @function [parent=#CSoundPatch] SetSoundLevel
 -- @param  self
--- @param  #number level The sound level in decibel. See **SNDLVL\_Enums**.
+-- @param  #number level The sound level in decibel. See **SNDLVL\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -6371,7 +6307,7 @@
 -- can contain multiple damage types.
 -- @function [parent=#CTakeDamageInfo] GetDamageType
 -- @param  self
--- @return #number Damage type(s), a combination of **DMG\_Enums**.
+-- @return #number Damage type(s), a combination of **DMG\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -6414,7 +6350,7 @@
 -- Returns whenever the damageinfo contains the damage type specified.
 -- @function [parent=#CTakeDamageInfo] IsDamageType
 -- @param  self
--- @param  #number dmgType Damage type to test. See **DMG\_Enums**.
+-- @param  #number dmgType Damage type to test. See **DMG\_ Enums**.
 -- @return #boolean Whether this damage contains specified damage type or not.
 
 -------------------------------------------------------------------------------
@@ -6506,7 +6442,7 @@
 -- Sets the damage type.
 -- @function [parent=#CTakeDamageInfo] SetDamageType
 -- @param  self
--- @param  #number type The damage type, see **DMG\_Enums**.
+-- @param  #number type The damage type, see **DMG\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -6546,7 +6482,7 @@
 -- _Client_ | _Server_
 -- 
 -- A class used to store the player inputs, such as mouse movement, view angles,
--- **IN\_Enums** buttons pressed and analog movement, the data from this class is
+-- **IN\_ Enums** buttons pressed and analog movement, the data from this class is
 -- then transfered to a CMoveData during actual movement simulation.
 -- Can be modified during **GM:CreateMove**, **GM:StartCommand** and used in read only
 -- with **GM:SetupMove** and **Player:GetCurrentCommand**.
@@ -6586,7 +6522,7 @@
 -- Returns a bitflag indicating which buttons are pressed.
 -- @function [parent=#CUserCmd] GetButtons
 -- @param  self
--- @return #number Pressed buttons, see **IN\_Enums**.
+-- @return #number Pressed buttons, see **IN\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -6671,7 +6607,7 @@
 -- Returns true if the specified button(s) is pressed.
 -- @function [parent=#CUserCmd] KeyDown
 -- @param  self
--- @param  #number key Bit flag representing which button to check, see **IN\_Enums**.
+-- @param  #number key Bit flag representing which button to check, see **IN\_ Enums**.
 -- @return #boolean Is key down or not.
 
 -------------------------------------------------------------------------------
@@ -6680,7 +6616,7 @@
 -- Removed a key bit from the current key bit flag.
 -- @function [parent=#CUserCmd] RemoveKey
 -- @param  self
--- @param  #number button Bit flag to be removed from the key bit flag, see **IN\_Enums**.
+-- @param  #number button Bit flag to be removed from the key bit flag, see **IN\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -6691,7 +6627,7 @@
 -- weapon from the client when the next available command can do so.
 -- 
 -- **Note**: _This is the ideal function to use to create a custom weapon
--- selection HUD, as it allows prediction to run properly for **WEAPON:Deploy**
+-- selection HUD, as it allows prediction to run properly for **Weapon:Deploy**
 -- and **GM:PlayerSwitchWeapon**._
 -- @function [parent=#CUserCmd] SelectWeapon
 -- @param  self
@@ -6706,7 +6642,7 @@
 -- **CUserCmd:SetForwardMove** instead of setting the keys._
 -- @function [parent=#CUserCmd] SetButtons
 -- @param  self
--- @param  #number buttons Bit flag representing which buttons are "down", see **IN\_Enums**.
+-- @param  #number buttons Bit flag representing which buttons are "down", see **IN\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -6941,7 +6877,7 @@
 -- Applies an engine effect to an entity.
 -- @function [parent=#Entity] AddEffects
 -- @param  self
--- @param  #number effect The effect to apply, see **EF\_Enums**.
+-- @param  #number effect The effect to apply, see **EF\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -6949,7 +6885,7 @@
 -- Adds engine flags.
 -- @function [parent=#Entity] AddEFlags
 -- @param  self
--- @param  #number flag Engine flag to add, see **EFL\_Enums**.
+-- @param  #number flag Engine flag to add, see **EFL\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -6957,19 +6893,19 @@
 -- Adds flags to the entity.
 -- @function [parent=#Entity] AddFlags
 -- @param  self
--- @param  #number flag Flag to add, see **FL\_Enums**.
+-- @param  #number flag Flag to add, see **FL\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Server_
 -- 
 -- Adds a gesture animation to the entity and plays it. See
 -- **Entity:AddGestureSequence** and **Entity:AddLayeredSequence** for functions that
--- takes sequences instead of **ACT\_Enums**.
+-- takes sequences instead of **ACT\_ Enums**.
 -- 
 -- **Note**: _This function only works on BaseAnimatingOverlay entites!_
 -- @function [parent=#Entity] AddGesture
 -- @param  self
--- @param  #number activity The activity to play as the gesture. See **ACT\_Enums**.
+-- @param  #number activity The activity to play as the gesture. See **ACT\_ Enums**.
 -- @param  #boolean autokill _(Default: true)_
 -- @return #number Layer ID of the started gesture, used to manipulate the played gesture by other functions.
 
@@ -6977,7 +6913,7 @@
 -- _Server_
 -- 
 -- Adds a gesture animation to the entity and plays it. See **Entity:AddGesture**
--- for a function that takes **ACT\_Enums**. See also **Entity:AddLayeredSequence**.
+-- for a function that takes **ACT\_ Enums**. See also **Entity:AddLayeredSequence**.
 -- 
 -- **Note**: _This function only works on BaseAnimatingOverlay entites!_
 -- @function [parent=#Entity] AddGestureSequence
@@ -6991,7 +6927,7 @@
 -- 
 -- Adds a gesture animation to the entity and plays it. See
 -- **Entity:AddGestureSequence** for a function that doesn't take priority. See
--- **Entity:AddGesture** for a function that takes **ACT\_Enums**.
+-- **Entity:AddGesture** for a function that takes **ACT\_ Enums**.
 -- 
 -- **Note**: _This function only works on BaseAnimatingOverlay entites!_
 -- @function [parent=#Entity] AddLayeredSequence
@@ -7006,7 +6942,7 @@
 -- Adds solid flag(s) to the entity.
 -- @function [parent=#Entity] AddSolidFlags
 -- @param  self
--- @param  #number flags The flag(s) to apply, see **FSOLID\_Enums**.
+-- @param  #number flags The flag(s) to apply, see **FSOLID\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -7093,7 +7029,7 @@
 -- @function [parent=#Entity] BoneHasFlag
 -- @param  self
 -- @param  #number boneID Bone ID to test flag of.
--- @param  #number flag The flag to test, see **BONE\_Enums**.
+-- @param  #number flag The flag to test, see **BONE\_ Enums**.
 -- @return #boolean Whether the bone has that flag or not.
 
 -------------------------------------------------------------------------------
@@ -7170,7 +7106,7 @@
 -- @param  #number attachment Attachment ID to attach the particle to.
 -- @param  #table options=nil A table of tables (IDs 1 to 64) having the following structure:
 -- 
--- * _#number attachtype_ : The particle attach type. See **PATTACH\_Enums**. _(Default: PATTACH\_ABSORIGIN)_
+-- * _#number attachtype_ : The particle attach type. See **PATTACH\_ Enums**. _(Default: PATTACH\_ABSORIGIN)_
 -- * _#Entity entity_ : The parent entity? _(Default: NULL)_
 -- * _#Vector position_ : The offset position for given control point. _(Default: nil)_
 -- This only affects the control points of the particle effects and will do nothing if the effect doesn't use control points.
@@ -7289,11 +7225,11 @@
 -- 
 -- **Warning**: _The string will cannot have whitespace at the start or end. You can remove this with **string.Trim**._
 -- @param  #number soundLevel A modifier for the distance this sound will reach, acceptable range is 0 to 511. 100 means no adjustment to the level. _(Default: 75)_
--- See **SNDLVL\_Enums**. Will not work if a sound script is used.
+-- See **SNDLVL\_ Enums**. Will not work if a sound script is used.
 -- @param  #number pitchPercent The pitch applied to the sound. _(Default: 100)_
 -- The acceptable range is from 0 to 255. 100 means the pitch is not changed.
 -- @param  #number volume The volume, from 0 to 1. _(Default: 1)_
--- @param  #number channel The sound channel, see **CHAN\_Enums**. _(Default: CHAN\_AUTO, CHAN\_WEAPON for weapons)_
+-- @param  #number channel The sound channel, see **CHAN\_ Enums**. _(Default: CHAN\_AUTO, CHAN\_WEAPON for weapons)_
 -- Will not work if a sound script is used.
 
 -------------------------------------------------------------------------------
@@ -7402,8 +7338,8 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- Fires a bullet. When used in a WEAPON hook such as **WEAPON:Think** or
--- **WEAPON:PrimaryAttack**, it will use **Player:LagCompensation** internally.
+-- Fires a bullet. When used in a WEAPON hook such as **Weapon:Think** or
+-- **Weapon:PrimaryAttack**, it will use **Player:LagCompensation** internally.
 -- 
 -- **Note**: _Lag compensation will not work if this function is called in a
 -- timer, regardless if the timer was made in a WEAPON hook._
@@ -7529,7 +7465,7 @@
 -- Returns the blood color of this entity. This can be set with **Entity:SetBloodColor**.
 -- @function [parent=#Entity] GetBloodColor
 -- @param  self
--- @return #number Color from **BLOOD\_COLOR\_Enums**.
+-- @return #number Color from **BLOOD\_COLOR\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -7701,7 +7637,7 @@
 -- Returns the entity's collision group.
 -- @function [parent=#Entity] GetCollisionGroup
 -- @param  self
--- @return #number The collision group. See **COLLISION\_GROUP\_Enums**.
+-- @return #number The collision group. See **COLLISION\_GROUP\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -7875,7 +7811,7 @@
 -- Returns a bit flag of all engine effect flags of the entity.
 -- @function [parent=#Entity] GetEffects
 -- @param  self
--- @return #number Engine effect flags, see **EF\_Enums**.
+-- @return #number Engine effect flags, see **EF\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -7883,7 +7819,7 @@
 -- Returns a bit flag of all engine flags of the entity.
 -- @function [parent=#Entity] GetEFlags
 -- @param  self
--- @return #number Engine flags, see **EFL\_Enums**.
+-- @return #number Engine flags, see **EFL\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -7900,7 +7836,7 @@
 -- Returns all flags of given entity.
 -- @function [parent=#Entity] GetFlags
 -- @param  self
--- @return #number Flags of given entity as a bitflag, see **FL\_Enums**.
+-- @return #number Flags of given entity as a bitflag, see **FL\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -8194,7 +8130,7 @@
 -- Returns the surface material of this entity.
 -- @function [parent=#Entity] GetMaterialType
 -- @param  self
--- @return #number Surface material. See **MAT\_Enums**.
+-- @return #number Surface material. See **MAT\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -8276,7 +8212,7 @@
 -- physics object reacts to hitting an object - will it bounce, slide?
 -- @function [parent=#Entity] GetMoveCollide
 -- @param  self
--- @return #number The move collide type, see **MOVECOLLIDE\_Enums**.
+-- @return #number The move collide type, see **MOVECOLLIDE\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -8292,7 +8228,7 @@
 -- Returns the entity's movetype
 -- @function [parent=#Entity] GetMoveType
 -- @param  self
--- @return #number Move type. See **MOVETYPE\_Enums**.
+-- @return #number Move type. See **MOVETYPE\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Server_
@@ -8603,7 +8539,7 @@
 -- Returns current render FX of the entity.
 -- @function [parent=#Entity] GetRenderFX
 -- @param  self
--- @return #number The current render FX of the entity. See **kRenderFx\_Enums**.
+-- @return #number The current render FX of the entity. See **kRenderFx\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -8611,7 +8547,7 @@
 -- Returns the render group of the entity.
 -- @function [parent=#Entity] GetRenderGroup
 -- @param  self
--- @return #number The render group. See **RENDERGROUP\_Enums**.
+-- @return #number The render group. See **RENDERGROUP\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -8619,7 +8555,7 @@
 -- Returns the render mode of the entity.
 -- @function [parent=#Entity] GetRenderMode
 -- @param  self
--- @return #number The render Mode. See **RENDERMODE\_Enums**.
+-- @return #number The render Mode. See **RENDERMODE\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -8679,7 +8615,7 @@
 -- @function [parent=#Entity] GetSequenceActivity
 -- @param  self
 -- @param  #number seq The sequence ID.
--- @return #number The activity ID, see **ACT\_Enums**.
+-- @return #number The activity ID, see **ACT\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -8688,7 +8624,7 @@
 -- @function [parent=#Entity] GetSequenceActivityName
 -- @param  self
 -- @param  #number sequenceId The sequence id.
--- @return #string The **ACT\_Enums** as a string, returns "Not Found!" with an invalid sequence and "No model!" when no model is set.
+-- @return #string The **ACT\_ Enums** as a string, returns "Not Found!" with an invalid sequence and "No model!" when no model is set.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -8795,7 +8731,7 @@
 -- Returns solid type of an entity.
 -- @function [parent=#Entity] GetSolid
 -- @param  self
--- @return #number The solid type. See the **SOLID\_Enums**.
+-- @return #number The solid type. See the **SOLID\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -8803,7 +8739,7 @@
 -- Returns solid flag(s) of an entity.
 -- @function [parent=#Entity] GetSolidFlags
 -- @param  self
--- @return #number The flag(s) of the entity, see **FSOLID\_Enums**.
+-- @return #number The flag(s) of the entity, see **FSOLID\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -8973,7 +8909,7 @@
 -- Returns whether this entity has the specified spawnflags bits set.
 -- @function [parent=#Entity] HasSpawnFlags
 -- @param  self
--- @param  #number spawnFlags The spawnflag bits to check, see **SF\_Enums**.
+-- @param  #number spawnFlags The spawnflag bits to check, see **SF\_ Enums**.
 -- @return #boolean Whether the entity has that spawnflag set or not.
 
 -------------------------------------------------------------------------------
@@ -9078,7 +9014,7 @@
 -- Returns whether an entity has engine effect applied or not.
 -- @function [parent=#Entity] IsEffectActive
 -- @param  self
--- @param  #number effect The effect to check for, see **EF\_Enums**.
+-- @param  #number effect The effect to check for, see **EF\_ Enums**.
 -- @return #boolean whether an entity has the engine effect applied or not.
 
 -------------------------------------------------------------------------------
@@ -9087,7 +9023,7 @@
 -- Checks if given flag is set or not.
 -- @function [parent=#Entity] IsEFlagSet
 -- @param  self
--- @param  #number flag The engine flag to test, see **EFL\_Enums**.
+-- @param  #number flag The engine flag to test, see **EFL\_ Enums**.
 -- @return #boolean Is set or not.
 
 -------------------------------------------------------------------------------
@@ -9096,7 +9032,7 @@
 -- Checks if given flag(s) is set or not.
 -- @function [parent=#Entity] IsFlagSet
 -- @param  self
--- @param  #number flag The engine flag(s) to test, see **FL\_Enums**.
+-- @param  #number flag The engine flag(s) to test, see **FL\_ Enums**.
 -- @return #boolean Is set or not.
 
 -------------------------------------------------------------------------------
@@ -9180,7 +9116,7 @@
 -- **Note**: _This function only works on **BaseAnimatingOverlay** entites!_
 -- @function [parent=#Entity] IsPlayingGesture
 -- @param  self
--- @param  #number activity The activity to test. See **ACT\_Enums**.
+-- @param  #number activity The activity to test. See **ACT\_ Enums**.
 -- @return #boolean Whether there's a gesture is given activity being played.
 
 -------------------------------------------------------------------------------
@@ -9600,7 +9536,7 @@
 -- _**Entity:SetSolid**(solidType) and **Entity:SetSolidFlags**(0)._
 -- @function [parent=#Entity] PhysicsInit
 -- @param  self
--- @param  #number solidType The solid type of the physics object to create, see **SOLID\_Enums**. Should be **SOLID\_VPHYSICS** in most cases.
+-- @param  #number solidType The solid type of the physics object to create, see **SOLID\_ Enums**. Should be **SOLID\_VPHYSICS** in most cases.
 -- 
 -- Using **SOLID\_NONE** will only delete the current physics object - it does not create a new one.
 -- @return #boolean Returns true on success, false otherwise.
@@ -9690,7 +9626,7 @@
 -- **Note**: _This function will automatically call **Entity:SetSolid**(solidType)._
 -- @function [parent=#Entity] PhysicsInitStatic
 -- @param  self
--- @param  #number solidType The solid type of the physics object to create, see **SOLID\_Enums**. Should be **SOLID\_VPHYSICS** in most cases.
+-- @param  #number solidType The solid type of the physics object to create, see **SOLID\_ Enums**. Should be **SOLID\_VPHYSICS** in most cases.
 -- @return #boolean Returns true on success, false otherwise. This will fail if the entity's current model has no associated physics mesh.
 
 -------------------------------------------------------------------------------
@@ -9798,7 +9734,7 @@
 -- Removes an engine effect applied to an entity.
 -- @function [parent=#Entity] RemoveEffects
 -- @param  self
--- @param  #number effect The effect to remove, see **EF\_Enums**.
+-- @param  #number effect The effect to remove, see **EF\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -9806,7 +9742,7 @@
 -- Removes specified engine flag.
 -- @function [parent=#Entity] RemoveEFlags
 -- @param  self
--- @param  #number flag The flag to remove, see **EFL\_Enums**.
+-- @param  #number flag The flag to remove, see **EFL\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -9814,7 +9750,7 @@
 -- Removes specified flag(s) from the entity.
 -- @function [parent=#Entity] RemoveFlags
 -- @param  self
--- @param  #number flag The flag(s) to remove, see **FL\_Enums**.
+-- @param  #number flag The flag(s) to remove, see **FL\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -9836,7 +9772,7 @@
 -- **Note**: _This function only works on **BaseAnimatingOverlay** entites!_
 -- @function [parent=#Entity] RemoveGesture
 -- @param  self
--- @param  #number activity The activity remove. See **ACT\_Enums**.
+-- @param  #number activity The activity remove. See **ACT\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -9844,7 +9780,7 @@
 -- Removes solid flag(s) from the entity.
 -- @function [parent=#Entity] RemoveSolidFlags
 -- @param  self
--- @param  #number flags The flag(s) to remove, see **FSOLID\_Enums**.
+-- @param  #number flags The flag(s) to remove, see **FSOLID\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -9890,7 +9826,7 @@
 -- **Note**: _This function only works on **BaseAnimatingOverlay** entites._
 -- @function [parent=#Entity] RestartGesture
 -- @param  self
--- @param  #number activity The activity number to send to the entity. See **ACT\_Enums** and **Entity:GetSequenceActivity**.
+-- @param  #number activity The activity number to send to the entity. See **ACT\_ Enums** and **Entity:GetSequenceActivity**.
 -- @param  #boolean addIfMissing Add/start the gesture to if it has not been yet started. _(Default: true)_
 -- @param  #boolean autokill _(Default: true)_
 
@@ -9902,7 +9838,7 @@
 -- **Entity:SelectWeightedSequenceSeeded**.
 -- @function [parent=#Entity] SelectWeightedSequence
 -- @param  self
--- @param  #number act The activity ID, see **ACT\_Enums**.
+-- @param  #number act The activity ID, see **ACT\_ Enums**.
 -- @return #number The sequence ID.
 
 -------------------------------------------------------------------------------
@@ -9914,7 +9850,7 @@
 -- **Entity:SelectWeightedSequence** for a provided-seed version of this function.
 -- @function [parent=#Entity] SelectWeightedSequenceSeeded
 -- @param  self
--- @param  #number act The activity ID, see **ACT\_Enums**.
+-- @param  #number act The activity ID, see **ACT\_ Enums**.
 -- @param  #number seed The seed to use for randomly selecting a sequence in the case the activity ID has multiple sequences bound to it.
 -- **Entity:SelectWeightedSequence** uses the same seed as **util.SharedRandom** internally for this.
 -- @return #number The sequence ID.
@@ -9967,7 +9903,7 @@
 -- player's weapon attack and reload animations.
 -- @function [parent=#Entity] SetAnimation
 -- @param  self
--- @param  #number playerAnim Player animation, see **PLAYER\_Enums**.
+-- @param  #number playerAnim Player animation, see **PLAYER\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -9979,26 +9915,12 @@
 -- @param  #number time The current animation time.
 
 -------------------------------------------------------------------------------
--- _Client_ | _Server_
--- 
--- **This feature is deprecated.**  
--- _You should avoid using it as it may be removed in a future version._
--- _You should be using **Entity:SetParent** instead._
--- 
--- Parents the sprite to an attachment on another model. Works only on env_sprite.
--- Despite existing on client, it doesn't actually do anything on client.
--- @function [parent=#Entity] SetAttachment
--- @param  self
--- @param  #Entity ent The entity to attach/parent to.
--- @param  #number attachment The attachment ID to parent to.
-
--------------------------------------------------------------------------------
 -- _Server_
 -- 
 -- Sets the blood color this entity uses.
 -- @function [parent=#Entity] SetBloodColor
 -- @param  self
--- @param  #number bloodColor An integer corresponding to **BLOOD\_COLOR\_Enums**.
+-- @param  #number bloodColor An integer corresponding to **BLOOD\_COLOR\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -10083,7 +10005,7 @@
 -- Sets the entity's collision group.
 -- @function [parent=#Entity] SetCollisionGroup
 -- @param  self
--- @param  #number group Collision group of the entity, see **COLLISION\_GROUP\_Enums**.
+-- @param  #number group Collision group of the entity, see **COLLISION\_GROUP\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -10557,7 +10479,7 @@
 -- physics object reacts to hitting an object - will it bounce, slide?
 -- @function [parent=#Entity] SetMoveCollide
 -- @param  self
--- @param  #number moveCollideType The move collide type, see **MOVECOLLIDE\_Enums**.
+-- @param  #number moveCollideType The move collide type, see **MOVECOLLIDE\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -10578,7 +10500,7 @@
 -- anything on client.
 -- @function [parent=#Entity] SetMoveType
 -- @param  self
--- @param  #number movetype The new movetype, see **MOVETYPE\_Enums**.
+-- @param  #number movetype The new movetype, see **MOVETYPE\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Server_
@@ -10599,148 +10521,11 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- **This feature is deprecated.**  
--- _You should avoid using it as it may be removed in a future version._
--- _You should use **Entity:SetNWAngle** instead._
--- 
--- Sets a networked angle value at specified index on the entity. The value then
--- can be accessed with **Entity:GetNetworkedAngle** both from client and server.
--- 
--- **Note**: _Running this function clientside will only set it clientside for
--- the client it is called on._
--- @function [parent=#Entity] SetNetworkedAngle
--- @param  self
--- @param  #string key The key to associate the value with.
--- @param  #Angle value The value to set. _(Default: Angle(0,0,0))_
-
--------------------------------------------------------------------------------
--- _Client_ | _Server_
--- 
--- **This feature is deprecated.**  
--- _You should avoid using it as it may be removed in a future version._
--- _You should use **Entity:SetNWBool** instead._
--- 
--- Sets a networked boolean value at specified index on the entity. The value
--- then can be accessed with **Entity:GetNetworkedBool** both from client and server.
--- 
--- **Note**: _Running this function clientside will only set it clientside for
--- the client it is called on._
--- @function [parent=#Entity] SetNetworkedBool
--- @param  self
--- @param  #string key The key to associate the value with.
--- @param  #boolean value The value to set. _(Default: false)_
-
--------------------------------------------------------------------------------
--- _Client_ | _Server_
--- 
--- **This feature is deprecated.**  
--- _You should avoid using it as it may be removed in a future version._
--- _You should use **Entity:SetNWEntity** instead._
--- 
--- Sets a networked entity value at specified index on the entity. The value
--- then can be accessed with **Entity:GetNetworkedEntity** both from client and server.
--- 
--- **Note**: _Running this function clientside will only set it clientside for
--- the client it is called on._
--- @function [parent=#Entity] SetNetworkedEntity
--- @param  self
--- @param  #string key The key to associate the value with.
--- @param  #Entity value The value to set. _(Default: NULL)_
-
--------------------------------------------------------------------------------
--- _Client_ | _Server_
--- 
--- **This feature is deprecated.**  
--- _You should avoid using it as it may be removed in a future version._
--- _You should use **Entity:SetNWFloat** instead._
--- 
--- Sets a networked float value at specified index on the entity. The value
--- then can be accessed with **Entity:GetNetworkedFloat** both from client and server.
--- Seems to be the same as **Entity:GetNetworkedInt**.
--- 
--- **Note**: _Running this function clientside will only set it clientside for
--- the client it is called on._
--- @function [parent=#Entity] SetNetworkedFloat
--- @param  self
--- @param  #string key The key to associate the value with.
--- @param  #number value The value to set. _(Default: 0)_
-
--------------------------------------------------------------------------------
--- _Client_ | _Server_
--- 
--- **This feature is deprecated.**  
--- _You should avoid using it as it may be removed in a future version._
--- _You should use **Entity:SetNWInt** instead._
--- 
--- Sets a networked integer value at specified index on the entity. The value
--- then can be accessed with **Entity:GetNetworkedInt** both from client and server.
--- 
--- **Note**: _Running this function clientside will only set it clientside for
--- the client it is called on._
--- @function [parent=#Entity] SetNetworkedInt
--- @param  self
--- @param  #string key The key to associate the value with.
--- @param  #number value The value to set. _(Default: 0)_
-
--------------------------------------------------------------------------------
--- _Client_ | _Server_
--- 
 -- Sets a networked number at the specified index on the entity.
 -- @function [parent=#Entity] SetNetworkedNumber
 -- @param  self
 -- @param  #any index The index that the value is stored in.
 -- @param  #number number The value to network.
-
--------------------------------------------------------------------------------
--- _Client_ | _Server_
--- 
--- **This feature is deprecated.**  
--- _You should avoid using it as it may be removed in a future version._
--- _You should use **Entity:SetNWString** instead._
--- 
--- Sets a networked string value at specified index on the entity. The value
--- then can be accessed with **Entity:GetNetworkedString** both from client and server.
--- 
--- **Note**: _Running this function clientside will only set it clientside for
--- the client it is called on._
--- @function [parent=#Entity] SetNetworkedString
--- @param  self
--- @param  #string key The key to associate the value with.
--- @param  #string value The value to set. _(Default: "")_
-
--------------------------------------------------------------------------------
--- _Client_ | _Server_
--- 
--- **This feature is deprecated.**  
--- _You should avoid using it as it may be removed in a future version._
--- _You should be using **Entity:SetNWVarProxy** instead._
--- 
--- Sets callback function to be called when given NWVar changes.
--- 
--- **Note**: _Currently this function only works for the NW2Var system
--- (accessed by adding a 2 in between Networked and Var for most NetworkedVar
--- functions), which will replace the original one at some point in the future._
--- @function [parent=#Entity] SetNetworkedVarProxy
--- @param  self
--- @param  #string name The name of the NWVar to add callback for.
--- @param  #function callback The function to be called when the NWVar changes.
-
--------------------------------------------------------------------------------
--- _Client_ | _Server_
--- 
--- **This feature is deprecated.**  
--- _You should avoid using it as it may be removed in a future version._
--- _You should use **Entity:SetNWVector** instead._
--- 
--- Sets a networked vector value at specified index on the entity. The value
--- then can be accessed with **Entity:GetNetworkedVector** both from client and server.
--- 
--- **Note**: _Running this function clientside will only set it clientside for
--- the client it is called on._
--- @function [parent=#Entity] SetNetworkedVector
--- @param  self
--- @param  #string key The key to associate the value with.
--- @param  #Vector value The value to set. _(Default: Vector(0,0,0))_
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -11121,7 +10906,7 @@
 -- Sets entity's render FX.
 -- @function [parent=#Entity] SetRenderFX
 -- @param  self
--- @param  #number renderFX The new render FX to set. See **kRenderFx\_Enums**.
+-- @param  #number renderFX The new render FX to set. See **kRenderFx\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -11129,7 +10914,7 @@
 -- Sets the render mode of the entity.
 -- @function [parent=#Entity] SetRenderMode
 -- @param  self
--- @param  #number renderMode New render mode to set. See **RENDERMODE\_Enums**.
+-- @param  #number renderMode New render mode to set. See **RENDERMODE\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -11200,7 +10985,7 @@
 -- Sets the solidity of an entity.
 -- @function [parent=#Entity] SetSolid
 -- @param  self
--- @param  #number solid_type The solid type. See the **SOLID\_Enums**.
+-- @param  #number solid_type The solid type. See the **SOLID\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -11209,7 +10994,7 @@
 -- might have had. See **Entity:AddSolidFlags** for adding flags.
 -- @function [parent=#Entity] SetSolidFlags
 -- @param  self
--- @param  #number flags The flag(s) to set. See **FSOLID\_Enums**.
+-- @param  #number flags The flag(s) to set. See **FSOLID\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -11262,7 +11047,7 @@
 -- 
 -- Marks the entity as a trigger, so it will generate **ENTITY:StartTouch**,
 -- **ENTITY:Touch** and **ENTITY:EndTouch** callbacks. Internally this is stored as
--- **FSOLID\_Enums** flag.
+-- **FSOLID\_ Enums** flag.
 -- @function [parent=#Entity] SetTrigger
 -- @param  self
 -- @param  #boolean maketrigger Make the entity trigger or not.
@@ -11484,7 +11269,7 @@
 -- @param  self
 -- @param  #number damageAmount The amount of damage to be applied.
 -- @param  #Entity attacker The entity that initiated the attack that caused the damage.
--- @param  #Entity inflictor The entity that applied the damage, eg. a weapon.
+-- @param  #Entity inflictor The entity that applied the damage, ex: a weapon.
 
 -------------------------------------------------------------------------------
 -- _Server_
@@ -11543,7 +11328,7 @@
 -- @param  self
 -- @param  #Player Activator The player to credit with activating the entity.
 -- @param  #Entity Caller Used when an entity instead of a player should trigger the use.
--- @param  #number UseType The type of use to trigger. See **USE\_Enums**.
+-- @param  #number UseType The type of use to trigger. See **USE\_ Enums**.
 -- @param  #number Integer You can usually set this to 1.
 
 -------------------------------------------------------------------------------
@@ -11632,13 +11417,13 @@
 -- players and NPCs._
 -- @function [parent=#Entity] Weapon_SetActivity
 -- @param  self
--- @param  #number act Activity number. See **ACT\_Enums**.
+-- @param  #number act Activity number. See **ACT\_ Enums**.
 -- @param  #number duration How long the animation should take in seconds.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- Calls and returns **WEAPON:TranslateActivity** on the weapon the entity (player
+-- Calls and returns **Weapon:TranslateActivity** on the weapon the entity (player
 -- or NPC) carries. Despite existing on client, it doesn't actually do anything
 -- on client.
 -- @function [parent=#Entity] Weapon_TranslateActivity
@@ -11682,164 +11467,9736 @@
 -- @return #Angle The local angles.
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Client_ | _Server_
 -- 
+-- This is the file object. It used used primarily to read or write binary data
+-- from files. The object is returned by file.Open.
 -- @type File
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Client_ | _Server_
 -- 
+-- Dumps the file changes to disk and closes the file handle which makes the
+-- handle useless.
+-- @function [parent=#File] Close
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Dumps the file changes to disk and saves the file.
+-- @function [parent=#File] Flush
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Reads the specified amount of chars and returns them as a binary string.
+-- @function [parent=#File] Read
+-- @param  self
+-- @param  #number length Reads the specified amount of chars.
+-- @return #string The file data.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Reads one byte of the file and returns whether that byte was not 0.
+-- @function [parent=#File] ReadBool
+-- @param  self
+-- @return #boolean The boolean val.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Reads one unsigned 8-bit integer from the file.
+-- @function [parent=#File] ReadByte
+-- @param  self
+-- @return #number The unsigned 8-bit integer from the file.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Reads 8 bytes from the file converts them to a double and returns them.
+-- @function [parent=#File] ReadDouble
+-- @param  self
+-- @return #number The double value.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Reads 4 bytes from the file converts them to a float and returns them.
+-- @function [parent=#File] ReadFloat
+-- @param  self
+-- @return #number The float value.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the contents of the file from the current position up until the end
+-- of the current line. This function will not return more than 8192 characters.
+-- @function [parent=#File] ReadLine
+-- @param  self
+-- @return #string The string of data from the read line.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Reads a signed 32-bit integer from the file.
+-- @function [parent=#File] ReadLong
+-- @param  self
+-- @return #number A signed 32-bit integer.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Reads a signed 16-bit integer from the file.
+-- @function [parent=#File] ReadShort
+-- @param  self
+-- @return #number A signed 16-bit integer.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Reads an unsigned 32-bit integer from the file.
+-- @function [parent=#File] ReadULong
+-- @param  self
+-- @return #number An unsigned 32-bit integer
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Reads an unsigned 16-bit integer from the file.
+-- @function [parent=#File] ReadUShort
+-- @param  self
+-- @return #number The 16-bit integer.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the file pointer to the specified position.
+-- @function [parent=#File] Seek
+-- @param  self
+-- @param  #number pos Pointer position.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the size of the file in bytes.
+-- @function [parent=#File] Size
+-- @param  self
+-- @return #number The size of the file in bytes.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Moves the file pointer by the specified amount of chars.
+-- @function [parent=#File] Skip
+-- @param  self
+-- @param  #number amount The amount of chars to skip, can be negative to skip backwards.
+-- @return #number The number of bytes successfully skipped.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the current position of the file pointer.
+-- @function [parent=#File] Tell
+-- @param  self
+-- @return #The position of the file pointer.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Writes the given string into the file.
+-- @function [parent=#File] Write
+-- @param  self
+-- @param  #string data Binary data to write to the file.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Writes a boolean value to the file as one byte.
+-- @function [parent=#File] WriteBool
+-- @param  self
+-- @param  #boolean bool The bool to be written to the file.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Write an 8-bit unsigned integer to the file.
+-- @function [parent=#File] WriteByte
+-- @param  self
+-- @param  #number uint8 The 8-bit unsigned integer to be written to the file.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Writes a 8 byte floating point double to the file.
+-- @function [parent=#File] WriteDouble
+-- @param  self
+-- @param  #number double The double to be written to the file.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Writes a 4 byte float to the file.
+-- @function [parent=#File] WriteFloat
+-- @param  self
+-- @param  #number float The float to be written to the file.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Writes a 32-bit signed integer to the file.
+-- @function [parent=#File] WriteLong
+-- @param  self
+-- @param  #number int32 The 32-bit signed integer to be written to the file.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Writes a 16-bit signed integer to the file.
+-- @function [parent=#File] WriteShort
+-- @param  self
+-- @param  #number int16 The 16-bit signed integer to be written to the file.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Writes an unsigned 32-bit integer to the file.
+-- @function [parent=#File] WriteULong
+-- @param  self
+-- @param  #number uint32 The unsigned 32-bit integer to be written to the file.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Writes an unsigned 16-bit integer to the file.
+-- @function [parent=#File] WriteUShort
+-- @param  self
+-- @param  #number uint16 The unsigned 16-bit integer to the file.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- A sound channel returned by a callback of **sound.PlayURL** and **sound.PlayFile**.
 -- @type IGModAudioChannel
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Client_
 -- 
+-- Enables or disables looping of audio channel, requires noblock flag.
+-- @function [parent=#IGModAudioChannel] EnableLooping
+-- @param  self
+-- @param  #boolean enable Enable or disable looping of this audio channel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Computes the DFT (discrete Fourier transform) of the sound channel. The size
+-- parameter specifies the number of consecutive audio samples to use as the
+-- input to the DFT and is restricted to a power of two. A Hann window is
+-- applied to the input data. The computed DFT has the same number of
+-- frequency bins as the number of samples. Only half of this DFT is returned,
+-- since the DFT magnitudes are symmetric for real input data. The magnitudes
+-- of the DFT (values from 0 to 1) are used to fill the output table, starting
+-- at index 1.  
+-- **Visualization protip**: For a size N DFT, bin k (1-indexed) corresponds to
+-- a frequency of (k - 1) / N * sampleRate.  
+-- **Visualization protip**: Sound energy is proportional to the square of the
+-- magnitudes. Adding magnitudes together makes no sense physically, but adding
+-- energies does.  
+-- **Visualization protip**: The human ear works on a logarithmic amplitude
+-- scale. You can convert to decibels by taking 20 log10 of frequency
+-- magnitudes, or 10 log10 of energy. The decibel values will range from
+-- -infinity to 0.
+-- @function [parent=#IGModAudioChannel] FFT
+-- @param  self
+-- @param  #table tbl The table to output the DFT magnitudes (numbers between 0 and 1) into. Indices start from 1.
+-- @param  #number size The number of samples to use. See **FFT\_ Enums**.
+-- @return #number The number of frequency bins that have been filled in the output table.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns 3D cone of the sound channel. See **IGModAudioChannel:Set3DCone**.
+-- @function [parent=#IGModAudioChannel] Get3DCone
+-- @param  self
+-- @return #number, #number, #number The inside projection angle, outside projection and delta-volume outside the outer projection.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns 3D fade distances of a sound channel.
+-- @function [parent=#IGModAudioChannel] Get3DFadeDistance
+-- @param  self
+-- @return #number, #number The minimum and maximum fade distance.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the average bit rate of the sound channel.
+-- @function [parent=#IGModAudioChannel] GetAverageBitRate
+-- @param  self
+-- @return #number The average bit rate of the sound channel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Retrieves the number of bits per sample of the sound channel. Doesn't work
+-- for mp3 and ogg files.
+-- @function [parent=#IGModAudioChannel] GetBitsPerSample
+-- @param  self
+-- @return #number Number of bits per sample, or 0 if unknown.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the filename for the sound channel.
+-- @function [parent=#IGModAudioChannel] GetFileName
+-- @param  self
+-- @return #string The file name. This will not be always what you have put into the **sound.PlayURL** as first argument.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the length of sound played by the sound channel.
+-- @function [parent=#IGModAudioChannel] GetLength
+-- @param  self
+-- @return #number The length of the sound. This value seems to be less then 0 for continuous radio streams.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the right and left levels of sound played by the sound channel.
+-- @function [parent=#IGModAudioChannel] GetLevel
+-- @param  self
+-- @return #number, #number The left and right sounds levels, between 0 and 1.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the playback rate of the sound channel.
+-- @function [parent=#IGModAudioChannel] GetPlaybackRate
+-- @param  self
+-- @return #number The current playback rate of the sound channel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns position of the sound channel.
+-- @function [parent=#IGModAudioChannel] GetPos
+-- @param  self
+-- @return #Vector The position of the sound channel, previously set by **IGModAudioChannel:SetPos**.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the sample rate for currently playing sound.
+-- @function [parent=#IGModAudioChannel] GetSamplingRate
+-- @param  self
+-- @return #number The sample rate in MHz. This should always be 44100.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the state of a sound channel.
+-- @function [parent=#IGModAudioChannel] GetState
+-- @param  self
+-- @return #number The state of the sound channel, see **GMOD\_CHANNEL\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the current time of the sound channel.
+-- @function [parent=#IGModAudioChannel] GetTime
+-- @param  self
+-- @return #number The current time of the stream.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns volume of a sound channel.
+-- @function [parent=#IGModAudioChannel] GetVolume
+-- @param  self
+-- @return #number The volume of the sound channel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns if the sound channel is in 3D mode or not.
+-- @function [parent=#IGModAudioChannel] Is3D
+-- @param  self
+-- @return #boolean Is 3D or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns whether the audio stream is block streamed or not.
+-- @function [parent=#IGModAudioChannel] IsBlockStreamed
+-- @param  self
+-- @return #boolean Is the audio stream block streamed or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns if the sound channel is looping or not.
+-- @function [parent=#IGModAudioChannel] IsLooping
+-- @param  self
+-- @return #boolean Is looping or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns if the sound channel is streamed from the Internet or not.
+-- @function [parent=#IGModAudioChannel] IsOnline
+-- @param  self
+-- @return #boolean Is online or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns if the sound channel is valid or not.
+-- @function [parent=#IGModAudioChannel] IsValid
+-- @param  self
+-- @return #boolean Is the sound channel valid or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Pauses the stream. It can be started again using **IGModAudioChannel:Play**.
+-- @function [parent=#IGModAudioChannel] Pause
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Starts playing the stream.
+-- @function [parent=#IGModAudioChannel] Play
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets 3D cone of the sound channel.
+-- @function [parent=#IGModAudioChannel] Set3DCone
+-- @param  self
+-- @param  #number innerAngle The angle of the inside projection cone in degrees.
+-- Range is from 0 (no cone) to 360 (sphere), -1 = leave current.
+-- @param  #number outerAngle The angle of the outside projection cone in degrees.
+-- Range is from 0 (no cone) to 360 (sphere), -1 = leave current.
+-- @param  #number outerVolume The delta-volume outside the outer projection cone.
+-- Range is from 0 (silent) to 1 (same as inside the cone), less than 0 = leave current.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets 3D fade distances of a sound channel.
+-- @function [parent=#IGModAudioChannel] Set3DFadeDistance
+-- @param  self
+-- @param  #number min The minimum distance. The channel's volume is at maximum when the listener is within this distance.
+-- 0 or less = leave current.
+-- @param  #number max The maximum distance. The channel's volume stops decreasing when the listener is beyond this distance.
+-- 0 or less = leave current.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the playback rate of the sound channel. May not work with high values
+-- for radio streams.
+-- @function [parent=#IGModAudioChannel] SetPlaybackRate
+-- @param  self
+-- @param  #number rate Playback rate to set to. 1 is normal speed, 0.5 is half the normal speed, etc.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets position of sound channel in case the sound channel has a 3d option set.
+-- @function [parent=#IGModAudioChannel] SetPos
+-- @param  self
+-- @param  #Vector pos The position to put the sound into.
+-- @param  #Vector dir The direction of the sound. _(Default: Vector(0,0,0))_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the sound channel to specified time (Rewind to that position of the song).
+-- Does not work on online radio streams. Streamed sounds must have "noblock"
+-- parameter for this to work.
+-- @function [parent=#IGModAudioChannel] SetTime
+-- @param  self
+-- @param  #number secs The time to set the stream to, in seconds.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the volume of a sound channel.
+-- @function [parent=#IGModAudioChannel] SetVolume
+-- @param  self
+-- @param  #number volume Volume to set, a number between 0 and 1.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Stop the stream. It can be started again using **IGModAudioChannel:Play**.
+-- @function [parent=#IGModAudioChannel] Stop
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- A Material object. It represents a game material, similarly to how a .vmt
+-- file does. It can be created with **Material** or **CreateMaterial**.
 -- @type IMaterial
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Client_ | _Server_
 -- 
+-- Returns the color of the specified pixel of the $basetexture, only works for
+-- materials created from PNG files. Basically identical to **ITexture:GetColor**
+-- used on **IMaterial:GetTexture**("$basetexture").
+-- @function [parent=#IMaterial] GetColor
+-- @param  self
+-- @param  #number x The X coordinate.
+-- @param  #number y The Y coordinate.
+-- @return #table The color of the pixel as a **Color structure**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the specified material value as a float, or nil if the value is not set.
+-- @function [parent=#IMaterial] GetFloat
+-- @param  self
+-- @param  #string materialFloat The name of the material value.
+-- @return #number Material's float value.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the specified material value as a int, rounds the value if its a
+-- float, or nil if the value is not set.
+-- @function [parent=#IMaterial] GetInt
+-- @param  self
+-- @param  #string materialInt The name of the material integer.
+-- @return #number The materials number.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets all the key values defined for the material.
+-- @function [parent=#IMaterial] GetKeyValues
+-- @param  self
+-- @return #table The material's key values.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the specified material matrix as a int, or nil if the value is not
+-- set or is not a matrix.
+-- @function [parent=#IMaterial] GetMatrix
+-- @param  self
+-- @param  #string materialMatrix The name of the material matrix.
+-- @return #VMatrix The material's matrix.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the name of the material, in most cases the path.
+-- @function [parent=#IMaterial] GetName
+-- @param  self
+-- @return #string Material name/path.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the name of the materials shader.
+-- @function [parent=#IMaterial] GetShader
+-- @param  self
+-- @return #string The material's shader name.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the specified material string, or nil if the value is not set or if
+-- the value can not be converted to a string.
+-- @function [parent=#IMaterial] GetString
+-- @param  self
+-- @param  #string materialString The name of the material string.
+-- @return #string The value as a string.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns an ITexture based on the passed shader parameter.
+-- @function [parent=#IMaterial] GetTexture
+-- @param  self
+-- @param  #string param The shader parameter to retrieve. This should normally be $basetexture.
+-- @return #ITexture The value of the shader parameter. Returns nothing if the param doesn't exist.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the specified material vector, or nil if the value is not set. See
+-- also **IMaterial:GetVectorLinear**.
+-- @function [parent=#IMaterial] GetVector
+-- @param  self
+-- @param  #string materialVector The name of the material vector.
+-- @return #Vector The color vector.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the specified material linear color vector, or nil if the value is
+-- not set. See also **IMaterial:GetVector**.
+-- @function [parent=#IMaterial] GetVectorLinear
+-- @param  self
+-- @param  #string materialVector The name of the material vector.
+-- @return #Vector The linear color vector.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the height of the member texture set for $basetexture.
+-- @function [parent=#IMaterial] Height
+-- @param  self
+-- @return #number Texture height.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whenever the material was not loaded successfully.
+-- @function [parent=#IMaterial] IsError
+-- @param  self
+-- @return #boolean Is error.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Recomputes the material's snapshot. This needs to be called if you have
+-- changed variables on your material and it isn't changing.
+-- 
+-- Be careful though - this function is slow - so try to call it only when needed!
+-- @function [parent=#IMaterial] Recompute
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the specified material float to the specified float, does nothing on a
+-- type mismatch.
+-- @function [parent=#IMaterial] SetFloat
+-- @param  self
+-- @param  #string materialFloat The name of the material float.
+-- @param  #number float The new float value.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the specified material value to the specified int, does nothing on a
+-- type mismatch.
+-- @function [parent=#IMaterial] SetInt
+-- @param  self
+-- @param  #string materialInt The name of the material int.
+-- @param  #number int The new int value.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the specified material value to the specified matrix, does nothing on a
+-- type mismatch.
+-- @function [parent=#IMaterial] SetMatrix
+-- @param  self
+-- @param  #string materialMatrix The name of the material int.
+-- @param  #VMatrix matrix The new matrix.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the specified material value to the specified string, does nothing on a
+-- type mismatch.
+-- @function [parent=#IMaterial] SetString
+-- @param  self
+-- @param  #string materialString The name of the material string.
+-- @param  #string string The new string.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the specified material texture to the specified texture, does nothing
+-- on a type mismatch.
+-- @function [parent=#IMaterial] SetTexture
+-- @param  self
+-- @param  #string materialTexture The name of the keyvalue on the material to store the texture on.
+-- @param  #ITexture texture The new texture. This can also be a string, the name of the new texture.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Unsets the value for the specified material value.
+-- @function [parent=#IMaterial] SetUndefined
+-- @param  self
+-- @param  #string materialValueName The name of the material value to be unset.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the specified material vector to the specified vector, does nothing on a
+-- type mismatch.
+-- @function [parent=#IMaterial] SetVector
+-- @param  self
+-- @param  #string MaterialVector The name of the material vector.
+-- @param  #Vector vec The new vector.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the width of the member texture set for $basetexture.
+-- @function [parent=#IMaterial] Width
+-- @param  self
+-- @return #number Texture width.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Renderable mesh object, can be used to create models on the fly. The only
+-- way to create your own IMesh object is to call **Mesh**.
 -- @type IMesh
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Client_
 -- 
+-- Builds the mesh from a table mesh vertexes.
+-- @function [parent=#IMesh] BuildFromTriangles
+-- @param  self
+-- @param  #table vertexes A table consisting of **MeshVertex structures**.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Deletes the mesh and frees the memory used by it.
+-- @function [parent=#IMesh] Destroy
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Renders the mesh with the active matrix.
+-- @function [parent=#IMesh] Draw
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- The object used in the saverestore library, mainly in **saverestore.AddRestoreHook**.
+-- It allows you to read blocks directly from the save game files used by
+-- Half-Life 2 save system when such save is loaded.
 -- @type IRestore
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Client_ | _Server_
 -- 
+-- Ends current data block started with **IRestore:StartBlock** and returns to the
+-- parent block. To avoid all sorts of errors, you must end all blocks you start.
+-- @function [parent=#IRestore] EndBlock
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Reads next bytes from the restore object as an Angle.
+-- @function [parent=#IRestore] ReadAngle
+-- @param  self
+-- @return #Angle The angle that has been read.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Reads next bytes from the restore object as a boolean.
+-- @function [parent=#IRestore] ReadBool
+-- @param  self
+-- @return #boolean The boolean that has been read.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Reads next bytes from the restore object as an Entity.
+-- @function [parent=#IRestore] ReadEntity
+-- @param  self
+-- @return #Entity The entity that has been read.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Reads next bytes from the restore object as a floating point number.
+-- @function [parent=#IRestore] ReadFloat
+-- @param  self
+-- @return #number The read floating point number.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Reads next bytes from the restore object as an integer number.
+-- @function [parent=#IRestore] ReadInt
+-- @param  self
+-- @return #number The read integer number.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Reads next bytes from the restore object as a string.
+-- @function [parent=#IRestore] ReadString
+-- @param  self
+-- @return #string The read string. Maximum length is 1024.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Reads next bytes from the restore object as a Vector.
+-- @function [parent=#IRestore] ReadVector
+-- @param  self
+-- @return #Vector The read vector.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Loads next block of data to be read inside current block. Blocks must be
+-- ended with **IRestore:EndBlock**.
+-- @function [parent=#IRestore] StartBlock
+-- @param  self
+-- @return #string The name of the next data block to be read.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- The object used in the saverestore library, mainly in **saverestore.AddSaveHook**.
+-- It allows you to write blocks directly into the save game files used by
+-- Half-Life 2 save system when such save is being saved.
 -- @type ISave
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Client_ | _Server_
 -- 
+-- Ends current data block started with **ISave:StartBlock** and returns to the
+-- parent block. To avoid all sorts of errors, you must end all blocks you start.
+-- @function [parent=#ISave] EndBlock
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Starts a new block of data that you can write to inside current block.
+-- Blocks must be ended with **ISave:EndBlock**.
+-- @function [parent=#ISave] StartBlock
+-- @param  self
+-- @param  #string name Name of the new block. Used for determining which block is which, returned by **IRestore:StartBlock** during game load.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Writes an Angle to the save object.
+-- @function [parent=#ISave] WriteAngle
+-- @param  self
+-- @param  #Angle ang The angle to write.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Writes a boolean to the save object.
+-- @function [parent=#ISave] WriteBool
+-- @param  self
+-- @param  #boolean bool The boolean to write.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Writes an Entity to the save object.
+-- @function [parent=#ISave] WriteEntity
+-- @param  self
+-- @param  #Entity ent The entity to write.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Writes a floating point number to the save object.
+-- @function [parent=#ISave] WriteFloat
+-- @param  self
+-- @param  #number float The floating point number to write.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Writes an integer number to the save object.
+-- @function [parent=#ISave] WriteInt
+-- @param  self
+-- @param  #number int The integer number to write.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Writes a string to the save object.
+-- @function [parent=#ISave] WriteString
+-- @param  self
+-- @param  #string str The string to write. Maximum length is 1024.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Writes a Vector to the save object.
+-- @function [parent=#ISave] WriteVector
+-- @param  self
+-- @param  #Vector vec The vector to write.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- An object representing game texture, like a .vtf file. Do not confuse with
+-- **IMaterial**. Returned by **IMaterial:GetTexture**.
 -- @type ITexture
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Client_ | _Server_
 -- 
+-- Invokes the generator of the texture. Reloads file based textures from disk
+-- and clears render target textures.
+-- @function [parent=#ITexture] Download
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the color of the specified pixel, only works for textures created
+-- from PNG files.
+-- @function [parent=#ITexture] GetColor
+-- @param  self
+-- @param  #number x The X coordinate.
+-- @param  #number y The Y coordinate.
+-- @return #table The color of the pixel as a **Color structure**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the true unmodified height of the texture.
+-- @function [parent=#ITexture] GetMappingHeight
+-- @param  self
+-- @return #number Texture's true height.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the true unmodified width of the texture.
+-- @function [parent=#ITexture] GetMappingWidth
+-- @param  self
+-- @return #number Texture's true width.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the name of the texture, in most cases the path.
+-- @function [parent=#ITexture] GetName
+-- @param  self
+-- @return #string Texture name.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the modified height of the texture, this value may be affected by
+-- mipmapping and other factors.
+-- @function [parent=#ITexture] Height
+-- @param  self
+-- @return #number Texture's modified height.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whenever the texture is invalid or not.
+-- @function [parent=#ITexture] IsError
+-- @param  self
+-- @return #boolean Is texture valid.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the modified width of the texture, this value may be affected by
+-- mipmapping and other factors.
+-- @function [parent=#ITexture] Width
+-- @param  self
+-- @return #number Texture's modified width.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- This is returned from **video.Record**.
 -- @type IVideoWriter
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Client_
 -- 
+-- Adds the current framebuffer to the video stream.
+-- @function [parent=#IVideoWriter] AddFrame
+-- @param  self
+-- @param  #number frameTime Usually set to what **FrameTime** is, or simply 1/fps.
+-- @param  #boolean downsample If true it will downsample the whole screenspace to the videos width and height, otherwise it will just record from the top left corner to the given width and height and therefor not the whole screen.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Ends the video recording and dumps it to disk.
+-- @function [parent=#IVideoWriter] Finish
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the height of the video stream.
+-- @function [parent=#IVideoWriter] Height
+-- @param  self
+-- @return #number Video's height.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets whether to record sound or not.
+-- @function [parent=#IVideoWriter] SetRecordSound
+-- @param  self
+-- @param  #boolean record Record sound or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the width of the video stream.
+-- @function [parent=#IVideoWriter] Width
+-- @param  self
+-- @return #number Video's width.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Object containing parsed markup for later rendering. Created by **markup.Parse**.
 -- @type MarkupObject
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Client_
 -- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Creates a new empty markupobject. Use **markup.Parse** instead of calling this.
+-- @function [parent=#MarkupObject] Create
+-- @param  self
+-- @return #MarkupObject The created object.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Draws the computed markupobject to the screen.
+-- @function [parent=#MarkupObject] Draw
+-- @param  self
+-- @param  #number xOffset The X coordinate on the screen.
+-- @param  #number yOffset The Y coordinate on the screen.
+-- @param  #number xAlign The alignment of the x coordinate using **TEXT\_ALIGN\_ Enums**.
+-- @param  #number yAlign The alignment of the y coordinate using **TEXT\_ALIGN\_ Enums**.
+-- @param  #number alphaoverride Sets the alpha of all drawn objects to this. _(Default: 255)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Gets computed the height of the markupobject.
+-- @function [parent=#MarkupObject] GetHeight
+-- @param  self
+-- @return #number The computed height.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Gets computed the width of the markupobject.
+-- @function [parent=#MarkupObject] GetWidth
+-- @param  self
+-- @return #number The computed width.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Gets computed the width and height of the markupobject.
+-- @function [parent=#MarkupObject] Size
+-- @param  self
+-- @return #number, #number The computed width and height.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- This is a list of all methods only available for NPCs. It is also possible
+-- to call Entity functions on NPCs.
 -- @type NPC
 -- @extends Entity
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Server_
 -- 
+-- Makes the NPC like, hate, feel neutral towards, or fear the entity in
+-- question. If you want to setup relationship towards a certain entity class,
+-- use **NPC:AddRelationship**.
+-- @function [parent=#NPC] AddEntityRelationship
+-- @param  self
+-- @param  #Entity target The entity for the relationship to be applied to.
+-- @param  #number disposition A **D\_ Enums** representing the relationship type.
+-- @param  #number priority How strong the relationship is.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Changes how an NPC feels towards another NPC. If you want to setup
+-- relationship towards a certain entity, use **NPC:AddEntityRelationship**.
+-- @function [parent=#NPC] AddRelationship
+-- @param  self
+-- @param  #string relationstring A string representing how the relationship should be set up.
+-- Should be formatted as "npc\_class **D\_ Enums** numberPriority".
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Force an NPC to play his Alert sound.
+-- @function [parent=#NPC] AlertSound
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Adds a capability to the NPC.
+-- @function [parent=#NPC] CapabilitiesAdd
+-- @param  self
+-- @param  #number capabilities Capabilities to add, see **CAP\_ Enums**
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Removes all of Capabilities the NPC has.
+-- @function [parent=#NPC] CapabilitiesClear
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the NPC's capabilities along the ones defined on its weapon.
+-- @function [parent=#NPC] CapabilitiesGet
+-- @param  self
+-- @return #number The capabilities as a bitflag. See **CAP\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Remove a certain capability.
+-- @function [parent=#NPC] CapabilitiesRemove
+-- @param  self
+-- @param  #number capabilities Capabilities to remove, see **CAP\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the NPC class. Do not confuse with **Entity:GetClass**!
+-- @function [parent=#NPC] Classify
+-- @param  self
+-- @return #number See **CLASS\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Clears out the specified **COND\_ Enums** on this NPC.
+-- @function [parent=#NPC] ClearCondition
+-- @param  self
+-- @param  #number condition The **COND\_ Enums** to clear out.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Clears the Enemy from the NPC's memory, effectively forgetting it until met
+-- again with either the NPC vision or with **NPC:UpdateEnemyMemory**.
+-- @function [parent=#NPC] ClearEnemyMemory
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Clears the NPC's current expression which can be set with **NPC:SetExpression**.
+-- @function [parent=#NPC] ClearExpression
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Clears the current NPC goal or target.
+-- @function [parent=#NPC] ClearGoal
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Stops the current schedule that the NPC is doing.
+-- @function [parent=#NPC] ClearSchedule
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Translates condition ID to a string.
+-- @function [parent=#NPC] ConditionName
+-- @param  self
+-- @param  #number cond The NPCs condition ID, see **COND\_ Enums**.
+-- @return #string A human understandable string equivalent of that condition.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the way the NPC "feels" about the entity.
+-- @function [parent=#NPC] Disposition
+-- @param  self
+-- @param  #Entity ent The entity to get the disposition from.
+-- @return #number The NPCs disposition, see **D\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Makes an NPC exit a scripted sequence, if one is playing.
+-- @function [parent=#NPC] ExitScriptedSequence
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Force an NPC to play his Fear sound.
+-- @function [parent=#NPC] FearSound
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Force an NPC to play its FoundEnemy sound.
+-- @function [parent=#NPC] FoundEnemySound
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the weapon the NPC is currently carrying, or NULL.
+-- @function [parent=#NPC] GetActiveWeapon
+-- @param  self
+-- @return #Entity The NPCs current weapon.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the NPC's current activity.
+-- @function [parent=#NPC] GetActivity
+-- @param  self
+-- @return #number Current activity, see **ACT\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the aim vector of the NPC. NPC alternative of **Player:GetAimVector**.
+-- @function [parent=#NPC] GetAimVector
+-- @param  self
+-- @return #Vector The aim direction of the NPC.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the activity to be played when the NPC arrives at its goal.
+-- @function [parent=#NPC] GetArrivalActivity
+-- @param  self
+-- @return #number
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] GetArrivalSequence
+-- @param  self
+-- @return #number
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the entity blocking the NPC along its path.
+-- @function [parent=#NPC] GetBlockingEntity
+-- @param  self
+-- @return #Entity Blocking entity.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the NPC's current schedule.
+-- @function [parent=#NPC] GetCurrentSchedule
+-- @param  self
+-- @return #number The NPCs schedule, see **SCHED\_ Enums** or -1 if we failed for some reason
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns how proficient (skilled) an NPC is with its current weapon.
+-- @function [parent=#NPC] GetCurrentWeaponProficiency
+-- @param  self
+-- @return #number NPC's proficiency for current weapon. See **WEAPON\_PROFICIENCY\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the entity that this NPC is trying to fight.
+-- @function [parent=#NPC] GetEnemy
+-- @param  self
+-- @return #NPC Enemy NPC.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the expression file the NPC is currently playing.
+-- @function [parent=#NPC] GetExpression
+-- @param  self
+-- @return #string The file path of the expression.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns NPCs hull type set by **NPC:SetHullType**.
+-- @function [parent=#NPC] GetHullType
+-- @param  self
+-- @return #number Hull type, see **HULL\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the NPC's current movement activity.
+-- @function [parent=#NPC] GetMovementActivity
+-- @param  self
+-- @return #number Current NPC movement activity, see **ACT\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the index of the sequence the NPC uses to move.
+-- @function [parent=#NPC] GetMovementSequence
+-- @param  self
+-- @return #number The movement sequence index.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the NPC's state.
+-- @function [parent=#NPC] GetNPCState
+-- @param  self
+-- @return #number The NPC's current state, see **NPC\_STATE\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] GetPathDistanceToGoal
+-- @param  self
+-- @return #number
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] GetPathTimeToGoal
+-- @param  self
+-- @return #number
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the shooting position of the NPC.
+-- 
+-- **Note**: _This only works properly when called on an NPC that can hold
+-- weapons, otherwise it will return the same value as **Entity:GetPos**._
+-- @function [parent=#NPC] GetShootPos
+-- @param  self
+-- @return #Vector The NPC's shooting position.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the NPC's current target set by **NPC:SetTarget**.
+-- @function [parent=#NPC] GetTarget
+-- @param  self
+-- @return #Entity Target entity.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Used to give a weapon to an already spawned NPC.
+-- @function [parent=#NPC] Give
+-- @param  self
+-- @param  #string weapon Class name of the weapon to equip to the NPC.
+-- @return #Weapon The weapon entity given to the NPC.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether or not the NPC has the given condition.
+-- @function [parent=#NPC] HasCondition
+-- @param  self
+-- @param  #number condition The condition index, see **COND\_ Enums**.
+-- @return #boolean True if the NPC has the given condition, false otherwise.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Force an NPC to play his Idle sound.
+-- @function [parent=#NPC] IdleSound
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether or not the NPC is performing the given schedule.
+-- @function [parent=#NPC] IsCurrentSchedule
+-- @param  self
+-- @param  #number schedule The schedule number, see **SCHED\_ Enums**.
+-- @return #boolean True if the NPC is performing the given schedule, false otherwise.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether the NPC is moving or not.
+-- @function [parent=#NPC] IsMoving
+-- @param  self
+-- @return #boolean Whether the NPC is moving or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] IsRunningBehavior
+-- @param  self
+-- @return #boolean
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether the entity given can be reached by this NPC.
+-- @function [parent=#NPC] IsUnreachable
+-- @param  self
+-- @param  #Entity testEntity The entity to test.
+-- @return #boolean If the entity is reachable or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Force an NPC to play it LostEnemy sound.
+-- @function [parent=#NPC] LostEnemySound
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] MaintainActivity
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Causes the NPC to temporarily forget the current enemy and switch on to a
+-- better one.
+-- @function [parent=#NPC] MarkEnemyAsEluded
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] MoveOrder
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the goal position for the NPC.
+-- @function [parent=#NPC] NavSetGoal
+-- @param  self
+-- @param  #Vector position The position to set as the goal.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Set the goal target for an NPC.
+-- @function [parent=#NPC] NavSetGoalTarget
+-- @param  self
+-- @param  #Entity target The targeted entity to set the goal to.
+-- @param  #Vector offset The offset to apply to the targeted entity's position.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Creates a random path of specified minimum length between a closest start
+-- node and random node in the specified direction.
+-- @function [parent=#NPC] NavSetRandomGoal
+-- @param  self
+-- @param  #number minPathLength Minimum length of path in units.
+-- @param  #Vector dir Unit vector pointing in the direction of the target random node.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets a goal in x, y offsets for the npc to wander to.
+-- @function [parent=#NPC] NavSetWanderGoal
+-- @param  self
+-- @param  #number xoffset X offset.
+-- @param  #number yoffset Y offset.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Forces the NPC to play a sentence from scripts/sentences.txt.
+-- @function [parent=#NPC] PlaySentence
+-- @param  self
+-- @param  #string sentence The sentence string to speak.
+-- @param  #number delay Delay in seconds until the sentence starts playing.
+-- @param  #number volume The volume of the sentence, from 0 to 1.
+-- @return #number Returns the sentence index, -1 if the sentence couldn't be played.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] RunEngineTask
+-- @param  self
+-- @param  #number taskID The task ID, see ai_task.h.
+-- @param  #number taskData The task data.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] SentenceStop
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] SetArrivalActivity
+-- @param  self
+-- @param  #number act
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] SetArrivalDirection
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] SetArrivalDistance
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] SetArrivalSequence
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] SetArrivalSpeed
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets an NPC condition.
+-- @function [parent=#NPC] SetCondition
+-- @param  self
+-- @param  #number condition The condition index, see **COND\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the weapon proficiency of an NPC (how skilled an NPC is with its
+-- current weapon).
+-- @function [parent=#NPC] SetCurrentWeaponProficiency
+-- @param  self
+-- @param  #number proficiency The proficiency for the NPC's current weapon. See **WEAPON\_PROFICIENCY\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the target for an NPC.
+-- @function [parent=#NPC] SetEnemy
+-- @param  self
+-- @param  #Entity enemy The enemy that the NPC should target.
+-- @param  #boolean newenemy Calls **NPC:SetCondition**(COND\_NEW\_ENEMY) if the new enemy is valid and not equal to the last enemy. _(Default: true)_
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the NPC's .vcd expression. Similar to **Entity:PlayScene** except the scene
+-- is looped until it's interrupted by default NPC behavior or **NPC:ClearExpression**.
+-- @function [parent=#NPC] SetExpression
+-- @param  self
+-- @param  #string expression The expression filepath.
+-- @return #number
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Updates the NPC's hull and physics hull in order to match its model scale.
+-- **Entity:SetModelScale** seems to take care of this regardless.
+-- @function [parent=#NPC] SetHullSizeNormal
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the hull type for the NPC.
+-- @function [parent=#NPC] SetHullType
+-- @param  self
+-- @param  #number hullType Hull type. See **HULL\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the last registered or memorized position for an npc. When using
+-- scheduling, the NPC will focus on navigating to the last position via nodes.
+-- 
+-- **Note**: _The navigation requires ground nodes to function properly,
+-- otherwise the NPC could only navigate in a small area._
+-- _(https://developer.valvesoftware.com/wiki/Info\_node)_
+-- @function [parent=#NPC] SetLastPosition
+-- @param  self
+-- @param  #Vector Position Where the NPC's last position will be set.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] SetMaxRouteRebuildTime
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the activity the NPC uses when it moves.
+-- @function [parent=#NPC] SetMovementActivity
+-- @param  self
+-- @param  #number activity The movement activity, see **ACT\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the sequence the NPC navigation path uses for speed calculation.
+-- Doesn't seem to have any visible effect on NPC movement.
+-- @function [parent=#NPC] SetMovementSequence
+-- @param  self
+-- @param  #number sequenceId The movement sequence index.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the state the NPC is in to help it decide on a ideal schedule.
+-- @function [parent=#NPC] SetNPCState
+-- @param  self
+-- @param  #number state New NPC state, see **NPC\_STATE\_ Enums.**
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the NPC's current schedule.
+-- @function [parent=#NPC] SetSchedule
+-- @param  self
+-- @param  #number schedule The NPC schedule, see **SCHED\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the NPC's target. This is used in some engine schedules.
+-- @function [parent=#NPC] SetTarget
+-- @param  self
+-- @param  #Entity entity The target of the NPC.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Forces the NPC to start an engine task, this has different results for every NPC.
+-- @function [parent=#NPC] StartEngineTask
+-- @param  self
+-- @param  #number task The id of the task to start, see ai_task.h.
+-- @param  #number taskData The task data as a float, not all tasks make use of it.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Resets the NPC's movement animation and velocity. Does not actually stop the
+-- NPC from moving.
+-- @function [parent=#NPC] StopMoving
+-- @param  self
+-- @param  #
+-- @return #
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] TargetOrder
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] TaskComplete
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] TaskFail
+-- @param  self
+-- @param  #string task A string most likely defined as a Source Task.
+-- For more information on Tasks go to https://developer.valvesoftware.com/wiki/Task
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Force the NPC to update information on the supplied enemy, as if it had line of sight to it.
+-- @function [parent=#NPC] UpdateEnemyMemory
+-- @param  self
+-- @param  #Entity enemy The enemy to update.
+-- @param  #Vector pos The last known position of the enemy.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] UseActBusyBehavior
+-- @param  self
+-- @return #boolean
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] UseAssaultBehavior
+-- @param  self
+-- @return #boolean
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] UseFollowBehavior
+-- @param  self
+-- @return #boolean
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] UseFuncTankBehavior
+-- @param  self
+-- @return #boolean
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] UseLeadBehavior
+-- @param  self
+-- @return #boolean
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#NPC] UseNoBehavior
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- NextBots are a new system to create NPCs in the Source Engine, utilizing the
+-- more powerful navmesh library system for navigation over the old node based system.
 -- @type NextBot
--- @field 
+-- @extends NPC
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Server_
 -- 
+-- Become a ragdoll and remove the entity.
+-- @function [parent=#NextBot] BecomeRagdoll
+-- @param  self
+-- @param  #CTakeDamageInfo info Damage info passed from an onkilled event.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Should only be called in BodyUpdate. This sets the move\_x and move\_y pose
+-- parameters of the bot to fit how they're currently moving, sets the
+-- animation speed to suit the ground speed, and calls **Entity:FrameAdvance**.
+-- @function [parent=#NextBot] BodyMoveXY
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Like **NextBot:FindSpots** but only returns a vector.
+-- @function [parent=#NextBot] FindSpot
+-- @param  self
+-- @param  #string type Either "random", "near", "far".
+-- @param  #table options This table should contain the search info:
+-- 
+-- * _#string type_ : The type. (Only 'hiding' for now)
+-- * _#Vector pos_ : the position to search.
+-- * _#number radius_ : the radius to search.
+-- * _#number stepup_ : the highest step to step up.
+-- * _#number stepdown_ : the highest we can step down without being hurt.
+-- @return #Vector If it finds a spot it will return a vector. If not it will return nil.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns a table of hiding spots.
+-- @function [parent=#NextBot] FindSpots
+-- @param  self
+-- @param  #table options This table should contain the search info:
+-- 
+-- * _#string type_ : The type. (Only 'hiding' for now)
+-- * _#Vector pos_ : the position to search.
+-- * _#number radius_ : the radius to search.
+-- * _#number stepup_ : the highest step to step up.
+-- * _#number stepdown_ : the highest we can step down without being hurt.
+-- @return #table An unsorted table of tables containing:
+-- 
+-- * _#Vector vector_ : The position of the hiding spot.
+-- * _#number distance_ : The distance to that position.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the currently running activity.
+-- @function [parent=#NextBot] GetActivity
+-- @param  self
+-- @return #number The current activity.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns squared distance to an entity or a position. See also **NextBot:GetRangeTo**.
+-- @function [parent=#NextBot] GetRangeSquaredTo
+-- @param  self
+-- @param  #Vector to The position to measure distance to. Can be an entity.
+-- @return #number The squared distance.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the distance to an entity or position. See also **NextBot:GetRangeSquaredTo**.
+-- @function [parent=#NextBot] GetRangeTo
+-- @param  self
+-- @param  #Vector to The position to measure distance to. Can be an entity.
+-- @return #number The distance.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the solid mask for given NextBot.
+-- @function [parent=#NextBot] GetSolidMask
+-- @param  self
+-- @return #number The solid mask, see **CONTENTS\_ Enums** and **MASK\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Called from Lua when the NPC is stuck. This should only be called from the
+-- behaviour coroutine - so if you want to override this function and do
+-- something special that yields - then go for it. You should always call
+-- **self.loco:ClearStuck**() in this function to reset the stuck status - so it
+-- knows it's unstuck. See **CLuaLocomotion:ClearStuck**.
+-- @function [parent=#NextBot] HandleStuck
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- To be called in the behaviour coroutine only! Will yield until the bot has
+-- reached the goal or is stuck.
+-- @function [parent=#NextBot] MoveToPos
+-- @param  self
+-- @param  #Vector pos The position we want to get to.
+-- @param  #table options A table containing a bunch of tweakable options:
+-- 
+-- * _#number lookahead_ : Minimum look ahead distance.
+-- * _#number tolerance_ : How close we must be to the goal before it can be considered complete.
+-- * _#boolean draw_ : Draw the path. Only visible on listen servers and single player.
+-- * _#number maxage_ : Maximum age of the path before it times out.
+-- * _#number repath_ : Rebuilds the path after this number of seconds.
+-- @return #string Either "failed", "stuck", "timeout" or "ok" - depending on how the NPC got on.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- To be called in the behaviour coroutine only! Plays an animation sequence
+-- and waits for it to end before returning.
+-- @function [parent=#NextBot] PlaySequenceAndWait
+-- @param  self
+-- @param  #string name The sequence name.
+-- @param  #number speed Playback Rate of that sequence. _(Defualt: 1)_
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the solid mask for given NextBot. The default solid mask of a NextBot
+-- is MASK_NPCSOLID.
+-- @function [parent=#NextBot] SetSolidMask
+-- @param  self
+-- @param  #number mask The new mask, see **CONTENTS\_ Enums** and **MASK\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Start doing an activity. (animation)
+-- @function [parent=#NextBot] StartActivity
+-- @param  self
+-- @param  #number activity One of the **ACT\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- This is the base panel for every other VGUI panel. It contains all of the
+-- basic methods, some of which may only work on certain VGUI elements. As
+-- their functionality is provided at the game's C/C++ level rather than by its
+-- Lua script extension, they are unfortunately unavailable for most practical
+-- purposes, however, they can still be obtained in a way similar to that
+-- provided by the baseclass library.
 -- @type Panel
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Client_
 -- 
+-- Adds the specified object to the panel.
+-- @function [parent=#Panel] Add
+-- @param  self
+-- @param  #Panel object The panel to be added (parented). Can also be:
+-- 
+-- * _#string Class Name_ : Creates panel with the specified name and adds it to the panel.
+-- * _#table PANEL table_ : Creates a panel from table and adds it to the panel.
+-- @return #Panel New panel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Aligns the panel on the bottom of its parent with the specified offset.
+-- @function [parent=#Panel] AlignBottom
+-- @param  self
+-- @param  #number offset The align offset. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Aligns the panel on the left of its parent with the specified offset.
+-- @function [parent=#Panel] AlignLeft
+-- @param  self
+-- @param  #number offset The align offset. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Aligns the panel on the right of its parent with the specified offset.
+-- @function [parent=#Panel] AlignRight
+-- @param  self
+-- @param  #number offset The align offset. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Aligns the panel on the top of its parent with the specified offset.
+-- @function [parent=#Panel] AlignTop
+-- @param  self
+-- @param  #number offset The align offset. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Uses animation to transition the current alpha value of a panel to a new
+-- alpha, over a set period of time and after a specified delay.
+-- @function [parent=#Panel] AlphaTo
+-- @param  self
+-- @param  #number alpha The alpha value (0-255) to approach.
+-- @param  #number duration The time in seconds it should take to reach the alpha.
+-- @param  # number delay The delay before the animation starts. _(Default: 0)_
+-- @param  #function callback The function to be called once the animation finishes.
+-- Arguments are:
+-- 
+-- * _#table animData_ : The AnimationData structure that was used.
+-- * _#Panel pnl_ : The panel object whose alpha was changed.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Performs the per-frame operations required for panel animations. This is
+-- called every frame by **Panel:AnimationThink**.
+-- @function [parent=#Panel] AnimationThinkInternal
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the **SysTime** value when all animations for this panel object will end.
+-- @function [parent=#Panel] AnimTail
+-- @param  self
+-- @return #number The system time value when all animations will end for this panel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Appends text to a RichText element. This does not automatically add a new line.
+-- @function [parent=#Panel] AppendText
+-- @param  self
+-- @param  #string txt The text to append (add on).
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Used by **Panel:LoadGWENFile** and **Panel:LoadGWENString** to apply a GWEN controls
+-- table to a panel object. You can do this manually using **file.Read** and
+-- **util.JSONToTable** to import and create a GWEN table structure from a .gwen
+-- file. This method can then be called, passing the GWEN table's Controls member.
+-- @function [parent=#Panel] ApplyGWEN
+-- @param  self
+-- @param  #table GWENTable The GWEN controls table to apply to the panel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Centers the panel on its parent.
+-- @function [parent=#Panel] Center
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Centers the panel horizontally with specified fraction.
+-- @function [parent=#Panel] CenterHorizontal
+-- @param  self
+-- @param  #number fraction The center fraction. _(Default: 0.5)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Centers the panel vertically with specified fraction.
+-- @function [parent=#Panel] CenterVertical
+-- @param  self
+-- @param  #number fraction The center fraction. _(Default: 0.5)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the amount of children of the of panel.
+-- @function [parent=#Panel] ChildCount
+-- @param  self
+-- @return #number Child count.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the width and height of the space between the position of the panel
+-- (upper-left corner) and the max bound of the children panels (farthest
+-- reaching lower-right corner).
+-- @function [parent=#Panel] ChildrenSize
+-- @param  self
+-- @return #number, #number The children' size width and height.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Marks all of the panel's children for deletion.
+-- @function [parent=#Panel] Clear
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Fades panels color to specified one. It won't work unless panel has SetColor function.
+-- @function [parent=#Panel] ColorTo
+-- @param  self
+-- @param  #table color The color to fade to.
+-- @param  #number length Length of the animation.
+-- @param  #number delay Delay before start fading.
+-- @param  #function callback Function to execute when finished.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sends an action command signal to the panel. The response is handled by **Panel:ActionSignal**.
+-- @function [parent=#Panel] Command
+-- @param  self
+-- @param  #string command The command to send to the panel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Updates a panel object's associated console variable. This must first be set
+-- up with **Derma\_Install\_Convar\_Functions**, and have a ConVar set using **Panel:SetConVar**.
+-- @function [parent=#Panel] ConVarChanged
+-- @param  self
+-- @param  #string newValue The new value to set the associated console variable to.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- A think hook for Panels using ConVars as a value. Call it in the Think hook.
+-- Sets the panel's value should the convar change. This function is best for:
+-- checkboxes, sliders, number wangs. For a string alternative, see **Panel.ConVarStringThink**.
+-- 
+-- **Important**: _Make sure your Panel has a SetValue function, else you may get errors._
+-- @function [parent=#Panel] ConVarNumberThink
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- A think hook for panels using ConVars as a value. Call it in the Think hook.
+-- Sets the panel's value should the convar change. This function is best for:
+-- text inputs, read-only inputs, dropdown selects. For a number alternative,
+-- see **Panel.ConVarNumberThink**.
+-- 
+-- **Important**: _Make sure your Panel has a SetValue function, else you may get errors._
+-- @function [parent=#Panel] ConVarStringThink
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Gets the size, position and dock state of the passed panel object, and
+-- applies it to this one.
+-- @function [parent=#Panel] CopyBase
+-- @param  self
+-- @param  #Panel srcPanel The panel to copy the boundary and dock settings from.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Copies position and size of the panel.
+-- @function [parent=#Panel] CopyBounds
+-- @param  self
+-- @param  #Panel base The panel to copy size and position from.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Copies the height of the panel.
+-- @function [parent=#Panel] CopyHeight
+-- @param  self
+-- @param  #Panel base Panel to copy the height from.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Copies the position of the panel.
+-- @function [parent=#Panel] CopyPos
+-- @param  self
+-- @param  #Panel base Panel to position the width from.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Performs the "CONTROL + C" key combination effect (Copy selection to
+-- clipboard) on selected text.
+-- @function [parent=#Panel] CopySelected
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Copies the width of the panel.
+-- @function [parent=#Panel] CopyWidth
+-- @param  self
+-- @param  #Panel base Panel to copy the width from.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the cursor position relative to the top left of the panel. This is
+-- equivalent to calling **gui.MousePos** and then **Panel:ScreenToLocal**.
+-- 
+-- **Warning**: _This function uses a cached value for the screen position of
+-- the panel, computed at the end of the last VGUI Think/Layout pass. ie.
+-- inaccurate results may be returned if the panel or any of its ancestors have
+-- been repositioned outside of **Panel:Think** or **Panel:PerformLayout** within the
+-- last frame._
+-- @function [parent=#Panel] CursorPos
+-- @param  self
+-- @return #number, #number X and Y coordinates of the cursor, relative to the top left of the panel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Performs the "CONTROL + X" (delete text and copy it to clipboard buffer)
+-- action on selected text.
+-- @function [parent=#Panel] CutSelected
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Deletes a cookie value using the panel's cookie name (**Panel:GetCookieName**)
+-- and the passed extension.
+-- @function [parent=#Panel] DeleteCookie
+-- @param  self
+-- @param  #string cookieName The unique cookie name to delete.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Resets the panel object's **Panel:SetPos** method and removes its animation
+-- table (**Panel.LerpAnim**). This effectively undoes the changes made by
+-- **Panel:LerpPositions**. In order to use Lerp animation again, you must call
+-- **Panel:Stop** before setting its SetPosReal property to 'nil'.
+-- @function [parent=#Panel] DisableLerp
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the linear distance from the centre of this panel object and another.
+-- @function [parent=#Panel] Distance
+-- @param  self
+-- @param  #Panel tgtPanel The target object with which to compare position.
+-- @return #number The linear (straight-line) distance between the centres of the two objects.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the distance between the centre of this panel object and a specified
+-- point (local to the parent panel).
+-- @function [parent=#Panel] DistanceFrom
+-- @param  self
+-- @param  #number posX The horizontal (x) position in pixels of the point to compare with. Local to the parent panel, or container.
+-- @param  #number posY The vertical (y) position in pixels of the point to compare with. Local to the parent panel, or container.
+-- @return #number The linear (straight-line) distance between the specified point and the centre of the panel object.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the dock type of the panel.
+-- 
+-- **Note**: _After using this function, if you want to get the correct panel's
+-- bounds (position, size), use **Panel:InvalidateParent**. (use true as argument if
+-- you need to update immediately)_
+-- @function [parent=#Panel] Dock
+-- @param  self
+-- @param  #number dockType Dock type using **DOCK\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the dock margin of the panel. The dock margin is the extra space that will
+-- be left around the edge when this element is docked inside its parent element.
+-- @function [parent=#Panel] DockMargin
+-- @param  self
+-- @param  #number marginLeft The left margin to the parent.
+-- @param  #number marginTop The top margin to the parent.
+-- @param  #number marginRight The right margin to the parent.
+-- @param  #number marginBottom The bottom margin to the parent.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the dock padding of the panel. The dock padding is the extra space that
+-- will be left around the edge when child elements are docked inside this element.
+-- @function [parent=#Panel] DockPadding
+-- @param  self
+-- @param  #number paddingLeft The left padding to the parent.
+-- @param  #number paddingTop The top padding to the parent.
+-- @param  #number paddingRight The right padding to the parent.
+-- @param  #number paddingBottom The bottom padding to the parent.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Makes the panel "lock" the screen until it is removed. It will silently fail
+-- if used while cursor is not visible. Call **Panel:MakePopup** before calling
+-- this function.
+-- @function [parent=#Panel] DoModal
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Called by **Panel:DragMouseRelease** when a user clicks one mouse button whilst
+-- dragging with another.
+-- @function [parent=#Panel] DragClick
+-- @param  self
+-- @return #boolean Always returns true.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Called by **dragndrop.HoverThink** to perform actions on an object that is
+-- dragged and hovered over another.
+-- @function [parent=#Panel] DragHover
+-- @param  self
+-- @param  #number HoverTime If this time is greater than 0.1, **Panel:DragHoverClick**, passing it as an argument.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Called to end a drag and hover action. This resets the panel's
+-- **Panel:PaintOver** method, and is primarily used by **dragndrop.StopDragging**.
+-- @function [parent=#Panel] DragHoverEnd
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Called to inform the dragndrop library that a mouse button is being held
+-- down on a panel object.
+-- @function [parent=#Panel] DragMousePress
+-- @param  self
+-- @param  #number mouseCode The code for the mouse button pressed, passed by, for example, **Panel:OnMousePressed**. See the **MOUSE\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Called to inform the dragndrop library that a mouse button has been
+-- depressed on a panel object.
+-- @function [parent=#Panel] DragMouseRelease
+-- @param  self
+-- @param  #number mouseCode The code for the mouse button pressed, passed by, for example, **Panel:OnMouseReleased**. See the **MOUSE\_ Enums**.
+-- @return #boolean true if an object was being dragged, otherwise false.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Called to draw the drop target when an object is being dragged across another.
+-- See **Panel:SetDropTarget**.
+-- @function [parent=#Panel] DrawDragHover
+-- @param  self
+-- @param  #number x The x coordinate of the top-left corner of the drop area.
+-- @param  #number y The y coordinate of the top-left corner of the drop area.
+-- @param  #number width The width of the drop area.
+-- @param  #number height The height of the drop area.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Draws a coloured rectangle to fill the panel object this method is called on.
+-- The colour is set using **surface.SetDrawColor**. This should only be called
+-- within the object's **Panel:Paint** or **Panel:PaintOver** hooks, as a shortcut for
+-- **surface.DrawRect**.
+-- @function [parent=#Panel] DrawFilledRect
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Draws a hollow rectangle the size of the panel object this method is called
+-- on, with a border width of 1 px. The border colour is set using **surface.SetDrawColor**.
+-- This should only be called within the object's **Panel:Paint** or 
+-- **Panel:PaintOver** hooks, as a shortcut for **surface.DrawOutlinedRect**.
+-- @function [parent=#Panel] DrawOutlinedRect
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Used to draw the magenta highlight colour of a panel object when it is
+-- selected. This should be called in the object's **Panel:PaintOver** hook. Once
+-- this is implemented, the highlight colour will be displayed only when the
+-- object is selectable and selected. This is achieved using **Panel:SetSelectable**
+-- and **Panel:SetSelected** respectively.
+-- @function [parent=#Panel] DrawSelections
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Used to draw the text in a DTextEntry within a derma skin. This should be
+-- called within the **SKIN:PaintTextEntry** skin hook.
+-- @function [parent=#Panel] DrawTextEntryText
+-- @param  self
+-- @param  #table textCol The colour of the main text.
+-- @param  #table highlightCol The colour of the selection highlight (when selecting text).
+-- @param  #table cursorCol The colour of the text cursor (or caret).
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Draws a textured rectangle to fill the panel object this method is called on.
+-- The texture is set using **surface.SetTexture** or **surface.SetMaterial**. This
+-- should only be called within the object's **Panel:Paint** or **Panel:PaintOver**
+-- hooks, as a shortcut for **surface.DrawTexturedRect**.
+-- @function [parent=#Panel] DrawTexturedRect
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Makes this panel droppable. This is used with **Panel:Receiver** to create drag
+-- and drop events. Can be called multiple times with different names allowing
+-- to be dropped onto different receivers.
+-- @function [parent=#Panel] Droppable
+-- @param  self
+-- @param  #string name Name of your droppable panel.
+-- @return #table Blank table stored on the panel itself under pnl.m_DragSlot[name].
+-- Is reset every time this function is called and does not appear to be used or exposed anywhere else.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Completes a box selection. If the end point of the selection box is within
+-- the selection canvas, mouse capture is disabled for the panel object, and
+-- the selected state of each child object within the selection box is toggled.
+-- @function [parent=#Panel] EndBoxSelection
+-- @param  self
+-- @return #boolean Whether the end point of the selection box was within the selection canvas.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Used to run commands within a DHTML window.
+-- @function [parent=#Panel] Exec
+-- @param  self
+-- @param  #string cmd The command to be run.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Finds a panel in its children(and sub children) with the given name.
+-- @function [parent=#Panel] Find
+-- @param  self
+-- @param  #string panelName The name of the panel that should be found.
+-- @return #Panel The found panel, or nil if not panel was found.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Focuses the next panel in the focus queue.
+-- @function [parent=#Panel] FocusNext
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Focuses the previous panel in the focus queue.
+-- @function [parent=#Panel] FocusPrevious
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the alpha multiplier for this panel.
+-- @function [parent=#Panel] GetAlpha
+-- @param  self
+-- @return #number Panel's alpha multiplier.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the position and size of the panel. This is equivalent to calling
+-- **Panel:GetPos** and **Panel:GetSize** together.
+-- @function [parent=#Panel] GetBounds
+-- @param  self
+-- @return #number, #number, #number, #number The x, y coordinates and width, height of the panel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the position/offset of the caret (or text cursor) in a text-based
+-- panel object.
+-- @function [parent=#Panel] GetCaretPos
+-- @param  self
+-- @return #number The caret position/offset from the start of the text. A value of 0 means the caret sits before the first character.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Gets a child by its index.
+-- @function [parent=#Panel] GetChild
+-- @param  self
+-- @param  #number childIndex The index of the child to get.
+-- 
+-- **Note**: _This index starts at 0, except when you use this on a **DMenu**._
+-- @return #Panel The child panel at the specified index.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Gets a child object's position relative to this panel object. The number of
+-- levels is not relevant; the child may have many parents between itself and
+-- the object on which the method is called.
+-- @function [parent=#Panel] GetChildPosition
+-- @param  self
+-- @param  #Panel pnl The panel to get the position of.
+-- @return #number, #number The horizontal and vertical (x, y) position of the child relative to the panel object.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns a table with all the child panels of the panel.
+-- @function [parent=#Panel] GetChildren
+-- @param  self
+-- @return #table The panel's children.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns a table of all visible, selectable children of the panel object that
+-- lie at least partially within the specified rectangle.
+-- @function [parent=#Panel] GetChildrenInRect
+-- @param  self
+-- @param  #number x The horizontal (x) position of the top-left corner of the rectangle, relative to the panel object.
+-- @param  #number y The vertical (y) position of the top-left corner of the rectangle, relative to the panel object.
+-- @param  #number w The width of the rectangle.
+-- @param  #number h The height of the rectangle.
+-- @return #table A table of panel objects that lie at least partially within the specified rectangle.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the class name of the panel.
+-- @function [parent=#Panel] GetClassName
+-- @param  self
+-- @return #string Panel's classname.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the child of this panel object that is closest to the specified
+-- point. The point is relative to the object on which the method is called.
+-- The distance the child is from this point is also returned.
+-- @function [parent=#Panel] GetClosestChild
+-- @param  self
+-- @param  #number x The horizontal (x) position of the point.
+-- @param  #number y The vertical (y) position of the point.
+-- @return #Panel, #number The child object that was closest to the specified point and its distance from it.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Gets the size of the content/children within a panel object. Only works with
+-- Label derived panels by default such as DLabel. Will also work on any panel
+-- that manually implements this method.
+-- @function [parent=#Panel] GetContentSize
+-- @param  self
+-- @return #number, #number The content width and height of the object.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Gets the value of a cookie stored by the panel object. This can also be done
+-- with **cookie.GetString**, using the panel's cookie name, a fullstop, and then
+-- the actual name of the cookie. Make sure the panel's cookie name has not
+-- changed since writing, or the cookie will not be accessible. This can be
+-- done with **Panel:GetCookieName** and **Panel:SetCookieName**.
+-- @function [parent=#Panel] GetCookie
+-- @param  self
+-- @param  #string cookieName The name of the cookie from which to retrieve the value.
+-- @param  #string default The default value to return if the cookie does not exist.
+-- @return #string The value of the stored cookie, or the default value should the cookie not exist.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Gets the name the panel uses to store cookies. This is set with **Panel:SetCookieName**.
+-- @function [parent=#Panel] GetCookieName
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Gets the value of a cookie stored by the panel object, as a number. This can
+-- also be done with **cookie.GetNumber**, using the panel's cookie name, a
+-- fullstop, and then the actual name of the cookie. Make sure the panel's
+-- cookie name has not changed since writing, or the cookie will not be
+-- accessible. This can be done with **Panel:GetCookieName** and **Panel:SetCookieName**.
+-- @function [parent=#Panel] GetCookieNumber
+-- @param  self
+-- @param  #string cookieName The name of the cookie from which to retrieve the value.
+-- @param  #number default The default value to return if the cookie does not exist.
+-- @return #number The number value of the stored cookie, or the default value should the cookie not exist.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns a dock enum for the panel's current docking type.
+-- @function [parent=#Panel] GetDock
+-- @param  self
+-- @return #number The dock enum for the panel. See **DOCK\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the docked margins of the panel. (Set by **Panel:DockMargin**)
+-- @function [parent=#Panel] GetDockMargin
+-- @param  self
+-- @return #number, #number, #number, #number The left, top, right, and bottom margin of the panel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the docked padding of the panel. (Set by **Panel:DockPadding**)
+-- @function [parent=#Panel] GetDockPadding
+-- @param  self
+-- @return #number, #number, #number, #number The left, top, right, and bottom padding of the panel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the name of the font that the panel renders its text with. This is
+-- the same font name set with **Panel:SetFontInternal**.
+-- @function [parent=#Panel] GetFont
+-- @param  self
+-- @return #string The font's name.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the panel's HTML material. Only works with Awesomium, HTML and DHTML
+-- panels that have been fully loaded.
+-- @function [parent=#Panel] GetHTMLMaterial
+-- @param  self
+-- @return #IMaterial The HTML material used by the panel.
+-- Typically starts with "\_\_vgui\_texture\_" followed by an incremental number.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the internal name of the panel.
+-- @function [parent=#Panel] GetName
+-- @param  self
+-- @return #string Panel's internal name.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the number of lines in a RichText. You must wait a couple frames
+-- before calling this after using **Panel:AppendText** or **Panel:SetText**, otherwise
+-- it will return the number of text lines before the text change.
+-- 
+-- **Note**: _Even though this function can be called on any panel, it will
+-- only work with RichText._
+-- @function [parent=#Panel] GetNumLines
+-- @param  self
+-- @return #number The number of lines.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the parent of the panel, returns nil if there is no parent.
+-- @function [parent=#Panel] GetParent
+-- @param  self
+-- @return #Panel The parent of given panel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the position of the panel relative to its **Panel:GetParent**. If you
+-- require the panel's position and size, consider using **Panel:GetBounds** instead.
+-- If you need the position in screen space, see **Panel:LocalToScreen**.
+-- @function [parent=#Panel] GetPos
+-- @param  self
+-- @return #number, #number X and Y coordinate, relative to the panels parents top left corner.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns a table of all children of the panel object that are selected. This
+-- is recursive, and the returned table will include tables for any child
+-- objects that also have children. This means that not all first-level members
+-- in the returned table will be of type Panel.
+-- @function [parent=#Panel] GetSelectedChildren
+-- @param  self
+-- @return #table A table of any child objects that are selected, including tables for children of the child objects.
+-- (These tables may also contain table members, as the method is recursive)
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the panel object (self) if it has been enabled as a selection canvas.
+-- This is achieved using **Panel:SetSelectionCanvas**.
+-- @function [parent=#Panel] GetSelectionCanvas
+-- @param  self
+-- @return #Panel The panel object this method was called on if enabled as a selection canvas, otherwise nil.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the size of the panel. If you require both the panel's position and
+-- size, consider using **Panel:GetBounds** instead.
+-- @function [parent=#Panel] GetSize
+-- @param  self
+-- @return #number, #number The panel's width and height.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the table for the derma skin currently being used by this panel object.
+-- @function [parent=#Panel] GetSkin
+-- @param  self
+-- @return #table The derma skin table currently being used by this object.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the internal Lua table of the panel.
+-- @function [parent=#Panel] GetTable
+-- @param  self
+-- @return #table A table containing all the members of given panel object.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the height of the panel.
+-- @function [parent=#Panel] GetTall
+-- @param  self
+-- @return #number The height of the panel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the panel's text. (where applicable) This method returns a maximum
+-- of 1023 bytes, except for DTextEntry.
+-- @function [parent=#Panel] GetText
+-- @param  self
+-- @return #string The panel's text.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Gets the left and top text margins of a text-based panel object, such as a
+-- DButton or DLabel. This is set with **Panel:SetTextInset**.
+-- @function [parent=#Panel] GetTextInset
+-- @param  self
+-- @return #number, #number The left and top margin of the text, in pixels.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Gets the size of the text within a Label derived panel.
+-- @function [parent=#Panel] GetTextSize
+-- @param  self
+-- @return #number, #number The width and height of the text in the DLabel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Gets valid receiver slot of currently dragged panel.
+-- @function [parent=#Panel] GetValidReceiverSlot
+-- @param  self
+-- @return #Panel, #table The panel this was called on if a valid receiver slot exists, otherwise false and the slot table.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the value the panel holds. In engine this is only implemented for
+-- CheckButton, Label and TextEntry as a string and for those elements has a
+-- hard coded limit of 8092 characters.
+-- @function [parent=#Panel] GetValue
+-- @param  self
+-- @return #any The value the panel holds.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the width of the panel.
+-- @function [parent=#Panel] GetWide
+-- @param  self
+-- @return #number Panel's width.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the Z position of the panel.
+-- @function [parent=#Panel] GetZPos
+-- @param  self
+-- @return #number The Z order position of the panel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Goes back one page in the HTML panel's history if available.
+-- @function [parent=#Panel] GoBack
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Goes forward one page in the HTML panel's history if available.
+-- @function [parent=#Panel] GoForward
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Goes to the page in the HTML panel's history at the specified relative offset.
+-- @function [parent=#Panel] GoToHistoryOffset
+-- @param  self
+-- @param  #number offset The offset in the panel's back/forward history, relative to the current page, that you would like to skip to.
+-- Because this is relative, 0 = current page while negative goes back and positive goes forward. For example, -2 will go back 2 pages in the history.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Causes a RichText element to scroll to the bottom of its text.
+-- @function [parent=#Panel] GotoTextEnd
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Causes a RichText element to scroll to the top of its text.
+-- @function [parent=#Panel] GotoTextStart
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Used by **Panel:ApplyGWEN** to apply the CheckboxText property to a DCheckBoxLabel.
+-- This does exactly the same as **Panel:GWEN_SetText**, but exists to cater for
+-- the seperate GWEN properties.
+-- @function [parent=#Panel] GWEN_SetCheckboxText
+-- @param  self
+-- @param  #string txt The text to be applied to the DCheckBoxLabel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Used by **Panel:ApplyGWEN** to apply the ControlName property to a panel. This
+-- calls **Panel:SetName**.
+-- @function [parent=#Panel] GWEN_SetControlName
+-- @param  self
+-- @param  #string name The new name to apply to the panel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Used by **Panel:ApplyGWEN** to apply the Dock property to a panel object. This
+-- calls **Panel:Dock**.
+-- @function [parent=#Panel] GWEN_SetDock
+-- @param  self
+-- @param  #string dockState The dock mode to pass to the panel's Dock method.
+-- This reads a string and applies the approriate **DOCK\_ Enums**.
+-- 
+-- * Right: Dock right.
+-- * Left: Dock left.
+-- * Bottom: Dock at the bottom.
+-- * Top: Dock at the top.
+-- * Fill: Fill the parent panel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Used by **Panel:ApplyGWEN** to apply the HorizontalAlign property to a panel
+-- object. This calls **Panel:SetContentAlignment**.
+-- @function [parent=#Panel] GWEN_SetHorizontalAlign
+-- @param  self
+-- @param  #string hAlign The alignment, as a string, to pass to **Panel:SetContentAlignment**.
+-- Accepts:
+-- 
+-- * Right: Align mid-right.
+-- * Left: Align mid-left.
+-- * Center: Align mid-center.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Used by **Panel:ApplyGWEN** to apply the Margin property to a panel object. This
+-- calls **Panel:DockMargin**.
+-- @function [parent=#Panel] GWEN_SetMargin
+-- @param  self
+-- @param  #table margins A four-membered table containing the margins as numbers:
+-- 
+-- * _#number left_ : The left margin.
+-- * _#number top_ : The top margin.
+-- * _#number right_ : The right margin.
+-- * _#number bottom_ : The bottom margin.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Used by **Panel:ApplyGWEN** to apply the Max property to a DNumberWang, Slider,
+-- DNumSlider or DNumberScratch. This calls SetMax on one of the previously
+-- listed methods.
+-- @function [parent=#Panel] GWEN_SetMax
+-- @param  self
+-- @param  #number maxValue The maximum value the element is to permit.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Used by **Panel:ApplyGWEN** to apply the Min property to a DNumberWang, Slider,
+-- DNumSlider or DNumberScratch. This calls SetMin on one of the previously
+-- listed methods.
+-- @function [parent=#Panel] GWEN_SetMin
+-- @param  self
+-- @param  #number minValue The minimum value the element is to permit.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Used by **Panel:ApplyGWEN** to apply the Position property to a panel object.
+-- This calls **Panel:SetPos**.
+-- @function [parent=#Panel] GWEN_SetPosition
+-- @param  self
+-- @param  #table pos A two-membered table containing the x and y coordinates as numbers:
+-- 
+-- * _#number x_ : The x coordinate.
+-- * _#number y_ : The y coordinate.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Used by **Panel:ApplyGWEN** to apply the Size property to a panel object. This
+-- calls **Panel:SetSize**.
+-- @function [parent=#Panel] GWEN_SetSize
+-- @param  self
+-- @param  #table size A two-membered table containing the width and heights as numbers:
+-- 
+-- * _#number w_ : The width.
+-- * _#number h_ : The height.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Used by **Panel:ApplyGWEN** to apply the Text property to a panel.
+-- @function [parent=#Panel] GWEN_SetText
+-- @param  self
+-- @param  #string txt The text to be applied to the panel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns whenever the panel has child panels.
+-- @function [parent=#Panel] HasChildren
+-- @param  self
+-- @return #boolean Has children.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns if the panel is focused.
+-- @function [parent=#Panel] HasFocus
+-- @param  self
+-- @return #boolean Has focus.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns if the panel or any of its children(sub children and so on) has the focus.
+-- @function [parent=#Panel] HasHierarchicalFocus
+-- @param  self
+-- @return #boolean Has hierarchical focus.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns whether the panel is a descendent of the given panel.
+-- @function [parent=#Panel] HasParent
+-- @param  self
+-- @param  #Panel parentPanel Panel to check is an ancestor.
+-- @return #boolean True if the panel is contained within parentPanel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Makes a panel invisible.
+-- @function [parent=#Panel] Hide
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Marks the end of a clickable text segment in a RichText element, started
+-- with **Panel:InsertClickableTextStart**.
+-- @function [parent=#Panel] InsertClickableTextEnd
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Starts the insertion of clickable text for a RichText element. Any text
+-- appended with **Panel:AppendText** between this call and
+-- **Panel:InsertClickableTextEnd** will become clickable text. The hook 
+-- **Panel:ActionSignal** is called when the text is clicked, with "TextClicked"
+-- as the signal name and signalValue as the signal value.
+-- 
+-- **Note**: _The clickable text is a separate Derma panel which will not
+-- inherit the current font from the RichText._
+-- @function [parent=#Panel] InsertClickableTextStart
+-- @param  self
+-- @param  #string signalValue The text passed as the action signal's value.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Inserts a color change in a RichText element, which affects the color of all
+-- text added with **Panel:AppendText** until another color change is applied.
+-- @function [parent=#Panel] InsertColorChange 
+-- @param  self
+-- @param  #number r The red value (0 - 255).
+-- @param  #number g The green value (0 - 255).
+-- @param  #number b The blue value (0 - 255).
+-- @param  #number a The alpha value (0 - 255).
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Begins a text fade for a RichText element where the last appended text
+-- segment is fully faded out after a specific amount of time, at a specific
+-- speed. The alpha of the text at any given time is determined by the text's
+-- base alpha * ((sustain - **CurTime**) / length) where **CurTime** is added to
+-- sustain when this method is called.
+-- @function [parent=#Panel] InsertFade
+-- @param  self
+-- @param  #number sustain The number of seconds the text remains visible.
+-- @param  #number length The number of seconds it takes the text to fade out.
+-- If set lower than sustain, the text will not begin fading out until (sustain - length) seconds have passed.
+-- If set higher than sustain, the text will begin fading out immediately at a fraction of the base alpha.
+-- If set to -1, the text doesn't fade out.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Invalidates the layout of this panel object and all its children. This will
+-- cause these objects to re-layout immediately, calling **Panel:PerformLayout**.
+-- If you want to perform the layout in the next frame, you will have loop
+-- manually through all children, and call **Panel:InvalidateLayout** on each.
+-- @function [parent=#Panel] InvalidateChildren
+-- @param  self
+-- @param  #boolean recursive If true, the method will recursively invalidate the layout of all children.
+-- Otherwise, only immediate children are affected. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Causes the panel to re-layout in the next frame. During the layout process
+-- **Panel:PerformLayout** will be called on the target panel. You should avoid
+-- calling this function every frame.
+-- @function [parent=#Panel] InvalidateLayout
+-- @param  self
+-- @param  #boolean layoutNow If true the panel will re-layout instantly and not wait for the next frame. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Invalidates the layout of the parent of this panel object. This will cause
+-- it to re-layout, calling **Panel:PerformLayout**.
+-- @function [parent=#Panel] InvalidateParent
+-- @param  self
+-- @param  #boolean layoutNow If true, the re-layout will occur immediately, otherwise it will be performed in the next frame. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Determines whether the mouse cursor is hovered over one of this panel
+-- object's children. This is a reverse process using **vgui.GetHoveredPanel**, and
+-- looks upward to find the parent.
+-- @function [parent=#Panel] IsChildHovered
+-- @param  self
+-- @param  #boolean immediate Set to true to check only the immediate children of given panel. (first level) _(Default: false)_
+-- @return #boolean Whether or not one of this panel object's children is being hovered over.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns whether this panel is draggable (if user is able to drag it) or not.
+-- @function [parent=#Panel] IsDraggable
+-- @param  self
+-- @return #boolean Whether this panel is draggable (if user is able to drag it) or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns whether this panel is currently being dragged or not.
+-- @function [parent=#Panel] IsDragging
+-- @param  self
+-- @return #boolean Whether this panel is currently being dragged or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns whether the the panel is enabled or disabled. See **Panel:SetEnabled**
+-- for a function that makes the panel enabled or disabled.
+-- @function [parent=#Panel] IsEnabled
+-- @param  self
+-- @return #boolean Whether the panel is enabled or disabled.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns whether the mouse cursor is hovering over this panel or not. Uses
+-- **vgui.GetHoveredPanel** internally. Requires **Panel:SetMouseInputEnabled** to be
+-- set to true.
+-- @function [parent=#Panel] IsHovered
+-- @param  self
+-- @return #boolean true if the panel is hovered.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns true if the panel can receive keyboard input.
+-- @function [parent=#Panel] IsKeyboardInputEnabled
+-- @param  self
+-- @return #boolean Is keyboard input enabled.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Determines whether or not a HTML or DHTML element is currently loading a page.
+-- @function [parent=#Panel] IsLoading
+-- @param  self
+-- @return #boolean Whether or not the (D)HTML object is loading.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns if the panel is going to be deleted in the next frame.
+-- @function [parent=#Panel] IsMarkedForDeletion
+-- @param  self
+-- @return #boolean Is marked for deletion.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns true if the panel can receive mouse input.
+-- @function [parent=#Panel] IsMouseInputEnabled
+-- @param  self
+-- @return #boolean Is mouse input enabled.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Determines whether or not a text-based panel object, such as a DTextEntry,
+-- is in multi-line mode. This is set with **Panel:SetMultiline**.
+-- @function [parent=#Panel] IsMultiline
+-- @param  self
+-- @return #boolean Whether the object is in multi-line mode or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns whether the panel contains the given panel, recursively.
+-- @function [parent=#Panel] IsOurChild
+-- @param  self
+-- @param  #Panel childPanel Panel to check is a descendant.
+-- @return #boolean True if the panel contains childPanel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Determines if the panel object is selectable (like icons in the Spawn Menu,
+-- holding Shift). This is set with **Panel:SetSelectable**.
+-- @function [parent=#Panel] IsSelectable
+-- @param  self
+-- @return #boolean Whether the panel is selectable or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns if the panel object is selected (like icons in the Spawn Menu,
+-- holding Shift). This can be set in Lua using **Panel:SetSelected**.
+-- @function [parent=#Panel] IsSelected
+-- @param  self
+-- @return #boolean Whether the panel object is selected or not.
+-- Always returns false if the object is not selectable. This can be modified using **Panel:SetSelectable**.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Determines if the panel object is a selection canvas or not. This is set
+-- with **Panel:SetSelectionCanvas**.
+-- @function [parent=#Panel] IsSelectionCanvas
+-- @param  self
+-- @return #any The value (if any) set by **Panel:SetSelectionCanvas**.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns if the panel is valid and not marked for deletion.
+-- @function [parent=#Panel] IsValid
+-- @param  self
+-- @return #boolean True if the object is valid.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns if the panel is visible.
+-- @function [parent=#Panel] IsVisible
+-- @param  self
+-- @return #boolean Is visible.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Remove the focus from the panel.
+-- @function [parent=#Panel] KillFocus
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Redefines the panel object's **Panel:SetPos** method to operate using
+-- frame-by-frame linear interpolation (Lerp). When the panel's position is
+-- changed, it will move to the target position at the speed defined. You can
+-- undo this with **Panel:DisableLerp**.
+-- Unlike the other panel animation functions, such as **Panel:MoveTo**, this
+-- animation method will not operate whilst the game is paused. This is because
+-- it relies on FrameTime.
+-- @function [parent=#Panel] LerpPositions
+-- @param  self
+-- @param  #number speed The speed at which to move the panel. This is affected by the value of easeOut.
+-- Recommended values are:
+-- 
+-- * 0.1 - 10 when easeOut is false.
+-- * 0.1 - 1 when easeOut is true.
+-- @param  #boolean easeOut This causes the panel object to 'jump' at the target, slowing as it approaches.
+-- This affects the speed value significantly, see above.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Loads a .gwen file (created by GWEN Designer) and calls **Panel:LoadGWENString**
+-- with the contents of the loaded file. Used to load panel controls from a file.
+-- @function [parent=#Panel] LoadGWENFile
+-- @param  self
+-- @param  #string filename The file to open. The path is relative to garrysmod/garrysmod/.
+-- @param  #string path="GAME" The path used to look up the file.
+-- 
+-- * "GAME" Structured like base folder (garrysmod/), searches all the mounted content. (main folder, addons, mounted games etc)
+-- * "LUA" or "lsv" - All Lua folders (lua/) including gamesmodes and addons.
+-- * "DATA" Data folder. (garrysmod/data)
+-- * "MOD" Strictly the game folder (garrysmod/), ignores mounting.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Loads controls for the panel from a JSON string.
+-- @function [parent=#Panel] LoadGWENString
+-- @param  self
+-- @param  #string str JSON string containing information about controls to create.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the cursor position local to the position of the panel (usually the
+-- upper-left corner).
+-- @function [parent=#Panel] LocalCursorPos
+-- @param  self
+-- @return #number, #number The x and y coordinates.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Gets the absolute screen position of the position specified relative to the
+-- panel. See also **Panel:ScreenToLocal**.
+-- 
+-- **Warning**: _This function uses a cached value for the screen position of
+-- the panel, computed at the end of the last VGUI Think/Layout pass. ie.
+-- inaccurate results may be returned if the panel or any of its ancestors have
+-- been repositioned outside of **Panel:Think** or **Panel:PerformLayout** within the
+-- last frame._
+-- 
+-- **Note**: _If the panel uses **Panel:Dock**, this function will return 0, 0 when
+-- the panel was created. The position will be updated in the next frame._
+-- @function [parent=#Panel] LocalToScreen
+-- @param  self
+-- @param  #number posX The X coordinate of the position on the panel to translate.
+-- @param  #number posY The Y coordinate of the position on the panel to translate.
+-- @return #number, #number The X and Y coordinate relative to the screen.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Focuses the panel and enables it to receive input. This automatically calls
+-- **Panel:SetMouseInputEnabled** and **Panel:SetKeyboardInputEnabled** and
+-- sets them to true.
+-- 
+-- **Note**: _Panels derived from Panel will not work properly with this
+-- function. Due to this, any children will not be intractable with keyboard.
+-- Derive from EditablePanel instead._
+-- @function [parent=#Panel] MakePopup
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Allows the panel to receive mouse input even if the mouse cursor is outside
+-- the bounds of the panel.
+-- @function [parent=#Panel] MouseCapture
+-- @param  self
+-- @param  #boolean doCapture Set to true to enable, set to false to disable.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Places the panel above the passed panel with the specified offset.
+-- @function [parent=#Panel] MoveAbove
+-- @param  self
+-- @param  #Panel panel Panel to position relatively to.
+-- @param  #number offset The align offset. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Places the panel below the passed panel with the specified offset.
+-- @function [parent=#Panel] MoveBelow
+-- @param  self
+-- @param  #Panel panel Panel to position relatively to.
+-- @param  #number offset The align offset. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Moves the panel by the specified coordinates using animation.
+-- @function [parent=#Panel] MoveBy
+-- @param  self
+-- @param  #number moveX The number of pixels to move by in the horizontal (x) direction.
+-- @param  #number moveY The number of pixels to move by in the horizontal (Y) direction.
+-- @param  #number time The time (in seconds) in which to perform the animation.
+-- @param  #number delay The delay (in seconds) before the animation begins. _(Default: 0)_
+-- @param  #number ease The easing of the start and/or end speed of the animation. See **Panel:NewAnimation** for how this works. _(Default: -1)_
+-- @param  #function callback The function to be called once the animation is complete. _(Default: nil)_
+-- Arguments are:
+-- 
+-- * _#table animData_ : The AnimationData structure that was used.
+-- * _#Panel pnl_ : The panel object that was moved.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Places the panel left to the passed panel with the specified offset.
+-- @function [parent=#Panel] MoveLeftOf
+-- @param  self
+-- @param  #Panel panel Panel to position relatively to.
+-- @param  #number offset The align offset. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Places the panel right to the passed panel with the specified offset.
+-- @function [parent=#Panel] MoveRightOf
+-- @param  self
+-- @param  #Panel panel Panel to position relatively to.
+-- @param  #number offset The align offset. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Moves the panel to the specified position using animation.
+-- @function [parent=#Panel] MoveTo
+-- @param  self
+-- @param  #number posX The target x coordinate of the panel.
+-- @param  #number posY The target y coordinate of the panel.
+-- @param  #number time The time to perform the animation within.
+-- @param  #number delay The delay before the animation starts. _(Default: 0)_
+-- @param  #number ease The easing of the start and/or end speed of the animation. See **Panel:NewAnimation** for how this works. _(Default: -1)_
+-- @param  #function callback The function to be called once the animation finishes.
+-- Arguments are:
+-- 
+-- * _#table animData_ : The AnimationData structure that was used.
+-- * _#Panel pnl_ : The panel object that was moved.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Moves this panel object in front of the specified sibling (child of the same
+-- parent) in the render order, and shuffles up the Z-positions of siblings now behind.
+-- @function [parent=#Panel] MoveToAfter
+-- @param  self
+-- @param  #Panel siblingPanel The panel to move this one in front of. Must be a child of the same parent panel.
+-- @return #boolean false if the passed panel is not a sibling, otherwise nil.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Moves the panel object behind all other panels on screen. If the panel has
+-- been made a pop-up with **Panel:MakePopup**, it will still draw in front of any
+-- panels that haven't.
+-- @function [parent=#Panel] MoveToBack
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Moves this panel object behind the specified sibling (child of the same parent)
+-- in the render order, and shuffles up the **Panel:SetZPos** of siblings now in front.
+-- @function [parent=#Panel] MoveToBefore
+-- @param  self
+-- @param  #Panel siblingPanel The panel to move this one behind. Must be a child of the same parent panel.
+-- @return #boolean false if the passed panel is not a sibling, otherwise nil.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Moves the panel in front of all other panels on screen. Unless the panel has
+-- been made a pop-up using **Panel:MakePopup**, it will still draw behind any that have.
+-- @function [parent=#Panel] MoveToFront
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Creates a new animation for the panel object.
+-- Methods that use this function:
+-- 
+-- * **Panel:MoveTo**
+-- * **Panel:SizeTo**
+-- * **Panel:SlideUp**
+-- * **Panel:SlideDown**
+-- * **Panel:ColorTo**
+-- * **Panel:AlphaTo**
+-- * **Panel:MoveBy**
+-- * **Panel:LerpPositions**
+-- @function [parent=#Panel] NewAnimation
+-- @param  self
+-- @param  #number length The length of the animation in seconds.
+-- @param  #number delay The delay before the animation starts. _(Default: 0)_
+-- @param  #number ease The power/index to use for easing. _(Default: -1)_
+-- 
+-- * Positive values greater than 1 will ease in; the higher the number, the sharper the curve's gradient (less linear).
+-- * A value of 1 removes all easing.
+-- * Positive values between 0 and 1 ease out; values closer to 0 increase the curve's gradient (less linear).
+-- * A value of 0 will break the animation and should be avoided.
+-- * Any value less than zero will ease in/out; the value has no effect on the gradient.
+-- @param  #function callback=nil The function to be called when the animation ends.
+-- Arguments passed are:
+-- 
+-- * _#table animTable_ : The **AnimationData structure** that was used.
+-- * _#Panel tgtPanel_ : The panel object that was animated.
+-- @return #table Partially filled AnimationData structure with members:
+-- 
+-- * _#number EndTime_ : Equal to length and delay arguments added together, plus either the **SysTime** if there is no other animation queued or the end time of the last animation in the queue.
+-- * _#number StartTime_ : Equal to the delay argument, plus either the **SysTime** if there is no other animation queued or the end time of the last animation in the queue.
+-- * _#number Ease_ : Equal to the ease argument.
+-- * _#function OnEnd_ : Equal to the callback argument.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- 
+-- @function [parent=#Panel] NewObject
+-- @param  self
+-- @param  #string objectName
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- 
+-- @function [parent=#Panel] NewObjectCallback
+-- @param  self
+-- @param  #string objectName
+-- @param  #string callbackName
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets whether this panel's drawings should be clipped within the parent
+-- panel's bounds. See also **DisableClipping** and **surface.DisableClipping**.
+-- @function [parent=#Panel] NoClipping
+-- @param  self
+-- @param  #boolean clip Whether to clip or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the number of children of the panel object that are selected. This
+-- is equivalent to calling **Panel:IsSelected** on all child objects and
+-- counting the number of returns that are true.
+-- @function [parent=#Panel] NumSelectedChildren
+-- @param  self
+-- @return #number The number of child objects that are currently selected.
+-- This does not include the parent object you are calling the method from.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Instructs a HTML control to download and parse a HTML script using the passed URL.
+-- @function [parent=#Panel] OpenURL
+-- @param  self
+-- @param  #string URL URL to open.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Paints a ghost copy of the panel at the given position.
+-- @function [parent=#Panel] PaintAt
+-- @param  self
+-- @param  #number posX The x coordinate to draw the panel from.
+-- @param  #number posY The y coordinate to draw the panel from.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Paints the panel at its current position. To use this you must call **Panel:SetPaintedManually**(true).
+-- @function [parent=#Panel] PaintManual
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Parents the panel to the HUD. Makes it invisible on the escape-menu and
+-- disables controls.
+-- @function [parent=#Panel] ParentToHUD
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Pastes the contents of the clipboard into the TextEntry. Only works for TextEntries.
+-- 
+-- **Note**: _Tab characters will be dropped from the pasted text._
+-- 
+-- **Warning**: _Due to privacy concerns, this function has been disabled._
+-- @function [parent=#Panel] Paste
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the width and position of a DLabel and places the passed panel object
+-- directly to the right of it. Returns the y value of the bottom of the
+-- tallest object. The panel on which this method is run is not relevant; only
+-- the passed objects are affected.
+-- @function [parent=#Panel] PositionLabel
+-- @param  self
+-- @param  #number lblWidth The width to set the label to.
+-- @param  #number x The horizontal (x) position at which to place the label.
+-- @param  #number y The horizontal (y) position at which to place the label.
+-- @param  #Panel lbl The label to resize and position.
+-- @param  #Panel panelObj The panel object to place to the right of the label.
+-- @return #number The distance from the top of the parent panel to the bottom of the tallest object.
+-- (the y position plus the height of the label or passed panel, depending on which is tallest)
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This feature is deprecated.**  
+-- _You should avoid using it as it may be removed in a future version._
+-- _Only used in deprecated Derma controls._
+-- 
+-- Sends a command to the panel.
+-- @function [parent=#Panel] PostMessage
+-- @param  self
+-- @param  #string messageName The name of the message.
+-- @param  #string valueType The type of the variable to post.
+-- @param  #string value The value to post.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Installs Lua defined functions into the panel.
+-- @function [parent=#Panel] Prepare
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Enables the queue for panel animations. If enabled, the next new animation
+-- will begin after all current animations have ended. This must be called
+-- before **Panel:NewAnimation** to work, and only applies to the next new
+-- animation. If you want to queue many, you must call this before each.
+-- @function [parent=#Panel] Queue
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Causes a SpawnIcon to rebuild its model image.
+-- @function [parent=#Panel] RebuildSpawnIcon
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Re-renders a spawn icon with customized cam data.
+-- 
+-- **Note**: _This function does not accept the standard **CamData structure**._
+-- @function [parent=#Panel] RebuildSpawnIconEx
+-- @param  self
+-- @param  #table data A four-membered table containing the information needed to re-render:
+-- 
+-- * _#Vector cam\_pos_ : The relative camera position the model is viewed from.
+-- * _#Angle cam\_ang_ : The camera angle the model is viewed from.
+-- * _#number cam\_fov_ : The camera's field of view (FOV).
+-- * _#Entity ent_ : The entity object of the model.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Allows the panel to receive drag and drop events. Can be called multiple
+-- times with different names to receive multiple different draggable panel events.
+-- @function [parent=#Panel] Receiver
+-- @param  self
+-- @param  #string name Name of DnD panels to receive. This is set on the drag'n'drop-able panels via **Panel:Droppable**.
+-- @param  #function func This function is called whenever a panel with valid name is hovering above and dropped on this panel.
+-- It has next arguments:
+-- 
+-- * _#Panel pnl_ : The receiver panel.
+-- * _#table tbl_ : A table of panels dropped onto receiver panel.
+-- * _#boolean dropped_ : False if hovering over, true if dropped onto.
+-- * _#number menuIndex_ : Index of clicked menu item from third argument of **Panel:Receiver**.
+-- * _#number x_ : Cursor pos, relative to the receiver.
+-- * _#number y_ : Cursor pos, relative to the receiver.
+-- @param  #table menu A table of strings that will act as a menu if drag'n'drop was performed with a right click.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Refreshes the HTML panel's current page.
+-- @function [parent=#Panel] Refresh
+-- @param  self
+-- @param  #boolean ignoreCache If true, the refresh will ignore cached content similar to "Ctrl+F5" in most browsers. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Marks a panel for deletion so it will be deleted on the next frame. Will
+-- automatically call **Panel:InvalidateParent**.
+-- @function [parent=#Panel] Remove
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Attempts to obtain focus for this panel.
+-- @function [parent=#Panel] RequestFocus
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Resets all text fades in a RichText element made with **Panel:InsertFade**.
+-- @function [parent=#Panel] ResetAllFades
+-- @param  self
+-- @param  #boolean hold True to reset fades, false otherwise.
+-- @param  #boolean expiredOnly Any value equating to true will reset fades only on text segments that are completely faded out.
+-- @param  #number newSustain The new sustain value of each faded text segment. Set to -1 to keep the old sustain value.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Runs/Executes a string as JavaScript code in DHTML panel.
+-- 
+-- **Note**: _This function does NOT evaluate expression (ex: allow you to
+-- pass variables from JavaScript (JS) to Lua context). Because a return value
+-- is nil/no value (a.k.a. void). If you wish to pass/return values from JS to
+-- Lua, you may want to use DHTML.AddFunction function to accomplish that job._
+-- @function [parent=#Panel] RunJavascript
+-- @param  self
+-- @param  #string js Specify JavaScript code to be executed.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Saves the current state (caret position and the text inside) of a TextEntry
+-- as an undo state. See also **Panel:Undo**.
+-- @function [parent=#Panel] SaveUndoState
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Translates global screen coordinate to coordinates relative to the panel.
+-- See also **Panel:LocalToScreen**.
+-- 
+-- **Warning**: _This function uses a cached value for the screen position of
+-- the panel, computed at the end of the last VGUI Think/Layout pass. ie.
+-- inaccurate results may be returned if the panel or any of its ancestors have
+-- been repositioned outside of **Panel:Think** or **Panel:PerformLayout** within the
+-- last frame._
+-- @function [parent=#Panel] ScreenToLocal
+-- @param  self
+-- @param  #number screenX The x coordinate of the screen position to be translated.
+-- @param  #number screenY The y coordinate of the screen position to be translated.
+-- @return #number, #number Relative X and Y positions.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Selects all items within a panel or object. For text-based objects, selects all text.
+-- @function [parent=#Panel] SelectAll
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- If called on a text entry, clicking the text entry for the first time will
+-- automatically select all of the text ready to be copied by the user.
+-- @function [parent=#Panel] SelectAllOnFocus
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Selects all the text in a panel object. Will not select non-text items; for
+-- this, use **Panel:SelectAll**.
+-- @function [parent=#Panel] SelectAllText
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Deselects all items in a panel object. For text-based objects, this will
+-- deselect all text.
+-- @function [parent=#Panel] SelectNone
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the achievement to be displayed by **AchievementIcon**.
+-- @function [parent=#Panel] SetAchievement
+-- @param  self
+-- @param  #number id Achievement number ID.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This feature is deprecated.**  
+-- _You should avoid using it as it may be removed in a future version._
+-- _Only used in deprecated Derma controls._
+-- 
+-- Used in Button to call a function when the button is clicked and in Slider
+-- when the value changes.
+-- @function [parent=#Panel] SetActionFunction
+-- @param  self
+-- @param  #function func Function to call when the Button is clicked or the Slider value is changed.
+-- Arguments given are:
+-- 
+-- * _#Panel self_ : The panel itself
+-- * _#string action_ : "Command" on button press, "SliderMoved" on slider move.
+-- * _#number val_ : The new value of the Slider. Will always equal 0 for buttons.
+-- * _#number_ : Always equals 0.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Configures a text input to allow user to type characters that are not
+-- included in the US-ASCII (7-bit ASCII) character set. Characters not
+-- included in US-ASCII are multi-byte characters in UTF-8. They can be
+-- accented characters, non-Latin characters and special characters.
+-- @function [parent=#Panel] SetAllowNonAsciiCharacters
+-- @param  self
+-- @param  #boolean allowed Set to true in order not to restrict input characters.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the alpha multiplier for the panel
+-- @function [parent=#Panel] SetAlpha
+-- @param  self
+-- @param  #number alpha The alpha value in the range of 0-255.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Enables or disables animations for the panel object by overriding the
+-- **Panel:AnimationThink** hook to nil and back.
+-- @function [parent=#Panel] SetAnimationEnabled
+-- @param  self
+-- @param  #boolean enable Whether to enable or disable animations.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets whenever the panel should be removed if the parent was removed.
+-- @function [parent=#Panel] SetAutoDelete
+-- @param  self
+-- @param  #boolean autoDelete Whenever to delete if the parent was removed or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the background color of a panel such as a RichText, Label or DColorCube.
+-- 
+-- **Note**: _This doesn't apply to all VGUI elements and its function varies between them._
+-- 
+-- For DLabel elements, you must use **Panel:SetPaintBackgroundEnabled**(true)
+-- before applying the color. This will not work on setup of the panel - you
+-- should use this function in a hook like **Panel:ApplySchemeSettings** or **Panel:PerformLayout**.
+-- @function [parent=#Panel] SetBGColor
+-- @param  self
+-- @param  #number r or color The red channel of the color, or a **Color structure**.
+-- If you pass the latter, the following three arguments are ignored.
+-- @param  #number g The green channel of the color.
+-- @param  #number b The blue channel of the color.
+-- @param  #number a The alpha channel of the color.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Sets the background color of the panel.
+-- @function [parent=#Panel] SetBGColorEx
+-- @param  self
+-- @param  #number r The red channel of the color.
+-- @param  #number g The green channel of the color.
+-- @param  #number b The blue channel of the color.
+-- @param  #number a The alpha channel of the color.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the position of the caret (or text cursor) in a text-based panel object.
+-- @function [parent=#Panel] SetCaretPos
+-- @param  self
+-- @param  #number offset Caret position/offset from the start of text. A value of 0 places the caret before the first character.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the action signal command that's fired when a Button is clicked. The
+-- hook **Panel:ActionSignal** is called as the click response. This has no effect
+-- on buttons unless it has had its AddActionSignalTarget method called (an
+-- internal function not available by default in Garry's Mod LUA). A better
+-- alternative is calling **Panel:Command** when a DButton is clicked.
+-- @function [parent=#Panel] SetCommand
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the alignment of the contents.
+-- @function [parent=#Panel] SetContentAlignment
+-- @param  self
+-- @param  #number alignment The direction of the content, based on the number pad.
+-- 
+-- * 1 - bottom-left
+-- * 2 - bottom-center
+-- * 3 - bottom-right
+-- * 4 - middle-left
+-- * 5 - center
+-- * 6 - middle-right
+-- * 7 - top-left
+-- * 8 - top-center
+-- * 9 - top-right
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets this panel's convar. When the convar changes this panel will update automatically.
+-- 
+-- **Warning**: _This function does not exist on all panels._
+-- @function [parent=#Panel] SetConVar
+-- @param  self
+-- @param  #string convar The console variable to check.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Stores a string in the named cookie using **Panel:GetCookieName** as prefix.
+-- 
+-- **Warning**: _The panel's cookie name MUST be set for this function to work.
+-- See **Panel:SetCookieName**._
+-- @function [parent=#Panel] SetCookie
+-- @param  self
+-- @param  #string cookieName The unique name used to retrieve the cookie later.
+-- @param  #string value The value to store in the cookie. This can be retrieved later as a string or number.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the panel's cookie name. Calls **Panel:LoadCookies** if defined.
+-- @function [parent=#Panel] SetCookieName
+-- @param  self
+-- @param  #string name The panel's cookie name. Used as prefix for **Panel:SetCookie**.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the appearance of the cursor.
+-- @function [parent=#Panel] SetCursor
+-- @param  self
+-- @param  #string cursor The cursor to be set. Can be one of the following:
+-- 
+-- * arrow
+-- * beam
+-- * hourglass
+-- * waitarrow
+-- * crosshair
+-- * up
+-- * sizenwse
+-- * sizenesw
+-- * sizewe
+-- * sizens
+-- * sizeall
+-- * no
+-- * hand
+-- * blank
+-- Set to anything else to set it to "none", the default fallback.
+-- Do note that a value of "none" does not, as one might assume, result in no cursor being drawn - hiding the cursor requires a value of "blank" instead.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the drag parent. Drag parent means that when we start to drag this
+-- panel, we'll really start dragging the defined parent.
+-- @function [parent=#Panel] SetDragParent
+-- @param  self
+-- @param  #Panel parent The panel to set as drag parent.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the visibility of the language selection box in a TextEntry when typing
+-- in non-English mode. See **Panel:SetDrawLanguageIDAtLeft** for a function that
+-- changes the position of the language selection box.
+-- @function [parent=#Panel] SetDrawLanguageID
+-- @param  self
+-- @param  #boolean visible true to make it visible, false to hide it.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets where to draw the language selection box. See **Panel:SetDrawLanguageID**
+-- for a function that hides or shows the language selection box.
+-- @function [parent=#Panel] SetDrawLanguageIDAtLeft
+-- @param  self
+-- @param  #boolean left True = left, False = right.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Makes the panel render in front of all others, including the spawn menu and
+-- main menu. Priority is given based on the last call, so of two panels that
+-- call this method, the second will draw in front of the first.
+-- 
+-- **Note**: _This only makes the panel **draw** above other panels. If there's
+-- another panel that would have otherwise covered it, users will not be able
+-- to interact with it._
+-- @function [parent=#Panel] SetDrawOnTop
+-- @param  self
+-- @param  #boolean drawOnTop Whether or not to draw the panel in front of all others. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the target area for dropping when an object is being dragged around
+-- this panel using the dragndrop library. This draws a target box of the
+-- specified size and position, until **Panel:DragHoverEnd** is called. It uses
+-- **Panel:DrawDragHover** to draw this area.
+-- @function [parent=#Panel] SetDropTarget
+-- @param  self
+-- @param  #number x The x coordinate of the top-left corner of the drop area.
+-- @param  #number y The y coordinate of the top-left corner of the drop area.
+-- @param  #number width The width of the drop area.
+-- @param  #number height The height of the drop area.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the enabled state of a disable-able panel object, such as a DButton or
+-- DTextEntry. See **Panel:IsEnabled** for a function that retrieves the "enabled"
+-- state of a panel.
+-- @function [parent=#Panel] SetEnabled
+-- @param  self
+-- @param  #boolean enable Whether to enable or disable the panel object.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Adds a shadow falling to the bottom right corner of the panel's text. This
+-- has no effect on panels that do not derive from Label.
+-- @function [parent=#Panel] SetExpensiveShadow
+-- @param  self
+-- @param  #number distance The distance of the shadow from the panel.
+-- @param  #table Color The color of the shadow. Uses the Color structure.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the foreground color of a panel. For a Label or RichText, this is the
+-- color of its text. This function calls **Panel:SetFGColorEx** internally.
+-- 
+-- **Note**: _This doesn't apply to all VGUI elements (such as DLabel) and its
+-- function varies between them._
+-- @function [parent=#Panel] SetFGColor
+-- @param  self
+-- @param  #number r or color The red channel of the color, or a **Color structure**.
+-- If you pass the latter, the following three arguments are ignored.
+-- @param  #number g The green channel of the color.
+-- @param  #number b The blue channel of the color.
+-- @param  #number a The alpha channel of the color.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Sets the foreground color of the panel. For labels, this is the color of
+-- their text.
+-- @function [parent=#Panel] SetFGColorEx
+-- @param  self
+-- @param  #number r The red channel of the color.
+-- @param  #number g The green channel of the color.
+-- @param  #number b The blue channel of the color.
+-- @param  #number a The alpha channel of the color.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the panel that owns this FocusNavGroup to be the root in the focus
+-- traversal hierarchy.
+-- @function [parent=#Panel] SetFocusTopLevel
+-- @param  self
+-- @param  #boolean state
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the font used to render this panel's text. To retrieve the font used by
+-- a panel, call **Panel:GetFont**.
+-- @function [parent=#Panel] SetFontInternal
+-- @param  self
+-- @param  #string fontName The name of the font.
+-- Alternatively, use **surface.CreateFont** to create your own custom font.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the height of the panel. Calls **Panel:OnSizeChanged** and marks this panel
+-- for layout (**Panel:InvalidateLayout**). See also **Panel:SetSize**.
+-- @function [parent=#Panel] SetHeight
+-- @param  self
+-- @param  #number height The height to be set.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Allows you to set HTML code within a panel.
+-- @function [parent=#Panel] SetHTML
+-- @param  self
+-- @param  #string HTML code The code to set.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Allows or disallows the panel to receive keyboard focus and input. This is
+-- recursively applied to all children.
+-- @function [parent=#Panel] SetKeyboardInputEnabled
+-- @param  self
+-- @param  #boolean enable Whether keyboard input should be enabled for this panel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the minimum dimensions of the panel or object. You can restrict either
+-- or both values. Calling the function without arguments will remove the minimum size.
+-- @function [parent=#Panel] SetMinimumSize
+-- @param  self
+-- @param  #number minW The minimum width of the object. _(Default: nil)_
+-- @param  #number minH The minimum height of the object. _(Default: nil)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the model to be displayed by SpawnIcon.
+-- 
+-- **Note**: _This must be called after setting size if you wish to use a
+-- different size spawnicon._
+-- @function [parent=#Panel] SetModel
+-- @param  self
+-- @param  #string ModelPath The path of the model to set.
+-- @param  #number skin The skin to set. _(Default: 0)_
+-- @param  #string bodygroups The body groups to set. Each single-digit number in the string represents a separate bodygroup, up to 9 in total. _(Default: "")_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Enables or disables the mouse input for the panel.
+-- @function [parent=#Panel] SetMouseInputEnabled
+-- @param  self
+-- @param  #boolean mouseInput Whenever to enable or disable mouse input.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Enables or disables the multi-line functionality of a text object, such as
+-- a DTextEntry.
+-- @function [parent=#Panel] SetMultiline
+-- @param  self
+-- @param  #boolean multiline Whether to enable multiline or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the internal name of the panel.
+-- @function [parent=#Panel] SetName
+-- @param  self
+-- @param  #string name The new name of the panel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets whenever all the default background of the panel should be drawn or not.
+-- @function [parent=#Panel] SetPaintBackgroundEnabled
+-- @param  self
+-- @param  #boolean paintBackground Whenever to draw the background or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets whenever all the default border of the panel should be drawn or not.
+-- @function [parent=#Panel] SetPaintBorderEnabled
+-- @param  self
+-- @param  #boolean paintBorder Whenever to draw the border or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Enables or disables painting of the panel manually with **Panel:PaintManual**.
+-- @function [parent=#Panel] SetPaintedManually
+-- @param  self
+-- @param  #boolean paintedManually True if the panel should be painted manually.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the parent of the panel.
+-- @function [parent=#Panel] SetParent
+-- @param  self
+-- @param  #Panel parent The new parent of the panel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Used by AvatarImage to load an avatar for given player.
+-- @function [parent=#Panel] SetPlayer
+-- @param  self
+-- @param  #Player player The player to use avatar of.
+-- @param  #number size The size of the avatar to use. Acceptable sizes are 32, 64, 184.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- If this panel object has been made a popup with **Panel:MakePopup**, this method
+-- will prevent it from drawing in front of other panels when it receives input focus.
+-- @function [parent=#Panel] SetPopupStayAtBack
+-- @param  self
+-- @param  #boolean stayAtBack If true, the popup panel will not draw in front of others when it gets focus, for example when it is clicked.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the position of the panel. This will trigger **Panel:PerformLayout**. You
+-- should avoid calling this function in **Panel:PerformLayout** to avoid infinite loops.
+-- 
+-- **Note**: _If you wish to position and re-size panels without much guesswork
+-- and have them look good on different screen resolutions, you may find
+-- **Panel:Dock** useful._
+-- @function [parent=#Panel] SetPos
+-- @param  self
+-- @param  #number posX The x coordinate of the position.
+-- @param  #number posY The y coordinate of the position.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets whenever the panel should be rendered in the next screenshot.
+-- @function [parent=#Panel] SetRenderInScreenshots
+-- @param  self
+-- @param  #boolean renderInScreenshot Whenever to render or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets whether the panel object can be selected or not (like icons in the
+-- Spawn Menu, holding Shift). If enabled, this will affect the function of a
+-- DButton whilst Shift is pressed. **Panel:SetSelected** can be used to
+-- select/deselect the object.
+-- @function [parent=#Panel] SetSelectable
+-- @param  self
+-- @param  #boolean selectable Whether the panel object should be selectable or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the selected state of a selectable panel object. This functionality is
+-- set with **Panel:SetSelectable** and checked with **Panel:IsSelectable**.
+-- @function [parent=#Panel] SetSelected
+-- @param  self
+-- @param  #boolean selected Whether the object should be selected or deselected.
+-- **Panel:IsSelected** can be used to determine the selected state of the object. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Enables the panel object for selection (much like the spawn menu).
+-- @function [parent=#Panel] SetSelectionCanvas
+-- @param  self
+-- @param  #any selCanvas Any value other than nil or false will enable the panel object for selection. It is recommended to pass true.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the size of the panel. Calls Panel:OnSizeChanged and marks this panel
+-- for layout (**Panel:InvalidateLayout**). See also **Panel:SetWidth** and **Panel:SetHeight**.
+-- 
+-- **Note**: _If you wish to position and re-size panels without much guesswork and
+-- have them look good on different screen resolutions, you may find **Panel:Dock** useful._
+-- @function [parent=#Panel] SetSize
+-- @param  self
+-- @param  #number width The width of the panel.
+-- @param  #number height The height of the panel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the derma skin that the panel object will use, and refreshes all panels
+-- with **derma.RefreshSkins**.
+-- @function [parent=#Panel] SetSkin
+-- @param  self
+-- @param  #string skinName The name of the skin to use. The default derma skin is _Default_.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the .png image to be displayed on a SpawnIcon or the panel it is based
+-- on ModelImage. Only .png images can be used with this function.
+-- @function [parent=#Panel] SetSpawnIcon
+-- @param  self
+-- @param  #string icon A path to the .png material, for example one of the Silkicons shipped with the game.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Used by AvatarImage panels to load an avatar by its 64-bit Steam ID (community ID).
+-- @function [parent=#Panel] SetSteamID
+-- @param  self
+-- @param  #string steamid The 64bit SteamID of the player to load avatar of.
+-- @param  #number size The size of the avatar to use. Acceptable sizes are 32, 64, 184.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets which order pressing TAB should "select/highlight" the panels, used on
+-- text entries and buttons.
+-- @function [parent=#Panel] SetTabPosition
+-- @param  self
+-- @param  #number position The position to set this panel to.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets height of a panel. An alias of **Panel:SetHeight**.
+-- @function [parent=#Panel] SetTall
+-- @param  self
+-- @param  #number height Desired height to set.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Removes the panel after given time in seconds.
+-- 
+-- **Note**: _This function will not work if **Panel:AnimationThink** is overridden,
+-- unless **Panel:AnimationThinkInternal** is called every frame._
+-- @function [parent=#Panel] SetTerm
+-- @param  self
+-- @param  #number delay Delay in seconds after which the panel should be removed.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the text value of a panel object containing text, such as a Label, TextEntry
+-- or RichText and their derivatives, such as DLabel, DTextEntry or DButton.
+-- 
+-- **Note**: _When used on a Label or its derivatives (DLabel and DButton), it
+-- will automatically call **Panel:InvalidateLayout**, meaning that you should
+-- avoid running this function every frame on these panels to avoid unnecessary
+-- performance loss._
+-- @function [parent=#Panel] SetText
+-- @param  self
+-- @param  #string text The text value to set.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the left and top text margins of a text-based panel object, such as a
+-- DButton or DLabel.
+-- @function [parent=#Panel] SetTextInset
+-- @param  self
+-- @param  #number insetX The left margin for the text, in pixels.
+-- This will only affect centered text if the margin is greater than its x-coordinate.
+-- @param  #number insetY The top margin for the text, in pixels.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the height of a RichText element to accommodate the text inside.
+-- 
+-- **Note**: _This function internally relies on **Panel:GetNumLines**, so it
+-- should be called at least a couple frames after modifying the text using
+-- **Panel:AppendText**._
+-- @function [parent=#Panel] SetToFullHeight
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the tooltip to be displayed when a player hovers over the panel object
+-- with their cursor.
+-- @function [parent=#Panel] SetTooltip
+-- @param  self
+-- @param  #string str The text to be displayed in the tooltip. Set false to disable it.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the panel to be displayed as a tooltip when a player hovers over the
+-- panel object with their cursor. Note that it will not override the default
+-- DTooltip panel.
+-- 
+-- **Note**: _**Panel:SetTooltip** will override this functionality._
+-- 
+-- **Warning**: _Calling this from **Panel:OnCursorEntered** is too late! The
+-- tooltip will not be displayed or be updated._
+-- 
+-- **Warning**: _Given panel or the previously set one will NOT be automatically removed._
+-- @function [parent=#Panel] SetTooltipPanel
+-- @param  self
+-- @param  #Panel tooltipPanel The panel to use as the tooltip. _(Default: nil)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the URL of a link-based panel such as DLabelURL.
+-- @function [parent=#Panel] SetURL
+-- @param  self
+-- @param  #string url The URL to set. This **must** begin with http://.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the visibility of the vertical scrollbar. Works for RichText and TextEntry.
+-- @function [parent=#Panel] SetVerticalScrollbarEnabled
+-- @param  self
+-- @param  #boolean display True to display the vertical text scroll bar, false to hide it. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the "visibility" of the panel.
+-- @function [parent=#Panel] SetVisible
+-- @param  self
+-- @param  #boolean visible The visibility of the panel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets width of a panel. An alias of **Panel:SetWidth**.
+-- @function [parent=#Panel] SetWide
+-- @param  self
+-- @param  #number width Desired width to set.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the width of the panel. Calls **Panel:OnSizeChanged** and marks this panel
+-- for layout (**Panel:InvalidateLayout**). See also **Panel:SetSize**.
+-- @function [parent=#Panel] SetWidth
+-- @param  self
+-- @param  #number width The new width of the panel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- This makes it so that when you're hovering over this panel you can _click_
+-- on the world. Your viewmodel will aim etc.
+-- @function [parent=#Panel] SetWorldClicker
+-- @param  self
+-- @param  #boolean enabled
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets whether text wrapping should be enabled or disabled on Label and DLabel
+-- panels. Use **DLabel:SetAutoStretchVertical** to automatically correct vertical
+-- size; **Panel:SizeToContents** will not set the correct height.
+-- @function [parent=#Panel] SetWrap
+-- @param  self
+-- @param  #boolean wrap True to enable text wrapping, false otherwise.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the panels z position which determines the rendering order. Panels with
+-- lower z positions appear behind panels with higher z positions. This also
+-- controls in which order panels docked with **Panel:Dock** appears.
+-- @function [parent=#Panel] SetZPos
+-- @param  self
+-- @param  #number zIndex The z position of the panel. Can't be lower than -32768 or higher than 32767.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Makes a panel visible.
+-- @function [parent=#Panel] Show
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Uses animation to resize the panel to the specified size.
+-- @function [parent=#Panel] SizeTo
+-- @param  self
+-- @param  #number sizeW The target width of the panel. Use -1 to retain the current width. _(Default: 0)_
+-- @param  #number sizeH The target height of the panel. Use -1 to retain the current height. _(Default: 0)_
+-- @param  #number time The time to perform the animation within.
+-- @param  #number delay The delay before the animation starts. _(Default: 0)_
+-- @param  #number ease Easing of the start and/or end speed of the animation. See **Panel:NewAnimation** for how this works. _(Default: -1)_
+-- @param  #function callback The function to be called once the animation finishes.
+-- Arguments are:
+-- 
+-- * _#table animData_ : The AnimationData structure that was used.
+-- * _#Panel pnl_ : The panel object that was resized.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Resizes the panel to fit the bounds of its children.
+-- 
+-- **Note**: _Your panel must have its layout updated (**Panel:InvalidateLayout**)
+-- for this function to work properly._
+-- @function [parent=#Panel] SizeToChildren
+-- @param  self
+-- @param  #boolean sizeW Resize with width of the panel.
+-- @param  #boolean sizeH Resize with height of the panel.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Resizes the panel so that its width and height fit all of the content inside.
+-- 
+-- **Note**: _Only works on Label derived panels such as DLabel by default, and
+-- on any panel that manually implemented the **Panel:SizeToContents** method, such
+-- as DNumberWang and DImage._
+-- 
+-- **Warning**: _You must call this function AFTER setting text/font, adjusting
+-- child panels or otherwise altering the panel._
+-- @function [parent=#Panel] SizeToContents
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Resizes the panel object's width to accommodate all child objects/contents.
+-- Only works on Label derived panels such as DLabel by default, and on any
+-- panel that manually implemented **Panel:GetContentSize** method.
+-- 
+-- **Warning**: _You must call this function **AFTER** setting text/font or
+-- adjusting child panels._
+-- @function [parent=#Panel] SizeToContentsX
+-- @param  self
+-- @param  #number addVal The number of extra pixels to add to the width. _(Default: 0)_
+-- Can be a negative number, to reduce the width.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Resizes the panel object's height to accommodate all child objects/contents.
+-- Only works on Label derived panels such as DLabel by default, and on any
+-- panel that manually implemented **Panel:GetContentSize** method.
+-- 
+-- **Note**: _You must call this function **AFTER** setting text/font or adjusting
+-- child panels._
+-- @function [parent=#Panel] SizeToContentsY
+-- @param  self
+-- @param  #number addVal The number of extra pixels to add to the height. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Slides the panel in from above.
+-- @function [parent=#Panel] SlideDown
+-- @param  self
+-- @param  #number Length Time to complete the animation.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Slides the panel out to the top.
+-- @function [parent=#Panel] SlideUp
+-- @param  self
+-- @param  #number Length Time to complete the animation.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Begins a box selection, enables mouse capture for the panel object, and sets
+-- the start point of the selection box to the mouse cursor's position,
+-- relative to this object. For this to work, either the object or its parent
+-- must be enabled as a selection canvas. This is set using **Panel:SetSelectionCanvas**.
+-- @function [parent=#Panel] StartBoxSelection
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Stops all panel animations by clearing its animation list. This also clears
+-- all delayed animations.
+-- @function [parent=#Panel] Stop
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Resizes the panel object's height so that its bottom is aligned with the top
+-- of the passed panel. An offset greater than zero will reduce the panel's
+-- height to leave a gap between it and the passed panel.
+-- @function [parent=#Panel] StretchBottomTo
+-- @param  self
+-- @param  #Panel tgtPanel The panel to align the bottom of this one with.
+-- @param  #number offset The gap to leave between this and the passed panel. _(Default: 0)_
+-- Negative values will cause the panel's height to increase, forming an overlap.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Resizes the panel object's width so that its right edge is aligned with the
+-- left of the passed panel. An offset greater than zero will reduce the panel's
+-- width to leave a gap between it and the passed panel.
+-- @function [parent=#Panel] StretchRightTo
+-- @param  self
+-- @param  #Panel tgtPanel The panel to align the right edge of this one with.
+-- @param  #number offset The gap to leave between this and the passed panel. _(Default: 0)_
+-- Negative values will cause the panel's width to increase, forming an overlap.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the dimensions of the panel to fill its parent. It will only stretch in
+-- directions that aren't nil.
+-- @function [parent=#Panel] StretchToParent
+-- @param  self
+-- @param  #number offsetLeft The left offset to the parent.
+-- @param  #number offsetTop The top offset to the parent.
+-- @param  #number offsetRight The right offset to the parent.
+-- @param  #number offsetBottom The bottom offset to the parent.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Toggles the selected state of a selectable panel object. This functionality
+-- is set with **Panel:SetSelectable** and checked with **Panel:IsSelectable**. To
+-- check whether the object is selected or not, **Panel:IsSelected** is used.
+-- @function [parent=#Panel] ToggleSelection
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Toggles the visibility of a panel and all its children.
+-- @function [parent=#Panel] ToggleVisible
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Restores the last saved state (caret position and the text inside) of a
+-- TextEntry. Should act identically to pressing CTRL+Z in a TextEntry. See
+-- also **Panel:SaveUndoState**.
+-- @function [parent=#Panel] Undo
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Recursively deselects this panel object and all of its children. This will
+-- cascade to all child objects at every level below the parent.
+-- @function [parent=#Panel] UnselectAll
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Forcibly updates the panels' HTML Material, similar to when Paint is called
+-- on it. This is only useful if the panel is not normally visible, i.e the
+-- panel exists purely for its HTML Material.
+-- 
+-- **Note**: _Only works on with panels that have a HTML Material. See
+-- **Panel:GetHTMLMaterial** for more details._
+-- 
+-- **Note**: _A good place to call this is in the **GM:PreRender** hook._
+-- @function [parent=#Panel] UpdateHTMLTexture
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Path object for a NextBot NPC. Returned by **Path**.
 -- @type PathFollower
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Server_
 -- 
+-- If you created your path with type "Chase" this functions should be used in
+-- place of **PathFollower:Update** to cause the bot to chase the specified entity.
+-- @function [parent=#PathFollower] Chase
+-- @param  self
+-- @param  #NextBot bot The bot to update along the path.
+-- @param  #Entity ent The entity we want to chase.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Compute shortest path from bot to 'goal' via A* algorithm.
+-- @function [parent=#PathFollower] Compute
+-- @param  self
+-- @param  #NextBot from The nextbot we're generating for.
+-- @param  #Vector to To point.
+-- @param  #function generator A funtion that allows you to alter the path generation. _(Default: nil)_
+-- @return #boolean If returns true, path was found to the goal position.
+-- If returns false, path may either be invalid (use IsValid() to check), or valid but doesn't reach all the way to the goal.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Draws the path. This is meant for debugging and uses debug overlay.
+-- @function [parent=#PathFollower] Draw
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the first segment of the path.
+-- @function [parent=#PathFollower] FirstSegment
+-- @param  self
+-- @return #table A table with **PathSegment structure**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the age since the path was built.
+-- @function [parent=#PathFollower] GetAge
+-- @param  self
+-- @return #number Path age.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns all of the segments of the given path.
+-- @function [parent=#PathFollower] GetAllSegments
+-- @param  self
+-- @return #table A table of tables with **PathSegment structure**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- The closest position along the path to a position.
+-- @function [parent=#PathFollower] GetClosestPosition
+-- @param  self
+-- @param  #Vector position The point we're querying for.
+-- @return #Vector The closest position on the path.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the current goal data. Can return nil if the current goal is invalid,
+-- for example immediately after **PathFollower:Update**.
+-- @function [parent=#PathFollower] GetCurrentGoal
+-- @param  self
+-- @return #table A table with **PathSegment structure**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the cursor data.
+-- @function [parent=#PathFollower] GetCursorData
+-- @param  self
+-- @return #table A table with 3 keys:
+-- 
+-- * _#number curvature_
+-- * _#Vector forward_
+-- * _#Vector pos_
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the current progress along the path.
+-- @function [parent=#PathFollower] GetCursorPosition
+-- @param  self
+-- @return #number The current progress.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the path end position.
+-- @function [parent=#PathFollower] GetEnd
+-- @param  self
+-- @return #Vector The end position.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#PathFollower] GetHindrance
+-- @param  self
+-- @return #Entity
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the total length of the path.
+-- @function [parent=#PathFollower] GetLength
+-- @param  self
+-- @return #number The length of the path.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the vector position of distance along path.
+-- @function [parent=#PathFollower] GetPositionOnPath
+-- @param  self
+-- @param  #number distance The distance along the path to query.
+-- @return #Vector The position.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the path start position.
+-- @function [parent=#PathFollower] GetStart
+-- @param  self
+-- @return #Vector The start position.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Invalidates the current path
+-- @function [parent=#PathFollower] Invalidate
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns true if the path is valid.
+-- @function [parent=#PathFollower] IsValid
+-- @param  self
+-- @return #boolean Wether the path is valid or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the last segment of the path.
+-- @function [parent=#PathFollower] LastSegment
+-- @param  self
+-- @return #table A table with **PathSegment structure**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Moves the cursor by give distance. For a function that sets the distance,
+-- see **PathFollower:MoveCursorTo**.
+-- @function [parent=#PathFollower] MoveCursor
+-- @param  self
+-- @param  #number distance The distance to move the cursor. (in relative world units)
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the cursor position to given distance. For relative distance, see **PathFollower:MoveCursor**.
+-- @function [parent=#PathFollower] MoveCursorTo
+-- @param  self
+-- @param  #number distance The distance to move the cursor. (in world units)
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Moves the cursor of the path to the closest position compared to given vector.
+-- @function [parent=#PathFollower] MoveCursorToClosestPosition
+-- @param  self
+-- @param  #Vector pos
+-- @param  #number type Seek type. _(Default: 0)_
+-- 
+-- * 0 : SEEK\_ENTIRE\_PATH - Search the entire path length
+-- * 1 : SEEK_AHEAD - Search from current cursor position forward toward end of path
+-- * 2 : SEEK_BEHIND - Search from current cursor position backward toward path start
+-- @param  #number alongLimit _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Moves the cursor to the end of the path.
+-- @function [parent=#PathFollower] MoveCursorToEnd
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Moves the cursor to the end of the path.
+-- @function [parent=#PathFollower] MoveCursorToStart
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Resets the age which is retrieved by **PathFollower:GetAge** to 0.
+-- @function [parent=#PathFollower] ResetAge
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- How close we can get to the goal to call it done.
+-- @function [parent=#PathFollower] SetGoalTolerance
+-- @param  self
+-- @param  #number distance The distance we're setting it to.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets minimum range movement goal must be along path.
+-- @function [parent=#PathFollower] SetMinLookAheadDistance
+-- @param  self
+-- @param  #number mindist The minimum look ahead distance.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Move the bot along the path.
+-- @function [parent=#PathFollower] Update
+-- @param  self
+-- @param  #NextBot bot The bot to update along the path.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- A PhysCollide holds collision data from VPhysics. These objects can be used
+-- to run (currently quite limited) collision tests, but do not represent
+-- actual physics objects. Created by **CreatePhysCollideBox** or **CreatePhysCollidesFromModel**.
 -- @type PhysCollide
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Client_ | _Server_
 -- 
--- @type PhysObj
--- @field 
+-- Destroys the PhysCollide object.
+-- @function [parent=#PhysCollide] Destroy
+-- @param  self
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Client_ | _Server_
+-- 
+-- Checks whether this PhysCollide object is valid or not. You should just use
+-- **IsValid** instead.
+-- @function [parent=#PhysCollide] IsValid
+-- @param  self
+-- @return #boolean Is valid or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Performs a trace against this PhysCollide with the given parameters. This
+-- can be used for both line traces and box traces.
+-- @function [parent=#PhysCollide] TraceBox
+-- @param  self
+-- @param  #Vector origin The origin for the PhysCollide during the trace.
+-- @param  #Angle angles The angles for the PhysCollide during the trace.
+-- @param  #Vector rayStart The start position of the trace.
+-- @param  #Vector rayEnd The end position of the trace.
+-- @param  #Vector rayMins The mins of the trace's bounds.
+-- @param  #Vector rayMaxs The maxs of the trace's bounds.
+-- @return #Vector, #Vector, #Vector Hit position, position normal, and fraction of the trace.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- This is the object returned by **Entity:GetPhysicsObject** and
+-- **Entity:GetPhysicsObjectNum**. It represents a physics object.
+-- @type PhysObj
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Adds the specified velocity to the current.
+-- @function [parent=#PhysObj] AddAngleVelocity
+-- @param  self
+-- @param  #Vector angularVelocity Additional velocity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Adds one or more bit flags.
+-- @function [parent=#PhysObj] AddGameFlag
+-- @param  self
+-- @param  #number flags Bitflag, see **FVPHYSICS\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Adds the specified velocity to the current.
+-- @function [parent=#PhysObj] AddVelocity
+-- @param  self
+-- @param  #Vector velocity Additional velocity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Rotates the object so that it's angles are aligned to the ones inputted.
+-- @function [parent=#PhysObj] AlignAngles
+-- @param  self
+-- @param  #Angle from
+-- @param  #Angle to
+-- @return #Angle
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Applies the specified force to the physics object. (in Newtons)
+-- 
+-- **Note**: _This will not work on players, use **Entity:SetVelocity** instead._
+-- @function [parent=#PhysObj] ApplyForceCenter
+-- @param  self
+-- @param  #Vector force The force to be applied.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Applies the specified force on the physics object at the specified position.
+-- @function [parent=#PhysObj] ApplyForceOffset
+-- @param  self
+-- @param  #Vector force The force to be applied.
+-- @param  #Vector position The position in world coordinates where the force is applied to the physics object.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Applies specified torque to the physics object.
+-- @function [parent=#PhysObj] ApplyTorqueCenter
+-- @param  self
+-- @param  #Vector torque The torque to be applied in kg * degrees / s.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Calculates the force and torque on the center of mass for an offset force
+-- impulse. The outputs can be directly passed to **PhysObj:ApplyForceCenter** and
+-- **PhysObj:ApplyTorqueCenter**, respectively.
+-- @function [parent=#PhysObj] CalculateForceOffset
+-- @param  self
+-- @param  #Vector force The initial force.
+-- @param  #Vector pos The location of the force in world coordinates.
+-- @return #Vector, #Vector The calculated force and torque on the physics object's center of mass.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Calculates the linear and angular velocities on the center of mass for an
+-- offset force impulse. The outputs can be directly passed to
+-- **PhysObj:AddVelocity** and **PhysObj:AddAngleVelocity**, respectively.
+-- @function [parent=#PhysObj] CalculateVelocityOffset
+-- @param  self
+-- @param  #Vector force The initial force.
+-- @param  #Vector pos The location of the force in world coordinates.
+-- @return #Vector, #Vector The calculated linear and angular velocities from the force on the physics object's center of mass.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Removes one of more specified flags.
+-- @function [parent=#PhysObj] ClearGameFlag
+-- @param  self
+-- @param  #number flags Bitflag, see **FVPHYSICS\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Allows you to move a PhysObj to a point and angle in 3D space.
+-- @function [parent=#PhysObj] ComputeShadowControl
+-- @param  self
+-- @param  #table shadowparams The parameters for the shadow.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets whether the physics object should collide with anything or not,
+-- including world.
+-- 
+-- **Warning**: _This function currently has major problems with player
+-- collisions, and as such should be avoided at all costs. A better alternative
+-- to this function would be using **Entity:SetCollisionGroup**(COLLISION\_GROUP\_WORLD)._
+-- @function [parent=#PhysObj] EnableCollisions
+-- @param  self
+-- @param  #boolean enable True to enable, false to disable.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets whenever the physics object should be affected by drag.
+-- @function [parent=#PhysObj] EnableDrag
+-- @param  self
+-- @param  #boolean enable True to enable, false to disable.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets whether the PhysObject should be affected by gravity.
+-- @function [parent=#PhysObj] EnableGravity
+-- @param  self
+-- @param  #boolean enable True to enable, false to disable.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets whether the physobject should be able to move or not. This is the exact
+-- method the Physics Gun uses to freeze props. If a motion-disabled physics
+-- object is grabbed with the physics gun, the object will be able to move
+-- again. To disallow this, use **GM:PhysgunPickup**.
+-- @function [parent=#PhysObj] EnableMotion
+-- @param  self
+-- @param  #boolean enable True to enable, false to disable.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the mins and max of the physics object.
+-- @function [parent=#PhysObj] GetAABB
+-- @param  self
+-- @return #Vector, #Vector The mins and max.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the angles of the physics object.
+-- @function [parent=#PhysObj] GetAngles
+-- @param  self
+-- @return #Angle The angles of the physics object.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the angular velocity of the object in degrees per second.
+-- @function [parent=#PhysObj] GetAngleVelocity
+-- @param  self
+-- @return #Vector The angular velocity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the contents flag of the PhysObj.
+-- @function [parent=#PhysObj] GetContents
+-- @param  self
+-- @return #number The **CONTENTS\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the linear and angular damping of the physics object.
+-- @function [parent=#PhysObj] GetDamping
+-- @param  self
+-- @return #number, #number The linear and angular damping.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the kinetic energy of the physobject.
+-- @function [parent=#PhysObj] GetEnergy
+-- @param  self
+-- @return #number The kinetic energy.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the parent entity of the physics object.
+-- @function [parent=#PhysObj] GetEntity
+-- @param  self
+-- @return #Entity Parent entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the directional inertia of the physics object.
+-- @function [parent=#PhysObj] GetInertia
+-- @param  self
+-- @return #Vector Directional inertia.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns 1 divided by the inertia.
+-- @function [parent=#PhysObj] GetInvInertia
+-- @param  self
+-- @return #number The inverted inertia.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns 1 divided by the physics object's mass.
+-- @function [parent=#PhysObj] GetInvMass
+-- @param  self
+-- @return #number The inverted mass.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the mass of the physics object.
+-- @function [parent=#PhysObj] GetMass
+-- @param  self
+-- @return #number The mass in kilograms.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the center of mass of the physics object as a local vector.
+-- @function [parent=#PhysObj] GetMassCenter
+-- @param  self
+-- @return #Vector The center of mass of the physics object.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the physical material of the physics object.
+-- @function [parent=#PhysObj] GetMaterial
+-- @param  self
+-- @return #string The physical material.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the physics mesh of the object which is used for physobj-on-physobj collision.
+-- @function [parent=#PhysObj] GetMesh
+-- @param  self
+-- @return #table Table of MeshVertex structures where each three vertices represent a triangle.
+-- Returns nil if the physics object is a sphere.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns all convex physics meshes of the object. See
+-- **Entity.PhysicsInitMultiConvex** for more information.
+-- @function [parent=#PhysObj] GetMeshConvexes
+-- @param  self
+-- @return #table Table of **MeshVertex structures** where each **MeshVertex structure** is an independent convex mesh and each three vertices represent a triangle.
+-- Returns nil if the physics object is a sphere.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the name of the physics object.
+-- @function [parent=#PhysObj] GetName
+-- @param  self
+-- @return #string The name of the physics object.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the position of the physics object.
+-- @function [parent=#PhysObj] GetPos
+-- @param  self
+-- @return #Vector The position.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the position and angle of the physics object as a 3x4 matrix
+-- (VMatrix is 4x4 so the fourth row goes unused). The first three columns
+-- store the angle as a rotation matrix, and the fourth column stores the
+-- position vector.
+-- @function [parent=#PhysObj] GetPositionMatrix
+-- @param  self
+-- @return #VMatrix The position and angle matrix.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the rotation damping of the physics object.
+-- @function [parent=#PhysObj] GetRotDamping
+-- @param  self
+-- @return #number The rotation damping.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the angles of the PhysObj shadow. See **PhysObj:UpdateShadow**.
+-- @function [parent=#PhysObj] GetShadowAngles
+-- @param  self
+-- @return #Angle The angles of the PhysObj shadow.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the position of the PhysObj shadow. See **PhysObj:UpdateShadow**.
+-- @function [parent=#PhysObj] GetShadowPos
+-- @param  self
+-- @return #Vector The position of the PhysObj shadow.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the speed damping of the physics object.
+-- @function [parent=#PhysObj] GetSpeedDamping
+-- @param  self
+-- @return #number Speed damping.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the stress of the entity.
+-- @function [parent=#PhysObj] GetStress
+-- @param  self
+-- @return #number Exerted stress.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the surface area of the physics object in source-units.
+-- @function [parent=#PhysObj] GetSurfaceArea
+-- @param  self
+-- @return #number The surface area.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the absolute directional velocity of the physobject.
+-- @function [parent=#PhysObj] GetVelocity
+-- @param  self
+-- @return #Vector velocity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the world velocity of a point in world coordinates about the object.
+-- @function [parent=#PhysObj] GetVelocityAtPoint
+-- @param  self
+-- @param  #Vector point
+-- @return #Vector
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the volume in source units.
+-- @function [parent=#PhysObj] GetVolume
+-- @param  self
+-- @return #number Volume.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whenever the specified flag(s) is/are set.
+-- @function [parent=#PhysObj] HasGameFlag
+-- @param  self
+-- @param  #number flags Bitflag, see **FVPHYSICS\_ Enums**.
+-- @return #boolean If flag was set or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the physics object is "sleeping". See **PhysObj:Sleep** for more information.
+-- @function [parent=#PhysObj] IsAsleep
+-- @param  self
+-- @return #boolean Whether the physics object is sleeping.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whenever the entity is able to collide or not.
+-- @function [parent=#PhysObj] IsCollisionEnabled
+-- @param  self
+-- @return #boolean Is collision enabled.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whenever the entity is affected by drag.
+-- @function [parent=#PhysObj] IsDragEnabled
+-- @param  self
+-- @return #boolean Is drag enabled.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whenever the entity is affected by gravity.
+-- @function [parent=#PhysObj] IsGravityEnabled
+-- @param  self
+-- @return #boolean Is Gravitated.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns if the physics object can move itself. (by velocity, acceleration)
+-- @function [parent=#PhysObj] IsMotionEnabled
+-- @param  self
+-- @return #boolean Is motion enabled.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whenever the entity is able to move.
+-- @function [parent=#PhysObj] IsMoveable
+-- @param  self
+-- @return #boolean Is movable.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whenever the physics object is penetrating another physics object.
+-- @function [parent=#PhysObj] IsPenetrating
+-- @param  self
+-- @return #boolean Is penetrating.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns if the physics object is valid/not NULL.
+-- @function [parent=#PhysObj] IsValid
+-- @param  self
+-- @return #boolean Is valid.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Mapping a vector in local frame of the physics object to world frame.
+-- 
+-- **Note**: _This function does translation and rotation, with translation done first._
+-- @function [parent=#PhysObj] LocalToWorld
+-- @param  self
+-- @param  #Vector LocalVec A vector in the physics object's local frame.
+-- @return #Vector The corresponding vector in world frame.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Rotate a vector from the local frame of the physics object to world frame.
+-- 
+-- **Note**: _This function only rotates the vector, without any translation operation._
+-- @function [parent=#PhysObj] LocalToWorldVector
+-- @param  self
+-- @param  #Vector LocalVec A vector in the physics object's local frame.
+-- @return #Vector The corresponding vector in world frame.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Prints debug info about the state of the physics object to the console.
+-- @function [parent=#PhysObj] OutputDebugInfo
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Call this when the collision filter conditions change due to this object's
+-- state. (e.g. changing solid type or collision group)
+-- @function [parent=#PhysObj] RecheckCollisionFilter
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- A convinience function for **Angle:RotateAroundAxis**.
+-- @function [parent=#PhysObj] RotateAroundAxis
+-- @param  self
+-- @param  #Vector dir Direction, around which we will rotate.
+-- @param  #number ang Amount of rotation, in degrees.
+-- @return #Angle The resulting angle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the amount of drag to apply to a physics object when attempting to rotate.
+-- @function [parent=#PhysObj] SetAngleDragCoefficient
+-- @param  self
+-- @param  #number coefficient Drag coefficient. The bigger this value is, the slower the angles will change.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the angles of the physobject.
+-- @function [parent=#PhysObj] SetAngles
+-- @param  self
+-- @param  #Angle angles The new angles of the physobject.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the buoyancy ratio of the physics object. (how well it floats in water)
+-- @function [parent=#PhysObj] SetBuoyancyRatio
+-- @param  self
+-- @param  #number buoyancy Buoyancy ratio, where 0 is not buoyant at all (like a rock), and 1 is very buoyant (like wood).
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the contents flag of the PhysObj.
+-- @function [parent=#PhysObj] SetContents
+-- @param  self
+-- @param  #number contents The **CONTENTS\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the linear and angular damping of the physics object.
+-- @function [parent=#PhysObj] SetDamping
+-- @param  self
+-- @param  #number linearDamping Linear damping.
+-- @param  #number angularDamping Angular damping.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Modifies how much drag (air resistance) affects the object.
+-- @function [parent=#PhysObj] SetDragCoefficient
+-- @param  self
+-- @param  #number drag The drag coefficient. It can be positive or negative.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the directional inertia.
+-- @function [parent=#PhysObj] SetInertia
+-- @param  self
+-- @param  #Vector directionalInertia The directional inertia of the object.
+-- A value of Vector(0,0,0) makes the physobject go invalid.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the mass of the physics object.
+-- @function [parent=#PhysObj] SetMass
+-- @param  self
+-- @param  #number mass The mass in kilograms.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the material of the physobject.
+-- 
+-- **Note**: _Impact sounds will only change if this is called on client._
+-- @function [parent=#PhysObj] SetMaterial
+-- @param  self
+-- @param  #string materialName The name of the phys material to use.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the position of the physobject.
+-- @function [parent=#PhysObj] SetPos
+-- @param  self
+-- @param  #Vector position The new position of the physobject.
+-- @param  #boolean teleport _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the velocity of the physics object for the next iteration.
+-- @function [parent=#PhysObj] SetVelocity
+-- @param  self
+-- @param  #Vector velocity The new velocity of the phyiscs object.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the velocity of the physics object.
+-- @function [parent=#PhysObj] SetVelocityInstantaneous
+-- @param  self
+-- @param  #Vector velocity The new velocity of the physics object.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Makes the physics object "sleep". The physics object will no longer be
+-- moving unless it is "woken up" by either a collision with another moving
+-- object, or by **PhysObj:Wake**. This is an optimization feature of the
+-- physics engine.
+-- @function [parent=#PhysObj] Sleep
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Unlike **PhysObj:SetPos** and **PhysObj:SetAngles**, this allows the movement of a
+-- physobj while leaving physics interactions intact. This is used internally
+-- by the motion controller of the Gravity Gun, the +use pickup and the Physics
+-- Gun, and entities such as the crane.
+-- 
+-- **Note**: _This is the ideal function to move a physics shadow created with
+-- **Entity:PhysicsInitShadow** or **Entity:MakePhysicsObjectAShadow**._
+-- @function [parent=#PhysObj] UpdateShadow
+-- @param  self
+-- @param  #Vector targetPosition The position we should move to.
+-- @param  #Angle targetAngles The angle we should rotate towards.
+-- @param  #number frameTime The frame time to use for this movement, can be generally filled with **FrameTime** or **ENTITY:PhysicsSimulate** with the deltaTime.
+-- Can be set to 0 when you need to update the physics object just once.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Wakes the physics object. See **PhysObj:Sleep** for more information.
+-- @function [parent=#PhysObj] Wake
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Converts a vector to a relative to the physics object coordinate system.
+-- @function [parent=#PhysObj] WorldToLocal
+-- @param  self
+-- @param  #Vector vec The vector in world space coordinates.
+-- @return #Vector The vector local to **PhysObj:GetPos**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Rotate a vector from the world frame to the local frame of the physics object.
+-- 
+-- **Note**: _This function only rotates the vector, without any translation operation._
+-- @function [parent=#PhysObj] WorldToLocalVector
+-- @param  self
+-- @param  #Vector WorldVec A vector in the world frame.
+-- @return #Vector The corresponding vector relative to the PhysObj.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
 -- 
 -- @type Player
 -- @extends Entity
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Client_ | _Server_
 -- 
+-- Returns the player's AccountID aka 32bit SteamID. For bots and in
+-- singleplayer, this will return no value.
+-- @function [parent=#Player] AccountID
+-- @param  self
+-- @return #number Player's 32bit SteamID aka AccountID.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Adds an entity to the players clean up list.
+-- 
+-- **Note**: _This function is only available in Sandbox and its derivatives._
+-- @function [parent=#Player] AddCleanup
+-- @param  self
+-- @param  #string type Cleanup type.
+-- @param  #Entity ent Entity to add.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Adds an entity to the total count of entities of same class.
+-- 
+-- **Note**: _This function is only available in Sandbox and its derivatives._
+-- @function [parent=#Player] AddCount
+-- @param  self
+-- @param  #string str Entity type.
+-- @param  #Entity ent Entity to add.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Add a certain amount to the player's death count.
+-- @function [parent=#Player] AddDeaths
+-- @param  self
+-- @param  #number count number of deaths to add.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Add a certain amount to the player's frag count (or kills count).
+-- @function [parent=#Player] AddFrags
+-- @param  self
+-- @param  #number count Number of frags to add.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Adds a entity to the players list of frozen objects.
+-- @function [parent=#Player] AddFrozenPhysicsObject
+-- @param  self
+-- @param  #Entity ent Entity to add.
+-- @param  #PhysObj physobj Physics object belonging to ent.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets up the voting system for the player. This is a really barebone system.
+-- By calling this a vote gets started, when the player presses 0-9 the
+-- callback function gets called along with the key the player pressed. Use the
+-- draw callback to draw the vote panel.
+-- @function [parent=#Player] AddPlayerOption
+-- @param  self
+-- @param  #string name Name of the vote.
+-- @param  #number timeout Time until the vote expires.
+-- @param  #function vote_callback The function to be run when the player presses 0-9 while a vote is active.
+-- @param  #function draw_callback Used to draw the vote panel.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Plays a sequence directly from a sequence number, similar to
+-- **Player:AnimRestartGesture**. This function has the advantage to play sequences
+-- that haven't been bound to an existing **ACT\_ Enums**.
+-- @function [parent=#Player] AddVCDSequenceToGestureSlot
+-- @param  self
+-- @param  #number slot Gesture slot using **GESTURE\_SLOT\_ Enums**.
+-- @param  #number sequenceId The sequence ID to play, can be retrieved with **Entity:LookupSequence**.
+-- @param  #number cycle The cycle to start the animation at, ranges from 0 to 1.
+-- @param  #boolean autokill If the animation should not loop. _(Default: false)_
+-- true = stops the animation, false = the animation keeps playing.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Checks if the player is alive.
+-- @function [parent=#Player] Alive
+-- @param  self
+-- @return #boolean Whether the player is alive.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets if the player can toggle his flashlight. Function exists on both the
+-- server and client but has no effect when ran on the client.
+-- @function [parent=#Player] AllowFlashlight
+-- @param  self
+-- @param  #boolean canFlashlight True allows flashlight toggling.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Lets the player spray his decal without delay.
+-- @function [parent=#Player] AllowImmediateDecalPainting
+-- @param  self
+-- @param  #boolean allow Allow or disallow.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Resets player gesture in selected slot.
+-- @function [parent=#Player] AnimResetGestureSlot
+-- @param  self
+-- @param  #number slot Slot to reset. See the **GESTURE\_SLOT\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Restart a gesture on a player, within a gesture slot.
+-- 
+-- **Warning**: _This is not automatically networked. This function has to be
+-- called on the client to be seen by said client._
+-- @function [parent=#Player] AnimRestartGesture
+-- @param  self
+-- @param  #number slot Gesture slot using **GESTURE\_SLOT\_ Enums**.
+-- @param  #number activity The activity (see **ACT\_ Enums**) or sequence that should be played.
+-- @param  #boolean autokill Whether the animation should be automatically stopped. _(Default: false)_
+-- true = stops the animation, false = the animation keeps playing/looping.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Restarts the main animation on the player, has the same effect as calling **Entity:SetCycle**(0).
+-- @function [parent=#Player] AnimRestartMainSequence
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the sequence of the animation playing in the given gesture slot.
+-- @function [parent=#Player] AnimSetGestureSequence
+-- @param  self
+-- @param  #number slot The gesture slot. See **GESTURE\_SLOT\_ Enums**.
+-- @param  #number sequenceID Sequence ID to set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the weight of the animation playing in the given gesture slot.
+-- @function [parent=#Player] AnimSetGestureWeight
+-- @param  self
+-- @param  #number slot The gesture slot. See **GESTURE\_SLOT\_ Enums**.
+-- @param  #number weight The weight this slot should be set to. Value must be ranging from 0 to 1.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the player's armor.
+-- @function [parent=#Player] Armor
+-- @param  self
+-- @return #number The player's armor.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Bans the player from the server for a certain amount of minutes.
+-- @function [parent=#Player] Ban
+-- @param  self
+-- @param  #number minutes Duration of the ban in minutes. (0 is permanent)
+-- @param  #boolean kick Whether to kick the player after banning then or not. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns true if the player's flashlight hasn't been disabled by **Player:AllowFlashlight**.
+-- @function [parent=#Player] CanUseFlashlight
+-- @param  self
+-- @return #boolean Can use flashlight.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Prints a string to the chatbox of the client.
+-- 
+-- **Warning**: _Just like the usermessage library, this function is affected
+-- by the 255 byte limit!_
+-- @function [parent=#Player] ChatPrint
+-- @param  self
+-- @param  #string message String to be printed.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Checks if the limit is hit or not. If it is, it will throw a notification
+-- saying so.
+-- @function [parent=#Player] CheckLimit
+-- @param  self
+-- @param  #string limitType Limit type.
+-- In unmodified Sandbox possible values are:
+-- 
+-- * "props"
+-- * "ragdolls"
+-- * "vehicles"
+-- * "effects"
+-- * "balloons"
+-- * "cameras"
+-- * "npcs"
+-- * "sents"
+-- * "dynamite"
+-- * "lamps"
+-- * "lights"
+-- * "wheels"
+-- * "thrusters"
+-- * "hoverballs"
+-- * "buttons"
+-- * "emitters"
+-- @return #boolean Returns true if limit is not hit, false if it is hit.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Runs the concommand on the player. This does not work on bots. If you wish
+-- to directly modify the movement input of bots, use **GM:StartCommand** instead.
+-- 
+-- **Note**: _Some commands/convars are blocked from being ran/changed using
+-- this function, usually to prevent harm/annoyance to clients. For a list of
+-- blocked commands, see Blocked ConCommands._
+-- @function [parent=#Player] ConCommand
+-- @param  self
+-- @param  #string command Command to run.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Creates the player's ragdoll entity. This is normally used when a player
+-- dies, to create their death ragdoll. The ragdoll will be created with the
+-- player's properties such as Position, Angles, PlayerColor, Velocity and Model.
+-- You can retrieve the entity this creates with **Player:GetRagdollEntity**.
+-- @function [parent=#Player] CreateRagdoll
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Disables a players crosshair.
+-- @function [parent=#Player] CrosshairDisable
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Enables crosshair of player.
+-- @function [parent=#Player] CrosshairEnable
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the player is crouching or not.
+-- @function [parent=#Player] Crouching
+-- @param  self
+-- @return #boolean Whether the player is crouching.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the player's death count.
+-- @function [parent=#Player] Deaths
+-- @param  self
+-- @return #number The number of deaths the player has had.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Prints the players' name and position to the console.
+-- @function [parent=#Player] DebugInfo
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Detonates all tripmines belonging to the player.
+-- @function [parent=#Player] DetonateTripmines
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sends a third person animation event to the player. Calls
+-- **GM:DoAnimationEvent** with PLAYERANIMEVENT\_CUSTOM\_GESTURE as the event, data
+-- as the given data.
+-- @function [parent=#Player] DoAnimationEvent
+-- @param  self
+-- @param  #number data The data to send.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Starts the player's attack animation. The attack animation is determined by
+-- the weapon's HoldType. Similar to other animation event functions, calls
+-- **GM:DoAnimationEvent** with PLAYERANIMEVENT\_ATTACK\_PRIMARY as the event and no
+-- extra data.
+-- @function [parent=#Player] DoAttackEvent
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sends a specified third person animation event to the player. Calls
+-- **GM:DoAnimationEvent** with specified arguments.
+-- @function [parent=#Player] DoCustomAnimEvent
+-- @param  self
+-- @param  #number event The event to send. See **PLAYERANIMEVENT\_ Enums**.
+-- @param  #number data The data to send alongside the event.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sends a third person reload animation event to the player. Similar to other
+-- animation event functions, calls **GM:DoAnimationEvent** with
+-- PLAYERANIMEVENT_RELOAD as the event and no extra data.
+-- @function [parent=#Player] DoReloadEvent
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sends a third person secondary fire animation event to the player. Similar
+-- to other animation event functions, calls **GM:DoAnimationEvent** with
+-- PLAYERANIMEVENT\_ATTACK\_SECONDARY as the event and no extra data.
+-- @function [parent=#Player] DoSecondaryAttack
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Show/Hide the player's weapon's viewmodel.
+-- @function [parent=#Player] DrawViewModel
+-- @param  self
+-- @param  #boolean draw Should draw.
+-- @param  #number vm Which view model to show/hide, 0-2. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Show/Hide the player's weapon's worldmodel.
+-- @function [parent=#Player] DrawWorldModel
+-- @param  self
+-- @param  #boolean draw Should draw.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Drops the players' weapon of a specific class.
+-- @function [parent=#Player] DropNamedWeapon
+-- @param  self
+-- @param  #string class The class to drop.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Drops any object the player is currently holding with either gravitygun or
+-- +Use (E key).
+-- @function [parent=#Player] DropObject
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Forces the player to drop the specified weapon.
+-- @function [parent=#Player] DropWeapon
+-- @param  self
+-- @param  #Weapon weapon Weapon to be dropped.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Enters the player into specified vehicle.
+-- @function [parent=#Player] EnterVehicle
+-- @param  self
+-- @param  #Vehicle vehicle Vehicle the player will enter.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Equips the player with the HEV suit. Allows the player to zoom, walk slowly,
+-- sprint, pickup armor batteries, use the health and armor stations and also
+-- shows the HUD. The player also emits a flatline sound on death, which can be
+-- overridden with **GM:PlayerDeathSound**. The player is automatically
+-- equipped with the suit on spawn, if you wish to stop that, use **Player:RemoveSuit**.
+-- @function [parent=#Player] EquipSuit
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Makes the player exit the vehicle if they're in one.
+-- @function [parent=#Player] ExitVehicle
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Enables/Disables the player's flashlight.
+-- @function [parent=#Player] Flashlight
+-- @param  self
+-- @param  #boolean isOn Turns the flashlight on/off.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns true if the player's flashlight is on.
+-- @function [parent=#Player] FlashlightIsOn
+-- @param  self
+-- @return #boolean Whether the player's flashlight is on.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the amount of kills a player has.
+-- @function [parent=#Player] Frags
+-- @param  self
+-- @return #number Number of kills the player has.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Freeze the player. Frozen players cannot move, look around, or attack. Key
+-- bindings are still called. Similar to **Player:Lock** but the player can still
+-- take damage. Adds or removes the FL_FROZEN flag from the player.
+-- 
+-- **Note**: _Frozen bots will still be able to turn with bot_mimic 1._
+-- @function [parent=#Player] Freeze
+-- @param  self
+-- @param  #boolean frozen Whether the player should be frozen. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the player's active weapon.
+-- @function [parent=#Player] GetActiveWeapon
+-- @param  self
+-- @return #Weapon The weapon the player is currently has equipped.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the direction that the player is aiming.
+-- @function [parent=#Player] GetAimVector
+-- @param  self
+-- @return #Vector The direction vector of players aim.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns true if the players' model is allowed to rotate around the pitch and
+-- roll axis.
+-- @function [parent=#Player] GetAllowFullRotation
+-- @param  self
+-- @return #boolean Allowed to rotate.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the player is allowed to use his weapons in a vehicle or not.
+-- @function [parent=#Player] GetAllowWeaponsInVehicle
+-- @param  self
+-- @return #boolean Whether the player is allowed to use his weapons in a vehicle or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the amount of ammo the player has.
+-- @function [parent=#Player] GetAmmoCount
+-- @param  self
+-- @param  #any ammotype The ammunition type. Can be either number ammo ID or string ammo name.
+-- @return #number The amount of ammo player has in reserve.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets if the player will be pushed out of nocollided players.
+-- @function [parent=#Player] GetAvoidPlayers
+-- @param  self
+-- @return #boolean Gets pushed by nocollided.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns true if the player is able to walk using the (default) alt key.
+-- @function [parent=#Player] GetCanWalk
+-- @param  self
+-- @return #boolean Able to walk.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Determines whenever the player is allowed to use the zoom functionality.
+-- @function [parent=#Player] GetCanZoom
+-- @param  self
+-- @return #boolean Can zoom.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the player's class id.
+-- @function [parent=#Player] GetClassID
+-- @param  self
+-- @return #number The player's class id.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets total count of entities of same class.
+-- 
+-- **Note**: _This function is only available in Sandbox and its derivatives._
+-- @function [parent=#Player] GetCount
+-- @param  self
+-- @param  #string type Entity type to get count of.
+-- @param  #number minus If specified, it will reduce the counter by this value. _(Default: 0)_
+-- Works only serverside.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the crouched walk speed multiplier. See also **Player:GetWalkSpeed**
+-- and **Player:SetCrouchedWalkSpeed**.
+-- @function [parent=#Player] GetCrouchedWalkSpeed
+-- @param  self
+-- @return #number The crouched walk speed multiplier.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the last command which was sent by the specified player. Can only be
+-- used in a Predicted Hook.
+-- 
+-- **Note**: _When called clientside in singleplayer during **WEAPON:Think**, it
+-- will return nothing as the hook is not technically predicted in that instance._
+-- @function [parent=#Player] GetCurrentCommand
+-- @param  self
+-- @return #CUserCmd Last user commands.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the actual view offset which equals the difference between the players
+-- actual position and their view when standing. Do not confuse with
+-- **Player:GetViewOffset** and **Player:GetViewOffsetDucked**.
+-- @function [parent=#Player] GetCurrentViewOffset
+-- @param  self
+-- @return #Vector The actual view offset.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the entity the player is currently driving.
+-- @function [parent=#Player] GetDrivingEntity
+-- @param  self
+-- @return #Entity Driven entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns driving mode of the player.
+-- @function [parent=#Player] GetDrivingMode
+-- @param  self
+-- @return #number The drive mode ID or 0 if player doesn't use the drive system.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a player's duck speed. (in seconds)
+-- @function [parent=#Player] GetDuckSpeed
+-- @param  self
+-- @return #number Duck speed.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a table with information of what the player is looking at. The results
+-- of this function are cached every frame. See also **Player:GetEyeTraceNoCursor**.
+-- @function [parent=#Player] GetEyeTrace
+-- @param  self
+-- @return #table Trace information, see **TraceResult structure**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the trace according to the players view direction, ignoring their
+-- mouse (Holding C and moving the mouse in Sandbox). The results of this
+-- function are cached every frame. See also **Player:GetEyeTrace**.
+-- @function [parent=#Player] GetEyeTraceNoCursor
+-- @param  self
+-- @return #table Trace result. See **TraceResult structure**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the FOV of the player.
+-- @function [parent=#Player] GetFOV
+-- @param  self
+-- @return #number FOV
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the steam "relationship" towards the player.
+-- @function [parent=#Player] GetFriendStatus
+-- @param  self
+-- @return #string Should return one of four different things depending on their status on your friends list: "friend", "blocked", "none" or "requested".
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the hands entity of a player.
+-- @function [parent=#Player] GetHands
+-- @param  self
+-- @return #Entity The hands entity if players has one.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the widget the player is hovering with his mouse.
+-- @function [parent=#Player] GetHoveredWidget
+-- @param  self
+-- @return #Entity The hovered widget.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the bottom base and the top base size of the player's hull.
+-- @function [parent=#Player] GetHull
+-- @param  self
+-- @return #Vector, #Vector Player's hull bottom base and top base size.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the bottom base and the top base size of the player's crouch hull.
+-- @function [parent=#Player] GetHullDuck
+-- @param  self
+-- @return #Vector Player's crouch hull bottom base and top base size.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Retrieves the value of a client-side ConVar. The ConVar must have a
+-- FCVAR_USERINFO flag for this to work.
+-- 
+-- **Warning**: _The returned value is truncated to 31 bytes._
+-- @function [parent=#Player] GetInfo
+-- @param  self
+-- @param  #string cVarName The name of the client-side ConVar.
+-- @return #string The value of the ConVar.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Retrieves the numeric value of a client-side convar, returns nil if value is
+-- not convertible to a number. The ConVar must have a FCVAR_USERINFO flag for
+-- this to work.
+-- @function [parent=#Player] GetInfoNum
+-- @param  self
+-- @param  #string cVarName The name of the ConVar to query the value of.
+-- @param  #number default Default value if we failed to retrieve the number.
+-- @return #number The value of the ConVar or the default value.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the jump power of the player.
+-- @function [parent=#Player] GetJumpPower
+-- @param  self
+-- @return #number Jump power.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the timescale multiplier of the player movement.
+-- @function [parent=#Player] GetLaggedMovementValue
+-- @param  self
+-- @return #number The timescale multiplier, defaults to 1.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the player's maximum movement speed. See also **Player:SetMaxSpeed**,
+-- **Player:GetWalkSpeed** and **Player:GetRunSpeed**.
+-- @function [parent=#Player] GetMaxSpeed
+-- @param  self
+-- @return #number The maximum movement speed the player can go at.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the player's name, this is an alias of **Player:Nick**.
+-- 
+-- **Note**: _This function overrides **Entity:GetName** (in the Lua metatable, not
+-- in c++), keep it in mind when dealing with **ents.FindByName** or any engine
+-- function which requires the mapping name._
+-- @function [parent=#Player] GetName
+-- @param  self
+-- @return #string The player's name.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whenever the player is set not to collide with their teammates.
+-- @function [parent=#Player] GetNoCollideWithTeammates
+-- @param  self
+-- @return #boolean No collide with teammates.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the the observer mode of the player.
+-- @function [parent=#Player] GetObserverMode
+-- @param  self
+-- @return #number Observe mode of that player, see **OBS\_MODE\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the entity the player is currently observing. Set using **Player:SpectateEntity**.
+-- @function [parent=#Player] GetObserverTarget
+-- @param  self
+-- @return #Entity The entity the player is currently spectating, or NULL if the player has no target.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a Player Data key-value pair from the SQL database. (sv.db when called
+-- on server, cl.db when called on client) Internally uses the sql library.
+-- 
+-- **Warning**: _This function internally uses **Player:UniqueID**, which can cause
+-- collisions (two or more players sharing the same PData entry). It's
+-- recommended that you don't use it. See the related wiki page for more information._
+-- 
+-- **Note**: _PData is not networked from servers to clients!_
+-- @function [parent=#Player] GetPData
+-- @param  self
+-- @param  #string key Name of the PData key.
+-- @param  #any default Default value if PData key doesn't exist. _(Default: nil)_
+-- @return #string The data in the SQL database or the default value given.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a player model's color. The part of the model that is colored is
+-- determined by the model itself, and is different for each model. The format
+-- is Vector(r,g,b), and each color should be between 0 and 1.
+-- @function [parent=#Player] GetPlayerColor
+-- @param  self
+-- @return #Vector The player's color.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns a table containing player information.
+-- @function [parent=#Player] GetPlayerInfo
+-- @param  self
+-- @return #table A table containing player information.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the preferred carry angles of an object, if any are set. Calls
+-- **GM:GetPreferredCarryAngles** with the target entity and returns the
+-- carry angles.
+-- @function [parent=#Player] GetPreferredCarryAngles
+-- @param  self
+-- @param  #Entity carryEnt Entity to retrieve the carry angles of.
+-- @return #Angle Carry angles or nil if the entity has no preferred carry angles.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the widget entity the player is using. Having a pressed widget stops
+-- the player from firing his weapon to allow input to be passed onto the widget.
+-- @function [parent=#Player] GetPressedWidget
+-- @param  self
+-- @return #Entity The pressed widget.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns players death ragdoll. The ragdoll is created by **Player:CreateRagdoll**.
+-- @function [parent=#Player] GetRagdollEntity
+-- @param  self
+-- @return #Entity The ragdoll.
+-- Unlike normal clientside ragdolls (C\_ClientRagdoll), this will be a C\_HL2MPRagdoll on the client, and hl2mp\_ragdoll on the server.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the render angles for the player.
+-- @function [parent=#Player] GetRenderAngles
+-- @param  self
+-- @return #Angle The render angles of the player.
+-- Only yaw part of the angle seems to be present.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the player's sprint speed. See also **Player:SetRunSpeed**,
+-- **Player:GetWalkSpeed** and **Player:GetMaxSpeed**.
+-- @function [parent=#Player] GetRunSpeed
+-- @param  self
+-- @return #number The sprint speed.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the position of a Player's view.
+-- 
+-- **Note**: _This is the same as calling **Entity:EyePos** on the player._
+-- @function [parent=#Player] GetShootPos
+-- @param  self
+-- @return #Vector Aim position.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the maximum height player can step onto.
+-- @function [parent=#Player] GetStepSize
+-- @param  self
+-- @return #number The maximum height player can get up onto without jumping, in hammer units.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the number of seconds that the player has been timing out for. You
+-- can check if a player is timing out with **Player:IsTimingOut**.
+-- @function [parent=#Player] GetTimeoutSeconds
+-- @param  self
+-- @return #number Timeout seconds.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns TOOL table of players current tool, or of the one specified.
+-- @function [parent=#Player] GetTool
+-- @param  self
+-- @param  #string mode Classname of the tool to retrieve. (Filename of the tool in gmod\_tool/stools/) _(Default: nil)_
+-- @return #table TOOL table, or nil if the table wasn't found or the player doesn't have a tool gun.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a player's unduck speed. (in seconds)
+-- @function [parent=#Player] GetUnDuckSpeed
+-- @param  self
+-- @return #number Unduck speed.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the player's user group.
+-- @function [parent=#Player] GetUserGroup
+-- @param  self
+-- @return #string The user group of the player.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the vehicle the player is driving, returns NULL ENTITY if the player is
+-- not driving.
+-- @function [parent=#Player] GetVehicle
+-- @param  self
+-- @return #Vehicle Vehicle entity or NULL.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the entity the player is using to see from (such as the player
+-- itself, the camera, or another entity).
+-- @function [parent=#Player] GetViewEntity
+-- @param  self
+-- @return #Entity The entity the player is using to see from.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the player's view model entity by the index. Each player has 3 view
+-- models by default, but only the first one is used. To use the other
+-- viewmodels in your SWEP, see **Entity:SetWeaponModel**.
+-- 
+-- **Note**: _In the Client realm, other players' viewmodels are not available
+-- unless they are being spectated._
+-- @function [parent=#Player] GetViewModel
+-- @param  self
+-- @param  #number index Optional index of the view model to return, can range from 0 to 2. _(Default: 0)_
+-- @return #Entity The view model entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the view offset of the player which equals the difference between the
+-- players actual position and their view. See also **Player:GetViewOffsetDucked**.
+-- @function [parent=#Player] GetViewOffset
+-- @param  self
+-- @return #Vector New view offset, must be local vector to players **Entity:GetPos**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the view offset of the player which equals the difference between the
+-- players actual position and their view when ducked. See also **Player:GetViewOffset**.
+-- @function [parent=#Player] GetViewOffsetDucked
+-- @param  self
+-- @return #Vector New crouching view offset, must be local vector to players **Entity:GetPos**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns players screen punch effect angle.
+-- @function [parent=#Player] GetViewPunchAngles
+-- @param  self
+-- @return #Angle The punch angle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the player's normal walking speed. Not sprinting, not slow walking. (+walk)
+-- See also **Player:SetWalkSpeed**, **Player:GetMaxSpeed** and **Player:GetRunSpeed**.
+-- @function [parent=#Player] GetWalkSpeed
+-- @param  self
+-- @return #number The normal walking speed.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the weapon for the specified class.
+-- @function [parent=#Player] GetWeapon
+-- @param  self
+-- @param  #string className Class name of weapon.
+-- @return #Weapon The weapon for the specified class.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a player's weapon color. The part of the model that is colored is
+-- determined by the model itself, and is different for each model. The format
+-- is Vector(r,g,b), and each color should be between 0 and 1.
+-- @function [parent=#Player] GetWeaponColor
+-- @param  self
+-- @return #Vector The weapon's color.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a table of the player's weapons.
+-- @function [parent=#Player] GetWeapons
+-- @param  self
+-- @return #table All the weapons the player currently has.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Gives the player a weapon.
+-- 
+-- **Note**: _While this function is meant for weapons/pickupables only, it is
+-- **not** restricted to weapons. Any entity can be spawned using this function,
+-- including NPCs and SENTs._
+-- @function [parent=#Player] Give
+-- @param  self
+-- @param  #string weaponClassName Class name of weapon to give the player.
+-- @param  #boolean bNoAmmo Set to true to not give any ammo on weapon spawn. _(Default: false)_
+-- (Reserve ammo set by DefaultClip)
+-- @return #Weapon The weapon given to the player, if one was given.
+-- It will return NULL if the player already has the weapon, or the weapon entity (entity with given classname) doesn't exist.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Gives ammo to a player.
+-- @function [parent=#Player] GiveAmmo
+-- @param  self
+-- @param  #number amount Amount of ammo.
+-- @param  #string type Type of ammo. This can also be a number for ammo ID, useful for custom ammo types.
+-- @param  #boolean hidePopup Hide display popup when giving the ammo. _(Default: false)_
+-- @return #number Ammo given.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Disables god mode on the player.
+-- @function [parent=#Player] GodDisable
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Enables god mode on the player.
+-- @function [parent=#Player] GodEnable
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the player has god mode or not, contolled by
+-- **Player:GodEnable** and **Player:GodDisable**.
+-- @function [parent=#Player] HasGodMode
+-- @param  self
+-- @return #boolean Whether the player has god mode or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns if the player has the specified weapon.
+-- @function [parent=#Player] HasWeapon
+-- @param  self
+-- @param  #string className Class name of the weapon.
+-- @return #boolean True if the player has the weapon.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns if the player is in a vehicle.
+-- @function [parent=#Player] InVehicle
+-- @param  self
+-- @return #boolean Whether the player is in a vehicle.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the player's IP address and connection port in ip:port form.
+-- @function [parent=#Player] IPAddress
+-- @param  self
+-- @return #string The player's IP address and connection port.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the player is an admin or not.
+-- @function [parent=#Player] IsAdmin
+-- @param  self
+-- @return #boolean True if the player is an admin.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns if the player is an bot or not.
+-- @function [parent=#Player] IsBot
+-- @param  self
+-- @return #boolean True if the player is a bot.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns true from the point when the player is sending client info but not
+-- fully in the game until they disconnect.
+-- @function [parent=#Player] IsConnected
+-- @param  self
+-- @return #boolean Is connected.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Used to find out if a player is currently 'driving' an entity (by which we
+-- mean 'right click > drive').
+-- @function [parent=#Player] IsDrivingEntity
+-- @param  self
+-- @return #boolean A value representing whether or not the player is 'driving' an entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the players movement is currently frozen, contolled by **Player:Freeze**.
+-- @function [parent=#Player] IsFrozen
+-- @param  self
+-- @return #boolean Whether the players movement is currently frozen or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether the player identity was confirmed by the steam network.
+-- @function [parent=#Player] IsFullyAuthenticated
+-- @param  self
+-- @return #boolean Whether the player has been fully authenticated or not.
+-- This will always be true for singleplayer and the listen server host.
+-- This will always be false for bots.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns if a player is the host of the current session.
+-- @function [parent=#Player] IsListenServerHost
+-- @param  self
+-- @return #boolean True if the player is the listen server host, false otherwise.
+-- This will always be true in single player, and false on a dedicated server.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns whether or not the player is muted locally.
+-- @function [parent=#Player] IsMuted
+-- @param  self
+-- @return #boolean whether or not the player is muted locally.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns true if the player is playing a taunt.
+-- @function [parent=#Player] IsPlayingTaunt
+-- @param  self
+-- @return #boolean Whether the player is playing a taunt.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns whenever the player is heard by the local player.
+-- @function [parent=#Player] IsSpeaking
+-- @param  self
+-- @return #boolean Is speaking.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the player is currently sprinting or not.
+-- @function [parent=#Player] IsSprinting
+-- @param  self
+-- @return #boolean Is the player sprinting or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whenever the player is equipped with the suit item.
+-- @function [parent=#Player] IsSuitEquipped
+-- @param  self
+-- @return #boolean Is the suit equipped or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the player is a superadmin.
+-- @function [parent=#Player] IsSuperAdmin
+-- @param  self
+-- @return #boolean True if the player is a superadmin.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns true if the player is timing out (ex: is losing connection), false otherwise.
+-- @function [parent=#Player] IsTimingOut
+-- @param  self
+-- @return #boolean Is timing out.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the player is typing in their chat. This may not work
+-- properly if the server uses a custom chatbox.
+-- @function [parent=#Player] IsTyping
+-- @param  self
+-- @return #boolean Whether the player is typing in their chat or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns true/false if the player is in specified group or not.
+-- @function [parent=#Player] IsUserGroup
+-- @param  self
+-- @param  #string groupname Group to check the player for.
+-- @return #boolean Is in user group.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns if the player can be heard by the local player.
+-- @function [parent=#Player] IsVoiceAudible
+-- @param  self
+-- @return #boolean Is audible.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns if the player is in the context menu.
+-- 
+-- **Note**: _Although this is shared, it will only work properly on the CLIENT
+-- for the local player. Using this serverside or on other players will return false._
+-- @function [parent=#Player] IsWorldClicking
+-- @param  self
+-- @return #boolean Is the player world clicking or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets whether a key is down. This is not networked to other players, meaning
+-- only the local client can see the keys they are pressing.
+-- @function [parent=#Player] KeyDown
+-- @param  self
+-- @param  #number key The key, see **IN\_ Enums**.
+-- @return #boolean Is down.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets whether a key was down one tick ago.
+-- @function [parent=#Player] KeyDownLast
+-- @param  self
+-- @param  #number key The key, see **IN\_ Enums**.
+-- @return #boolean Is key down.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets whether a key was just pressed this tick.
+-- @function [parent=#Player] KeyPressed
+-- @param  self
+-- @param  #number key Corresponds to an **IN\_ Enums**.
+-- @return #boolean Was pressed or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets whether a key was just released this tick.
+-- @function [parent=#Player] KeyReleased
+-- @param  self
+-- @param  #number key The key, see **IN\_ Enums**.
+-- @return #boolean Was released or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Kicks the player from the server.
+-- @function [parent=#Player] Kick
+-- @param  self
+-- @param  #string reason Reason to show for disconnection. _(Default: "No reason given")_
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Kills a player and calls **GM:PlayerDeath**.
+-- @function [parent=#Player] Kill
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Kills a player without notifying the rest of the server. This will call
+-- **GM:PlayerSilentDeath** instead of **GM:PlayerDeath**.
+-- @function [parent=#Player] KillSilent
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- This allows the server to mitigate the lag of the player by moving back all
+-- the entities that can be lag compensated to the time the player attacked
+-- with his weapon. This technique is most commonly used on things that hit
+-- other entities instantaneously, such as traces.  
+-- Lag compensation only works for players and entities that have been enabled
+-- with **Entity:SetLagCompensated**. Despite being defined shared, it can only be
+-- used server side in a Predicted Hook.
+-- 
+-- **Note**: _**Entity:FireBullets** calls this function internally._
+-- 
+-- **Warning**: _This function NEEDS to be disabled after you're done with it
+-- or it will break the movement of the entities affected!_
+-- @function [parent=#Player] LagCompensation
+-- @param  self
+-- @param  #boolean lagCompensation The state of the lag compensation, true to enable and false to disable.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the hitgroup where the player was last hit.
+-- @function [parent=#Player] LastHitGroup
+-- @param  self
+-- @return #number Hitgroup, see **HITGROUP\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Shows "limit hit" notification in sandbox.
+-- 
+-- **Note**: _This function is only available in Sandbox and its derivatives._
+-- @function [parent=#Player] LimitHit
+-- @param  self
+-- @param  #string type Type of hit limit.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Stops a player from using any inputs, such as moving, turning, or attacking.
+-- Key binds are still called. Similar to **Player:Freeze** but the player takes no
+-- damage. Adds the FL\_FROZEN and FL\_GODMODE flags to the player.
+-- @function [parent=#Player] Lock
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the position of a Kinect bone.
+-- @function [parent=#Player] MotionSensorPos
+-- @param  self
+-- @param  #number bone Bone to get the position of. Must be from 0 to 19.
+-- @return #Vector Position of the bone.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the players name. Identical to **Player:Nick** and **Player:GetName**.
+-- @function [parent=#Player] Name
+-- @param  self
+-- @return #string Player's Steam name.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the player's nickname.
+-- @function [parent=#Player] Nick
+-- @param  self
+-- @return #string Player's Steam name.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the packet loss of the client. It is not networked so it only
+-- returns 0 when run clientside.
+-- @function [parent=#Player] PacketLoss
+-- @param  self
+-- @return #number Number of packets lost.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Unfreezes the props player is looking at. This is essentially the same as
+-- pressing reload with the physics gun, including double press for unfreeze all.
+-- @function [parent=#Player] PhysgunUnfreeze
+-- @param  self
+-- @return #number Number of props unfrozen.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- This makes the player hold (same as pressing E on a small prop) the provided entity.
+-- 
+-- **Note**: _Don't get this confused with picking up items like ammo or health kits._
+-- 
+-- **Note**: _This picks up the passed entity regardless of its mass or
+-- distance from the player._
+-- @function [parent=#Player] PickupObject
+-- @param  self
+-- @param  #Entity entity Entity to pick up.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the player's ping to server.
+-- @function [parent=#Player] Ping
+-- @param  self
+-- @return #number The player's ping.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Plays the correct step sound according to what the player is staying on.
+-- @function [parent=#Player] PlayStepSound
+-- @param  self
+-- @param  #number volume Volume for the sound, in range from 0 to 1.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Displays a message either in their chat, console, or center of the screen.
+-- See also **PrintMessage**.
+-- 
+-- **Note**: _When called serverside, this uses the archaic user message system
+-- (the umsg library) and hence is limited to ≈250 characters._
+-- 
+-- **Note**: _HUD\_PRINTCENTER will not work when this is called clientside._
+-- @function [parent=#Player] PrintMessage
+-- @param  self
+-- @param  #number type Which type of message should be sent to the player. See **HUD\_ Enums**.
+-- @param  #string message Message to be sent to the player.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Removes all ammo from a certain player.
+-- @function [parent=#Player] RemoveAllAmmo
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Removes all weapons and ammo from the player.
+-- @function [parent=#Player] RemoveAllItems
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Removes the amount of the specified ammo from the player.
+-- @function [parent=#Player] RemoveAmmo
+-- @param  self
+-- @param  #number ammoCount The amount of ammunition to remove.
+-- @param  #string ammoName The name of the ammunition to remove from. This can also be a number ammoID.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Removes a Player Data key-value pair from the SQL database. (sv.db when
+-- called on server, cl.db when called on client) Internally uses the sql library.
+-- 
+-- **Warning**: _This function internally uses **Player:UniqueID**, which can cause
+-- collisions (two or more players sharing the same PData entry). It's
+-- recommended that you don't use it._
+-- @function [parent=#Player] RemovePData
+-- @param  self
+-- @param  #string key Key to remove.
+-- @return #boolean true is succeeded, false otherwise.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Strips the player's suit item.
+-- @function [parent=#Player] RemoveSuit
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Resets both normal and duck hulls to their default values.
+-- @function [parent=#Player] ResetHull
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Forces the player to say whatever the first argument is. Works on bots too.
+-- 
+-- **Note**: _This function ignores the default chat message cooldown._
+-- @function [parent=#Player] Say
+-- @param  self
+-- @param  #string text The text to force the player to say.
+-- @param  #boolean teamOnly Whether to send this message to our own team only. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Fades the screen.
+-- @function [parent=#Player] ScreenFade
+-- @param  self
+-- @param  #number flags Fade flags defined with **SCREENFADE\_ Enums**.
+-- @param  #number clr The color of the screenfade. _(Default: color\_white)_
+-- @param  #number fadeTime Fade(in/out) effect transition time. (From no fade to full fade and vice versa)
+-- @param  #number fadeHold Fade effect hold time.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the active weapon of the player by its class name.
+-- 
+-- **Warning**: _This will switch the weapon out of prediction, causing delay
+-- on the client and **Weapon:Deploy** to be called out of prediction. Try using
+-- **CUserCmd:SelectWeapon** or **input.SelectWeapon**, instead._
+-- 
+-- **Note**: _This will trigger the weapon switch event and associated
+-- animations. To switch weapons silently, use **Player:SetActiveWeapon**._
+-- @function [parent=#Player] SelectWeapon
+-- @param  self
+-- @param  #string className The class name of the weapon to switch to.
+-- The player must already have this weapon. You can use **Player:Give** if not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sends a hint to a player.
+-- 
+-- **Note**: _This function is only available in Sandbox and its derivatives.
+-- Since this adds **#Hint\_** to the beginning of each message, you should only use
+-- it with default hint messages, or those cached with **language.Add**. For hints
+-- with custom text, look at **notification.AddLegacy**._
+-- @function [parent=#Player] SendHint
+-- @param  self
+-- @param  #string name Name/class/index of the hint.
+-- The text of the hint will contain this value. ( "#Hint_" .. name )
+-- An example is PhysgunFreeze.
+-- @param  #number delay Delay in seconds before showing the hint.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Executes a simple Lua string on the player.
+-- 
+-- **Note**: _The string is limited to 254 bytes. Consider using the net
+-- library for more advanced server-client interaction._
+-- @function [parent=#Player] SendLua
+-- @param  self
+-- @param  #string script The script to execute.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the player's active weapon. You should use **CUserCmd:SelectWeapon** or
+-- **Player:SelectWeapon**, instead in most cases.
+-- 
+-- **Note**: _This function will not trigger the weapon switch event or
+-- associated equip animations. You can achieve this using **Player:SelectWeapon**
+-- with **Entity:GetClass**._
+-- 
+-- **Note**: _This will not call **GM:PlayerSwitchWeapon**._
+-- @function [parent=#Player] SetActiveWeapon
+-- @param  self
+-- @param  #Weapon weapon The weapon to equip.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Set if the players' model is allowed to rotate around the pitch and roll axis.
+-- @function [parent=#Player] SetAllowFullRotation
+-- @param  self
+-- @param  #boolean Allowed Allowed to rotate.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Allows player to use his weapons in a vehicle. You need to call this before
+-- entering a vehicle.
+-- @function [parent=#Player] SetAllowWeaponsInVehicle
+-- @param  self
+-- @param  #boolean allow Show we allow player to use his weapons in a vehicle or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the amount of the specified ammo for the player.
+-- @function [parent=#Player] SetAmmo
+-- @param  self
+-- @param  #number ammoCount The amount of ammunition to set.
+-- @param  #any ammoType The ammunition type. Can be either number ammo ID or string ammo name.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the player armor to the argument.
+-- @function [parent=#Player] SetArmor
+-- @param  self
+-- @param  #number Amount The amount that the player armor is going to be set to.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Pushes the player away from another player whenever it's inside the other
+-- players bounding box.
+-- @function [parent=#Player] SetAvoidPlayers
+-- @param  self
+-- @param  #boolean avoidPlayers Avoid or not avoid.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Set if the player should be allowed to walk using the (default) alt key.
+-- @function [parent=#Player] SetCanWalk
+-- @param  self
+-- @param  #boolean abletowalk True allows the player to walk.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets whether the player can use the HL2 suit zoom ("+zoom" bind) or not.
+-- @function [parent=#Player] SetCanZoom
+-- @param  self
+-- @param  #boolean canZoom Whether to make the player able or unable to zoom.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the player's class id.
+-- @function [parent=#Player] SetClassID
+-- @param  self
+-- @param  #number classID The class id the player is being set with.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the crouched walk speed multiplier. Doesn't work for values above 1.
+-- See also **Player:SetWalkSpeed** and **Player:GetCrouchedWalkSpeed**.
+-- @function [parent=#Player] SetCrouchedWalkSpeed
+-- @param  self
+-- @param  #number speed The walk speed multiplier that crouch speed should be.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the actual view offset which equals the difference between the players
+-- actual position and their view when standing. Do not confuse with
+-- **Player:SetViewOffset** and **Player:SetViewOffsetDucked**.
+-- @function [parent=#Player] SetCurrentViewOffset
+-- @param  self
+-- @param  #Vector viewOffset The new view offset.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets a player's death count.
+-- @function [parent=#Player] SetDeaths
+-- @param  self
+-- @param  #number deathcount Number of deaths. (positive or negative)
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Sets the driving entity and driving mode. Use **drive.PlayerStartDriving** instead.
+-- @function [parent=#Player] SetDrivingEntity
+-- @param  self
+-- @param  #Entity drivingEntity The entity the player should drive. _(Default: NULL)_
+-- @param  #number drivingMode The driving mode index.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Applies the specified sound filter to the player.
+-- @function [parent=#Player] SetDSP
+-- @param  self
+-- @param  #number soundFilter The index of the sound filter to apply.
+-- @param  #boolean fastReset If set to true the sound filter will be removed faster.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets how quickly a player ducks.
+-- @function [parent=#Player] SetDuckSpeed
+-- @param  self
+-- @param  #number duckSpeed How quickly the player will duck.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the angle of the player's view. (may rotate body too if angular
+-- difference is large)
+-- @function [parent=#Player] SetEyeAngles
+-- @param  self
+-- @param  #Angle angle Angle to set the view to.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Set a player's FOV (Field Of View) over a certain amount of time.
+-- @function [parent=#Player] SetFOV
+-- @param  self
+-- @param  #number fov The angle of perception (FOV).
+-- Set to 0 to return to default user FOV. (Which is ranging from 75 to 90, depending on user settings)
+-- @param  #number time The time it takes to transition to the FOV expressed in a floating point.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets a player's frags. (kills)
+-- @function [parent=#Player] SetFrags
+-- @param  self
+-- @param  #number fragcount Number of frags. (positive or negative)
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the hands entity of a player. The hands entity is an entity introduced
+-- in Garry's Mod 13 and it's used to show the player's hands attached to the
+-- viewmodel. This is similar to the approach used in L4D and CS:GO.
+-- @function [parent=#Player] SetHands
+-- @param  self
+-- @param  #Entity hands The hands entity to set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the widget that is currently hovered by the player's mouse.
+-- @function [parent=#Player] SetHoveredWidget
+-- @param  self
+-- @param  #Entity widget The widget entity that the player is hovering. _(Default: NULL)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the mins and maxs of the AABB of the players collision.
+-- @function [parent=#Player] SetHull
+-- @param  self
+-- @param  #Vector hullMins The min coordinates of the hull.
+-- @param  # Vector hullMaxs The max coordinates of the hull.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the mins and maxs of the AABB of the players collision when ducked.
+-- @function [parent=#Player] SetHullDuck
+-- @param  self
+-- @param  #Vector hullMins The min coordinates of the hull.
+-- @param  #Vector hullMaxs The max coordinates of the hull.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the jump power, ex: the velocity the player will applied to when he jumps.
+-- @function [parent=#Player] SetJumpPower
+-- @param  self
+-- @param  #number jumpPower The new jump velocity.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Slows down the player movement simulation by the timescale, this is used
+-- internally in the HL2 weapon stripping sequence. It achieves such behavior
+-- by multiplying the **FrameTime** by the specified timescale at the start of the
+-- movement simulation and then restoring it afterwards.
+-- 
+-- **Note**: _This is reset to 1 on spawn._
+-- 
+-- **Note**: _There is no weapon counterpart to this, you'll have to hardcode
+-- the multiplier in the weapon or call **Weapon:SetNextPrimaryFire** /
+-- **Weapon:SetNextSecondaryFire** manually from a Predicted Hook._
+-- @function [parent=#Player] SetLaggedMovementValue
+-- @param  self
+-- @param  #number timescale The timescale multiplier.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the maximum speed which the player can move at.
+-- 
+-- **Note**: _This is called automatically by the engine. If you wish to limit player
+-- speed without setting their run/sprint speeds, see **CMoveData:SetMaxClientSpeed**._
+-- @function [parent=#Player] SetMaxSpeed
+-- @param  self
+-- @param  #number walkSpeed The maximum speed.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets if the player should be muted locally.
+-- @function [parent=#Player] SetMuted
+-- @param  self
+-- @param  #boolean mute Mute or unmute.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets whenever the player should not collide with their teammates.
+-- @function [parent=#Player] SetNoCollideWithTeammates
+-- @param  self
+-- @param  #boolean shouldNotCollide True to disable, false to enable collision.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the players visibility towards NPCs.
+-- @function [parent=#Player] SetNoTarget
+-- @param  self
+-- @param  #boolean visibility The visibility.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the players observer mode. You must start the spectating first with **Player:Spectate**.
+-- @function [parent=#Player] SetObserverMode
+-- @param  self
+-- @param  #number mode Spectator mode using **OBS\_MODE\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Writes a Player Data key-value pair to the SQL database. (sv.db when called
+-- on server, cl.db when called on client) Internally uses the sql library.
+-- 
+-- **Warning**: _This function internally uses **Player:UniqueID**, which can cause
+-- collisions (two or more players sharing the same PData entry). It's
+-- recommended that you don't use it._
+-- 
+-- **Note**: _PData is not networked from servers to clients!_
+-- @function [parent=#Player] SetPData
+-- @param  self
+-- @param  #string key Name of the PData key.
+-- @param  #any value Value to write to the key (must be an SQL valid data type, such as a string or integer)
+-- @return #boolean Whether the operation was successful or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the player model's color. The part of the model that is colored is
+-- determined by the model itself, and is different for each model.
+-- @function [parent=#Player] SetPlayerColor
+-- @param  self
+-- @param  #Vector Color This is the color to be set.
+-- The format is Vector(r,g,b), and each color should be between 0 and 1.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the widget that is currently in use by the player's mouse. Having a
+-- pressed widget stops the player from firing his weapon to allow input to be
+-- passed onto the widget.
+-- @function [parent=#Player] SetPressedWidget
+-- @param  self
+-- @param  #Entity pressedWidget The widget the player is currently using. _(Default: NULL)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the render angles of a player.
+-- @function [parent=#Player] SetRenderAngles
+-- @param  self
+-- @param  #Angle ang The new render angles to set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the player's sprint speed. See also **Player:GetRunSpeed**,
+-- **Player:SetWalkSpeed** and **Player:SetMaxSpeed**.
+-- @function [parent=#Player] SetRunSpeed
+-- @param  self
+-- @param  #number runSpeed The new sprint speed when sv_friction is below 10.
+-- Higher sv_friction values will result in slower speed.
+-- Has to be 7 or above or the player won't be able to move.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the maximum height a player can step onto without jumping.
+-- @function [parent=#Player] SetStepSize
+-- @param  self
+-- @param  #number stepHeight The new maximum height the player can step onto without jumping.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets whenever to suppress the pickup notification for the player.
+-- @function [parent=#Player] SetSuppressPickupNotices
+-- @param  self
+-- @param  #boolean doSuppress Whenever to suppress the notice or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the player to the chosen team.
+-- @function [parent=#Player] SetTeam
+-- @param  self
+-- @param  #number Team The team that the player is being set to.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets how quickly a player un-ducks
+-- @function [parent=#Player] SetUnDuckSpeed
+-- @param  self
+-- @param  #number UnDuckSpeed How quickly the player will un-duck.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets up the players view model hands. Calls **GM:PlayerSetHandsModel** to set
+-- the model of the hands.
+-- @function [parent=#Player] SetupHands
+-- @param  self
+-- @param  #Entity ent If the player is spectating an entity, this should be the entity the player is spectating, so we can use its hands model instead.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the usergroup of the player.
+-- @function [parent=#Player] SetUserGroup
+-- @param  self
+-- @param  #string groupName The user group of the player.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Attaches the players view to the position and angles of the specified entity.
+-- @function [parent=#Player] SetViewEntity
+-- @param  self
+-- @param  #Entity viewEntity The entity to attach the player view to.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the desired view offset which equals the difference between the players
+-- actual position and their view when standing. If you want to set actual view
+-- offset, use **Player:SetCurrentViewOffset**. See also **Player:SetViewOffsetDucked**
+-- for desired view offset when crouching.
+-- @function [parent=#Player] SetViewOffset
+-- @param  self
+-- @param  #Vector viewOffset The new desired view offset when standing.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the desired view offset which equals the difference between the
+-- players actual position and their view when crouching. If you want to set
+-- actual view offset, use **Player:SetCurrentViewOffset**. See also
+-- **Player:SetViewOffset** for desired view offset when standing.
+-- @function [parent=#Player] SetViewOffsetDucked
+-- @param  self
+-- @param  #Vector viewOffset The new desired view offset when crouching.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets client's view punch. See **Player:ViewPunch**.
+-- @function [parent=#Player] SetViewPunchAngles
+-- @param  self
+-- @param  #Angle punchAngle The angle to set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the player's normal walking speed. Not sprinting, not slow walking +walk.
+-- There currently is no way to modify the slow walking +walk speed. See also
+-- **Player:GetWalkSpeed**, **Player:SetCrouchedWalkSpeed**, **Player:SetMaxSpeed** and **Player:SetRunSpeed**.
+-- @function [parent=#Player] SetWalkSpeed
+-- @param  self
+-- @param  #number walkSpeed The new walk speed when sv\_friction is below 10.
+-- Higher sv_friction values will result in slower speed.
+-- Has to be 7 or above or the player won't be able to move.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the player weapon's color. The part of the model that is colored is
+-- determined by the model itself, and is different for each model.
+-- @function [parent=#Player] SetWeaponColor
+-- @param  self
+-- @param  #Vector Color This is the color to be set. The format is Vector(r,g,b), and each color should be between 0 and 1.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Polls the engine to request if the player should be drawn at the time the function is called.
+-- @function [parent=#Player] ShouldDrawLocalPlayer
+-- @param  self
+-- @return #boolean Should draw.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets whether the player's current weapon should drop on death.
+-- 
+-- **Warning**: _This seems to be reset to false when player dies._
+-- @function [parent=#Player] ShouldDropWeapon
+-- @param  self
+-- @param  #boolean drop Whether to drop the player's current weapon or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Opens the player steam profile page in the steam overlay browser.
+-- @function [parent=#Player] ShowProfile
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Signals the entity that it was dropped by the gravity gun.
+-- @function [parent=#Player] SimulateGravGunDrop
+-- @param  self
+-- @param  #Entity ent Entity that was dropped.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Signals the entity that it was picked up by the gravity gun. This call is
+-- only required if you want to simulate the situation of picking up objects.
+-- @function [parent=#Player] SimulateGravGunPickup
+-- @param  self
+-- @param  #Entity ent The entity picked up.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Starts spectate mode for given player. This will also affect the players
+-- movetype in some cases.
+-- @function [parent=#Player] Spectate
+-- @param  self
+-- @param  #number mode Spectate mode, see **OBS\_MODE\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Makes the player spectate the entity. To get the applied spectated entity,
+-- use **Player:GetObserverTarget**().
+-- @function [parent=#Player] SpectateEntity
+-- @param  self
+-- @param  #Entity entity Entity to spectate.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Makes a player spray their decal.
+-- @function [parent=#Player] SprayDecal
+-- @param  self
+-- @param  #Vector sprayOrigin The location to spray from.
+-- @param  #Vector sprayEndPos The location to spray to.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Disables the sprint on the player.
+-- @function [parent=#Player] SprintDisable
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Enables the sprint on the player.
+-- @function [parent=#Player] SprintEnable
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the player's SteamID. In singleplayer, this will be STEAM\_ID\_PENDING
+-- serverside. For Bots this will return "BOT" on the server and on the client
+-- it returns "NULL".
+-- @function [parent=#Player] SteamID
+-- @param  self
+-- @return #string Player's SteamID.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the player's 64bit SteamID aka CommunityID. In singleplayer, this
+-- will return no value serverside. For bots, this will return
+-- 90071996842377216 (equivalent to STEAM\_0:0:0) for the first bot to join.
+-- For each additional bot, the number increases by 1. So the next bot will be
+-- 90071996842377217 (STEAM\_0:1:0) then 90071996842377218 (STEAM\_0:0:1) and so on.
+-- On the client it returns no value for bots.
+-- @function [parent=#Player] SteamID64
+-- @param  self
+-- @return #string Player's 64bit SteamID aka CommunityID.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Turns off the zoom mode of the player. (+zoom console command) Basically
+-- equivalent of entering "-zoom" into player's console.
+-- @function [parent=#Player] StopZooming
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Removes all ammo from the player.
+-- @function [parent=#Player] StripAmmo
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Removes the specified weapon class from a certain player.
+-- @function [parent=#Player] StripWeapon
+-- @param  self
+-- @param  #string weapon The weapon class to remove.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Removes all weapons from a certain player.
+-- @function [parent=#Player] StripWeapons
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Prevents a hint from showing up.
+-- 
+-- **Note**: _This function is only available in Sandbox and its derivatives._
+-- @function [parent=#Player] SuppressHint
+-- @param  self
+-- @param  #string name Hint name/class/index to prevent from showing up.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Attempts to switch the player weapon to the one specified in the
+-- "cl_defaultweapon" convar, if the player does not own the specified weapon
+-- nothing will happen. If you want to switch to a specific weapon, use **Player:SetActiveWeapon**.
+-- @function [parent=#Player] SwitchToDefaultWeapon
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the player's team ID. Returns 0 clientside when the game is not fully loaded.
+-- @function [parent=#Player] Team
+-- @param  self
+-- @return #number The player's team's index number, as in the **TEAM\_ Enums** or a custom team defined in **team.SetUp**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the time in second since the player connected.
+-- @function [parent=#Player] TimeConnected
+-- @param  self
+-- @return #number Connect time.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Performs a trace hull and applies damage to the entities hit, returns the
+-- first entity hit.
+-- @function [parent=#Player] TraceHullAttack
+-- @param  self
+-- @param  #Vector startPos The start position of the hull trace.
+-- @param  #Vector endPos The end position of the hull trace.
+-- @param  #Vector mins The minimum coordinates of the hull.
+-- @param  #Vector maxs The maximum coordinates of the hull.
+-- @param  #number damage The damage to be applied.
+-- @param  #Vector damageFlags Bitflag specifying the damage type, see **DMG\_ Enums**.
+-- @param  #number damageForce The force to be applied to the hit object.
+-- @param  #boolean damageAllNPCs Whether to apply damage to all hit NPCs or not.
+-- @return #Entity The hit entity.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Translates **ACT\_ Enums** according to the holdtype of players currently held weapon.
+-- @function [parent=#Player] TranslateWeaponActivity
+-- @param  self
+-- @param  #number act The initial **ACT\_ Enums**.
+-- @return #number Translated **ACT\_ Enums**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Unfreezes all objects the player has frozen with their Physics Gun. Same as
+-- double pressing R while holding Physics Gun.
+-- @function [parent=#Player] UnfreezePhysicsObjects
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a 32 bit integer that remains constant for a player across
+-- joins/leaves and across different servers. This can be used when a string is
+-- inappropriate - e.g. in a database primary key.
+-- 
+-- **Warning**: _This function has collisions, where more than one player has
+-- the same UniqueID. It is highly recommended to use **Player:AccountID**,
+-- **Player:SteamID** or **Player:SteamID64** instead, which are guaranteed to be
+-- unique to each player._
+-- 
+-- **Note**: _In Singleplayer, this function will always return 1._
+-- @function [parent=#Player] UniqueID
+-- @param  self
+-- @return #number The player's Unique ID.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a table that will stay allocated for the specific player between
+-- connects until the server shuts down. Note, that this table is not
+-- synchronized between client and server.
+-- @function [parent=#Player] UniqueIDTable
+-- @param  self
+-- @param  #any key Unique table key.
+-- @return #table The table that contains any info you have put in it.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Unlocks the player movement if locked previously. Will disable godmode for
+-- the player if locked previously.
+-- @function [parent=#Player] UnLock
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Stops the player from spectating another entity.
+-- @function [parent=#Player] UnSpectate
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the player's ID. You can use **Player**() to get the player by their ID.
+-- @function [parent=#Player] UserID
+-- @param  self
+-- @return #number The player's user ID.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Simulates a push on the client's screen.
+-- @function [parent=#Player] ViewPunch
+-- @param  self
+-- @param  #Angle PunchAngle The angle in which to push the player's screen.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Resets the player's view punch (**Player:ViewPunch**) effect back to normal.
+-- @function [parent=#Player] ViewPunchReset
+-- @param  self
+-- @param  #number tolerance Reset all ViewPunch below this threshold. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the players voice volume, how loud the player's voice communication
+-- currently is, as a normal number. Doesn't work on local player unless the
+-- voice_loopback convar is set to 1.
+-- @function [parent=#Player] VoiceVolume
+-- @param  self
+-- @return #number The voice volume.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- A client side projected texture, created by ProjectedTexture.
 -- @type ProjectedTexture
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Client_
 -- 
+-- Returns the angle of the ProjectedTexture, which were previously set by **ProjectedTexture:SetAngles**.
+-- @function [parent=#ProjectedTexture] GetAngles
+-- @param  self
+-- @return #Angle The angles of the ProjectedTexture.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the brightness of the ProjectedTexture, which was previously set by **ProjectedTexture:SetBrightness**.
+-- @function [parent=#ProjectedTexture] GetBrightness
+-- @param  self
+-- @return #number The brightness of the ProjectedTexture.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the color of the ProjectedTexture, which was previously set by **ProjectedTexture:SetColor**.
+-- @function [parent=#ProjectedTexture] GetColor
+-- @param  self
+-- @return #table **Color structure**, the color of the ProjectedTexture.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the constant attenuation of the projected texture, which can also be
+-- set by **ProjectedTexture:SetConstantAttenuation**.
+-- @function [parent=#ProjectedTexture] GetConstantAttenuation
+-- @param  self
+-- @return #number The constant attenuation.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns whether shadows are enabled for this ProjectedTexture, which was
+-- previously set by **ProjectedTexture:SetEnableShadows**.
+-- @function [parent=#ProjectedTexture] GetEnableShadows
+-- @param  self
+-- @return #boolean Whether shadows are enabled.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the projection distance of the ProjectedTexture, which was
+-- previously set by **ProjectedTexture:SetFarZ**.
+-- @function [parent=#ProjectedTexture] GetFarZ
+-- @param  self
+-- @return #number The projection distance of the ProjectedTexture.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the horizontal FOV of the ProjectedTexture, which was previously set
+-- by **ProjectedTexture:SetHorizontalFOV** or **ProjectedTexture:SetFOV**.
+-- @function [parent=#ProjectedTexture] GetHorizontalFOV
+-- @param  self
+-- @return #number The horizontal FOV of the ProjectedTexture.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the linear attenuation of the projected texture, which can also be
+-- set by **ProjectedTexture:SetLinearAttenuation**.
+-- @function [parent=#ProjectedTexture] GetLinearAttenuation
+-- @param  self
+-- @return #number The linear attenuation.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the NearZ value of the ProjectedTexture, which was previously set by **ProjectedTexture:SetNearZ**.
+-- @function [parent=#ProjectedTexture] GetNearZ
+-- @param  self
+-- @return #number NearZ of the ProjectedTexture.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the current orthographic settings of the Projected Texture. To set
+-- these values, use **ProjectedTexture:SetOrthographic**.
+-- @function [parent=#ProjectedTexture] GetOrthographic
+-- @param  self
+-- @return #boolean, #number, #number, #number, #number True if texture is orthographic, false and nothing else is returned otherwise the left, top, right, and bottom settings.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the position of the ProjectedTexture, which was previously set by **ProjectedTexture:SetPos**.
+-- @function [parent=#ProjectedTexture] GetPos
+-- @param  self
+-- @return #Vector The position of the ProjectedTexture.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the quadratic attenuation of the projected texture, which can also
+-- be set by **ProjectedTexture:SetQuadraticAttenuation**.
+-- @function [parent=#ProjectedTexture] GetQuadraticAttenuation
+-- @param  self
+-- @return #number The quadratic attenuation.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the texture of the ProjectedTexture, which was previously set by **ProjectedTexture:SetTexture**.
+-- @function [parent=#ProjectedTexture] GetTexture
+-- @param  self
+-- @return #ITexture The texture of the ProjectedTexture.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the texture frame of the ProjectedTexture, which was previously set
+-- by **ProjectedTexture:SetTextureFrame**.
+-- @function [parent=#ProjectedTexture] GetTextureFrame
+-- @param  self
+-- @return #number The texture frame.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns the vertical FOV of the ProjectedTexture, which was previously set
+-- by **ProjectedTexture:SetVerticalFOV** or **ProjectedTexture:SetFOV**.
+-- @function [parent=#ProjectedTexture] GetVerticalFOV
+-- @param  self
+-- @return #number The vertical FOV of the ProjectedTexture.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns true if the projected texture is valid (ex: has not been removed),
+-- false otherwise. Instead of calling this directly it's a good idea to call
+-- **IsValid** in case the variable is nil.
+-- @function [parent=#ProjectedTexture] IsValid
+-- @param  self
+-- @return #boolean Whether the projected texture is valid.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Removes the projected texture. After calling this, **ProjectedTexture:IsValid**
+-- will return false, and any hooks with the projected texture as the
+-- identifier will be automatically deleted.
+-- @function [parent=#ProjectedTexture] Remove
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the angles (direction) of the projected texture. You must call
+-- **ProjectedTexture:Update** after using this function for it to take effect.
+-- @function [parent=#ProjectedTexture] SetAngles
+-- @param  self
+-- @param  #Angle angle The angle to project the texture towards.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the brightness of the projected texture. You must call
+-- **ProjectedTexture:Update** after using this function for it to take effect.
+-- @function [parent=#ProjectedTexture] SetBrightness
+-- @param  self
+-- @param  #number brightness The brightness to give the projected texture.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the color of the projected texture. You must call
+-- **ProjectedTexture:Update** after using this function for it to take effect.
+-- @function [parent=#ProjectedTexture] SetColor
+-- @param  self
+-- @param  #table color Must be a **Color structure**.
+-- Unlike other projected textures, this color can only go up to 255.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the constant attenuation of the projected texture. See also
+-- **ProjectedTexture:SetLinearAttenuation** and **ProjectedTexture:SetQuadraticAttenuation**.
+-- You must call **ProjectedTexture:Update** after using this function for it to
+-- take effect.
+-- @function [parent=#ProjectedTexture] SetConstantAttenuation
+-- @param  self
+-- @param  #number constAtten
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Enable or disable shadows cast from the projected texture.
+-- 
+-- **Note**: _As with all types of projected textures (including the player's
+-- flashlight and env\_projectedtexture), there can only be 8 projected textures
+-- with shadows enabled in total. This limit can be increased with the launch
+-- parameter: "-numshadowtextures limit" where limit is the new limit. Naturally,
+-- many projected lights with shadows enabled will drastically decrease framerate._
+-- You must call **ProjectedTexture:Update** after using this function for it to take effect.
+-- @function [parent=#ProjectedTexture] SetEnableShadows
+-- @param  self
+-- @param  #boolean newState
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the distance at which the projected texture ends. You must call
+-- **ProjectedTexture:Update** after using this function for it to take effect.
+-- @function [parent=#ProjectedTexture] SetFarZ
+-- @param  self
+-- @param  #number farZ
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the angle of projection. You must call **ProjectedTexture:Update** after
+-- using this function for it to take effect.
+-- @function [parent=#ProjectedTexture] SetFOV
+-- @param  self
+-- @param  #number fov Must be higher than 0 and lower than 180.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the horizontal angle of projection without affecting the vertical angle.
+-- You must call **ProjectedTexture:Update** after using this function for it to
+-- take effect.
+-- @function [parent=#ProjectedTexture] SetHorizontalFOV
+-- @param  self
+-- @param  #number hFOV The new horizontal Field Of View for the projected texture.
+-- Must be in range between 0 and 180.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the linear attenuation of the projected texture. See also
+-- **ProjectedTexture:SetConstantAttenuation** and **ProjectedTexture:SetQuadraticAttenuation**.
+-- The default value of linear attenuation when the projected texture is
+-- created is 100. (others are 0, as you are not supposed to mix them)
+-- You must call **ProjectedTexture:Update** after using this function for it
+-- to take effect.
+-- @function [parent=#ProjectedTexture] SetLinearAttenuation
+-- @param  self
+-- @param  #number linearAtten
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the distance at which the projected texture begins its projection. You
+-- must call **ProjectedTexture:Update** after using this function for it to
+-- take effect.
+-- 
+-- **Note**: _Setting this to 0 will disable the projected texture completely!
+-- This may be useful if you want to disable a projected texture without
+-- actually removing it._
+-- 
+-- **Note**: _This seems to affect the rendering of shadows - a higher Near Z
+-- value will have shadows begin to render closer to their casting object.
+-- Comparing a low Near Z value (like 1) with a normal one (12) or high one
+-- (1000) is the easiest way to understand this artifact._
+-- @function [parent=#ProjectedTexture] SetNearZ
+-- @param  self
+-- @param  #number nearZ
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Changes the current projected texture between orthographic and perspective
+-- projection. You must call **ProjectedTexture:Update** after using this function
+-- for it to take effect.
+-- @function [parent=#ProjectedTexture] SetOrthographic
+-- @param  self
+-- @param  #boolean orthographic When false, all other arguments are ignored and the texture is reset to perspective projection.
+-- @param  #number left The amount of units left from the projected texture's origin to project.
+-- @param  #number top The amount of units upwards from the projected texture's origin to project.
+-- @param  #number right The amount of units right from the projected texture's origin to project.
+-- @param  #number bottom The amount of units downwards from the projected texture's origin to project.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Move the Projected Texture to the specified position. You must call
+-- **ProjectedTexture:Update** after using this function for it to take effect.
+-- @function [parent=#ProjectedTexture] SetPos
+-- @param  self
+-- @param  #Vector position
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the quadratic attenuation of the projected texture. See also
+-- **ProjectedTexture:SetLinearAttenuation** and **ProjectedTexture:SetConstantAttenuation**.
+-- You must call **ProjectedTexture:Update** after using this function for it to
+-- take effect.
+-- @function [parent=#ProjectedTexture] SetQuadraticAttenuation
+-- @param  self
+-- @param  #number quadAtten
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the texture to be projected. You must call **ProjectedTexture:Update**
+-- after using this function for it to take effect.
+-- @function [parent=#ProjectedTexture] SetTexture
+-- @param  self
+-- @param  #string texture The name of the texture. Can also be an **ITexture**.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- For animated textures, this will choose which frame in the animation will be
+-- projected. You must call **ProjectedTexture:Update** after using this function
+-- for it to take effect.
+-- @function [parent=#ProjectedTexture] SetTextureFrame
+-- @param  self
+-- @param  #number frame The frame index to use.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Sets the vertical angle of projection without affecting the horizontal angle.
+-- You must call **ProjectedTexture:Update** after using this function for it to
+-- take effect.
+-- @function [parent=#ProjectedTexture] SetVerticalFOV
+-- @param  self
+-- @param  #number vFOV The new vertical Field Of View for the projected texture.
+-- Must be in range between 0 and 180.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Updates the Projected Light and applies all previously set parameters.
+-- @function [parent=#ProjectedTexture] Update
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- The object returned by **ai_schedule.New**.
 -- @type Schedule
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Server_
 -- 
+-- Adds a task to the schedule See also **NPC:StartEngineTask** and **NPC:RunEngineTask**.
+-- @function [parent=#Schedule] AddTask
+-- @param  self
+-- @param  #string taskname Task name, see ai_task.h
+-- @param  #number taskdata Task data as a float.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#Schedule] AddTaskEx
+-- @param  self
+-- @param  #string start
+-- @param  #string run
+-- @param  #number data
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Adds an engine task to the schedule.
+-- @function [parent=#Schedule] EngTask
+-- @param  self
+-- @param  #string taskname Task name.
+-- @param  #number taskdata Task data.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the task at the given index.
+-- @function [parent=#Schedule] GetTask
+-- @param  self
+-- @param  #number num Task index.
+-- @param  #Task Task at the given index.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Initialises the Schedule. Called by **ai_schedule.New** when the Schedule is created.
+-- @function [parent=#Schedule] Init
+-- @param  self
+-- @param  #string debugName The name passed from **ai_schedule.New**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the number of tasks in the schedule.
+-- @function [parent=#Schedule] NumTasks
+-- @param  self
+-- @return #number The number of tasks in this schedule.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- An object returned by **util.Stack**. Like a Lua table, a Stack is a container.
+-- It follows the principle of LIFO (last in, first out). The Stack works like
+-- a stack of papers: the first page you put down (push) will be the last one
+-- you remove (pop). That also means that the last page you put down, will be
+-- the first to be removed.
 -- @type Stack
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Client_ | _Server_
 -- 
+-- Pop an item from the stack
+-- @function [parent=#Stack] Pop
+-- @param  self
+-- @param  #number amount Amount of items you want to pop. _(Default: 1)_
+-- @return #any The item or a list of items popped from the stack.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Push an item onto the stack.
+-- @function [parent=#Stack] Push
+-- @param  self
+-- @param  #any object The item you want to push.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the size of the stack.
+-- @function [parent=#Stack] Size
+-- @param  self
+-- @return #number The size of the stack.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Get the item at the top of the stack.
+-- @function [parent=#Stack] Top
+-- @param  self
+-- @return #any The item at the top of the stack.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- A single AI task. Returned by **ai_task.New**.
 -- @type Task
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Server_
 -- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Initialises the AI task. Called by **ai_task.New**.
+-- @function [parent=#Task] Init
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Initialises the AI task as an engine task.
+-- @function [parent=#Task] InitEngine
+-- @param  self
+-- @param  #string taskname The name of the task.
+-- @param  #number taskdata
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Initialises the AI task as NPC method-based.
+-- @function [parent=#Task] InitFunctionName
+-- @param  self
+-- @param  #string startname The name of the NPC method to call on task start.
+-- @param  #string runname The name of the NPC method to call on task run.
+-- @param  #number taskdata
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Determines if the task is an engine task (TYPE_ENGINE, 1).
+-- @function [parent=#Task] IsEngineType
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Determines if the task is an NPC method-based task (TYPE_FNAME, 2).
+-- @function [parent=#Task] IsFNameType
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Runs the AI task.
+-- @function [parent=#Task] Run
+-- @param  self
+-- @param  #NPC target The NPC to run the task on.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Runs the AI task as an NPC method. This requires the task to be of type TYPE_FNAME.
+-- @function [parent=#Task] Run_FName
+-- @param  self
+-- @param  #NPC target The NPC to run the task on.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Starts the AI task.
+-- @function [parent=#Task] Start
+-- @param  self
+-- @param  #NPC target The NPC to start the task on.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Starts the AI task as an NPC method.
+-- @function [parent=#Task] Start_FName
+-- @param  self
+-- @param  #NPC target The NPC to start the task on.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- A list of functions available inside a TOOL. TOOLs are the Sandbox tools and
+-- they are available only in Sandbox and Sandbox derived gamemodes.
 -- @type Tool
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Client_ | _Server_
 -- 
+-- Clears all objects previously set with **Tool:SetObject**.
+-- @function [parent=#Tool] ClearObjects
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Retrieves a physics bone number previously stored using **Tool:SetObject**.
+-- @function [parent=#Tool] GetBone
+-- @param  self
+-- @param  #number id The id of the object which was set in **Tool:SetObject**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Attempts to grab a clientside tool ConVar.
+-- @function [parent=#Tool] GetClientInfo
+-- @param  self
+-- @param  #string name Name of the convar to retrieve. The function will automatically add the "mytoolfilename_" part to it.
+-- @return #string The value of the requested ConVar.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Attempts to grab a clientside tool ConVar.
+-- @function [parent=#Tool] GetClientNumber
+-- @param  self
+-- @param  #string name Name of the convar to retrieve. The function will automatically add the "mytoolfilename_" part to it.
+-- @param  #number default The default value to return in case the lookup fails. _(Default: 0)_
+-- @return #number The value of the requested ConVar.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Retrieves an Entity previously stored using **Tool:SetObject**.
+-- @function [parent=#Tool] GetEnt
+-- @param  self
+-- @param  #number id The id of the object which was set in **Tool:SetObject**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the current operation of the tool set by **Tool:SetOperation**.
+-- @function [parent=#Tool] GetOperation
+-- @param  self
+-- @return #number The current operation the tool is at.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the owner of this tool.
+-- @function [parent=#Tool] GetOwner
+-- @param  self
+-- @return #Entity Player using the tool.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Attempts to grab a serverside tool ConVar. This will not do anything on
+-- client, despite the function being defined shared.
+-- @function [parent=#Tool] GetServerInfo
+-- @param  self
+-- @param  #string name Name of the convar to retrieve. The function will automatically add the "mytoolfilename_" part to it.
+-- @return #string The value of the requested ConVar.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the current stage of the tool set by **Tool:SetStage**.
+-- @function [parent=#Tool] GetStage
+-- @param  self
+-- @return #number The current stage of the current operation the tool is at.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the amount of stored objects (Entitys) the tool has.
+-- @function [parent=#Tool] NumObjects
+-- @param  self
+-- @return #number The amount of stored objects, or **Tool:GetStage** clientide.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Stores an Entity for later use in the tool.
+-- @function [parent=#Tool] SetObject
+-- @param  self
+-- @param  #number id The id of the object to store.
+-- @param  #Entity ent The entity to store.
+-- @param  #Vector pos The position to store.
+-- 
+-- **Note**: _This position is in global space and is internally converted to local space relative to the object,
+-- so when you retrieve it later it will be corrected to the object's new position._
+-- @param  #PhysObj phys The physics object to store.
+-- @param  #number bone The hit bone to store.
+-- @param  #Vector norm The hit normal to store.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the current operation of the tool. Does nothing clientside. See also **Tool:SetStage**.
+-- Operations and stages work as follows:
+-- 
+-- * Operation 1
+--  * Stage 1
+--  * Stage 2
+--  * Stage 3
+-- * Operation 2
+--  * Stage 1
+--  * Stage 2
+--  * Stage ...
+-- @function [parent=#Tool] SetOperation
+-- @param  self
+-- @param  #number operation The new operation ID to set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the current stage of the tool. Does nothing clientside. See also **Tool:SetOperation**.
+-- @function [parent=#Tool] SetStage
+-- @param  self
+-- @param  #number stage The new stage to set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- List of all possible functions to manipulate matrices. This object can be
+-- created by **Matrix**.
 -- @type VMatrix
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Client_ | _Server_
 -- 
+-- Returns the absolute rotation of the matrix.
+-- @function [parent=#VMatrix] GetAngles
+-- @param  self
+-- @return #Angle Absolute rotation of the matrix.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a specific field in the matrix.
+-- @function [parent=#VMatrix] GetField
+-- @param  self
+-- @param  #number row Row of the field whose value is to be retrieved, from 1 to 4.
+-- @param  #number column Column of the field whose value is to be retrieved, from 1 to 4.
+-- @return #number The value of the specified field.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the forward direction of the matrix. ie. The first column of the matrix,
+-- excluding the w coordinate.
+-- @function [parent=#VMatrix] GetForward
+-- @param  self
+-- @return #Vector The forward direction of the matrix.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns an inverted matrix without modifying the original matrix. Inverting
+-- the matrix will fail if its determinant is 0 or close to 0. (ie. its "scale"
+-- in any direction is 0.) See also **VMatrix:GetInverseTR**.
+-- @function [parent=#VMatrix] GetInverse
+-- @param  self
+-- @return #VMatrix The inverted matrix if possible, nil otherwise
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns an inverted matrix without modifying the original matrix. This
+-- function will not fail, but only works correctly on matrices that contain
+-- only translation and/or rotation. Using this function on a matrix with
+-- modified scale may return an incorrect inverted matrix.  
+-- To get the inverse of a matrix that contains other modifications, see **VMatrix:GetInverse**.
+-- @function [parent=#VMatrix] GetInverseTR
+-- @param  self
+-- @return #VMatrix The inverted matrix.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the right direction of the matrix. ie. The second column of the matrix,
+-- negated, excluding the w coordinate.
+-- @function [parent=#VMatrix] GetRight
+-- @param  self
+-- @return #Vector The right direction of the matrix.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the absolute scale of the matrix.
+-- @function [parent=#VMatrix] GetScale
+-- @param  self
+-- @return #Vector Absolute scale of the matrix.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the absolute translation of the matrix.
+-- @function [parent=#VMatrix] GetTranslation
+-- @param  self
+-- @return #Vector Absolute translation of the matrix.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the up direction of the matrix. ie. The third column of the matrix,
+-- excluding the w coordinate.
+-- @function [parent=#VMatrix] GetUp
+-- @param  self
+-- @return #Vector The up direction of the matrix.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Initializes the matrix as Identity matrix.
+-- @function [parent=#VMatrix] Identity
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Inverts the matrix. Inverting the matrix will fail if its determinant is 0
+-- or close to 0. (ie. its "scale" in any direction is 0.) If the matrix cannot
+-- be inverted, it does not get modified. See also **VMatrix:InvertTR**.
+-- @function [parent=#VMatrix] Invert
+-- @param  self
+-- @return #boolean Whether the matrix was inverted or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Inverts the matrix. This function will not fail, but only works correctly on
+-- matrices that contain only translation and/or rotation. Using this function
+-- on a matrix with modified scale may return an incorrect inverted matrix. To
+-- invert a matrix that contains other modifications, see **VMatrix:Invert**.
+-- @function [parent=#VMatrix] InvertTR
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the matrix is equal to Identity matrix or not.
+-- @function [parent=#VMatrix] IsIdentity
+-- @param  self
+-- @return #boolean Is the matrix an Identity matrix or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the matrix is a rotation matrix or not. Technically it
+-- checks if the forward, right and up vectors are orthogonal and normalized.
+-- @function [parent=#VMatrix] IsRotationMatrix
+-- @param  self
+-- @return #boolean Is the matrix a rotation matrix or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Rotates the matrix by the given angle. Postmultiplies the matrix by a
+-- rotation matrix (A = AR).
+-- @function [parent=#VMatrix] Rotate
+-- @param  self
+-- @param  #Angle rotation Rotation.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Scales the matrix by the given vector. Postmultiplies the matrix by a
+-- scaling matrix (A = AS).
+-- @function [parent=#VMatrix] Scale
+-- @param  self
+-- @param  #Vector scale Vector to scale with matrix with.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Scales the absolute translation with the given value.
+-- @function [parent=#VMatrix] ScaleTranslation
+-- @param  self
+-- @param  #number scale Value to scale the translation with.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Copies values from the given matrix object.
+-- @function [parent=#VMatrix] Set
+-- @param  self
+-- @param  #VMatrix src The matrix to copy values from.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the absolute rotation of the matrix.
+-- @function [parent=#VMatrix] SetAngles
+-- @param  self
+-- @param  #Angle angle New angles.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets a specific field in the matrix.
+-- @function [parent=#VMatrix] SetField
+-- @param  self
+-- @param  #number row Row of the field to be set, from 1 to 4.
+-- @param  #number column Column of the field to be set, from 1 to 4.
+-- @param  #number value The value to set in that field.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the forward direction of the matrix. ie. The first column of the matrix,
+-- excluding the w coordinate.
+-- @function [parent=#VMatrix] SetForward
+-- @param  self
+-- @param  #Vector forward The forward direction of the matrix.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the right direction of the matrix. ie. The second column of the matrix,
+-- negated, excluding the w coordinate.
+-- @function [parent=#VMatrix] SetRight
+-- @param  self
+-- @param  #Vector forward The right direction of the matrix.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Modifies the scale of the matrix while preserving the rotation and translation.
+-- @function [parent=#VMatrix] SetScale
+-- @param  self
+-- @param  #Vector scale The scale to set.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the absolute translation of the matrix.
+-- @function [parent=#VMatrix] SetTranslation
+-- @param  self
+-- @param  #Vector translation New translation.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the up direction of the matrix. ie. The third column of the matrix,
+-- excluding the w coordinate.
+-- @function [parent=#VMatrix] SetUp
+-- @param  self
+-- @param  #Vector forward The up direction of the matrix.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Converts the matrix to a 4x4 table. See **Matrix** function.
+-- @function [parent=#VMatrix] ToTable
+-- @param  self
+-- @return #table The 4x4 table.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Translates the matrix by the given vector aka. adds the vector to the
+-- translation. Postmultiplies the matrix by a translation matrix (A = AT).
+-- @function [parent=#VMatrix] Translate
+-- @param  self
+-- @param  #Vector translation Vector to translate the matrix by.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- List of all possible functions to manipulate vectors. Created by Vector &
+-- many more functions.
 -- @type Vector
--- @field 
+-- @field #number x The X component of the vector.
+-- @field #number y The Y component of the vector.
+-- @field #number z The Z component of the vector.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Adds the values of the argument vector to the orignal vector. This functions
+-- the same as vector1 + vector2 without creating a new vector object, skipping
+-- object construction and garbage collection.
+-- @function [parent=#Vector] Add
+-- @param  self
+-- @param  #Vector vector The vector to add.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns an angle representing the normal of the vector.
+-- @function [parent=#Vector] Angle
+-- @param  self
+-- @return #Angle The angle/direction of the vector.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the angle of the vector, but instead of assuming that up is
+-- Vector(0,0,1). (Like **Vector:Angle** does) you can specify which direction is
+-- 'up' for the angle.
+-- @function [parent=#Vector] AngleEx
+-- @param  self
+-- @param  #Vector up The up direction vector
+-- @return #Angle The angle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Calculates the cross product of this vector and the passed one. The cross
+-- product of two vectors is a 3-dimensional vector with a direction
+-- perpendicular (at right angles) to both of them (according to the right-hand
+-- rule), and magnitude equal to the area of parallelogram they span. This is
+-- defined as the product of the magnitudes, the sine of the angle between them,
+-- and unit (normal) vector n defined by the right-hand rule:
+-- a × b = |a| |b| sin(θ) n̂
+-- where a and b are vectors, and n̂ is a unit vector (magnitude of 1)
+-- perpendicular to both.
+-- @function [parent=#Vector] Cross
+-- @param  self
+-- @param  #Vector otherVector Vector to calculate the cross product with.
+-- @return #Vector The cross product of the two vectors.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the pythagorean distance between the vector and the other vector.
+-- This is a relatively expensive process since it uses the square root. It is
+-- recommended that you use **Vector:DistToSqr** whenever possible.
+-- @function [parent=#Vector] Distance
+-- @param  self
+-- @param  #Vector otherVector The vector to get the distance to.
+-- @return #number Distance between the vectors.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the squared distance of 2 vectors, this is faster than
+-- **Vector:Distance** as calculating the square root is an expensive process.
+-- @function [parent=#Vector] DistToSqr
+-- @param  self
+-- @param  #Vector otherVec The vector to calculate the distance to.
+-- @return #number Squared distance to the vector.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Divide the vector by the given number, that means x, y and z are divided by
+-- that value. This will change the value of the original vector.
+-- @function [parent=#Vector] Div
+-- @param  self
+-- @param  #number divisor The value to divide the vector with.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the dot product of this vector and the passed one. The dot product
+-- of two vectors is the product of their magnitudes (lengths), and the cosine
+-- of the angle between them:
+-- a · b = |a| |b| cos(θ)
+-- where a and b are vectors. See **Vector:Length** for obtaining magnitudes.
+-- A dot product returns just the cosine of the angle if both vectors are
+-- normalized, and zero if the vectors are at right angles to each other.
+-- @function [parent=#Vector] Dot
+-- @param  self
+-- @param  #Vector otherVector The vector to calculate the dot product with.
+-- @return #number The dot product between the two vectors.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns a normalized version of the vector. Normalized means vector with
+-- same direction but with length of 1. This does not affect the vector you
+-- call it on; to do this, use **Vector:Normalize**.
+-- @function [parent=#Vector] GetNormalized
+-- @param  self
+-- @return #Vector Normalized version of the vector.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns if the vector is equal to another vector with the given tolerance.
+-- @function [parent=#Vector] IsEqualTol
+-- @param  self
+-- @param  #Vector compare The vector to compare to.
+-- @param  #number tolerance The tolerance range.
+-- @return #boolean Are the vectors equal or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Checks whenever all fields of the vector are 0.
+-- @function [parent=#Vector] IsZero
+-- @param  self
+-- @return #boolean Do all fields of the vector equal 0 or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the Euclidean length of the vector: sqrt(x^2 + y^2 + z^2)
+-- @function [parent=#Vector] Length
+-- @param  self
+-- @return #number Length of the vector.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the length of the vector in two dimensions, without the Z axis.
+-- @function [parent=#Vector] Length2D
+-- @param  self
+-- @return #number Length of the vector in two dimensions, sqrt(x^2 + y^2).
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the squared length of the vectors x and y value, x^2 + y^2. This is
+-- faster than **Vector:Length2D** as calculating the square root is an expensive process.
+-- @function [parent=#Vector] Length2DSqr
+-- @param  self
+-- @return #number Squared length of the vector in two dimensions.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the squared length of the vector, x^2 + y^2 + z^2. This is faster than
+-- **Vector:Length** as calculating the square root is an expensive process.
+-- @function [parent=#Vector] LengthSqr
+-- @param  self
+-- @return #number Squared length of the vector.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Scales the vector by the given number, that means x, y and z are multiplied
+-- by that value.
+-- @function [parent=#Vector] Mul
+-- @param  self
+-- @param  #number multiplier The value to scale the vector with.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Normalizes the given vector. This changes the vector you call it on, if you want
+-- to return a normalized copy without affecting the original, use **Vector:GetNormalized**.
+-- @function [parent=#Vector] Normalize
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Rotates a vector by the given angle. Doesn't return anything, but rather
+-- changes the original vector.
+-- @function [parent=#Vector] Rotate
+-- @param  self
+-- @param  #Angle rotation The angle to rotate the vector by.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Copies the values from the second vector to the first vector.
+-- @function [parent=#Vector] Set
+-- @param  self
+-- @param  #Vector vector The vector to copy from.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Substracts the values of the second vector from the orignal vector, this
+-- function can be used to avoid garbage collection.
+-- @function [parent=#Vector] Sub
+-- @param  self
+-- @param  #Vector vector The other vector.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Translates the vector normalized vector (length is 1) into a Color structure.
+-- 
+-- * x * 255 -> r
+-- * y * 255 -> g
+-- * z * 255 -> b
+-- @function [parent=#Vector] ToColor
+-- @param  self
+-- @return #table The created **Color structure**.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns where on the screen the specified position vector would appear. A
+-- related function is gui.ScreenToVector, which converts a 2D coordinate to a
+-- 3D direction.
+-- 
+-- **Note**: _Should be called from a 3D rendering environment or after
+-- **cam.Start3D** or it may not work correctly._
+-- @function [parent=#Vector] ToScreen
+-- @param  self
+-- @return #table The created **ToScreenData structure**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whenever the given vector is in a box created by the 2 other vectors.
+-- @function [parent=#Vector] WithinAABox
+-- @param  self
+-- @param  #Vector boxStart The first vector.
+-- @param  #Vector boxEnd The second vector.
+-- @return #boolean Is the vector in the box or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets x, y and z to 0.
+-- @function [parent=#Vector] Zero
+-- @param  self
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_
 -- 
 -- @type Vehicle
 -- @extends Entity
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Server_
+-- 
+-- Returns the remaining boosting time left.
+-- @function [parent=#Vehicle] BoostTimeLeft
+-- @param  self
+-- @return #number The remaining boosting time left.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#Vehicle] CheckExitPoint
+-- @param  self
+-- @param  #number yaw
+-- @param  #number distance
+-- @param  #Vector endPoint
+-- @return #boolean
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets whether the engine is enabled or disabled, ex: can be started or not.
+-- @function [parent=#Vehicle] EnableEngine
+-- @param  self
+-- @param  #boolean enable Enable or disable the engine.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns information about the ammo of the vehicle.
+-- @function [parent=#Vehicle] GetAmmo
+-- @param  self
+-- @return #number, #number, #number Ammo type, clip size and count.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns third person camera distance.
+-- @function [parent=#Vehicle] GetCameraDistance
+-- @param  self
+-- @return #number Camera distance.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Gets the driver of the vehicle, returns NULL if no driver is present.
+-- @function [parent=#Vehicle] GetDriver
+-- @param  self
+-- @return #Entity The driver of the vehicle.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the current speed of the vehicle in Half-Life Hammer Units (in/s).
+-- Same as **Entity:GetVelocity** + **Vector:Length**.
+-- @function [parent=#Vehicle] GetHLSpeed
+-- @param  self
+-- @return #number The speed of the vehicle.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the max speed of the vehicle in MPH.
+-- @function [parent=#Vehicle] GetMaxSpeed
+-- @param  self
+-- @return #number The max speed of the vehicle in MPH.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns some info about the vehicle.
+-- @function [parent=#Vehicle] GetOperatingParams
+-- @param  self
+-- @return #table The operating params. See **OperatingParams structure**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Gets the passenger of the vehicle, returns NULL if no drivers is present.
+-- @function [parent=#Vehicle] GetPassenger
+-- @param  self
+-- @param  #number passenger The index of the passenger.
+-- @return #Entity The passenger.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the seat position and angle of a given passenger seat.
+-- @function [parent=#Vehicle] GetPassengerSeatPoint
+-- @param  self
+-- @param  #number role The passenger role. (1 is the driver).
+-- @return #Vector, #Angle The seat position and angle.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the current RPM of the vehicle. This value is fake and doesn't
+-- actually affect the vehicle movement.
+-- @function [parent=#Vehicle] GetRPM
+-- @param  self
+-- @return #number The RPM.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the current speed of the vehicle in MPH.
+-- @function [parent=#Vehicle] GetSpeed
+-- @param  self
+-- @return #number The speed of the vehicle in MPH.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the current steering of the vehicle.
+-- @function [parent=#Vehicle] GetSteering
+-- @param  self
+-- @return #number The current steering of the vehicle.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the maximum steering degree of the vehicle.
+-- @function [parent=#Vehicle] GetSteeringDegrees
+-- @param  self
+-- @return #number The maximum steering degree of the vehicle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns if vehicle has thirdperson mode enabled or not.
+-- @function [parent=#Vehicle] GetThirdPersonMode
+-- @param  self
+-- @return #boolean Returns true if third person mode enabled, false otherwise.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the current throttle of the vehicle.
+-- @function [parent=#Vehicle] GetThrottle
+-- @param  self
+-- @return #number The current throttle of the vehicle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the vehicle class name. This is only useful for Sandbox spawned
+-- vehicles or any vehicle that properly sets the vehicle class with **Vehicle:SetVehicleClass**.
+-- @function [parent=#Vehicle] GetVehicleClass
+-- @param  self
+-- @return #string The class name of the vehicle.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the vehicle parameters of given vehicle.
+-- @function [parent=#Vehicle] GetVehicleParams
+-- @param  self
+-- @return #table The vehicle parameters. See **VehicleParams structure**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the view position and forward angle of a given passenger seat.
+-- @function [parent=#Vehicle] GetVehicleViewPosition
+-- @param  self
+-- @param  #number role The passenger role. _(Default: 0)_
+-- 0 is the driver. This parameter seems to be ignored by the game engine and is therefore optional.
+-- @return #Vector, #Angle, #number The view position, angle, and field of view.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the PhysObj of given wheel.
+-- @function [parent=#Vehicle] GetWheel
+-- @param  self
+-- @param  #number wheel The wheel to retrieve.
+-- @return #PhysObj The wheel.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the base wheel height.
+-- @function [parent=#Vehicle] GetWheelBaseHeight
+-- @param  self
+-- @param  #number wheel The wheel to get the base wheel height of.
+-- @return #number The base wheel height.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the wheel contact point.
+-- @function [parent=#Vehicle] GetWheelContactPoint
+-- @param  self
+-- @param  #number wheel The wheel to check.
+-- @return #Vector, #number, #boolean The contact position, surface properties ID, and whether the wheel is on the ground or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the wheel count of the vehicle.
+-- @function [parent=#Vehicle] GetWheelCount
+-- @param  self
+-- @return #number The amount of wheels.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns the total wheel height.
+-- @function [parent=#Vehicle] GetWheelTotalHeight
+-- @param  self
+-- @param  #number wheel The wheel to get the base wheel height of.
+-- @return #number The total wheel height.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether this vehicle has boost at all.
+-- @function [parent=#Vehicle] HasBoost
+-- @param  self
+-- @return #boolean Whether this vehicle has boost at all.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether this vehicle has a brake pedal. See **Vehicle:SetHasBrakePedal**.
+-- @function [parent=#Vehicle] HasBrakePedal
+-- @param  self
+-- @return #boolean Whether this vehicle has a brake pedal or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether this vehicle is currently boosting or not.
+-- @function [parent=#Vehicle] IsBoosting
+-- @param  self
+-- @return #boolean Whether this vehicle is currently boosting or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether the engine is enabled or not, ex: whether it can be started.
+-- @function [parent=#Vehicle] IsEngineEnabled
+-- @param  self
+-- @return #boolean Whether the engine is enabled.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether the engine is started or not.
+-- @function [parent=#Vehicle] IsEngineStarted
+-- @param  self
+-- @return #boolean Whether the engine is started or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns true if the vehicle object is a valid or not. This will return false
+-- when Vehicle functions are not usable on the vehicle.
+-- @function [parent=#Vehicle] IsValidVehicle
+-- @param  self
+-- @return #boolean Is the vehicle a valid vehicle or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Returns whether this vehicle's engine is underwater or not. (Internally the
+-- attachment point "engine" or "vehicle_engine" is checked)
+-- @function [parent=#Vehicle] IsVehicleBodyInWater
+-- @param  self
+-- @return #boolean Whether this vehicle's engine is underwater or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#Vehicle] ReleaseHandbrake
+-- @param  self
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the boost. It is possible that this function does not work while the
+-- vehicle has a valid driver in it.
+-- @function [parent=#Vehicle] SetBoost
+-- @param  self
+-- @param  #number boost The new boost value.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the third person camera distance of the vehicle.
+-- @function [parent=#Vehicle] SetCameraDistance
+-- @param  self
+-- @param  #number distance Camera distance to set to.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- 
+-- @function [parent=#Vehicle] SetHandbrake
+-- @param  self
+-- @param  #boolean handbrake
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets whether this vehicle has a brake pedal.
+-- @function [parent=#Vehicle] SetHasBrakePedal
+-- @param  self
+-- @param  #boolean brakePedal Whether this vehicle has a brake pedal.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets maximum reverse throttle.
+-- @function [parent=#Vehicle] SetMaxReverseThrottle
+-- @param  self
+-- @param  #number maxRevThrottle The new maximum throttle. This number must be negative.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets maximum forward throttle.
+-- @function [parent=#Vehicle] SetMaxThrottle
+-- @param  self
+-- @param  #number maxThrottle The new maximum throttle.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets spring length of given wheel.
+-- @function [parent=#Vehicle] SetSpringLength
+-- @param  self
+-- @param  #number wheel The wheel to change spring length of.
+-- @param  #number length The new spring length.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the steering of the vehicle.
+-- @function [parent=#Vehicle] SetSteering
+-- @param  self
+-- @param  #number front Angle of the front wheels (-1 to 1).
+-- @param  #number rear Angle of the rear wheels (-1 to 1).
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the maximum steering degrees of the vehicle.
+-- @function [parent=#Vehicle] SetSteeringDegrees
+-- @param  self
+-- @param  #number steeringDegrees The new maximum steering degree.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the third person mode state.
+-- @function [parent=#Vehicle] SetThirdPersonMode
+-- @param  self
+-- @param  #boolean enable Enable or disable the third person mode for this vehicle.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the throttle of the vehicle. It is possible that this function does not
+-- work with a valid driver in it.
+-- @function [parent=#Vehicle] SetThrottle
+-- @param  self
+-- @param  #number throttle The new throttle.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- **This is an internal function or feature.**  
+-- _This means you will be able to use it, but you really shouldn't._
+-- 
+-- Sets the vehicle class name.
+-- @function [parent=#Vehicle] SetVehicleClass
+-- @param  self
+-- @param  #string class The vehicle class name to set.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets whether the entry or exit camera animation should be played or not.
+-- @function [parent=#Vehicle] SetVehicleEntryAnim
+-- @param  self
+-- @param  #boolean bOn Whether the entry or exit camera animation should be played or not.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets the vehicle parameters for given vehicle.
+-- 
+-- **Note**: _Not all variables from the VehicleParams structure can be set._
+-- @function [parent=#Vehicle] SetVehicleParams
+-- @param  self
+-- @param  #table params The new new vehicle parameters. See **VehicleParams structure**.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Sets friction of given wheel. This function may be broken...
+-- @function [parent=#Vehicle] SetWheelFriction
+-- @param  self
+-- @param  #number wheel The wheel to change the friction of.
+-- @param  #number friction The new friction to set.
+
+-------------------------------------------------------------------------------
+-- _Server_
+-- 
+-- Starts or stops the engine.
+-- @function [parent=#Vehicle] StartEngine
+-- @param  self
+-- @param  #boolean start True to start, false to stop.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
 -- 
 -- @type Weapon
 -- @extends Entity
--- @field 
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
+-- _Client_ | _Server_
 -- 
+-- Returns whether the weapon allows to being switched from when a better
+-- (**Weapon:GetWeight**) weapon is being picked up.
+-- @function [parent=#Weapon] AllowsAutoSwitchFrom
+-- @param  self
+-- @return #boolean Whether the weapon allows to being switched from.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the weapon allows to being switched to when a better
+-- (**Weapon:GetWeight**) weapon is being picked up.
+-- @function [parent=#Weapon] AllowsAutoSwitchTo
+-- @param  self
+-- @return #boolean Whether the weapon allows to being switched to.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Calls a SWEP function on client.
+-- 
+-- **Warning**: _This uses the usermessage library internally, because of that,
+-- the combined length of the arguments of this function may not exceed 254
+-- bytes/characters or the function will cease to function!_
+-- @function [parent=#Weapon] CallOnClient
+-- @param  self
+-- @param  #string functionName Name of function to call.
+-- If you want to call **SWEP:MyFunc**() on client, you type in "MyFunc".
+-- @param  #string arguments Arguments for the function, separated by spaces. _(Default: "")_
+-- 
+-- **Note**: _Only the second argument is passed as argument and must be a string._
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns how much primary ammo is in the magazine.
+-- @function [parent=#Weapon] Clip1
+-- @param  self
+-- @return #number The amount of primary ammo in the magazine.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns how much secondary ammo is in magazine.
+-- @function [parent=#Weapon] Clip2
+-- @param  self
+-- @return #number The amount of secondary ammo in the magazine.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Forces the weapon to reload while playing given animation.
+-- @function [parent=#Weapon] DefaultReload
+-- @param  self
+-- @param  #number act Sequence to use as reload animation. Uses the **ACT\_ Enums**.
+-- @return #boolean Did reloading actually take place.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the sequence enumeration number that the weapon is playing.
+-- @function [parent=#Weapon] GetActivity
+-- @param  self
+-- @return #number Current activity, see **ACT\_ Enums**.
+-- Returns 0 if the weapon doesn't have active sequence.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the hold type of the weapon.
+-- @function [parent=#Weapon] GetHoldType
+-- @param  self
+-- @return #string The hold type of the weapon.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns maximum primary clip size.
+-- @function [parent=#Weapon] GetMaxClip1
+-- @param  self
+-- @return #number Maximum primary clip size.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns maximum secondary clip size.
+-- @function [parent=#Weapon] GetMaxClip2
+-- @param  self
+-- @return #number Maximum secondary clip size.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the next time the weapon can primary fire. (Can call **Weapon:PrimaryAttack**)
+-- @function [parent=#Weapon] GetNextPrimaryFire
+-- @param  self
+-- @return #number The time, relative to **CurTime**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the next time the weapon can secondary fire. (Can call **Weapon:SecondaryAttack**)
+-- @function [parent=#Weapon] GetNextSecondaryFire
+-- @param  self
+-- @return #number The time, relative to **CurTime**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the primary ammo type of the given weapon.
+-- @function [parent=#Weapon] GetPrimaryAmmoType
+-- @param  self
+-- @return #number The ammo type ID.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the non-internal name of the weapon, that should be for displaying.
+-- 
+-- **Note**: _If that returns an untranslated message (#HL2\_XX), use
+-- **language.GetPhrase** to see the "nice" name._
+-- 
+-- **Note**: _If **SWEP.PrintName** is not set in the Weapon or the Weapon Base
+-- then "<MISSING SWEP PRINT NAME>" will be returned._
+-- @function [parent=#Weapon] GetPrintName
+-- @param  self
+-- @return #string The "nice" name of the weapon.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Gets the ammo type of the given weapons secondary fire.
+-- @function [parent=#Weapon] GetSecondaryAmmoType
+-- @param  self
+-- @return #number The secondary ammo type ID.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the slot of the weapon. (slot numbers start from 0)
+-- @function [parent=#Weapon] GetSlot
+-- @param  self
+-- @return #number The slot of the weapon.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns slot position of the weapon.
+-- @function [parent=#Weapon] GetSlotPos
+-- @param  self
+-- @return #number The slot position of the weapon.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the view model of the weapon.
+-- @function [parent=#Weapon] GetWeaponViewModel
+-- @param  self
+-- @return #string The view model of the weapon.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the world model of the weapon.
+-- @function [parent=#Weapon] GetWeaponWorldModel
+-- @param  self
+-- @return #string The world model of the weapon.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the "weight" of the weapon, which is used when deciding which Weapon
+-- is better by the engine.
+-- @function [parent=#Weapon] GetWeight
+-- @param  self
+-- @return #number The weapon "weight".
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the weapon has ammo left or not. It will return false when
+-- there's no ammo left in the magazine and when there's no reserve ammo left.
+-- 
+-- **Note**: _This will return true for weapons like crowbar, gravity gun, etc._
+-- @function [parent=#Weapon] HasAmmo
+-- @param  self
+-- @return #boolean Whether the weapon has ammo or not.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Returns whether the weapon is carried by the local player.
+-- @function [parent=#Weapon] IsCarriedByLocalPlayer
+-- @param  self
+-- @return #boolean Is the weapon is carried by the local player or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Checks if the weapon is a SWEP or a built-in weapon.
+-- @function [parent=#Weapon] IsScripted
+-- @param  self
+-- @return #boolean Returns true if weapon is scripted (SWEP), false if not (a built-in HL2 weapon).
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns whether the weapon is visible. The term visibility is not exactly
+-- what gets checked here, first it checks if the owner is a player, then
+-- checks if the active view model has EF_NODRAW flag NOT set.
+-- @function [parent=#Weapon] IsWeaponVisible
+-- @param  self
+-- @return #boolean Is visible or not.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returns the time since this weapon last fired a bullet with
+-- **Entity:FireBullets** in seconds. It is not networked.
+-- @function [parent=#Weapon] LastShootTime
+-- @param  self
+-- @return #number The time in seconds when the last bullet was fired.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Forces weapon to play activity/animation.
+-- @function [parent=#Weapon] SendWeaponAnim
+-- @param  self
+-- @param  #number act Activity to play. See the **ACT\_ Enums** (specifically ACT\_VM\_).
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Lets you change the number of bullets in the given weapons primary clip.
+-- @function [parent=#Weapon] SetClip1
+-- @param  self
+-- @param  #number ammo The amount of bullets the clip should contain.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Lets you change the number of bullets in the given weapons secondary clip.
+-- @function [parent=#Weapon] SetClip2
+-- @param  self
+-- @param  #number ammo The amount of bullets the clip should contain.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the hold type of the weapon. This function also calls
+-- **WEAPON:SetWeaponHoldType** and properly networks it to all clients.
+-- 
+-- **Note**: _This only works on scripted weapons._
+-- @function [parent=#Weapon] SetHoldType
+-- @param  self
+-- @param  #string name Name of the hold type.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets the time since this weapon last fired in seconds. Used in conjunction
+-- with **Weapon:LastShootTime**.
+-- @function [parent=#Weapon] SetLastShootTime
+-- @param  self
+-- @param  #number time The time in seconds when the last time the weapon was fired. _(Default: CurTime())_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets when the weapon can fire again. Time should be based on **CurTime**.
+-- @function [parent=#Weapon] SetNextPrimaryFire
+-- @param  self
+-- @param  #number time Time when player should be able to use primary fire again.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Sets when the weapon can alt-fire again. Time should be based on **CurTime**.
+-- @function [parent=#Weapon] SetNextSecondaryFire
+-- @param  self
+-- @param  #number time Time when player should be able to use secondary fire again.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- This is the object passed to **usermessage.Hook** when a message is received. It
+-- contains each value stored in the message in sequential order. You should
+-- read values from it in the order you wrote them.
 -- @type bf_read
--- @field 
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Reads an returns an angle object from the bitstream.
+-- @function [parent=#bf_read] ReadAngle
+-- @param  self
+-- @return #Angle The read angle.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Reads 1 bit an returns a bool representing the bit.
+-- @function [parent=#bf_read] ReadBool
+-- @param  self
+-- @return #boolean The read bit.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Reads a signed char and returns a number from -127 to 127 representing the
+-- ascii value of that char.
+-- @function [parent=#bf_read] ReadChar
+-- @param  self
+-- @return #number The read ascii value.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Reads a short representing an entity index and returns the matching entity handle.
+-- @function [parent=#bf_read] ReadEntity
+-- @param  self
+-- @return #Entity The read entity.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Reads a 4 byte float from the bitstream and returns it.
+-- @function [parent=#bf_read] ReadFloat
+-- @param  self
+-- @return #number The read float.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Reads a 4 byte long from the bitstream and returns it.
+-- @function [parent=#bf_read] ReadLong
+-- @param  self
+-- @return #number The read int.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Reads a 2 byte short from the bitstream and returns it.
+-- @function [parent=#bf_read] ReadShort
+-- @param  self
+-- @return #number The read short.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Reads a null terminated string from the bitstream.
+-- @function [parent=#bf_read] ReadString
+-- @param  self
+-- @return #string The read string.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Reads a special encoded vector from the bitstream and returns it, this
+-- function is not suitable to send normals.
+-- @function [parent=#bf_read] ReadVector
+-- @param  self
+-- @return #Vector The read vector.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Reads a special encoded vector normal from the bitstream and returns it,
+-- this function is not suitable to send vectors that represent a position.
+-- @function [parent=#bf_read] ReadVectorNormal
+-- @param  self
+-- @return #Vector The read normalized vector.
+
+-------------------------------------------------------------------------------
+-- _Client_
+-- 
+-- Rewinds the bitstream so it can be read again.
+-- @function [parent=#bf_read] Reset
+-- @param  self
 
 
 return nil

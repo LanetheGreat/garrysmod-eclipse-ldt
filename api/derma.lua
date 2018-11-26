@@ -25,7 +25,7 @@
 -- * Adds a key "Derma" - This is returned by **derma.GetControlList**.
 -- * Makes a global table with the name of the control. _(This is technically
 -- deprecated and should not be relied upon)_
--- * If reloading (i.e. called this function with name of an existing panel),
+-- * If reloading (ex: called this function with name of an existing panel),
 -- updates all existing instances of panels with this name. (Updates functions,
 -- calls **PANEL:PreAutoRefresh** and **PANEL:PostAutoRefresh**, etc.)
 -- @function [parent=#derma] DefineControl

@@ -9,7 +9,7 @@
 -- 
 -- Returns the last key captured by key trapping.
 -- @function [parent=#input] CheckKeyTrapping
--- @return #number The key, see **KEY\_Enums**.
+-- @return #number The key, see **KEY\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_
@@ -25,18 +25,18 @@
 -- translated with **language.GetPhrase** before being displayed.
 -- 
 -- **Note**: Despite the name of the function, this also works for the full
--- range of keys in **BUTTON\_CODE\_Enums**.
+-- range of keys in **BUTTON\_CODE\_ Enums**.
 -- @function [parent=#input] GetKeyName
--- @param  #number button The button, see **BUTTON\_CODE\_Enums**.
+-- @param  #number button The button, see **BUTTON\_CODE\_ Enums**.
 -- @return #string The button's name as a string.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_
 -- 
 -- Gets whether the specified button code is down.  
--- Unlike **input.IsKeyDown** this can also detect joystick presses from **JOYSTICK\_Enums**.
+-- Unlike **input.IsKeyDown** this can also detect joystick presses from **JOYSTICK\_ Enums**.
 -- @function [parent=#input] IsButtonDown
--- @param  #number button The button, valid values are in the range of **BUTTON\_CODE\_Enums**.
+-- @param  #number button The button, valid values are in the range of **BUTTON\_CODE\_ Enums**.
 -- @return #boolean Is the button down.
 
 -------------------------------------------------------------------------------
@@ -51,7 +51,7 @@
 -- 
 -- Gets whether a key is down.
 -- @function [parent=#input] IsKeyDown
--- @param  #number key The key, see **KEY\_Enums**.
+-- @param  #number key The key, see **KEY\_ Enums**.
 -- @return #boolean Is the key down.
 
 -------------------------------------------------------------------------------
@@ -66,7 +66,7 @@
 -- 
 -- Gets whether a mouse button is down.
 -- @function [parent=#input] IsMouseDown
--- @param  #number mouseKey The key, see **MOUSE\_Enums**.
+-- @param  #number mouseKey The key, see **MOUSE\_ Enums**.
 -- @return #boolean Is the key down.
 
 -------------------------------------------------------------------------------
@@ -91,7 +91,7 @@
 -- 
 -- Returns the bind string that the given key is bound to.
 -- @function [parent=#input] LookupKeyBinding
--- @param  #number key Key from **BUTTON\_CODE\_Enums**.
+-- @param  #number key Key from **BUTTON\_CODE\_ Enums**.
 -- @return #string The bind string of the given key.
 
 -------------------------------------------------------------------------------
@@ -124,7 +124,7 @@
 -- was called. This function only works in Move hooks, and will detect key
 -- presses even in main menu or when a typing in a text field.
 -- @function [parent=#input] WasKeyPressed
--- @param  #number key The key, see **KEY\_Enums**.
+-- @param  #number key The key, see **KEY\_ Enums**.
 -- @return #boolean True if the key was initially pressed the same frame that this function was called, false otherwise.
 
 -------------------------------------------------------------------------------
@@ -134,7 +134,7 @@
 -- called. This function only works in Move hooks, and will detect key presses
 -- even in main menu or when a typing in a text field.
 -- @function [parent=#input] WasKeyReleased
--- @param  #number key The key, see **KEY\_Enums**.
+-- @param  #number key The key, see **KEY\_ Enums**.
 -- @return #boolean True if the key was released the same frame that this function was called, false otherwise.
 
 -------------------------------------------------------------------------------
@@ -144,7 +144,7 @@
 -- in Move hooks, and will detect key presses even in main menu or when a
 -- typing in a text field.
 -- @function [parent=#input] WasKeyTyped
--- @param  #number key The key to test, see **KEY\_Enums**.
+-- @param  #number key The key to test, see **KEY\_ Enums**.
 -- @return #boolean Whether the key is being held down or not.
 
 -------------------------------------------------------------------------------
@@ -157,7 +157,7 @@
 -- This function only works in Move hooks, and will detect mouse events even in
 -- main menu or when a typing in a text field.
 -- @function [parent=#input] WasMouseDoublePressed
--- @param  #number button The mouse button to test, see **MOUSE\_Enums**.
+-- @param  #number button The mouse button to test, see **MOUSE\_ Enums**.
 -- @return #boolean Whether the mouse key was double pressed or not.
 
 -------------------------------------------------------------------------------
@@ -170,7 +170,7 @@
 -- This function only works in Move hooks, and will detect mouse events even in
 -- main menu or when a typing in a text field.
 -- @function [parent=#input] WasMousePressed
--- @param  #number button The mouse button to test, see **MOUSE\_Enums**.
+-- @param  #number button The mouse button to test, see **MOUSE\_ Enums**.
 -- @return #boolean True if the mouse key was initially pressed the same frame that this function was called, false otherwise.
 
 return nil

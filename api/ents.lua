@@ -146,7 +146,7 @@
 -- @param  #string target Name of the target entity.
 -- @param  #Entity activator Activator of the event.
 -- @param  #Entity caller Caller of the event.
--- @param  #number usetype Use type. See the **USE\_Enums**.
+-- @param  #number usetype Use type. See the **USE\_ Enums**.
 -- @param  #number value This value is passed to **ENTITY:Use**, but isn't used by any default entities in the engine.
 
 -------------------------------------------------------------------------------

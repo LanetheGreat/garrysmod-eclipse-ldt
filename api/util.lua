@@ -487,7 +487,7 @@
 -- Returns the contents of the position specified.
 -- @function [parent=#util] PointContents
 -- @param  #Vector position Position to get the contents sample from.
--- @return #number Contents bitflag, see **CONTENTS\_Enums**.
+-- @return #number Contents bitflag, see **CONTENTS\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -668,19 +668,6 @@
 -- @return #number Time since this function has been last called in ms.
 
 -------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
--- 
--- **This feature is deprecated.**  
--- _You should avoid using it as it may be removed in a future version._
--- _You should use tobool instead._
--- 
--- Converts string or a number to a bool, if possible. Alias of tobool.
--- @function [parent=#util] tobool
--- @param  #any input A string or a number to convert.
--- @return #boolean False if the input is equal to the string or boolean "false", if the input is equal to the string or number "0", or if the input is nil.
--- Returns true otherwise.
-
--------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
 -- Runs a trace using the entity's collisionmodel between two points. This does
@@ -690,19 +677,6 @@
 -- @function [parent=#util] TraceEntity
 -- @param  #table tracedata Trace data. See **Trace structure**.
 -- @param  #Entity ent The entity to use.
--- @return #table Trace result. See **TraceResult structure**.
-
--------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
--- 
--- **This feature is deprecated.**  
--- _You should avoid using it as it may be removed in a future version._
--- _You should use tobool instead._
--- 
--- Traces from one entity to another.
--- @function [parent=#util] TraceEntityHull
--- @param  #Entity ent1 The first entity to trace from.
--- @param  #Entity ent2 The second entity to trace to.
 -- @return #table Trace result. See **TraceResult structure**.
 
 -------------------------------------------------------------------------------

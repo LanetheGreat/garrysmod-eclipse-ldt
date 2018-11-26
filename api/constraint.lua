@@ -151,7 +151,7 @@
 -- @function [parent=#constraint] Find
 -- @param  #Entity Ent1 The first entity to check.
 -- @param  #Entity Ent2 The second entity to check.
--- @param  #string type The constraint type to look for. (eg. "Weld", "Elastic", "NoCollide").
+-- @param  #string type The constraint type to look for. (ex: "Weld", "Elastic", "NoCollide").
 -- @param  #number bone1 The bone number for the first entity. (0 for monoboned entities)
 -- @param  #number bone2 The bone number for the second entity. (0 for monoboned entities)
 -- @return #Entity The found Constraint or nil.
@@ -163,7 +163,7 @@
 -- entity found.
 -- @function [parent=#constraint] FindConstraint
 -- @param  #Entity ent The entity to check.
--- @param  #string type The type of constraint. (eg. "Weld", "Elastic", "NoCollide")
+-- @param  #string type The type of constraint. (ex: "Weld", "Elastic", "NoCollide")
 -- @return #table The constraint table, set with **constraint.AddConstraintTable**.
 
 -------------------------------------------------------------------------------
@@ -173,7 +173,7 @@
 -- directly connected to the entity.
 -- @function [parent=#constraint] FindConstraintEntity
 -- @param  #Entity ent The entity to check.
--- @param  #string type The type of constraint. (eg. "Weld", "Elastic", "NoCollide")
+-- @param  #string type The type of constraint. (ex: "Weld", "Elastic", "NoCollide")
 -- @return #Entity The other entity.
 
 -------------------------------------------------------------------------------
@@ -183,7 +183,7 @@
 -- the entity.
 -- @function [parent=#constraint] FindConstraints
 -- @param  #Entity ent The entity to check.
--- @param  #string type The type of constraint. (eg. "Weld", "Elastic", "NoCollide")
+-- @param  #string type The type of constraint. (ex: "Weld", "Elastic", "NoCollide")
 -- @return #table All the constraints of this entity.
 
 -------------------------------------------------------------------------------
@@ -234,7 +234,7 @@
 -- @param  #Length1 Length1 
 -- @param  #Length2 Length2 
 -- @param  #number width The thickness of the rope.
--- @param  #number key The key binding, corresponding to a **KEY\_Enums**.
+-- @param  #number key The key binding, corresponding to a **KEY\_ Enums**.
 -- @param  #number fixed Whether the hydraulic is fixed.
 -- @param  #number speed The speed used when the constraint is activated.
 -- @param  #string material Name of the material to use while rendering the rope.
@@ -271,8 +271,8 @@
 -- @param  #number toggle Whether the constraint is on toggle.
 -- @param  #Player pl The player that will be used to call **numpad.OnDown** and **numpad.OnUp**.
 -- @param  #number forcelimit Amount of force until it breaks. (0 = unbreakable)
--- @param  #number numpadkey_fwd The key binding for "forward", corresponding to an **KEY\_Enums**.
--- @param  #number numpadkey_bwd The key binding for "backwards", corresponding to an **KEY\_Enums**.
+-- @param  #number numpadkey_fwd The key binding for "forward", corresponding to an **KEY\_ Enums**.
+-- @param  #number numpadkey_bwd The key binding for "backwards", corresponding to an **KEY\_ Enums**.
 -- @param  #Vector LocalAxis If you include the LocalAxis then LPos2 will not be used in the final constraint. However, LPos2 is still a required argument.
 -- @return #Entity, #Entity The new Constraint, returns false on failure and the new axis, returns nil if the constraint could not be created.
 
@@ -291,7 +291,7 @@
 -- @param  #Length1 Length1 
 -- @param  #Length2 Length2 
 -- @param  #number width The thickness of the rope.
--- @param  #number key The key binding, corresponding to a **KEY\_Enums**.
+-- @param  #number key The key binding, corresponding to a **KEY\_ Enums**.
 -- @param  #number fixed Whether the constraint is fixed.
 -- @param  #number period
 -- @param  #number amplitude
@@ -343,7 +343,7 @@
 -- Attempts to remove all constraints of a specified type associated with an entity.
 -- @function [parent=#constraint] RemoveConstraints
 -- @param  #Entity ent The entity to check.
--- @param  #string type The constraint type to remove. (eg. "Weld", "Elastic", "NoCollide")
+-- @param  #string type The constraint type to remove. (ex: "Weld", "Elastic", "NoCollide")
 -- @return #boolean, #number Whether any constraints were removed and the number of constraints removed.
 
 -------------------------------------------------------------------------------
@@ -407,8 +407,8 @@
 -- @param  #Vector LPos1 Position on the first entity, in its local space coordinates.
 -- @param  #Vector LPos2 Position on the second entity, in its local space coordinates.
 -- @param  #number width The thickness of the rope.
--- @param  #number fwd_bind The key binding for "forward", corresponding to an **KEY\_Enums**.
--- @param  #number bwd_bind The key binding for "backwards", corresponding to an **KEY\_Enums**.
+-- @param  #number fwd_bind The key binding for "forward", corresponding to an **KEY\_ Enums**.
+-- @param  #number bwd_bind The key binding for "backwards", corresponding to an **KEY\_ Enums**.
 -- @param  #number fwd_speed Forward speed.
 -- @param  #number bwd_speed Backwards speed.
 -- @param  #string material Name of the material to use while rendering the rope.

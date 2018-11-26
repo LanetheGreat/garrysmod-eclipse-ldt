@@ -8,7 +8,7 @@
 -- Adds a standard notification to your screen.
 -- @function [parent=#notification] AddLegacy
 -- @param  #string text The string to display.
--- @param  #number type Determines the method for displaying the notification. See the **NOTIFY\_Enums**.
+-- @param  #number type Determines the method for displaying the notification. See the **NOTIFY\_ Enums**.
 -- @param  #number length The number of seconds to display the notification for.
 
 -------------------------------------------------------------------------------

@@ -16,7 +16,7 @@
 -- Starts a new dynamic mesh. If an **IMesh** is passed, it will use that mesh instead.
 -- @function [parent=#mesh] Begin
 -- @param  #IMesh mesh Mesh to build. This argument can be removed if you wish to build a "dynamic" mesh. _(Default: nil)_
--- @param  #number primitiveType Primitive type, see **MATERIAL\_Enums**.
+-- @param  #number primitiveType Primitive type, see **MATERIAL\_ Enums**.
 -- @param  #number primitiveCount The amount of primitives.
 
 -------------------------------------------------------------------------------

@@ -36,21 +36,21 @@
 -- 
 -- Simulates a key press for the given key.
 -- @function [parent=#gui] InternalKeyCodePressed
--- @param  #number key The key pressed, see **KEY\_Enums**.
+-- @param  #number key The key pressed, see **KEY\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_
 -- 
 -- Simulates a key release for the given key.
 -- @function [parent=#gui] InternalKeyCodeReleased
--- @param  #number key The key released, see **KEY\_Enums**.
+-- @param  #number key The key released, see **KEY\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_
 -- 
 -- Simulates a key type typing to the specified key.
 -- @function [parent=#gui] InternalKeyCodeTyped
--- @param  #number key The key typed, see **KEY\_Enums**.
+-- @param  #number key The key typed, see **KEY\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_
@@ -65,21 +65,21 @@
 -- 
 -- Simulates a double mouse key press for the given mouse key.
 -- @function [parent=#gui] InternalMouseDoublePressed
--- @param  #number The key pressed, see **MOUSE\_Enums**.
+-- @param  #number The key pressed, see **MOUSE\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_
 -- 
 -- Simulates a mouse key press for the given mouse key.
 -- @function [parent=#gui] InternalMousePressed
--- @param  #number The key pressed, see **MOUSE\_Enums**.
+-- @param  #number The key pressed, see **MOUSE\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_
 -- 
 -- Simulates a mouse key release for the given mouse key.
 -- @function [parent=#gui] InternalMouseReleased
--- @param  #number The key released, see **MOUSE\_Enums**.
+-- @param  #number The key released, see **MOUSE\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_
@@ -147,19 +147,6 @@
 -- @param  #number x X coordinate on the screen.
 -- @param  #number y Y coordinate on the screen.
 -- @return #Vector The direction.
-
--------------------------------------------------------------------------------
--- _Client_ | _Menu_ | _Server_
--- 
--- **This feature is deprecated.**  
--- _You should avoid using it as it may be removed in a future version._  
--- _Use **input.SetCursorPos** instead._
--- 
--- Sets the cursor's position on the screen, relative to the topleft corner of
--- the window.
--- @function [parent=#gui] SetMousePos
--- @param  #number mouseX The X coordinate to move the cursor to.
--- @param  #number mouseY The Y coordinate to move the cursor to.
 
 -------------------------------------------------------------------------------
 -- _Menu_

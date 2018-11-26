@@ -146,7 +146,7 @@
 -- 
 -- Changes the cull mode.
 -- @function [parent=#render] CullMode
--- @param  #number Cullmode, see **MATERIAL\_CULLMODE\_Enums**.
+-- @param  #number Cullmode, see **MATERIAL\_CULLMODE\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -383,7 +383,7 @@
 -- 
 -- Sets the mode of fog.
 -- @function [parent=#render] FogMode
--- @param  #number fogMode Fog mode, see **MATERIAL\_FOG\_Enums**.
+-- @param  #number fogMode Fog mode, see **MATERIAL\_FOG\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -456,7 +456,7 @@
 -- 
 -- Returns the fog mode.
 -- @function [parent=#render] GetFogMode
--- @return #number Fog mode, see **MATERIAL\_FOG\_Enums**.
+-- @return #number Fog mode, see **MATERIAL\_FOG\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -677,31 +677,12 @@
 -- **Note**: _Doing surface library draw calls with alpha set to 0 is a no-op and won't have an effect._
 -- @function [parent=#render] OverrideBlend
 -- @param  #boolean enabled true to enable, false to disable. No other arguments are required when disabling.
--- @param  #number srcBlend The source color blend function **BLEND\_Enums**. Determines how a rendered texture's final color should be calculated.
--- @param  #number destBlend The destination color blend function **BLEND\_Enums**.
--- @param  #number blendFunc The blend mode used for drawing the color layer **BLENDFUNC\_Enums**.
--- @param  #number srcBlendAlpha The source alpha blend function **BLEND\_Enums**. Determines how a rendered texture's final alpha should be calculated. _(Default: none)_
--- @param  #number destBlendAlpha The destination alpha blend function **BLEND\_Enums**. _(Default: none)_
--- @param  #number blendFuncAlpha The blend mode used for drawing the alpha layer **BLENDFUNC\_Enums**. _(Default: none)_
-
--------------------------------------------------------------------------------
--- _Client_
--- 
--- **This feature is deprecated.**  
--- _You should avoid using it as it may be removed in a future version._
--- _Use **render.OverrideBlend** instead._
--- 
--- Overrides the internal graphical functions used to determine the final color
--- and alpha of a rendered texture. See also **render.OverrideAlphaWriteEnable**.
--- 
--- **Note**: _Doing surface library draw calls with alpha set to 0 is a no-op
--- and will never have any effect._
--- @function [parent=#render] OverrideBlendFunc
--- @param  #boolean enabled true to enable, false to disable. No other arguments are required when disabling.
--- @param  #number srcBlend The source color blend function **BLEND\_Enums**. Determines how a rendered texture's final color should be calculated.
--- @param  #number destBlend The destination color blend function **BLEND\_Enums**.
--- @param  #number srcBlendAlpha The source alpha blend function **BLEND\_Enums**. Determines how a rendered texture's final alpha should be calculated. _(Default: nil)_
--- @param  #number destBlendAlpha The destination alpha blend function **BLEND\_Enums**. _(Default: nil)_
+-- @param  #number srcBlend The source color blend function **BLEND\_ Enums**. Determines how a rendered texture's final color should be calculated.
+-- @param  #number destBlend The destination color blend function **BLEND\_ Enums**.
+-- @param  #number blendFunc The blend mode used for drawing the color layer **BLENDFUNC\_ Enums**.
+-- @param  #number srcBlendAlpha The source alpha blend function **BLEND\_ Enums**. Determines how a rendered texture's final alpha should be calculated. _(Default: none)_
+-- @param  #number destBlendAlpha The destination alpha blend function **BLEND\_ Enums**. _(Default: none)_
+-- @param  #number blendFuncAlpha The blend mode used for drawing the alpha layer **BLENDFUNC\_ Enums**. _(Default: none)_
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -776,14 +757,14 @@
 -- 
 -- Pushes a texture filter onto the magnification texture filter stack.
 -- @function [parent=#render] PushFilterMag
--- @param  #number texFilterType The texture filter type, see **TEXFILTER\_Enums**.
+-- @param  #number texFilterType The texture filter type, see **TEXFILTER\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
 -- Pushes a texture filter onto the minification texture filter stack.
 -- @function [parent=#render] PushFilterMin
--- @param  #number texFilterType The texture filter type, see **TEXFILTER\_Enums**.
+-- @param  #number texFilterType The texture filter type, see **TEXFILTER\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -1000,9 +981,9 @@
 -- Thus, there is a total of six different light sources that can be configured
 -- separately.
 -- 
--- Light color components are not restricted to a specific range (i.e. 0-255), instead, higher values will result in a brighter light.
+-- Light color components are not restricted to a specific range (ex: 0-255), instead, higher values will result in a brighter light.
 -- @function [parent=#render] SetModelLighting
--- @param  #number lightDirection The light source to edit, see **BOX\_Enums**.
+-- @param  #number lightDirection The light source to edit, see **BOX\_ Enums**.
 -- @param  #number red The red component of the light color.
 -- @param  #number green The green component of the light color.
 -- @param  #number blue The blue component of the light color.
@@ -1076,7 +1057,7 @@
 -- operation to perform on the stencil buffer values for these pixels can be
 -- set using **render.SetStencilPassOperation** and **render.SetStencilZFailOperation**.
 -- @function [parent=#render] SetStencilCompareFunction
--- @param  #number compareFunction Compare function, see **STENCILCOMPARISONFUNCTION\_Enums**, and **STENCIL\_Enums** for short.
+-- @param  #number compareFunction Compare function, see **STENCILCOMPARISONFUNCTION\_ Enums**, and **STENCIL\_ Enums** for short.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -1093,7 +1074,7 @@
 -- Sets the operation to be performed on the stencil buffer values if the
 -- compare function was not successful. Note that this takes place before depth testing.
 -- @function [parent=#render] SetStencilFailOperation
--- @param  #number failOperation Fail operation function, see **STENCILOPERATION\_Enums**.
+-- @param  #number failOperation Fail operation function, see **STENCILOPERATION\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -1101,7 +1082,7 @@
 -- Sets the operation to be performed on the stencil buffer values if the
 -- compare function was successful.
 -- @function [parent=#render] SetStencilPassOperation
--- @param  #number passOperation Pass operation function, see **STENCILOPERATION\_Enums**.
+-- @param  #number passOperation Pass operation function, see **STENCILOPERATION\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -1132,7 +1113,7 @@
 -- Sets the operation to be performed on the stencil buffer values if the
 -- stencil test is passed but the depth buffer test fails.
 -- @function [parent=#render] SetStencilZFailOperation
--- @param  #number zFailOperation Z fail operation function, see **STENCILOPERATION\_Enums**.
+-- @param  #number zFailOperation Z fail operation function, see **STENCILOPERATION\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -1180,7 +1161,7 @@
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
--- Returns whether the game supports HDR, i.e. if the DirectX level is higher
+-- Returns whether the game supports HDR, ex: if the DirectX level is higher
 -- than or equal to 8.
 -- @function [parent=#render] SupportsHDR
 -- @return #boolean Whether HDR is supported.

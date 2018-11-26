@@ -1,5 +1,5 @@
 package = "Garrysmod"
-version = "18.08.14"
+version = "2018.10.10-beta"
 grammar = "lua-5.2"
 flags = { ee = true }
 description = {
@@ -14,13 +14,4 @@ api = {
 }
 documentation = {
   dir = "docs"
-}
-templates = {
---[[  default = {
-    buildpath = {"/"},
-    openfile = ""
-  }--,
-  gamemode = {
-    
-  }]]--
 }

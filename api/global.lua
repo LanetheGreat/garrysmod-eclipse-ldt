@@ -13111,7 +13111,7 @@
 -- Sets the state the NPC is in to help it decide on a ideal schedule.
 -- @function [parent=#NPC] SetNPCState
 -- @param  self
--- @param  #number state New NPC state, see **NPC\_STATE\_ Enums.**
+-- @param  #number state New NPC state, see **NPC\_STATE\_ Enums**.
 
 -------------------------------------------------------------------------------
 -- _Server_

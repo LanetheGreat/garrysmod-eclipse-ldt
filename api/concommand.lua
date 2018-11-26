@@ -24,7 +24,7 @@
 -- * _#string cmd_  : The concommand this autocompletion is for.
 -- * _#string args_ : The arguments typed so far.
 -- @param  #string helpText The text to display should a user run 'help cmdName'. _(Default: nil)_
--- @param  #number flags Concommand modifier flags. See FCVAR_ Enums. _(Default: 0)_
+-- @param  #number flags Concommand modifier flags. See **FCVAR_ Enums**. _(Default: 0)_
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Menu_ | _Server_

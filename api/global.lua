@@ -19784,7 +19784,7 @@
 -- * 0.1 - 10 when easeOut is false.
 -- * 0.1 - 1 when easeOut is true.
 -- @param  #boolean easeOut This causes the panel object to 'jump' at the target, slowing as it approaches.
--- This affects the speed value significantly, see above.
+-- This affects the speed value significantly, see _speed_.
 
 -------------------------------------------------------------------------------
 -- _Client_
@@ -40288,7 +40288,7 @@
 -- * _#table tr_ : The player's eye trace.
 -- When appropriate, within this function you can call **self:MsgStart**(), write data with the net library 'Write' functions, and finish with **self:MsgEnd**().
 -- This will activate the 'Receive' function on the server. In most cases, you will want to send the entity to the server, as it's not done by default.
--- @field #function Receive Called serverside if the client sends a message in the 'Action' function (see above). _(Default: nil)_
+-- @field #function Receive Called serverside if the client sends a message in the 'Action' function. _(Default: nil)_
 -- 
 -- * _#table self_ : The property table.
 -- * _#number len_ : The net message length, although this includes the property identifier used internally (the name of the property).
@@ -40553,6 +40553,39 @@
 -- @field #number w The width of the texture.
 -- @field #number h The height of the texture.
 -- @field #number color The texture color. _(Default: color\_white)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- The TOOL table is used in Sandbox tool creation. You can find a list of
+-- callbacks on the TOOL Hooks page and a list of methods on the Tool Functions
+-- page. Do note that some of the fields below have no effect on server-side
+-- operations. The tool information box drawn on the HUD while your tool is
+-- selected has 2 values that are set by **language.Add**:
+-- 
+-- * "tool.[tool mode].name" - The tool name. (Note this is NOT the same as TOOL.Name)
+-- * "tool.[tool mode].desc" - The tool description.
+--
+-- Ensure that all tool file names are entirely lowercase. Including capital
+-- letters can lead to unintended behavior. 
+-- @type TOOLSTRUCT
+-- @field #boolean AddToMenu If set to false, the tool won't be added to the tool menu and players will have to access it by other means. _(Default: true)_
+-- @field #string Category The tool menu category under which the tool should be listed. _(Default: "New Category")_
+-- @field #string Command The console command to execute upon being selected in the Q menu. _(Default: "gmod\_toolmode [tool]")_
+-- @field #string Name The name of the tool in the Q menu. _(Default: "#[tool mode]")_
+-- Common practice is to set this to "#tool.[lua filename].name" to match the name displayed in the tool information box.
+-- @field #string ConfigName The name of the configuration file. _(Default: nil)_
+-- @field #table ClientConVar A key-value (convar name-default value) table containing the client-side convars to create. All convars will be prefixed with the filename of the tool.
+-- You can later use **Tool:GetClientNumber** or **Tool:GetClientInfo** to retrieve these values.
+-- @field #table ServerConVar Same as ClientConVar, but created server-side instead.
+-- @field #function BuildCPanel The function that is called to build the context menu for your tool. It has one argument, namely the context menu's base panel to which all of your custom panels are going to be parented to.
+-- While it might sound like a hook, it isn't - you won't receive a self argument inside the function.
+-- @field #table Information Allows you to override the tool usage information shown when the tool is equipped.
+-- @field #number LastMessage Set this to **CurTime**() on the client to make the tools information box on the HUD flash white. _(Default: 0)_
+-- @field #string Message _This feature is deprecated._  
+-- _You should avoid using it as it may be removed in a future version._  
+-- Does nothing. Was used in conjunction with LastMessage in very old versions of the game. _(Default: "start")_
+-- @field #string Mode Class name of the tool. (name of the .lua file) This is set automatically.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_

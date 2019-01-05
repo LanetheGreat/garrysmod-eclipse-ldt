@@ -963,21 +963,7 @@
 -- _Client_ | _Server_
 -- 
 -- Hooks only available for Scripted Entities. The only exceptions to
--- this rule are **ENT:RenderOverride** and **ENT:CalcAbsolutePosition**, which
--- can also be applied to engine entities. Some more "hooks" are available for
--- all entities (including engine entities) with the function **Entity:AddCallback**.
--- 
--- **Note**: _The hooks listed here are also dependent on the scripted entity
--- type. For instance, a base scripted entity will not use **ENT_AI:DoSchedule** at
--- all, that is only for scripted NPCs._
--- @type ENT
--- @extends Entity
-
--------------------------------------------------------------------------------
--- _Client_ | _Server_
--- 
--- Hooks only available for Scripted Entities. The only exceptions to
--- this rule are **ENT:RenderOverride** and **ENT:CalcAbsolutePosition**, which
+-- this rule are **ENTITY:RenderOverride** and **ENTITY:CalcAbsolutePosition**, which
 -- can also be applied to engine entities. Some more "hooks" are available for
 -- all entities (including engine entities) with the function **Entity:AddCallback**.
 -- 
@@ -985,13 +971,13 @@
 -- type. For instance, a base scripted entity will not use **ENT_AI:DoSchedule** at
 -- all, that is only for scripted NPCs._
 -- @type ENTITY
--- @extends ENT
+-- @extends Entity
 
 -------------------------------------------------------------------------------
 -- _Server_
 -- 
 -- Called when another entity fires an event to this entity.
--- @function [parent=#ENT] AcceptInput
+-- @function [parent=#ENTITY] AcceptInput
 -- @param  self
 -- @param  #string inputName The name of the input that was triggered.
 -- @param  #Entity activator The initial cause for the input getting triggered.
@@ -1004,9 +990,9 @@
 -- 
 -- Called whenever the entity's position changes. A callback for when an
 -- entity's angle changes is available via **Entity:AddCallback**. Like
--- **ENT:RenderOverride**, this hook works on any entity (scripted or not) it is
+-- **ENTITY:RenderOverride**, this hook works on any entity (scripted or not) it is
 -- applied on.
--- @function [parent=#ENT] CalcAbsolutePosition
+-- @function [parent=#ENTITY] CalcAbsolutePosition
 -- @param  self
 -- @param  #Vector pos The entity's actual position. May differ from **Entity:GetPos**.
 -- @param  #Angle ang The entity's actual angles. May differ from **Entity:GetAngles**.
@@ -1021,7 +1007,7 @@
 -- 
 -- **Note**: _This hook is predicted. This means that in singleplayer, it will
 -- not be called in the Client realm._
--- @function [parent=#ENT] CanProperty
+-- @function [parent=#ENTITY] CanProperty
 -- @param  self
 -- @param  #Player ply Player, that tried to use the property.
 -- @param  #string property Class of the property that is tried to use, for example - bonemanipulate.
@@ -1033,7 +1019,7 @@
 -- Called before firing animation events, such as muzzle flashes or shell ejections.
 -- 
 -- **Note**: _This hook only works on "anim" type entities._
--- @function [parent=#ENT] FireAnimationEvent
+-- @function [parent=#ENTITY] FireAnimationEvent
 -- @param  self
 -- @param  #Vector pos Position of the effect.
 -- @param  #Angle ang Angle of the effect.
@@ -1045,7 +1031,7 @@
 -- _Client_
 -- 
 -- Specify a mesh that should be rendered instead of this SENT's model.
--- @function [parent=#ENT] GetRenderMesh
+-- @function [parent=#ENTITY] GetRenderMesh
 -- @param  self
 -- @return #table A table containing the following keys:
 -- 
@@ -1058,7 +1044,7 @@
 -- 
 -- Called by **GM:GravGunPickupAllowed** on ALL entites in Sandbox-derived
 -- gamemodes and acts as an override.
--- @function [parent=#ENT] GravGunPickupAllowed
+-- @function [parent=#ENTITY] GravGunPickupAllowed
 -- @param  self
 -- @param  #Player ply The player aiming at us.
 -- @return #boolean Return true to allow the entity to be picked up.
@@ -1069,7 +1055,7 @@
 -- Called when this entity is about to be punted with the gravity gun (primary
 -- fire). Only works in Sandbox derived gamemodes and only if **GM:GravGunPunt** is
 -- not overridden.
--- @function [parent=#ENT] GravGunPunt
+-- @function [parent=#ENTITY] GravGunPunt
 -- @param  self
 -- @param  #Player ply The player pressing left-click with the gravity gun at an entity.
 -- @return #boolean Return true or false to enable or disable punting respectively.
@@ -1081,7 +1067,7 @@
 -- ejections.
 -- 
 -- **Note**: _This hook only works on "anim" type entities._
--- @function [parent=#ENT] HandleAnimEvent
+-- @function [parent=#ENTITY] HandleAnimEvent
 -- @param  self
 -- @param  #number event The event ID of happened even.
 -- @param  #number eventTime The absolute time this event occurred using **CurTime**.
@@ -1093,8 +1079,8 @@
 -- _Server_
 -- 
 -- Called when the entity is created. This is called when you **Entity:Spawn** the
--- custom entity. This is called after **ENT:SetupDataTables** and **GM:OnEntityCreated**.
--- @function [parent=#ENT] Initialize
+-- custom entity. This is called after **ENTITY:SetupDataTables** and **GM:OnEntityCreated**.
+-- @function [parent=#ENTITY] Initialize
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -1102,8 +1088,8 @@
 -- 
 -- Called when the engine sets a value for this scripted entity. See
 -- **GM:EntityKeyValue** for a hook that works for all entities. See
--- **SWEP:KeyValue** for a hook that works for scripted weapons.
--- @function [parent=#ENT] KeyValue
+-- **WEAPON:KeyValue** for a hook that works for scripted weapons.
+-- @function [parent=#ENTITY] KeyValue
 -- @param  self
 -- @param  #string key The key that was affected.
 -- @param  #string value The new value.
@@ -1114,8 +1100,8 @@
 -- 
 -- Called on any entity after it has been created by the duplicator library and
 -- before any bone/entity modifiers have been applied. This hook is called
--- after **ENT:Initialize** and before **ENT:PostEntityPaste**.
--- @function [parent=#ENT] OnDuplicated
+-- after **ENTITY:Initialize** and before **ENTITY:PostEntityPaste**.
+-- @function [parent=#ENTITY] OnDuplicated
 -- @param  self
 -- @param  #table entTable **EntityCopyData structure** of the source entity.
 
@@ -1123,8 +1109,8 @@
 -- _Server_
 -- 
 -- Called after duplicator finishes saving the entity, allowing you to modify
--- the save data. This is called after **ENT:PostEntityCopy**.
--- @function [parent=#ENT] OnEntityCopyTableFinish
+-- the save data. This is called after **ENTITY:PostEntityCopy**.
+-- @function [parent=#ENTITY] OnEntityCopyTableFinish
 -- @param  self
 -- @param  #table data The save **EntityCopyData structure** that you can modify.
 
@@ -1133,7 +1119,7 @@
 -- 
 -- Called when the entity is reloaded by the lua auto-refresh system, i.e. when
 -- the developer edits the lua file for the entity while the game is running.
--- @function [parent=#ENT] OnReloaded
+-- @function [parent=#ENTITY] OnReloaded
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -1144,13 +1130,13 @@
 -- ###Clientside behaviour remarks:
 -- This hook may be called at odd times (when entity has actually not yet been
 -- removed from the server). This happens during fullupdate with the
--- **ENT:Initialize** function not being called even when the entity reappears.
+-- **ENTITY:Initialize** function not being called even when the entity reappears.
 -- You can debug this behaviour by enabling cheats and running cl\_fullupdate on
 -- the client.  
--- **GM:NotifyShouldTransmit** can be used to circumvent this problem. **ENT:Think**
+-- **GM:NotifyShouldTransmit** can be used to circumvent this problem. **ENTITY:Think**
 -- can also be used to detect that the entity has reappeared. You may
 -- reinitialize any necessary data in these hooks.
--- @function [parent=#ENT] OnRemove
+-- @function [parent=#ENTITY] OnRemove
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -1159,23 +1145,23 @@
 -- Called when the entity is reloaded from a Source Engine save (not the
 -- Sandbox saves or dupes) or on a changelevel (for example Half-Life 2
 -- campaign level transitions). For the duplicator library callbacks, see
--- **ENT:OnDuplicated**.
--- @function [parent=#ENT] OnRestore
+-- **ENTITY:OnDuplicated**.
+-- @function [parent=#ENTITY] OnRestore
 -- @param  self
 
 -------------------------------------------------------------------------------
 -- _Server_
 -- 
 -- Called after the duplicator finished copying the entity.
--- @function [parent=#ENT] PostEntityCopy
+-- @function [parent=#ENTITY] PostEntityCopy
 -- @param  self
 
 -------------------------------------------------------------------------------
 -- _Server_
 -- 
 -- Called after the duplicator library pastes the entity, after the bone/entity
--- modifiers have been applied to the entity. This hook is called after **ENT:OnDuplicated**.
--- @function [parent=#ENT] PostEntityPaste
+-- modifiers have been applied to the entity. This hook is called after **ENTITY:OnDuplicated**.
+-- @function [parent=#ENTITY] PostEntityPaste
 -- @param  self
 -- @param  #Player ply The player who pasted the entity.
 -- 
@@ -1197,7 +1183,7 @@
 -- you duplicate a "prop\_physics", but you want the duplicator to spawn
 -- "prop\_physics\_my"), you should add prop\_physics.ClassOverride = "prop\_physics\_my".
 -- The duplication table should be also stored on that prop\_physics, not on prop\_physics\_my.
--- @function [parent=#ENT] PreEntityCopy
+-- @function [parent=#ENTITY] PreEntityCopy
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -1209,15 +1195,15 @@
 -- 
 -- **Note**: _As a downside of this implementation, only one RenderOverride may
 -- be applied at a time._
--- @function [parent=#ENT] RenderOverride
+-- @function [parent=#ENTITY] RenderOverride
 -- @param  self
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
 -- Toggles automatic frame advancing for animated sequences on an entity. This
--- has the same effect as setting the **ENT.AutomaticFrameAdvance** property.
--- @function [parent=#ENT] SetAutomaticFrameAdvance
+-- has the same effect as setting the **ENTITY.AutomaticFrameAdvance** property.
+-- @function [parent=#ENTITY] SetAutomaticFrameAdvance
 -- @param  self
 -- @param  #boolean enable Whether or not to set automatic frame advancing.
 
@@ -1226,7 +1212,7 @@
 -- 
 -- Called when the entity should set up its Data Tables. This is a much better
 -- option than using Set/Get Networked Values.
--- @function [parent=#ENT] SetupDataTables
+-- @function [parent=#ENTITY] SetupDataTables
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -1235,7 +1221,7 @@
 -- This is the spawn function. It's called when a player spawns the entity
 -- from the spawnmenu. If you want to make your SENT spawnable you need this
 -- function to properly create the entity.
--- @function [parent=#ENT] SpawnFunction
+-- @function [parent=#ENTITY] SpawnFunction
 -- @param  self
 -- @param  #Player ply The player that is spawning this SENT.
 -- @param  #table tr A **TraceResult structure** from player eyes to their aim position.
@@ -1244,11 +1230,11 @@
 -------------------------------------------------------------------------------
 -- _Server_
 -- 
--- Used to store an output so it can be triggered with **ENT:TriggerOutput**.
+-- Used to store an output so it can be triggered with **ENTITY:TriggerOutput**.
 -- Outputs compiled into a map are passed to entities as key/value pairs
--- through **ENT:KeyValue**. TriggerOutput will do nothing if this function has
+-- through **ENTITY:KeyValue**. TriggerOutput will do nothing if this function has
 -- not been called first.
--- @function [parent=#ENT] StoreOutput
+-- @function [parent=#ENTITY] StoreOutput
 -- @param  self
 -- @param  #string name Name of output to store.
 -- @param  #string info Output info.
@@ -1260,15 +1246,15 @@
 -- 
 -- **Note**: _By default, it runs about 5-6 times per second on the server, but
 -- you can force it to run at servers tickrate._
--- @function [parent=#ENT] Think
+-- @function [parent=#ENTITY] Think
 -- @param  self
 -- @return #boolean Return true if you used **Entity:NextThink** to override the next execution time.
 
 -------------------------------------------------------------------------------
 -- _Server_
 -- 
--- Triggers all outputs stored using **ENT:StoreOutput**.
--- @function [parent=#ENT] TriggerOutput
+-- Triggers all outputs stored using **ENTITY:StoreOutput**.
+-- @function [parent=#ENTITY] TriggerOutput
 -- @param  self
 -- @param  #string output Name of output to fire.
 -- @param  #Entity activator Activator entity.
@@ -1933,13 +1919,13 @@
 -- _Client_ | _Server_
 -- 
 -- Hooks that are available for all gamemodes based on base gamemode.
--- @type GM
+-- @type GAMEMODE
 
 -------------------------------------------------------------------------------
 -- _Server_
 -- 
 -- Called when a map I/O event occurs.
--- @function [parent=#GM] AcceptInput
+-- @function [parent=#GAMEMODE] AcceptInput
 -- @param  self
 -- @param  #Entity ent Entity that receives the input.
 -- @param  #string input The input name.
@@ -1952,7 +1938,7 @@
 -- _Client_
 -- 
 -- Adds a death notice entry.
--- @function [parent=#GM] AddDeathNotice
+-- @function [parent=#GAMEMODE] AddDeathNotice
 -- @param  self
 -- @param  #string attacker The name of the attacker.
 -- @param  #number attackerTeam The team of the attacker.
@@ -1964,7 +1950,7 @@
 -- _Client_
 -- 
 -- Allows you to adjust the mouse sensitivity.
--- @function [parent=#GM] AdjustMouseSensitivity
+-- @function [parent=#GAMEMODE] AdjustMouseSensitivity
 -- @param  self
 -- @param  #number defaultSensitivity The old sensitivity. In general it will be 0, which is equivalent to a sensitivity of 1.
 
@@ -1973,7 +1959,7 @@
 -- 
 -- Called when a player tries to pick up something using the "use" key, return
 -- to override. See **GM:GravGunPickupAllowed** for the Gravity Gun pickup variant.
--- @function [parent=#GM] AllowPlayerPickup
+-- @function [parent=#GAMEMODE] AllowPlayerPickup
 -- @param  self
 -- @param  #Player ply The player trying to pick up something.
 -- @param  #Entity ent The Entity the player attempted to pick up.
@@ -1987,7 +1973,7 @@
 -- **Warning**: _This hook must return the same values at the same time on both,
 -- client and server. On client for players to see the animations, on server for
 -- hit detection to work properly._
--- @function [parent=#GM] CalcMainActivity
+-- @function [parent=#GAMEMODE] CalcMainActivity
 -- @param  self
 -- @param  #Player ply The player to apply the animation.
 -- @param  #Vector vel The velocity of the player.
@@ -1999,7 +1985,7 @@
 -- 
 -- Called from **GM:CalcView** when player is in driving a vehicle. This hook may
 -- not be called in gamemodes that override **GM:CalcView**.
--- @function [parent=#GM] CalcVehicleView
+-- @function [parent=#GAMEMODE] CalcVehicleView
 -- @param  self
 -- @param  #Vehicle veh The vehicle the player is driving.
 -- @param  #Player ply The vehicle driver.
@@ -2010,7 +1996,7 @@
 -- _Client_
 -- 
 -- Allows override of the default view.
--- @function [parent=#GM] CalcView
+-- @function [parent=#GAMEMODE] CalcView
 -- @param  self
 -- @param  #Player ply The local player.
 -- @param  #Vector origin The player's view position.
@@ -2024,7 +2010,7 @@
 -- _Client_
 -- 
 -- Allows overriding the position and angle of the viewmodel.
--- @function [parent=#GM] CalcViewModelView
+-- @function [parent=#GAMEMODE] CalcViewModelView
 -- @param  self
 -- @param  #Weapon wep The weapon entity.
 -- @param  #Entity vm The viewmodel entity.
@@ -2039,7 +2025,7 @@
 -- 
 -- Called when a variable is edited on an Entity (called by Edit Properties
 -- menu), to determine if the edit should be permitted.
--- @function [parent=#GM] CanEditVariable
+-- @function [parent=#GAMEMODE] CanEditVariable
 -- @param  self
 -- @param  #Entity ent The entity being edited.
 -- @param  #Player ply The player doing the editing.
@@ -2052,7 +2038,7 @@
 -- _Server_
 -- 
 -- Determines if the player can exit the vehicle.
--- @function [parent=#GM] CanExitVehicle
+-- @function [parent=#GAMEMODE] CanExitVehicle
 -- @param  self
 -- @param  #Vehicle veh The vehicle entity.
 -- @param  #Player ply The player.
@@ -2063,7 +2049,7 @@
 -- 
 -- Determines whether or not the player can enter the vehicle. Called just
 -- before **GM:PlayerEnteredVehicle**.
--- @function [parent=#GM] CanPlayerEnterVehicle
+-- @function [parent=#GAMEMODE] CanPlayerEnterVehicle
 -- @param  self
 -- @param  #Player player The player.
 -- @param  #Vehicle vehicle The vehicle.
@@ -2074,7 +2060,7 @@
 -- _Server_
 -- 
 -- Determines if the player can kill themselves using the concommands "kill" or "explode".
--- @function [parent=#GM] CanPlayerSuicide
+-- @function [parent=#GAMEMODE] CanPlayerSuicide
 -- @param  self
 -- @param  #Player player The player.
 -- @return #boolean True if they can suicide.
@@ -2083,7 +2069,7 @@
 -- _Server_
 -- 
 -- Determines if the player can unfreeze the entity.
--- @function [parent=#GM] CanPlayerUnfreeze
+-- @function [parent=#GAMEMODE] CanPlayerUnfreeze
 -- @param  self
 -- @param  #Player player The player.
 -- @param  #Entity entity The entity.
@@ -2097,7 +2083,7 @@
 -- 
 -- **Note**: _This hook is called every frame regardless of whether or not a
 -- demo is being recorded._
--- @function [parent=#GM] CaptureVideo
+-- @function [parent=#GAMEMODE] CaptureVideo
 -- @param  self
 -- @param  #
 -- @return #
@@ -2108,7 +2094,7 @@
 -- Called when a message is printed to the chat box. Note, that this isn't
 -- working with player messages even though there are arguments for it. For
 -- player messages see **GM:PlayerSay** and **GM:OnPlayerChat**.
--- @function [parent=#GM] ChatText
+-- @function [parent=#GAMEMODE] ChatText
 -- @param  self
 -- @param  #number index The index of the player.
 -- @param  #string name The name of the player.
@@ -2128,7 +2114,7 @@
 -- _Client_
 -- 
 -- Called whenever the content of the user's chat input box is changed.
--- @function [parent=#GM] ChatTextChanged
+-- @function [parent=#GAMEMODE] ChatTextChanged
 -- @param  self
 -- @param  #string text The new contents of the input box.
 
@@ -2140,7 +2126,7 @@
 -- normally happen. If sv\_password is set and its value matches the password
 -- passed in by the client - then they are allowed to join. If it isn't set it
 -- lets them in too.
--- @function [parent=#GM] CheckPassword
+-- @function [parent=#GAMEMODE] CheckPassword
 -- @param  self
 -- @param  #string steamID64 The 64bit Steam ID of the joining player, use **util.SteamIDFrom64** to convert it to a "STEAM\_0:" one.
 -- @param  #string ipAddress The IP of the connecting client.
@@ -2155,7 +2141,7 @@
 -- _Client_ | _Menu_
 -- 
 -- Called when derma menus are closed with **CloseDermaMenus**.
--- @function [parent=#GM] CloseDermaMenus
+-- @function [parent=#GAMEMODE] CloseDermaMenus
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -2163,7 +2149,7 @@
 -- 
 -- Called whenever an entity becomes a clientside ragdoll. See
 -- **GM:CreateEntityRagdoll** for serverside ragdolls.
--- @function [parent=#GM] CreateClientsideRagdoll
+-- @function [parent=#GAMEMODE] CreateClientsideRagdoll
 -- @param  self
 -- @param  #Entity entity The Entity that created the ragdoll.
 -- @param  #Entity ragdoll The ragdoll being created.
@@ -2173,7 +2159,7 @@
 -- 
 -- Called when a serverside ragdoll of an entity has been created. See
 -- **GM:CreateClientsideRagdoll** for clientside ragdolls.
--- @function [parent=#GM] CreateEntityRagdoll
+-- @function [parent=#GAMEMODE] CreateEntityRagdoll
 -- @param  self
 -- @param  #Entity owner Entity that owns the ragdoll.
 -- @param  #Entity ragdoll The ragdoll entity.
@@ -2186,7 +2172,7 @@
 -- **Note**: _Due to this hook being clientside only, it could be overridden by
 -- the user allowing them to completely skip your logic, it is recommended to
 -- use **GM:StartCommand** in a shared file instead._
--- @function [parent=#GM] CreateMove
+-- @function [parent=#GAMEMODE] CreateMove
 -- @param  self
 -- @param  #CUserCmd cmd The User Command data.
 -- @return #boolean Return true to:
@@ -2201,7 +2187,7 @@
 -- Teams are created within this hook using **team.SetUp**.
 -- 
 -- **Note**: _This hook is called before **GM:PreGamemodeLoaded**._
--- @function [parent=#GM] CreateTeams
+-- @function [parent=#GAMEMODE] CreateTeams
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -2210,7 +2196,7 @@
 -- Called upon an animation event, this is the ideal place to call player
 -- animation functions such as **Player:AddVCDSequenceToGestureSlot**,
 -- **Player:AnimRestartGesture** and so on.
--- @function [parent=#GM] DoAnimationEvent
+-- @function [parent=#GAMEMODE] DoAnimationEvent
 -- @param  self
 -- @param  #Player ply Player who is being animated.
 -- @param  #number event Animation event. See **PLAYERANIMEVENT\_ Enums**.
@@ -2229,7 +2215,7 @@
 -- * **GM:PostPlayerDeath** is called after that.
 -- 
 -- **Note**: _**Player:Alive** returns true when this is called._
--- @function [parent=#GM] DoPlayerDeath
+-- @function [parent=#GAMEMODE] DoPlayerDeath
 -- @param  self
 -- @param  #Player ply The player.
 -- @param  #Entity attacker The entity that killed the player.
@@ -2239,7 +2225,7 @@
 -- _Client_
 -- 
 -- This hook is called every frame to draw all of the current death notices.
--- @function [parent=#GM] DrawDeathNotice
+-- @function [parent=#GAMEMODE] DrawDeathNotice
 -- @param  self
 -- @param  #number x X position to draw death notices as a ratio.
 -- @param  #number y Y position to draw death notices as a ratio.
@@ -2250,7 +2236,7 @@
 -- Called every frame before drawing the in-game monitors (Breencast, in-game
 -- TVs, etc), but doesn't seem to be doing anything, trying to render 2D or 3D
 -- elements fail.
--- @function [parent=#GM] DrawMonitors
+-- @function [parent=#GAMEMODE] DrawMonitors
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -2258,14 +2244,14 @@
 -- 
 -- Called after all other 2D draw hooks are called. Draws over all VGUI Panels
 -- and HUDs. Unlike **GM:HUDPaint**, this hook is called with the game paused and
--- while the Camera SWEP is equipped.
+-- while the Camera WEAPON is equipped.
 -- 
 -- **Note**: _Only be called when r\_drawvgui is enabled._
 -- 
 -- **Note**: _This is a rendering hook with a 2D rendering context. This means
 -- that the only rendering functions will work in it are functions with a 2D
 -- rendering context._
--- @function [parent=#GM] DrawOverlay
+-- @function [parent=#GAMEMODE] DrawOverlay
 -- @param  self
 -- @param  #Player ply Physgun owner.
 -- @param  #Weapon physgun The physgun.
@@ -2280,7 +2266,7 @@
 -- _Client_
 -- 
 -- Allows you to override physgun beam drawing.
--- @function [parent=#GM] DrawPhysgunBeam
+-- @function [parent=#GAMEMODE] DrawPhysgunBeam
 -- @param  self
 -- @param  #
 -- @return #
@@ -2290,7 +2276,7 @@
 -- 
 -- Called right before an entity stops driving. Overriding this hook will cause
 -- it to not call drive.End and the player will not stop driving.
--- @function [parent=#GM] EndEntityDriving
+-- @function [parent=#GAMEMODE] EndEntityDriving
 -- @param  self
 -- @param  #Entity ent The entity being driven.
 -- @param  #Player ply The player driving the entity.
@@ -2300,7 +2286,7 @@
 -- 
 -- Called whenever a sound has been played. This will not be called clientside
 -- if the server played the sound without the client also calling **Entity:EmitSound**.
--- @function [parent=#GM] EntityEmitSound
+-- @function [parent=#GAMEMODE] EntityEmitSound
 -- @param  self
 -- @param  #table data Information about the played sound. Changes done to this
 -- table can be applied by returning true from this hook. See **EmitSoundInfo structure**.
@@ -2316,7 +2302,7 @@
 -- **Warning**: _This hook is called directly from **Entity:FireBullets**. Due to
 -- this, you cannot call **Entity:FireBullets** inside this hook or an infinite
 -- loop will occur crashing the game._
--- @function [parent=#GM] EntityFireBullets
+-- @function [parent=#GAMEMODE] EntityFireBullets
 -- @param  self
 -- @param  #Entity ent The entity that fired the bullet.
 -- @param  #table data The bullet data. See **Bullet structure**.
@@ -2327,10 +2313,10 @@
 -- _Client_ | _Server_
 -- 
 -- Called when a key-value pair is set on an entity, either by the engine (for
--- example when map spawns) or **Entity:SetKeyValue**. See **ENT:KeyValue** for a
--- hook that works for scripted entities. See **SWEP:KeyValue** for a hook that
+-- example when map spawns) or **Entity:SetKeyValue**. See **ENTITY:KeyValue** for a
+-- hook that works for scripted entities. See **WEAPON:KeyValue** for a hook that
 -- works for scripted weapons.
--- @function [parent=#GM] EntityKeyValue
+-- @function [parent=#GAMEMODE] EntityKeyValue
 -- @param  self
 -- @param  #Entity ent Entity that the keyvalue is being set on.
 -- @param  #string key Key of the key/value pair.
@@ -2349,7 +2335,7 @@
 -- **Note**: _This hook is fired before the client value is actually changed.
 -- Calling the GetNW function for the specified variable name within this hook
 -- will return the old value, not the current/updated one._
--- @function [parent=#GM] EntityNetworkedVarChanged
+-- @function [parent=#GAMEMODE] EntityNetworkedVarChanged
 -- @param  self
 -- @param  #Entity ent The owner entity of changed NWVar.
 -- @param  #string name The name if changed NWVar.
@@ -2360,7 +2346,7 @@
 -- _Client_ | _Server_
 -- 
 -- Called right before the removal of an entity.
--- @function [parent=#GM] EntityRemoved
+-- @function [parent=#GAMEMODE] EntityRemoved
 -- @param  self
 -- @param  #Entity ent Entity being removed.
 
@@ -2369,7 +2355,7 @@
 -- 
 -- Called when an entity takes damage. You can modify all parts of the damage
 -- info in this hook.
--- @function [parent=#GM] EntityTakeDamage
+-- @function [parent=#GAMEMODE] EntityTakeDamage
 -- @param  self
 -- @param  #Entity target The entity taking damage.
 -- @param  #CTakeDamageInfo dmg Damage info.
@@ -2380,7 +2366,7 @@
 -- 
 -- This hook polls the entity the player use action should be applied to. The
 -- default behavior of this hook is on **CBasePlayer::FindUseEntity**().
--- @function [parent=#GM] FindUseEntity
+-- @function [parent=#GAMEMODE] FindUseEntity
 -- @param  self
 -- @param  #Player ply The player who initiated the use action.
 -- @param  #Entity defaultEnt The entity that was chosen by the engine.
@@ -2390,7 +2376,7 @@
 -- _Client_
 -- 
 -- Runs when user cancels/finishes typing.
--- @function [parent=#GM] FinishChat
+-- @function [parent=#GAMEMODE] FinishChat
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -2400,7 +2386,7 @@
 -- 
 -- **Note**: _This hook is predicted. This means that in singleplayer, it will
 -- not be called in the Client realm._
--- @function [parent=#GM] FinishMove
+-- @function [parent=#GAMEMODE] FinishMove
 -- @param  self
 -- @param  #Player ply Player.
 -- @param  #CMoveData mv Movement data.
@@ -2413,7 +2399,7 @@
 -- 
 -- **Note**: _This hook is only called on Lua start up, changing its value (or
 -- adding new hooks) after it has been already called will not have any effect._
--- @function [parent=#GM] ForceDermaSkin
+-- @function [parent=#GAMEMODE] ForceDermaSkin
 -- @param  self
 -- @return #string A case sensitive Derma skin name to be used as default,
 -- registered previously via **derma.DefineSkin**. Returning nothing, nil or
@@ -2423,14 +2409,14 @@
 -- _Menu_
 -- 
 -- Called to refresh menu content once it has initialized or something has been mounted.
--- @function [parent=#GM] GameContentChanged
+-- @function [parent=#GAMEMODE] GameContentChanged
 -- @param  self
 
 -------------------------------------------------------------------------------
 -- _Server_
 -- 
 -- Called when a player takes damage from falling, allows to override the damage.
--- @function [parent=#GM] GetFallDamage
+-- @function [parent=#GAMEMODE] GetFallDamage
 -- @param  self
 -- @param  #Player ply The player.
 -- @param  #number speed The fall speed.
@@ -2441,7 +2427,7 @@
 -- 
 -- Called when the game(server) needs to update the text shown in the server
 -- browser as the gamemode.
--- @function [parent=#GM] GetGameDescription
+-- @function [parent=#GAMEMODE] GetGameDescription
 -- @param  self
 -- @return #string The text to be shown in the server browser as the gamemode.
 
@@ -2449,7 +2435,7 @@
 -- _Client_
 -- 
 -- Allows you to modify the Source Engine's motion blur shaders.
--- @function [parent=#GM] GetMotionBlurValues
+-- @function [parent=#GAMEMODE] GetMotionBlurValues
 -- @param  self
 -- @param  #number horizontal The amount of horizontal blur.
 -- @param  #number vertical The amount of vertical blur.
@@ -2471,7 +2457,7 @@
 -- 
 -- **Note**: _This hook can not override preferred carry angles of props such
 -- as the sawblade and the harpoon._
--- @function [parent=#GM] GetPreferredCarryAngles
+-- @function [parent=#GAMEMODE] GetPreferredCarryAngles
 -- @param  self
 -- @param  #Entity ent The entity to generate carry angles for.
 -- @return #Angle The preferred carry angles for the entity.
@@ -2480,7 +2466,7 @@
 -- _Client_
 -- 
 -- Returns the color for the given entity's team. This is used in chat and deathnotice text.
--- @function [parent=#GM] GetTeamColor
+-- @function [parent=#GAMEMODE] GetTeamColor
 -- @param  self
 -- @param  #Entity ent Entity.
 -- @return #table Team Color.
@@ -2489,7 +2475,7 @@
 -- _Client_
 -- 
 -- Returns the team color for the given team index.
--- @function [parent=#GM] GetTeamNumColor
+-- @function [parent=#GAMEMODE] GetTeamNumColor
 -- @param  self
 -- @param  #number team Team index.
 -- @return #table Team Color.
@@ -2498,7 +2484,7 @@
 -- _Client_ | _Server_
 -- 
 -- Override this hook to disable/change ear-grabbing in your gamemode.
--- @function [parent=#GM] GrabEarAnimation
+-- @function [parent=#GAMEMODE] GrabEarAnimation
 -- @param  self
 -- @param  #Player ply Player.
 
@@ -2506,7 +2492,7 @@
 -- _Server_
 -- 
 -- Called when an entity is released by a gravity gun.
--- @function [parent=#GM] GravGunOnDropped
+-- @function [parent=#GAMEMODE] GravGunOnDropped
 -- @param  self
 -- @param  #Player ply Player who is wielding the gravity gun.
 -- @param  #Entity ent The entity that has been dropped.
@@ -2515,7 +2501,7 @@
 -- _Server_
 -- 
 -- Called when an entity is picked up by a gravity gun.
--- @function [parent=#GM] GravGunOnPickedUp
+-- @function [parent=#GAMEMODE] GravGunOnPickedUp
 -- @param  self
 -- @param  #Player ply The player wielding the gravity gun.
 -- @param  #Entity ent The entity that has been picked up by the gravity gun.
@@ -2525,9 +2511,9 @@
 -- 
 -- Called every tick to poll whether a player is allowed to pick up an entity
 -- with the gravity gun or not. See **GM:AllowPlayerPickup** for the +USE pickup
--- variant. Calls **ENT:GravGunPickupAllowed** on the entity being hovered every
+-- variant. Calls **ENTITY:GravGunPickupAllowed** on the entity being hovered every
 -- frame in Sandbox-derived gamemodes.
--- @function [parent=#GM] GravGunPickupAllowed
+-- @function [parent=#GAMEMODE] GravGunPickupAllowed
 -- @param  self
 -- @param  #Player ply The player wielding the gravity gun.
 -- @param  #Entity ent The entity the player is attempting to pick up.
@@ -2537,9 +2523,9 @@
 -- _Client_ | _Server_
 -- 
 -- Called when an entity is about to be punted with the gravity gun (primary
--- fire). By default this function makes **ENT:GravGunPunt** work in Sandbox
+-- fire). By default this function makes **ENTITY:GravGunPunt** work in Sandbox
 -- derived gamemmodes.
--- @function [parent=#GM] GravGunPunt
+-- @function [parent=#GAMEMODE] GravGunPunt
 -- @param  self
 -- @param  #Player ply The player wielding the gravity gun.
 -- @param  #Entity ent The entity the player is attempting to punt.
@@ -2551,7 +2537,7 @@
 -- Called when the mouse has been double clicked on any panel derived from
 -- CGModBase, such as the panel used by **gui.EnableScreenClicker** and the panel
 -- used by **Panel:ParentToHUD**. By default this hook calls **GM:GUIMousePressed**.
--- @function [parent=#GM] GUIMouseDoublePressed
+-- @function [parent=#GAMEMODE] GUIMouseDoublePressed
 -- @param  self
 -- @param  #number mouseCode The code of the mouse button pressed, see **MOUSE\_ Enums**.
 -- @param  #Vector aimVector A normalized vector pointing in the direction the client has clicked.
@@ -2563,7 +2549,7 @@
 -- or on any panel derived from CGModBase, such as the panel used by
 -- **gui.EnableScreenClicker** and the panel used by **Panel:ParentToHUD**. See
 -- **GM:VGUIMousePressed** for a hook that is called on all VGUI elements.
--- @function [parent=#GM] GUIMousePressed
+-- @function [parent=#GAMEMODE] GUIMousePressed
 -- @param  self
 -- @param  #number mouseCode The key that the player pressed using **MOUSE\_ Enums**.
 -- @param  #Vector aimVector A normalized direction vector local to the camera.
@@ -2575,7 +2561,7 @@
 -- Called whenever a players releases a mouse key on the context menu in
 -- Sandbox or on any panel derived from CGModBase, such as the panel used by
 -- **gui.EnableScreenClicker** and the panel used by **Panel:ParentToHUD**.
--- @function [parent=#GM] GUIMouseReleased
+-- @function [parent=#GAMEMODE] GUIMouseReleased
 -- @param  self
 -- @param  #number mouseCode The key the player released, see **MOUSE\_ Enums**.
 -- @param  #Vector aimVector A normalized direction vector local to the camera.
@@ -2585,7 +2571,7 @@
 -- _Client_ | _Server_
 -- 
 -- Allows to override player driving animations.
--- @function [parent=#GM] HandlePlayerDriving
+-- @function [parent=#GAMEMODE] HandlePlayerDriving
 -- @param  self
 -- @param  #Player ply Player to process.
 -- @return #boolean Return true if we've changed/set the animation, false otherwise.
@@ -2594,7 +2580,7 @@
 -- _Client_ | _Server_
 -- 
 -- Allows to override player crouch animations.
--- @function [parent=#GM] HandlePlayerDucking
+-- @function [parent=#GAMEMODE] HandlePlayerDucking
 -- @param  self
 -- @param  #Player ply The player.
 -- @param  #number velocity Players velocity.
@@ -2604,7 +2590,7 @@
 -- _Client_ | _Server_
 -- 
 -- Allows to override player jumping animations.
--- @function [parent=#GM] HandlePlayerJumping
+-- @function [parent=#GAMEMODE] HandlePlayerJumping
 -- @param  self
 -- @param  #Player ply The player.
 -- @param  #number velocity Players velocity.
@@ -2614,7 +2600,7 @@
 -- _Client_ | _Server_
 -- 
 -- Allows to override player landing animations.
--- @function [parent=#GM] HandlePlayerLanding
+-- @function [parent=#GAMEMODE] HandlePlayerLanding
 -- @param  self
 -- @param  #Player ply The player.
 -- @param  #number velocity Players velocity.
@@ -2625,7 +2611,7 @@
 -- _Client_ | _Server_
 -- 
 -- Allows to override player noclip animations.
--- @function [parent=#GM] HandlePlayerNoClipping
+-- @function [parent=#GAMEMODE] HandlePlayerNoClipping
 -- @param  self
 -- @param  #Player ply The player.
 -- @param  #number velocity Players velocity.
@@ -2635,7 +2621,7 @@
 -- _Client_ | _Server_
 -- 
 -- Allows to override player swimming animations.
--- @function [parent=#GM] HandlePlayerSwimming
+-- @function [parent=#GAMEMODE] HandlePlayerSwimming
 -- @param  self
 -- @param  #Player ply The player.
 -- @param  #number velocity Players velocity.
@@ -2645,7 +2631,7 @@
 -- _Client_ | _Server_
 -- 
 -- Allows to override player flying (in mid-air, not noclipping) animations.
--- @function [parent=#GM] HandlePlayerVaulting
+-- @function [parent=#GAMEMODE] HandlePlayerVaulting
 -- @param  self
 -- @param  #Player ply The player.
 -- @param  #number velocity Players velocity.
@@ -2655,14 +2641,14 @@
 -- _Client_
 -- 
 -- Hides the team selection panel.
--- @function [parent=#GM] HideTeam
+-- @function [parent=#GAMEMODE] HideTeam
 -- @param  self
 
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
 -- Called when the client has picked up ammo. Override to disable default HUD notification.
--- @function [parent=#GM] HUDAmmoPickedUp
+-- @function [parent=#GAMEMODE] HUDAmmoPickedUp
 -- @param  self
 -- @param  #string itemName Name of the item (ammo) picked up.
 -- @param  #number amount Amount of the item (ammo) picked up.
@@ -2671,7 +2657,7 @@
 -- _Client_
 -- 
 -- Renders the HUD pick-up history. Override to hide default or draw your own HUD.
--- @function [parent=#GM] HUDDrawPickupHistory
+-- @function [parent=#GAMEMODE] HUDDrawPickupHistory
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -2683,7 +2669,7 @@
 -- **Note**: _This is a rendering hook with a 2D rendering context. This means
 -- that the only rendering functions will work in it are functions with a 2D
 -- rendering context._
--- @function [parent=#GM] HUDDrawScoreBoard
+-- @function [parent=#GAMEMODE] HUDDrawScoreBoard
 -- @param  self
 -- @param  #
 -- @return #
@@ -2693,14 +2679,14 @@
 -- 
 -- Called from **GM:HUDPaint** to draw player info when you hover over a player
 -- with your crosshair or mouse.
--- @function [parent=#GM] HUDDrawTargetID
+-- @function [parent=#GAMEMODE] HUDDrawTargetID
 -- @param  self
 
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
 -- Called when an item has been picked up. Override to disable the default HUD notification.
--- @function [parent=#GM] HUDItemPickedUp
+-- @function [parent=#GAMEMODE] HUDItemPickedUp
 -- @param  self
 -- @param  #string itemName Name of the picked up item.
 
@@ -2709,14 +2695,14 @@
 -- 
 -- Called whenever the HUD should be drawn. Called right before
 -- **GM:HUDDrawScoreBoard** and after **GM:HUDPaintBackground**. Not called when the
--- Camera SWEP is equipped. See also **GM:DrawOverlay**.
+-- Camera WEAPON is equipped. See also **GM:DrawOverlay**.
 -- 
 -- **Note**: _Only be called when r\_drawvgui is enabled and the game is not paused._
 -- 
 -- **Note**: _This is a rendering hook with a 2D rendering context. This means
 -- that the only rendering functions will work in it are functions with a 2D
 -- rendering context._
--- @function [parent=#GM] HUDPaint
+-- @function [parent=#GAMEMODE] HUDPaint
 -- @param  self
 -- @param  #
 -- @return #
@@ -2730,7 +2716,7 @@
 -- **Note**: _This is a rendering hook with a 2D rendering context. This means
 -- that the only rendering functions will work in it are functions with a 2D
 -- rendering context._
--- @function [parent=#GM] HUDPaintBackground
+-- @function [parent=#GAMEMODE] HUDPaintBackground
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -2742,7 +2728,7 @@
 -- **Note**: _This hook is called HUNDREDS of times per second (more than 5
 -- times per frame on average). You shouldn't be performing any
 -- computationally intensive operations._
--- @function [parent=#GM] HUDShouldDraw
+-- @function [parent=#GAMEMODE] HUDShouldDraw
 -- @param  self
 -- @param  #string name The name of the HUD element.
 -- @return #boolean Return false to prevent the given element from being drawn on the client's screen.
@@ -2752,7 +2738,7 @@
 -- 
 -- Called when a weapon has been picked up. Override to disable the default
 -- HUD notification.
--- @function [parent=#GM] HUDWeaponPickedUp
+-- @function [parent=#GAMEMODE] HUDWeaponPickedUp
 -- @param  self
 -- @param  #Weapon weapon The picked up weapon.
 
@@ -2760,7 +2746,7 @@
 -- _Client_ | _Server_
 -- 
 -- Called after the gamemode loads and starts.
--- @function [parent=#GM] Initialize
+-- @function [parent=#GAMEMODE] Initialize
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -2771,7 +2757,7 @@
 -- **Note**: _At this point the client only knows about the entities that are
 -- within the spawnpoints' PVS. For instance, if the server sends an entity
 -- that is not within this PVS, the client will receive it as NULL entity._
--- @function [parent=#GM] InitPostEntity
+-- @function [parent=#GAMEMODE] InitPostEntity
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -2779,7 +2765,7 @@
 -- 
 -- Allows you to modify the supplied User Command with mouse input. This could
 -- be used to make moving the mouse do funky things to view angles.
--- @function [parent=#GM] InputMouseApply
+-- @function [parent=#GAMEMODE] InputMouseApply
 -- @param  self
 -- @param  #CUserCmd cmd User command.
 -- @param  #number x The amount of mouse movement across the X axis this frame.
@@ -2791,7 +2777,7 @@
 -- _Server_
 -- 
 -- Check if a player can spawn at a certain spawnpoint.
--- @function [parent=#GM] IsSpawnpointSuitable
+-- @function [parent=#GAMEMODE] IsSpawnpointSuitable
 -- @param  self
 -- @param  #Player ply The player who is spawned.
 -- @param  #Entity spawnpoint The spawnpoint entity (on the map).
@@ -2811,7 +2797,7 @@
 -- 
 -- **Note**: _This hook is predicted. This means that in singleplayer, it will
 -- not be called in the Client realm._
--- @function [parent=#GM] KeyPress
+-- @function [parent=#GAMEMODE] KeyPress
 -- @param  self
 -- @param  #Player ply The player pressing the key. If running client-side, this will always be **LocalPlayer**.
 -- @param  #number key The key that the player pressed using **IN\_ Enums**.
@@ -2824,7 +2810,7 @@
 -- 
 -- **Note**: _This hook is predicted. This means that in singleplayer, it will
 -- not be called in the Client realm._
--- @function [parent=#GM] KeyRelease
+-- @function [parent=#GAMEMODE] KeyRelease
 -- @param  self
 -- @param  #Player ply The player releasing the key. If running client-side, this will always be **LocalPlayer**.
 -- @param  #number key The key that the player released using **IN\_ Enums**.
@@ -2833,7 +2819,7 @@
 -- _Server_
 -- 
 -- Called from gm\_load when the game should load a map.
--- @function [parent=#GM] LoadGModSave
+-- @function [parent=#GAMEMODE] LoadGModSave
 -- @param  self
 -- @param  #string data
 -- @param  #string map
@@ -2843,7 +2829,7 @@
 -- _Menu_
 -- 
 -- Called when menu.lua has finished loading.
--- @function [parent=#GM] MenuStart
+-- @function [parent=#GAMEMODE] MenuStart
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -2851,7 +2837,7 @@
 -- 
 -- Override this gamemode function to disable mouth movement when talking on
 -- voice chat.
--- @function [parent=#GM] MouthMoveAnimation
+-- @function [parent=#GAMEMODE] MouthMoveAnimation
 -- @param  self
 -- @param  #Player ply Player in question.
 
@@ -2868,7 +2854,7 @@
 -- 
 -- **Note**: _This hook is predicted. This means that in singleplayer, it will
 -- not be called in the Client realm._
--- @function [parent=#GM] Move
+-- @function [parent=#GAMEMODE] Move
 -- @param  self
 -- @param  #Player ply Player.
 -- @param  #CMoveData mv Movement information.
@@ -2879,7 +2865,7 @@
 -- 
 -- Returning true in this hook will cause it to render depth buffers defined
 -- with **render.GetResolvedFullFrameDepth**.
--- @function [parent=#GM] NeedsDepthPass
+-- @function [parent=#GAMEMODE] NeedsDepthPass
 -- @param  self
 -- @return #boolean Render depth buffer.
 
@@ -2887,7 +2873,7 @@
 -- _Client_
 -- 
 -- Called when an entity has been created over the network.
--- @function [parent=#GM] NetworkEntityCreated
+-- @function [parent=#GAMEMODE] NetworkEntityCreated
 -- @param  self
 -- @param  #Entity ent Created entity.
 
@@ -2895,7 +2881,7 @@
 -- _Server_
 -- 
 -- Called when a player has been validated by Steam.
--- @function [parent=#GM] NetworkIDValidated
+-- @function [parent=#GAMEMODE] NetworkIDValidated
 -- @param  self
 -- @param  #string name Player name.
 -- @param  #string steamID Player SteamID.
@@ -2912,7 +2898,7 @@
 -- 
 -- **Note**: _When the entity stops transmitting, **Entity:IsDormant** will only
 -- return true after this hook._
--- @function [parent=#GM] NotifyShouldTransmit
+-- @function [parent=#GAMEMODE] NotifyShouldTransmit
 -- @param  self
 -- @param  #Entity ent The entity that changed its transmission state.
 -- @param  #boolean shouldtransmit True if we started transmitting to this client and false if we stopped.
@@ -2922,7 +2908,7 @@
 -- 
 -- Called when a player has achieved an achievement. You can get the name and
 -- other information from an achievement ID with the achievements library.
--- @function [parent=#GM] OnAchievementAchieved
+-- @function [parent=#GAMEMODE] OnAchievementAchieved
 -- @param  self
 -- @param  #Player ply The player that earned the achievement.
 -- @param  #number achievement The index of the achievement.
@@ -2931,7 +2917,7 @@
 -- _Client_
 -- 
 -- Called when the local player presses TAB while having their chatbox opened.
--- @function [parent=#GM] OnChatTab
+-- @function [parent=#GAMEMODE] OnChatTab
 -- @param  self
 -- @param  #string text The currently typed into chatbox text.
 -- @return #string What should be placed into the chatbox instead of what currently is when player presses tab.
@@ -2940,14 +2926,14 @@
 -- _Client_
 -- 
 -- Called when the context menu was closed.
--- @function [parent=#GM] OnContextMenuClose
+-- @function [parent=#GAMEMODE] OnContextMenuClose
 -- @param  self
 
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
 -- Called when the context menu is opened.
--- @function [parent=#GM] OnContextMenuOpen
+-- @function [parent=#GAMEMODE] OnContextMenuOpen
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -2955,7 +2941,7 @@
 -- 
 -- Called when a player has been hurt by an explosion. Override to disable
 -- default sound effect.
--- @function [parent=#GM] OnDamagedByExplosion
+-- @function [parent=#GAMEMODE] OnDamagedByExplosion
 -- @param  self
 -- @param  #Player ply Player who has been hurt.
 -- @param  #CTakeDamageInfo dmginfo Damage info from explsion.
@@ -2969,7 +2955,7 @@
 -- 
 -- **Warning**: _Removing the created entity during this event can lead to
 -- unexpected problems. Use **timer.Simple**( 0, ...) to safely remove the entity._
--- @function [parent=#GM] OnEntityCreated
+-- @function [parent=#GAMEMODE] OnEntityCreated
 -- @param  self
 -- @param  #Entity entity The entity.
 
@@ -2978,7 +2964,7 @@
 -- 
 -- Called when the gamemode is loaded. **LocalPlayer**() returns NULL at the time
 -- this is run.
--- @function [parent=#GM] OnGamemodeLoaded
+-- @function [parent=#GAMEMODE] OnGamemodeLoaded
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -2987,7 +2973,7 @@
 -- Called when a Lua error occurs, only works in the Menu realm.
 -- 
 -- **Warning**: _Modify menu state Lua code at your own risk!_
--- @function [parent=#GM] OnLuaError
+-- @function [parent=#GAMEMODE] OnLuaError
 -- @param  self
 -- @param  #string error The error that occurred.
 -- @param  #number realm Where the Lua error took place.
@@ -2998,7 +2984,7 @@
 -- _Server_
 -- 
 -- Called whenever an NPC is killed.
--- @function [parent=#GM] OnNPCKilled
+-- @function [parent=#GAMEMODE] OnNPCKilled
 -- @param  self
 -- @param  #NPC npc The killed NPC.
 -- @param  #Entity attacker The NPCs attacker, the entity that gets the kill credit, for example a player or an NPC.
@@ -3008,7 +2994,7 @@
 -- _Server_
 -- 
 -- Called when a player freezes an entity with the physgun.
--- @function [parent=#GM] OnPhysgunFreeze
+-- @function [parent=#GAMEMODE] OnPhysgunFreeze
 -- @param  self
 -- @param  #Entity weapon The weapon that was used to freeze the entity.
 -- @param  #PhysObj physobj Physics object of the entity.
@@ -3021,7 +3007,7 @@
 -- 
 -- Called when a player reloads with the physgun. Override this to disable
 -- default unfreezing behavior.
--- @function [parent=#GM] OnPhysgunReload
+-- @function [parent=#GAMEMODE] OnPhysgunReload
 -- @param  self
 -- @param  #Weapon physgun The physgun in question.
 -- @param  #Player ply The player wielding the physgun.
@@ -3034,7 +3020,7 @@
 -- 
 -- **Warning**: _This hook will not work with **hook.Add** and it is only called
 -- manually from **GM:PlayerJoinTeam** by the base gamemode._
--- @function [parent=#GM] OnPlayerChangedTeam
+-- @function [parent=#GAMEMODE] OnPlayerChangedTeam
 -- @param  self
 -- @param  #Player ply Player who has changed team.
 -- @param  #number oldTeam Index of the team the player was originally in.
@@ -3045,7 +3031,7 @@
 -- 
 -- Called whenever a player sends a chat message. For the serverside equivalent,
 -- see **GM:PlayerSay**.
--- @function [parent=#GM] OnPlayerChat
+-- @function [parent=#GAMEMODE] OnPlayerChat
 -- @param  self
 -- @param  #Player ply The player.
 -- @param  #string text The message's text.
@@ -3060,7 +3046,7 @@
 -- 
 -- **Note**: _This hook is predicted. This means that in singleplayer, it will
 -- not be called in the Client realm._
--- @function [parent=#GM] OnPlayerHitGround
+-- @function [parent=#GAMEMODE] OnPlayerHitGround
 -- @param  self
 -- @param  #Entity player Player.
 -- @param  #boolean inWater Did the player land in water?
@@ -3075,7 +3061,7 @@
 -- 
 -- **Note**: _It seems that this event can be triggered more than once for a
 -- single refresh event._
--- @function [parent=#GM] OnReloaded
+-- @function [parent=#GAMEMODE] OnReloaded
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -3083,7 +3069,7 @@
 -- 
 -- Called when a player releases the "+menu" bind on their keyboard, which is
 -- bound to Q by default.
--- @function [parent=#GM] OnSpawnMenuClose
+-- @function [parent=#GAMEMODE] OnSpawnMenuClose
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -3091,7 +3077,7 @@
 -- 
 -- Called when a player presses the "+menu" bind on their keyboard, which is
 -- bound to Q by default.
--- @function [parent=#GM] OnSpawnMenuOpen
+-- @function [parent=#GAMEMODE] OnSpawnMenuOpen
 -- @param  self
 -- @return #boolean Allow the player to open the spawn menu or not.
 
@@ -3100,7 +3086,7 @@
 -- 
 -- Called when a DTextEntry gets focus. This hook is run from
 -- **DTextEntry:OnGetFocus** and **PANEL:OnMousePressed** of DTextEntry.
--- @function [parent=#GM] OnTextEntryGetFocus
+-- @function [parent=#GAMEMODE] OnTextEntryGetFocus
 -- @param  self
 -- @param  #Panel panel The panel that got focus.
 
@@ -3108,7 +3094,7 @@
 -- _Client_
 -- 
 -- Called when DTextEntry loses focus.
--- @function [parent=#GM] OnTextEntryLoseFocus
+-- @function [parent=#GAMEMODE] OnTextEntryLoseFocus
 -- @param  self
 -- @param  #Panel panel The panel that lost focus.
 
@@ -3116,7 +3102,7 @@
 -- _Client_
 -- 
 -- Called when the player undoes something.
--- @function [parent=#GM] OnUndo
+-- @function [parent=#GAMEMODE] OnUndo
 -- @param  self
 -- @param  #string name The name of the undo action.
 -- @param  #string customText The custom text for the undo, set by **undo.SetCustomUndoText**.
@@ -3126,7 +3112,7 @@
 -- 
 -- Called when the player changes their weapon to another one - and their
 -- viewmodel model changes.
--- @function [parent=#GM] OnViewModelChanged
+-- @function [parent=#GAMEMODE] OnViewModelChanged
 -- @param  self
 -- @param  #Entity viewmodel The viewmodel that is changing.
 -- @param  #string oldModel The old model.
@@ -3136,7 +3122,7 @@
 -- _Client_ | _Server_
 -- 
 -- Called when a player drops an entity with the Physgun.
--- @function [parent=#GM] PhysgunDrop
+-- @function [parent=#GAMEMODE] PhysgunDrop
 -- @param  self
 -- @param  #Player ply The player who dropped an entity.
 -- @param  #Entity ent The dropped entity.
@@ -3148,7 +3134,7 @@
 -- 
 -- **Note**: _This hook is predicted. This means that in singleplayer, it will
 -- not be called in the Client realm._
--- @function [parent=#GM] PhysgunPickup
+-- @function [parent=#GAMEMODE] PhysgunPickup
 -- @param  self
 -- @param  #Player player The player that is picking up using the phys gun.
 -- @param  #Entity entity The entity that is being picked up.
@@ -3158,7 +3144,7 @@
 -- _Server_
 -- 
 -- Called once when the player is authenticated.
--- @function [parent=#GM] PlayerAuthed
+-- @function [parent=#GAMEMODE] PlayerAuthed
 -- @param  self
 -- @param  #Player ply The player.
 -- @param  #string steamid The player's SteamID.
@@ -3174,7 +3160,7 @@
 -- 
 -- **Note**: _To stop the user from using +attack, +left and any other movement
 -- commands of the sort, please look into using **GM:StartCommand** instead._
--- @function [parent=#GM] PlayerBindPress
+-- @function [parent=#GAMEMODE] PlayerBindPress
 -- @param  self
 -- @param  #Player ply The player who used the command; this will always be equal to **LocalPlayer**.
 -- @param  #string bind The bind command.
@@ -3188,7 +3174,7 @@
 -- 
 -- **Note**: _This hook is predicted. This means that in singleplayer, it will
 -- not be called in the Client realm._
--- @function [parent=#GM] PlayerButtonDown
+-- @function [parent=#GAMEMODE] PlayerButtonDown
 -- @param  self
 -- @param  #Player ply Player who pressed the button.
 -- @param  #number button The button, see **BUTTON\_CODE\_ Enums**.
@@ -3200,7 +3186,7 @@
 -- 
 -- **Note**: _This hook is predicted. This means that in singleplayer, it will
 -- not be called in the Client realm._
--- @function [parent=#GM] PlayerButtonUp
+-- @function [parent=#GAMEMODE] PlayerButtonUp
 -- @param  self
 -- @param  #Player ply Player who released the button.
 -- @param  #number button The button, see **BUTTON\_CODE\_ Enums**.
@@ -3209,7 +3195,7 @@
 -- _Server_
 -- 
 -- Decides whether a player can hear another player using voice chat.
--- @function [parent=#GM] PlayerCanHearPlayersVoice
+-- @function [parent=#GAMEMODE] PlayerCanHearPlayersVoice
 -- @param  self
 -- @param  #Player listener The listening player.
 -- @param  #Player talker The talking player.
@@ -3220,7 +3206,7 @@
 -- _Server_
 -- 
 -- Returns whether or not a player is allowed to join a team.
--- @function [parent=#GM] PlayerCanJoinTeam
+-- @function [parent=#GAMEMODE] PlayerCanJoinTeam
 -- @param  self
 -- @param  #Player ply Player attempting to switch teams.
 -- @param  #number team Index of the team.
@@ -3230,7 +3216,7 @@
 -- _Server_
 -- 
 -- Returns whether or not a player is allowed to pick an item up.
--- @function [parent=#GM] PlayerCanPickupItem
+-- @function [parent=#GAMEMODE] PlayerCanPickupItem
 -- @param  self
 -- @param  #Player ply Player attempting to pick up.
 -- @param  #Entity item The item the player is attempting to pick up.
@@ -3240,7 +3226,7 @@
 -- _Server_
 -- 
 -- Returns whether or not a player is allowed to pick up a weapon.
--- @function [parent=#GM] PlayerCanPickupWeapon
+-- @function [parent=#GAMEMODE] PlayerCanPickupWeapon
 -- @param  self
 -- @param  #Player ply The player attempting to pick up the weapon.
 -- @param  #Weapon wep The weapon entity in question.
@@ -3250,7 +3236,7 @@
 -- _Server_
 -- 
 -- Returns whether or not the player can see the other player's chat.
--- @function [parent=#GM] PlayerCanSeePlayersChat
+-- @function [parent=#GAMEMODE] PlayerCanSeePlayersChat
 -- @param  self
 -- @param  #string text The chat text.
 -- @param  #boolean teamOnly If the message is team-only.
@@ -3268,7 +3254,7 @@
 -- **Note**: _This is only called clientside for listen server hosts._
 -- 
 -- **Note**: _This is not called clientside for the local player._
--- @function [parent=#GM] PlayerConnect
+-- @function [parent=#GAMEMODE] PlayerConnect
 -- @param  self
 -- @param  #string name The player's name.
 -- @param  #string ip The player's IP address. Will be "none" for bots.
@@ -3287,7 +3273,7 @@
 -- See **Player:LastHitGroup** if you need to get the last hit hitgroup of the player.
 -- 
 -- **Note**: _**Player:Alive** will return true in this hook. This behaviour is not defined._
--- @function [parent=#GM] PlayerDeath
+-- @function [parent=#GAMEMODE] PlayerDeath
 -- @param  self
 -- @param  #Player victim The player who died.
 -- @param  #Entity inflictor Item used to kill the person.
@@ -3297,7 +3283,7 @@
 -- _Server_
 -- 
 -- Returns whether or not the default death sound should be muted.
--- @function [parent=#GM] PlayerDeathSound
+-- @function [parent=#GAMEMODE] PlayerDeathSound
 -- @param  self
 -- @return #boolean Mute death sound.
 
@@ -3307,7 +3293,7 @@
 -- Called every think while the player is dead. The return value will determine
 -- if the player respawns. Overwriting this function will prevent players from
 -- respawning by pressing space or clicking.
--- @function [parent=#GM] PlayerDeathThink
+-- @function [parent=#GAMEMODE] PlayerDeathThink
 -- @param  self
 -- @param  #Player ply The player affected in the hook.
 -- @return #boolean Allow spawn.
@@ -3317,7 +3303,7 @@
 -- 
 -- Called when a player leaves the server. See the player\_disconnect gameevent
 -- for a shared version of this hook.
--- @function [parent=#GM] PlayerDisconnected
+-- @function [parent=#GAMEMODE] PlayerDisconnected
 -- @param  self
 -- @param  #Player ply The player.
 
@@ -3325,7 +3311,7 @@
 -- _Client_ | _Server_
 -- 
 -- Called to update the player's animation during a drive.
--- @function [parent=#GM] PlayerDriveAnimate
+-- @function [parent=#GAMEMODE] PlayerDriveAnimate
 -- @param  self
 -- @param  #Player ply The driving player.
 
@@ -3335,8 +3321,8 @@
 -- Called when a weapon is dropped by a player via **Player:DropWeapon**. The
 -- Called when a weapon is dropped by a player via **Player:DropWeapon**. The
 -- weapon's **Entity:GetOwner** will be NULL at the time this hook is called.
--- **SWEP:OnDrop** will be called before this hook is.
--- @function [parent=#GM] PlayerDroppedWeapon
+-- **WEAPON:OnDrop** will be called before this hook is.
+-- @function [parent=#GAMEMODE] PlayerDroppedWeapon
 -- @param  self
 -- @param  #Player owner The player who owned this weapon before it was dropped.
 -- @param  #Weapon wep The weapon that was dropped.
@@ -3345,7 +3331,7 @@
 -- _Client_
 -- 
 -- Called when player stops using voice chat.
--- @function [parent=#GM] PlayerEndVoice
+-- @function [parent=#GAMEMODE] PlayerEndVoice
 -- @param  self
 -- @param  #Player ply Player who stopped talking.
 
@@ -3354,7 +3340,7 @@
 -- 
 -- Called when a player enters a vehicle. Called just after **GM:CanPlayerEnterVehicle**.
 -- See also **GM:PlayerLeaveVehicle**.
--- @function [parent=#GM] PlayerEnteredVehicle
+-- @function [parent=#GAMEMODE] PlayerEnteredVehicle
 -- @param  self
 -- @param  #Player ply Player who entered vehicle.
 -- @param  #Vehicle veh Vehicle the player entered.
@@ -3364,7 +3350,7 @@
 -- _Client_ | _Server_
 -- 
 -- Called whenever a player steps. Return true to mute the normal sound.
--- @function [parent=#GM] PlayerFootstep
+-- @function [parent=#GAMEMODE] PlayerFootstep
 -- @param  self
 -- @param  #Player ply The stepping player.
 -- @param  #Vector pos The position of the step.
@@ -3378,7 +3364,7 @@
 -- _Server_
 -- 
 -- Called when a player freezes an object.
--- @function [parent=#GM] PlayerFrozeObject
+-- @function [parent=#GAMEMODE] PlayerFrozeObject
 -- @param  self
 -- @param  #Player ply Player who has frozen an object.
 -- @param  #Entity ent The frozen object.
@@ -3388,7 +3374,7 @@
 -- _Server_
 -- 
 -- Called when a player gets hurt.
--- @function [parent=#GM] PlayerHurt
+-- @function [parent=#GAMEMODE] PlayerHurt
 -- @param  self
 -- @param  #Player victim The attck victim.
 -- @param  #Entity attacker The attacking entity.
@@ -3405,7 +3391,7 @@
 -- player is still in seeing the "Sending Client Info" screen. For example,
 -- trying to use the **Entity:GetModel** function will return the default model
 -- ("player/default.mdl")._
--- @function [parent=#GM] PlayerInitialSpawn
+-- @function [parent=#GAMEMODE] PlayerInitialSpawn
 -- @param  self
 -- @param  #Player player The player who spawned.
 
@@ -3414,7 +3400,7 @@
 -- 
 -- Makes the player join a specified team. This is a convenience function that
 -- calls **Player:SetTeam** and runs the **GM:OnPlayerChangedTeam** hook.
--- @function [parent=#GM] PlayerJoinTeam
+-- @function [parent=#GAMEMODE] PlayerJoinTeam
 -- @param  self
 -- @param  #Player ply Player to force.
 -- @param  #number team The team to put player into.
@@ -3423,7 +3409,7 @@
 -- _Server_
 -- 
 -- Called when a player leaves a vehicle.
--- @function [parent=#GM] PlayerLeaveVehicle
+-- @function [parent=#GAMEMODE] PlayerLeaveVehicle
 -- @param  self
 -- @param  #Player ply Player who left a vehicle.
 -- @param  #Vehicle veh Vehicle the player left.
@@ -3436,7 +3422,7 @@
 -- **Note**: _This function may not work in your custom gamemode if you have
 -- overridden your **GM:PlayerSpawn** and you do not use self.BaseClass.PlayerSpawn
 -- or **hook.Call**._
--- @function [parent=#GM] PlayerLoadout
+-- @function [parent=#GAMEMODE] PlayerLoadout
 -- @param  self
 -- @param  #Player ply Player to give weapons to.
 
@@ -3447,7 +3433,7 @@
 -- 
 -- **Note**: _This hook is predicted. This means that in singleplayer, it will
 -- not be called in the Client realm._
--- @function [parent=#GM] PlayerNoClip
+-- @function [parent=#GAMEMODE] PlayerNoClip
 -- @param  self
 -- @param  #Player ply The person who entered/exited noclip.
 -- @param  #boolean desiredState Represents the noclip state (on/off) the user will enter if this hook allows them to.
@@ -3457,7 +3443,7 @@
 -- _Client_ | _Server_
 -- 
 -- Called after the player's think.
--- @function [parent=#GM] PlayerPostThink
+-- @function [parent=#GAMEMODE] PlayerPostThink
 -- @param  self
 -- @param  #Player ply The player.
 
@@ -3468,7 +3454,7 @@
 -- available to join or not. This hook is called when the player runs
 -- "changeteam" in the console. To prevent the player from changing teams,
 -- see **GM:PlayerCanJoinTeam**.
--- @function [parent=#GM] PlayerRequestTeam
+-- @function [parent=#GAMEMODE] PlayerRequestTeam
 -- @param  self
 -- @param  #Player ply The player to try to put into a team.
 -- @param  #number team Team to put the player into if the checks succeeded.
@@ -3478,7 +3464,7 @@
 -- 
 -- Called when a player dispatched a chat message. For the clientside
 -- equivalent, see **GM:OnPlayerChat**.
--- @function [parent=#GM] PlayerSay
+-- @function [parent=#GAMEMODE] PlayerSay
 -- @param  self
 -- @param  #Player sender The player which sent the message.
 -- @param  #string text The message's content.
@@ -3490,7 +3476,7 @@
 -- _Server_
 -- 
 -- Called to determine a spawn point for a player to spawn at.
--- @function [parent=#GM] PlayerSelectSpawn
+-- @function [parent=#GAMEMODE] PlayerSelectSpawn
 -- @param  self
 -- @param  #Player ply The player who needs a spawn point.
 -- @return #Entity The spawnpoint entity to spawn the player at.
@@ -3499,7 +3485,7 @@
 -- _Server_
 -- 
 -- Find a team spawn point entity for this player.
--- @function [parent=#GM] PlayerSelectTeamSpawn
+-- @function [parent=#GAMEMODE] PlayerSelectTeamSpawn
 -- @param  self
 -- @param  #number team Players team.
 -- @param  #Player ply The player.
@@ -3511,7 +3497,7 @@
 -- Called whenever view model hands needs setting a model. By default this
 -- calls **PLAYER:GetHandsModel** and if that fails, sets the hands model according
 -- to his player model.
--- @function [parent=#GM] PlayerSetHandsModel
+-- @function [parent=#GAMEMODE] PlayerSetHandsModel
 -- @param  self
 -- @param  #Player ply The player whose hands needs a model set.
 -- @param  #Entity ent The hands to set model of.
@@ -3525,7 +3511,7 @@
 -- **Note**: _This function may not work in your custom gamemode if you have
 -- overridden your **GM:PlayerSpawn** and you do not use self.BaseClass.PlayerSpawn
 -- or **hook.Call**._
--- @function [parent=#GM] PlayerSetModel
+-- @function [parent=#GAMEMODE] PlayerSetModel
 -- @param  self
 -- @param  #Player ply The player being chosen.
 
@@ -3533,7 +3519,7 @@
 -- _Server_
 -- 
 -- Returns true if the player should take damage from the given attacker.
--- @function [parent=#GM] PlayerShouldTakeDamage
+-- @function [parent=#GAMEMODE] PlayerShouldTakeDamage
 -- @param  self
 -- @param  #Player ply The player.
 -- @param  #Entity attacker The attacker.
@@ -3543,7 +3529,7 @@
 -- _Server_
 -- 
 -- Allows to suppress player taunts.
--- @function [parent=#GM] PlayerShouldTaunt
+-- @function [parent=#GAMEMODE] PlayerShouldTaunt
 -- @param  self
 -- @param  #Player ply Player who tried to taunt.
 -- @param  #number act Act ID of the taunt player tries to do, see **ACT\_ Enums**.
@@ -3557,7 +3543,7 @@
 -- which handles all other death causes.
 -- 
 -- **Note**: _**Player:Alive** will return false in this hook._
--- @function [parent=#GM] PlayerSilentDeath
+-- @function [parent=#GAMEMODE] PlayerSilentDeath
 -- @param  self
 -- @param  #Player ply The player.
 
@@ -3572,7 +3558,7 @@
 -- call **GM:PlayerLoadout** and **GM:PlayerSetModel**, which may override your
 -- **Entity:SetModel** and **Player:Give** calls. Consider using the other hooks or a
 -- 0-second timer._
--- @function [parent=#GM] PlayerSpawn
+-- @function [parent=#GAMEMODE] PlayerSpawn
 -- @param  self
 -- @param  #Player player The player who spawned.
 
@@ -3580,7 +3566,7 @@
 -- _Server_
 -- 
 -- Called to spawn the player as a spectator.
--- @function [parent=#GM] PlayerSpawnAsSpectator
+-- @function [parent=#GAMEMODE] PlayerSpawnAsSpectator
 -- @param  self
 -- @param  #Player ply The player to spawn as a spectator.
 
@@ -3588,7 +3574,7 @@
 -- _Server_
 -- 
 -- Determines if the player can spray using the "impulse 201" console command.
--- @function [parent=#GM] PlayerSpray
+-- @function [parent=#GAMEMODE] PlayerSpray
 -- @param  self
 -- @param  #Player sprayer The player.
 -- @return #boolean Return false to allow spraying, return true to prevent spraying.
@@ -3597,7 +3583,7 @@
 -- _Server_
 -- 
 -- Called when player starts taunting.
--- @function [parent=#GM] PlayerStartTaunt
+-- @function [parent=#GAMEMODE] PlayerStartTaunt
 -- @param  self
 -- @param  #Player ply The player who is taunting.
 -- @param  #number act The sequence ID of the taunt.
@@ -3607,7 +3593,7 @@
 -- _Client_
 -- 
 -- Called when a player starts using voice chat.
--- @function [parent=#GM] PlayerStartVoice
+-- @function [parent=#GAMEMODE] PlayerStartVoice
 -- @param  self
 -- @param  #Player ply Player who started using voice chat.
 
@@ -3615,7 +3601,7 @@
 -- _Client_ | _Server_
 -- 
 -- Allows you to override the time between footsteps.
--- @function [parent=#GM] PlayerStepSoundTime
+-- @function [parent=#GAMEMODE] PlayerStepSoundTime
 -- @param  self
 -- @param  #Player ply Player who is walking.
 -- @param  #number type The type of footsteps, see **STEPSOUNDTIME\_ Enums**.
@@ -3629,7 +3615,7 @@
 -- returning false will deny the change.
 -- 
 -- **Note**: _Also gets called when using **Player:Flashlight**._
--- @function [parent=#GM] PlayerSwitchFlashlight
+-- @function [parent=#GAMEMODE] PlayerSwitchFlashlight
 -- @param  self
 -- @param  #Player ply The player who attempts to change their flashlight state.
 -- @param  #boolean enabled The new state the player requested, true for on, false for off.
@@ -3642,7 +3628,7 @@
 -- 
 -- **Note**: _This hook is predicted. This means that in singleplayer, it will
 -- not be called in the Client realm._
--- @function [parent=#GM] PlayerSwitchWeapon
+-- @function [parent=#GAMEMODE] PlayerSwitchWeapon
 -- @param  self
 -- @param  #Player player The player switching weapons.
 -- @param  #Weapon oldWeapon The previous weapon. Will be NULL if the previous weapon was removed or the player is switching from nothing.
@@ -3660,7 +3646,7 @@
 -- 
 -- **Note**: _This hook is predicted. This means that in singleplayer, it will
 -- not be called in the Client realm._
--- @function [parent=#GM] PlayerTick
+-- @function [parent=#GAMEMODE] PlayerTick
 -- @param  self
 -- @param  #Player player The player.
 -- @param  #CMoveData mv The current movedata for the player.
@@ -3671,7 +3657,7 @@
 -- Called when a player has been hit by a trace and damaged (such as from a
 -- bullet). Returning true overrides the damage handling and prevents
 -- **GM:ScalePlayerDamage** from being called.
--- @function [parent=#GM] PlayerTraceAttack
+-- @function [parent=#GAMEMODE] PlayerTraceAttack
 -- @param  self
 -- @param  #Player ply The player that has been hit.
 -- @param  #CTakeDamageInfo dmginfo The damage info of the bullet.
@@ -3683,7 +3669,7 @@
 -- _Server_
 -- 
 -- Called when a player unfreezes an object.
--- @function [parent=#GM] PlayerUnfrozeObject
+-- @function [parent=#GAMEMODE] PlayerUnfrozeObject
 -- @param  self
 -- @param  #Player ply Player who has unfrozen an object.
 -- @param  #Entity ent The unfrozen object.
@@ -3695,7 +3681,7 @@
 -- Triggered when the player presses use on an object. Continuously runs until
 -- USE is released but will not activate other Entities until the USE key is
 -- released; dependent on activation type of the Entity.
--- @function [parent=#GM] PlayerUse
+-- @function [parent=#GAMEMODE] PlayerUse
 -- @param  self
 -- @param  #Player ply The player pressing the "use" key.
 -- @param  #Entity ent The entity which the player is looking at / activating USE on.
@@ -3705,7 +3691,7 @@
 -- _Client_
 -- 
 -- Called when it's time to populate the context menu menu bar at the top.
--- @function [parent=#GM] PopulateMenuBar
+-- @function [parent=#GAMEMODE] PopulateMenuBar
 -- @param  self
 -- @param  #Panel menubar The DMenuBar itself.
 
@@ -3714,7 +3700,7 @@
 -- 
 -- Called right after the map has cleaned up (usually because **game.CleanUpMap**
 -- was called) See also **GM:PreCleanupMap**.
--- @function [parent=#GM] PostCleanupMap
+-- @function [parent=#GAMEMODE] PostCleanupMap
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -3725,7 +3711,7 @@
 -- **Note**: _This is a rendering hook with a 3D rendering context. This means
 -- that the only rendering functions will work in it are functions with a 3D
 -- rendering context._
--- @function [parent=#GM] PostDraw2DSkyBox
+-- @function [parent=#GAMEMODE] PostDraw2DSkyBox
 -- @param  self
 -- @param  #
 -- @return #
@@ -3739,7 +3725,7 @@
 -- **Note**: _This is a rendering hook with a 2D rendering context. This means
 -- that the only rendering functions will work in it are functions with a 2D
 -- rendering context._
--- @function [parent=#GM] PostDrawEffects
+-- @function [parent=#GAMEMODE] PostDrawEffects
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -3751,7 +3737,7 @@
 -- **Note**: _This is a rendering hook with a 2D rendering context. This means
 -- that the only rendering functions will work in it are functions with a 2D
 -- rendering context._
--- @function [parent=#GM] PostDrawHUD
+-- @function [parent=#GAMEMODE] PostDrawHUD
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -3763,7 +3749,7 @@
 -- **Note**: _This is a rendering hook with a 3D rendering context. This means
 -- that the only rendering functions will work in it are functions with a 3D
 -- rendering context.
--- @function [parent=#GM] PostDrawOpaqueRenderables
+-- @function [parent=#GAMEMODE] PostDrawOpaqueRenderables
 -- @param  self
 -- @param  #boolean bDrawingDepth Whether the current draw is writing depth.
 -- @param  #boolean bDrawingSkybox Whether the current draw is drawing the skybox.
@@ -3772,7 +3758,7 @@
 -- _Client_
 -- 
 -- Called after the player hands are drawn.
--- @function [parent=#GM] PostDrawPlayerHands
+-- @function [parent=#GAMEMODE] PostDrawPlayerHands
 -- @param  self
 -- @param  #Entity hands This is the gmod\_hands entity.
 -- @param  #Entity vm This is the view model entity.
@@ -3787,7 +3773,7 @@
 -- **Note**: _This is a rendering hook with a 3D rendering context. This means
 -- that the only rendering functions will work in it are functions with a 3D
 -- rendering context._
--- @function [parent=#GM] PostDrawSkyBox
+-- @function [parent=#GAMEMODE] PostDrawSkyBox
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -3799,7 +3785,7 @@
 -- **Note**: _This is a rendering hook with a 3D rendering context. This means
 -- that the only rendering functions will work in it are functions with a 3D
 -- rendering context._
--- @function [parent=#GM] PostDrawTranslucentRenderables
+-- @function [parent=#GAMEMODE] PostDrawTranslucentRenderables
 -- @param  self
 -- @param  #boolean bDrawingDepth Whether the current call is writing depth.
 -- @param  #boolean bDrawingSkybox Whether the current call is drawing skybox.
@@ -3815,7 +3801,7 @@
 -- 
 -- **Note**: _The 3D rendering context in this event is different from the main
 -- view. Every render operation will only be accurate with the view model entity._
--- @function [parent=#GM] PostDrawViewModel
+-- @function [parent=#GAMEMODE] PostDrawViewModel
 -- @param  self
 -- @param  #Entity viewmodel Players view model.
 -- @param  #Player player The owner of the weapon/view model.
@@ -3825,7 +3811,7 @@
 -- _Client_ | _Server_
 -- 
 -- Called after the gamemode has loaded.
--- @function [parent=#GM] PostGamemodeLoaded
+-- @function [parent=#GAMEMODE] PostGamemodeLoaded
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -3836,7 +3822,7 @@
 -- 
 -- **Note**: _The player is considered dead when this is hook is called,
 -- **Player:Alive** will return false._
--- @function [parent=#GM] PostPlayerDeath
+-- @function [parent=#GAMEMODE] PostPlayerDeath
 -- @param  self
 -- @param  #Player ply The player.
 
@@ -3848,7 +3834,7 @@
 -- **Note**: _This is a rendering hook with a 3D rendering context. This means
 -- that the only rendering functions will work in it are functions with a 3D
 -- rendering context._
--- @function [parent=#GM] PostPlayerDraw
+-- @function [parent=#GAMEMODE] PostPlayerDraw
 -- @param  self
 -- @param  #Player ply The player that was drawn.
 
@@ -3856,7 +3842,7 @@
 -- _Client_
 -- 
 -- Allows you to suppress post processing effect drawing.
--- @function [parent=#GM] PostProcessPermitted
+-- @function [parent=#GAMEMODE] PostProcessPermitted
 -- @param  self
 -- @param  #string ppeffect The classname of Post Processing effect.
 -- @return #boolean Return true/false depending on whether this post process should be allowed.
@@ -3865,7 +3851,7 @@
 -- _Client_
 -- 
 -- Called after the frame has been rendered.
--- @function [parent=#GM] PostRender
+-- @function [parent=#GAMEMODE] PostRender
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -3876,17 +3862,15 @@
 -- **Note**: _This is a rendering hook with a 2D rendering context. This means
 -- that the only rendering functions will work in it are functions with a 2D
 -- rendering context._
--- @function [parent=#GM] PostRenderVGUI
+-- @function [parent=#GAMEMODE] PostRenderVGUI
 -- @param  self
--- @param  #
--- @return #
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
 -- Called right before the map cleans up (usually because **game.CleanUpMap** was
 -- called) See also **GM:PostCleanupMap**.
--- @function [parent=#GM] PreCleanupMap
+-- @function [parent=#GAMEMODE] PreCleanupMap
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -3897,7 +3881,7 @@
 -- **Note**: _This is a rendering hook with a 3D rendering context. This means
 -- that the only rendering functions will work in it are functions with a 3D
 -- rendering context._
--- @function [parent=#GM] PreDrawEffects
+-- @function [parent=#GAMEMODE] PreDrawEffects
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -3909,7 +3893,7 @@
 -- **Note**: _This is a rendering hook with a 3D rendering context. This means
 -- that the only rendering functions will work in it are functions with a 3D
 -- rendering context._
--- @function [parent=#GM] PreDrawHalos
+-- @function [parent=#GAMEMODE] PreDrawHalos
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -3917,7 +3901,7 @@
 -- 
 -- Called before any of 2D drawing functions. Drawing anything in it seems to
 -- work incorrectly.
--- @function [parent=#GM] PreDrawHUD
+-- @function [parent=#GAMEMODE] PreDrawHUD
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -3929,7 +3913,7 @@
 -- **Note**: _This is a rendering hook with a 3D rendering context. This means
 -- that the only rendering functions will work in it are functions with a 3D
 -- rendering context._
--- @function [parent=#GM] PreDrawOpaqueRenderables
+-- @function [parent=#GAMEMODE] PreDrawOpaqueRenderables
 -- @param  self
 -- @param  #boolean isDrawingDepth Whether the current draw is writing depth.
 -- @param  #boolean isDrawSkybox Whether the current draw is drawing the skybox.
@@ -3939,7 +3923,7 @@
 -- _Client_
 -- 
 -- Called before the player hands are drawn.
--- @function [parent=#GM] PreDrawPlayerHands
+-- @function [parent=#GAMEMODE] PreDrawPlayerHands
 -- @param  self
 -- @param  #Entity hands This is the gmod\_hands entity before it is drawn.
 -- @param  #Entity vm This is the view model entity before it is drawn.
@@ -3955,7 +3939,7 @@
 -- **Note**: _This is a rendering hook with a 3D rendering context. This means
 -- that the only rendering functions will work in it are functions with a 3D
 -- rendering context._
--- @function [parent=#GM] PreDrawSkyBox
+-- @function [parent=#GAMEMODE] PreDrawSkyBox
 -- @param  self
 -- @return #boolean Return true to disable skybox drawing. (both 2D and 3D skybox)
 
@@ -3968,7 +3952,7 @@
 -- **Note**: _This is a rendering hook with a 3D rendering context. This means
 -- that the only rendering functions will work in it are functions with a 3D
 -- rendering context._
--- @function [parent=#GM] PreDrawTranslucentRenderables
+-- @function [parent=#GAMEMODE] PreDrawTranslucentRenderables
 -- @param  self
 -- @param  #boolean isDrawingDepth Whether the current draw is writing depth.
 -- @param  #boolean isDrawSkybox Whether the current draw is drawing the skybox.
@@ -3978,12 +3962,12 @@
 -- _Client_
 -- 
 -- Called before the view model has been drawn. This hook by default also calls
--- this on weapons, so you can use **SWEP:PreDrawViewModel**.
+-- this on weapons, so you can use **WEAPON:PreDrawViewModel**.
 -- 
 -- **Note**: _This is a rendering hook with a 3D rendering context. This means
 -- that the only rendering functions will work in it are functions with a 3D
 -- rendering context.
--- @function [parent=#GM] PreDrawViewModel
+-- @function [parent=#GAMEMODE] PreDrawViewModel
 -- @param  self
 -- @param  #Entity vm This is the view model entity before it is drawn. On server-side, this entity is the predicted view model.
 -- @param  #Player ply The the owner of the view model.
@@ -3994,14 +3978,14 @@
 -- _Client_ | _Server_
 -- 
 -- Called before the gamemode is loaded.
--- @function [parent=#GM] PreGamemodeLoaded
+-- @function [parent=#GAMEMODE] PreGamemodeLoaded
 -- @param  self
 
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
 -- Called before the player is drawn.
--- @function [parent=#GM] PrePlayerDraw
+-- @function [parent=#GAMEMODE] PrePlayerDraw
 -- @param  self
 -- @param  #Player player The player that is about to be drawn.
 -- @return #boolean Prevent default player rendering. Return true to hide the player.
@@ -4010,7 +3994,7 @@
 -- _Client_
 -- 
 -- Called before the renderer is about to start rendering the next frame.
--- @function [parent=#GM] PreRender
+-- @function [parent=#GAMEMODE] PreRender
 -- @param  self
 -- @return #boolean Return true to prevent all rendering. This can make the whole game stop rendering anything.
 
@@ -4019,7 +4003,7 @@
 -- 
 -- This will prevent IN\_ATTACK from sending to server when player tries to
 -- shoot from C menu.
--- @function [parent=#GM] PreventScreenClicks
+-- @function [parent=#GAMEMODE] PreventScreenClicks
 -- @param  self
 -- @return #boolean Return true to prevent screen clicks.
 
@@ -4027,7 +4011,7 @@
 -- _Client_ | _Server_
 -- 
 -- Called when a prop has been destroyed.
--- @function [parent=#GM] PropBreak
+-- @function [parent=#GAMEMODE] PropBreak
 -- @param  self
 -- @param  #Player attacker The person who broke the prop.
 -- @param  #Entity prop The entity that has been broken by the attacker.
@@ -4036,7 +4020,7 @@
 -- _Client_
 -- 
 -- Render the scene. Used by the "Stereoscopy" Post-processing effect.
--- @function [parent=#GM] RenderScene
+-- @function [parent=#GAMEMODE] RenderScene
 -- @param  self
 -- @param  #Vector origin View origin.
 -- @param  #Angle angles View angles.
@@ -4051,7 +4035,7 @@
 -- **Note**: _This is a rendering hook with a 2D rendering context. This means
 -- that the only rendering functions will work in it are functions with a 2D
 -- rendering context._
--- @function [parent=#GM] RenderScreenspaceEffects
+-- @function [parent=#GAMEMODE] RenderScreenspaceEffects
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -4060,7 +4044,7 @@
 -- Called when the game is reloaded from a Source Engine save system (not the
 -- Sandbox saves or dupes). See **GM:Saved** for a hook that is called when such a
 -- save file is created.
--- @function [parent=#GM] Restored
+-- @function [parent=#GAMEMODE] Restored
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -4069,7 +4053,7 @@
 -- Called when the game is saved using the Source Engine save system (not the
 -- Sandbox saves or dupes). See **GM:Restored** for a hook that is called when such
 -- a save file is loaded. See also the saverestore library for relevant functions.
--- @function [parent=#GM] Saved
+-- @function [parent=#GAMEMODE] Saved
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -4080,7 +4064,7 @@
 -- **Note**: _This hook is called only when a specific hit group of the NPC is
 -- hit. In cases where the hitgroup doesn't matter, you should use
 -- **GM:EntityTakeDamage** instead!_
--- @function [parent=#GM] ScaleNPCDamage
+-- @function [parent=#GAMEMODE] ScaleNPCDamage
 -- @param  self
 -- @param  #NPC npc The NPC that takes damage.
 -- @param  #number hitgroup The hitgroup (hitbox) enum where the player took damage. See **HITGROUP\_ Enums**.
@@ -4095,7 +4079,7 @@
 -- **Note**: _This is not called for all damage a player receives (For example
 -- fall damage or NPC melee damage), so you should use **GM:EntityTakeDamage**
 -- instead if you need to detect ALL damage._
--- @function [parent=#GM] ScalePlayerDamage
+-- @function [parent=#GAMEMODE] ScalePlayerDamage
 -- @param  self
 -- @param  #Player ply The player taking damage.
 -- @param  #number hitgroup The hitgroup where the player took damage. See **HITGROUP\_ Enums**.
@@ -4107,14 +4091,14 @@
 -- _Client_
 -- 
 -- Called when player released the scoreboard button. (TAB by default)
--- @function [parent=#GM] ScoreboardHide
+-- @function [parent=#GAMEMODE] ScoreboardHide
 -- @param  self
 
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
 -- Called when player presses the scoreboard button. (TAB by default)
--- @function [parent=#GM] ScoreboardShow
+-- @function [parent=#GAMEMODE] ScoreboardShow
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -4124,7 +4108,7 @@
 -- 
 -- **Warning**: _This is not a hook. Treat this as a utility function to set
 -- the player's speed._
--- @function [parent=#GM] SetPlayerSpeed
+-- @function [parent=#GAMEMODE] SetPlayerSpeed
 -- @param  self
 -- @param  #Player ply The player to set the speed of.
 -- @param  #number walkSpeed The walk speed.
@@ -4138,7 +4122,7 @@
 -- 
 -- **Note**: _This hook is predicted. This means that in singleplayer, it will
 -- not be called in the Client realm._
--- @function [parent=#GM] SetupMove
+-- @function [parent=#GAMEMODE] SetupMove
 -- @param  self
 -- @param  #Player ply The player whose movement we are about to process.
 -- @param  #CMoveData mv The move data to override/use.
@@ -4149,7 +4133,7 @@
 -- 
 -- Allows you to add extra positions to the player's PVS. This is the place to
 -- call **AddOriginToPVS**.
--- @function [parent=#GM] SetupPlayerVisibility
+-- @function [parent=#GAMEMODE] SetupPlayerVisibility
 -- @param  self
 -- @param  #Player ply The player.
 -- @param  #Entity viewEntity Players **Player:GetViewEntity**.
@@ -4158,7 +4142,7 @@
 -- _Client_
 -- 
 -- Allows you to use **render.Fog\*** functions to manipulate skybox fog.
--- @function [parent=#GM] SetupSkyboxFog
+-- @function [parent=#GAMEMODE] SetupSkyboxFog
 -- @param  self
 -- @param  #number scale The scale of 3D skybox.
 -- @return #boolean Return true to tell the engine that fog is set up.
@@ -4167,7 +4151,7 @@
 -- _Client_
 -- 
 -- Allows you to use **render.Fog**\* functions to manipulate world fog.
--- @function [parent=#GM] SetupWorldFog
+-- @function [parent=#GAMEMODE] SetupWorldFog
 -- @param  self
 -- @return #boolean Return true to tell the engine that fog is set up.
 
@@ -4186,7 +4170,7 @@
 -- 
 -- **Note**: _This hook is predicted. This means that in singleplayer, it will
 -- not be called in the Client realm._
--- @function [parent=#GM] ShouldCollide
+-- @function [parent=#GAMEMODE] ShouldCollide
 -- @param  self
 -- @param  #Entity ent1 The first entity in the collision poll.
 -- @param  #Entity ent2 The second entity in the collision poll.
@@ -4205,7 +4189,7 @@
 -- **Note**: _If you're using this hook to draw a player for a **GM:CalcView** hook,
 -- then you may want to consider using the drawviewer variable you can use in
 -- your **CamData structure** table instead._
--- @function [parent=#GM] ShouldDrawLocalPlayer
+-- @function [parent=#GAMEMODE] ShouldDrawLocalPlayer
 -- @param  self
 -- @param  #Player ply The player.
 -- @return #boolean True to draw the player, false to hide.
@@ -4214,7 +4198,7 @@
 -- _Server_
 -- 
 -- Called when a player executes gm\_showhelp console command. (Default bind is F1)
--- @function [parent=#GM] ShowHelp
+-- @function [parent=#GAMEMODE] ShowHelp
 -- @param  self
 -- @param  #Player ply Player who executed the command.
 
@@ -4222,7 +4206,7 @@
 -- _Server_
 -- 
 -- Called when a player executes gm\_showspare1 console command. (Default bind is F3)
--- @function [parent=#GM] ShowSpare1
+-- @function [parent=#GAMEMODE] ShowSpare1
 -- @param  self
 -- @param  #Player ply Player who executed the command.
 
@@ -4230,7 +4214,7 @@
 -- _Server_
 -- 
 -- Called when a player executes gm\_showspare2 console command. (Default bind is F4)
--- @function [parent=#GM] ShowSpare2
+-- @function [parent=#GAMEMODE] ShowSpare2
 -- @param  self
 -- @param  #Player ply Player who executed the command.
 
@@ -4238,7 +4222,7 @@
 -- _Server_
 -- 
 -- Called when a player executes gm\_showteam console command. (Default bind is F2)
--- @function [parent=#GM] ShowTeam
+-- @function [parent=#GAMEMODE] ShowTeam
 -- @param  self
 -- @param  #Player ply Player who executed the command.
 
@@ -4248,14 +4232,14 @@
 -- Called whenever the lua environment is about to be shut down. (for example
 -- on map change, or when the server is going to shut down because of the
 -- "exit"-ConCommand)
--- @function [parent=#GM] ShutDown
+-- @function [parent=#GAMEMODE] ShutDown
 -- @param  self
 
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
 -- Called when spawn icon is generated.
--- @function [parent=#GM] SpawniconGenerated
+-- @function [parent=#GAMEMODE] SpawniconGenerated
 -- @param  self
 -- @param  #string lastmodel File path of previously generated model.
 -- @param  #string imagename File path of the generated icon.
@@ -4265,7 +4249,7 @@
 -- _Client_
 -- 
 -- Runs when the user tries to open the chat box.
--- @function [parent=#GM] StartChat
+-- @function [parent=#GAMEMODE] StartChat
 -- @param  self
 -- @param  #boolean isTeamChat Whether the message was sent through team chat.
 -- @return #boolean Return true to hide the default chat box.
@@ -4283,7 +4267,7 @@
 -- called when a CUserCmd is generated on the client, and on the server when
 -- it is received, so it is necessary for this hook to be called clientside
 -- even on singleplayer._
--- @function [parent=#GM] StartCommand
+-- @function [parent=#GAMEMODE] StartCommand
 -- @param  self
 -- @param  #Player ply The player.
 -- @param  #CUserCmd ucmd The usercommand.
@@ -4293,7 +4277,7 @@
 -- 
 -- Called right before an entity starts driving. Overriding this hook will cause
 -- it to not call drive.Start and the player will not begin driving the entity.
--- @function [parent=#GM] StartEntityDriving
+-- @function [parent=#GAMEMODE] StartEntityDriving
 -- @param  self
 -- @param  #Entity ent The entity that is going to be driven.
 -- @param  #Player ply The player that is going to drive the entity.
@@ -4302,7 +4286,7 @@
 -- _Menu_
 -- 
 -- Called when you start a new game via the menu.
--- @function [parent=#GM] StartGame
+-- @function [parent=#GAMEMODE] StartGame
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -4313,21 +4297,21 @@
 -- 
 -- **Note**: _This hook WILL NOT run if the server is empty, unless you set the
 -- ConVar sv\_hibernate\_think to 1._
--- @function [parent=#GM] Think
+-- @function [parent=#GAMEMODE] Think
 -- @param  self
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
 -- Called every server tick. Serverside, this is similar to **GM:Think**.
--- @function [parent=#GM] Tick
+-- @function [parent=#GAMEMODE] Tick
 -- @param  self
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
 -- Allows you to translate player activities.
--- @function [parent=#GM] TranslateActivity
+-- @function [parent=#GAMEMODE] TranslateActivity
 -- @param  self
 -- @param  #Player ply The player.
 -- @param  #number act The activity. See **ACT\_ Enums**.
@@ -4337,7 +4321,7 @@
 -- _Client_ | _Server_
 -- 
 -- Animation updates (pose, params, etc.) should be done here.
--- @function [parent=#GM] UpdateAnimation
+-- @function [parent=#GAMEMODE] UpdateAnimation
 -- @param  self
 -- @param  #Player ply The player to update the animation info for.
 -- @param  #Vector velocity The player's velocity.
@@ -4347,7 +4331,7 @@
 -- _Server_
 -- 
 -- Called when a variable is edited on an Entity (called by Edit Properties menu)
--- @function [parent=#GM] VariableEdited
+-- @function [parent=#GAMEMODE] VariableEdited
 -- @param  self
 -- @param  #Entity ent The entity being edited.
 -- @param  #Player ply The player doing the editing.
@@ -4363,7 +4347,7 @@
 -- 
 -- **Note**: _This hook is predicted. This means that in singleplayer, it will
 -- not be called in the Client realm._
--- @function [parent=#GM] VehicleMove
+-- @function [parent=#GAMEMODE] VehicleMove
 -- @param  self
 -- @param  #Player ply Player who is driving the vehicle.
 -- @param  #Vehicle veh The vehicle being driven.
@@ -4373,7 +4357,7 @@
 -- _Client_ | _Menu_
 -- 
 -- Called when user clicks on a VGUI panel.
--- @function [parent=#GM] VGUIMousePressAllowed
+-- @function [parent=#GAMEMODE] VGUIMousePressAllowed
 -- @param  self
 -- @param  #number button The button that was pressed, see **MOUSE\_ Enums**.
 -- @return #boolean Return true if the mouse click should be ignored or not.
@@ -4382,7 +4366,7 @@
 -- _Client_ | _Menu_
 -- 
 -- Called when a mouse button is pressed on a VGUI element or menu.
--- @function [parent=#GM] VGUIMousePressed
+-- @function [parent=#GAMEMODE] VGUIMousePressed
 -- @param  self
 -- @param  #Panel pnl Panel that currently has focus.
 -- @param  #number mouseCode The key that the player pressed using **MOUSE\_ Enums**.
@@ -4396,8 +4380,8 @@
 -- NULL. The owner is set on the next frame._
 -- 
 -- **Note**: _This will not be called when picking up a weapon you already have
--- as the weapon will be removed and **SWEP:EquipAmmo** will be called instead._
--- @function [parent=#GM] WeaponEquip
+-- as the weapon will be removed and **WEAPON:EquipAmmo** will be called instead._
+-- @function [parent=#GAMEMODE] WeaponEquip
 -- @param  self
 -- @param  #Weapon weapon The equipped weapon.
 -- @param  #Player owner The player that is picking up the weapon.
@@ -4407,7 +4391,7 @@
 -- 
 -- Called when an addon from the Steam workshop finishes downloading. Used by
 -- default to update details on the workshop downloading panel.
--- @function [parent=#GM] WorkshopDownloadedFile
+-- @function [parent=#GAMEMODE] WorkshopDownloadedFile
 -- @param  self
 -- @param  #number id Workshop ID of addon.
 -- @param  #string title Name of addon.
@@ -4417,7 +4401,7 @@
 -- 
 -- Called when an addon from the Steam workshop begins downloading. Used by
 -- default to place details on the workshop downloading panel.
--- @function [parent=#GM] WorkshopDownloadFile
+-- @function [parent=#GAMEMODE] WorkshopDownloadFile
 -- @param  self
 -- @param  #number id Workshop ID of addon.
 -- @param  #number imageID ID of addon's preview image.
@@ -4429,7 +4413,7 @@
 -- 
 -- Called while an addon from the Steam workshop is downloading. Used by
 -- default to update details on the fancy workshop download panel.
--- @function [parent=#GM] WorkshopDownloadProgress
+-- @function [parent=#GAMEMODE] WorkshopDownloadProgress
 -- @param  self
 -- @param  #number id Workshop ID of addon.
 -- @param  #number imageID ID of addon's preview image.
@@ -4441,7 +4425,7 @@
 -- _Menu_
 -- 
 -- Called after **GM:WorkshopStart**.
--- @function [parent=#GM] WorkshopDownloadTotals
+-- @function [parent=#GAMEMODE] WorkshopDownloadTotals
 -- @param  self
 -- @param  #number remain Remaining addons to download.
 -- @param  #number total Total addons needing to be downloaded.
@@ -4451,7 +4435,7 @@
 -- 
 -- Called when downloading content from Steam workshop ends. Used by default to
 -- hide fancy workshop downloading panel.
--- @function [parent=#GM] WorkshopEnd
+-- @function [parent=#GAMEMODE] WorkshopEnd
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -4468,7 +4452,7 @@
 --   * WorkshopDownloadProgress - This is called until the file is finished.
 --   * WorkshopDownloadedFile
 -- * WorkshopEnd
--- @function [parent=#GM] WorkshopStart
+-- @function [parent=#GAMEMODE] WorkshopStart
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -4479,7 +4463,7 @@
 -- 
 -- Called by the engine when the game initially fetches subscriptions to be
 -- displayed on the bottom of the main menu screen.
--- @function [parent=#GM] WorkshopSubscriptionsProgress
+-- @function [parent=#GAMEMODE] WorkshopSubscriptionsProgress
 -- @param  self
 -- @param  #number num Amount of subscribed addons that have info retrieved.
 -- @param  #number max Total amount of subscribed addons that need their info retrieved.
@@ -5128,7 +5112,7 @@
 -- @param  #Player ply The player who attempted to give themselves a weapon.
 -- @param  #string weapon Class name of the weapon the player tried to give themselves.
 -- @param  #table swep The swep table of this weapon, see **SWEP structure**.
--- @return #boolean Can the SWEP be given to the player.
+-- @return #boolean Can the WEAPON be given to the player.
 
 -------------------------------------------------------------------------------
 -- _Server_
@@ -5186,7 +5170,7 @@
 -- @function [parent=#SANDBOX] PlayerSpawnedSWEP
 -- @param  self
 -- @param  #Player ply The player that spawned the SWEP.
--- @param  #Entity ent The SWEP itself.
+-- @param  #Entity ent The WEAPON itself.
 
 -------------------------------------------------------------------------------
 -- _Server_
@@ -5269,7 +5253,7 @@
 -- @param  #Player ply The player who attempted to spawn a weapon.
 -- @param  #string weapon Class name of the weapon the player tried to spawn.
 -- @param  #table swep Information about the weapon the player is trying to spawn, see **SWEP structure**.
--- @return #boolean Can the SWEP be spawned.
+-- @return #boolean Can the WEAPON be spawned.
 
 -------------------------------------------------------------------------------
 -- _Server_
@@ -5338,17 +5322,17 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- Default weapon methods that are available for use in SWEPs. These
+-- Default weapon methods that are available for use in WEAPONs. These
 -- functions/hooks will not work on non-scripted weapons, such as the Half-Life
 -- 2 weapons.
--- @type SWEP
+-- @type WEAPON
 -- @extends Weapon
 
 -------------------------------------------------------------------------------
 -- _Server_
 -- 
 -- Called when another entity fires an event to this entity.
--- @function [parent=#SWEP] AcceptInput
+-- @function [parent=#WEAPON] AcceptInput
 -- @param  self
 -- @param  #string inputName The name of the input that was triggered.
 -- @param  #Entity activator The initial cause for the input getting triggered.
@@ -5361,7 +5345,7 @@
 -- 
 -- Allows you to adjust the mouse sensitivity. This hook only works if you
 -- haven't overridden **GM:AdjustMouseSensitivity**.
--- @function [parent=#SWEP] AdjustMouseSensitivity
+-- @function [parent=#WEAPON] AdjustMouseSensitivity
 -- @param  self
 -- @return #number Sensitivity scale.
 
@@ -5369,7 +5353,7 @@
 -- _Client_ | _Server_
 -- 
 -- Returns how much of primary ammo the player has.
--- @function [parent=#SWEP] Ammo1
+-- @function [parent=#WEAPON] Ammo1
 -- @param  self
 -- @return #number The amount of primary ammo player has.
 
@@ -5377,7 +5361,7 @@
 -- _Client_ | _Server_
 -- 
 -- Returns how much of secondary ammo the player has.
--- @function [parent=#SWEP] Ammo2
+-- @function [parent=#WEAPON] Ammo2
 -- @param  self
 -- @return #number The amount of secondary ammo player has.
 
@@ -5388,8 +5372,8 @@
 -- called from the default implementation of **GM:CalcView**. Therefore, it will
 -- not be called if any other hook added to **GM:CalcView** returns any value, or
 -- if the current gamemode overrides the default hook and does not call the
--- SWEP function.
--- @function [parent=#SWEP] CalcView
+-- WEAPON function.
+-- @function [parent=#WEAPON] CalcView
 -- @param  self
 -- @param  #Player ply The owner of weapon.
 -- @param  #Vector pos Current position of players view.
@@ -5402,7 +5386,7 @@
 -- 
 -- Allows overriding the position and angle of the viewmodel. This hook only
 -- works if you haven't overridden **GM:CalcViewModelView**.
--- @function [parent=#SWEP] CalcViewModelView
+-- @function [parent=#WEAPON] CalcViewModelView
 -- @param  self
 -- @param  #Entity vm The viewmodel entity.
 -- @param  #Vector oldPos Original position. (before viewmodel bobbing and swaying)
@@ -5415,7 +5399,7 @@
 -- _Client_ | _Server_
 -- 
 -- Helper function for checking for no ammo.
--- @function [parent=#SWEP] CanPrimaryAttack
+-- @function [parent=#WEAPON] CanPrimaryAttack
 -- @param  self
 -- @return #boolean Can use primary attack.
 
@@ -5423,7 +5407,7 @@
 -- _Client_ | _Server_
 -- 
 -- Helper function for checking for no ammo.
--- @function [parent=#SWEP] CanSecondaryAttack
+-- @function [parent=#WEAPON] CanSecondaryAttack
 -- @param  self
 -- @return #boolean Can use secondary attack.
 
@@ -5432,7 +5416,7 @@
 -- 
 -- Allows you to use any numbers you want for the ammo display on the HUD. Can
 -- be useful for weapons that don't use standard ammo.
--- @function [parent=#SWEP] CustomAmmoDisplay
+-- @function [parent=#WEAPON] CustomAmmoDisplay
 -- @param  self
 -- @return #table The new ammo display settings.
 -- A table with 4 possible keys:
@@ -5453,7 +5437,7 @@
 -- the weapon is switched with **Player:SelectWeapon** or the "use" console
 -- command, however it will be called clientside with the default weapon
 -- selection menu and when using **CUserCmd:SelectWeapon**._
--- @function [parent=#SWEP] Deploy
+-- @function [parent=#WEAPON] Deploy
 -- @param  self
 -- @return #boolean Return true to allow switching away from this weapon using lastinv command.
 
@@ -5462,8 +5446,8 @@
 -- 
 -- Called when the crosshair is about to get drawn, and allows you to override it.
 -- 
--- **Note**: _This function will not be called if **SWEP.DrawCrosshair** set to false._
--- @function [parent=#SWEP] DoDrawCrosshair
+-- **Note**: _This function will not be called if **WEAPON.DrawCrosshair** set to false._
+-- @function [parent=#WEAPON] DoDrawCrosshair
 -- @param  self
 -- @param  #number x X coordinate of the crosshair.
 -- @param  #number y Y coordinate of the crosshair.
@@ -5473,7 +5457,7 @@
 -- _Client_ | _Server_
 -- 
 -- Called so the weapon can override the impact effects it makes.
--- @function [parent=#SWEP] DoImpactEffect
+-- @function [parent=#WEAPON] DoImpactEffect
 -- @param  self
 -- @param  #table tr A **TraceResult structure** from player's eyes to the impact point.
 -- @param  #number damageType The damage type of bullet.
@@ -5483,23 +5467,23 @@
 -- _Client_
 -- 
 -- This hook allows you to draw on screen while this weapon is in use. If you
--- want to draw a custom crosshair, consider using **SWEP:DoDrawCrosshair** instead.
--- @function [parent=#SWEP] DrawHUD
+-- want to draw a custom crosshair, consider using **WEAPON:DoDrawCrosshair** instead.
+-- @function [parent=#WEAPON] DrawHUD
 -- @param  self
 
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
 -- This hook allows you to draw on screen while this weapon is in use. This
--- hook is called before **SWEP:DrawHUD** and is equivalent of **GM:HUDPaintBackground**.
--- @function [parent=#SWEP] DrawHUDBackground
+-- hook is called before **WEAPON:DrawHUD** and is equivalent of **GM:HUDPaintBackground**.
+-- @function [parent=#WEAPON] DrawHUDBackground
 -- @param  self
 
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
 -- This hook draws the selection icon in the weapon selection menu.
--- @function [parent=#SWEP] DrawWeaponSelection
+-- @function [parent=#WEAPON] DrawWeaponSelection
 -- @param  self
 -- @param  #number x X coordinate of the selection panel.
 -- @param  #number y y coordinate of the selection panel.
@@ -5511,21 +5495,21 @@
 -- _Client_
 -- 
 -- Called when we are about to draw the world model.
--- @function [parent=#SWEP] DrawWorldModel
+-- @function [parent=#WEAPON] DrawWorldModel
 -- @param  self
 
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
 -- Called when we are about to draw the translucent world model.
--- @function [parent=#SWEP] DrawWorldModelTranslucent
+-- @function [parent=#WEAPON] DrawWorldModelTranslucent
 -- @param  self
 
 -------------------------------------------------------------------------------
 -- _Server_
 -- 
 -- Called when a player or NPC has picked the weapon up.
--- @function [parent=#SWEP] Equip
+-- @function [parent=#WEAPON] Equip
 -- @param  self
 -- @param  #Entity NewOwner The one who picked the weapon up. Can be Player or NPC.
 
@@ -5534,7 +5518,7 @@
 -- 
 -- The player has picked up the weapon and has taken the ammo from it. The
 -- weapon will be removed immidiately after this call.
--- @function [parent=#SWEP] EquipAmmo
+-- @function [parent=#WEAPON] EquipAmmo
 -- @param  self
 -- @param  #Player ply The player who picked up the weapon.
 
@@ -5544,7 +5528,7 @@
 -- Called before firing animation events, such as muzzle flashes or shell
 -- ejections. This will only be called serverside for 3000-range events, and
 -- clientside for 5000-range and other events.
--- @function [parent=#SWEP] FireAnimationEvent
+-- @function [parent=#WEAPON] FireAnimationEvent
 -- @param  self
 -- @param  #Vector pos Position of the effect.
 -- @param  #Angle ang Angle of the effect.
@@ -5558,7 +5542,7 @@
 -- This hook allows you to freeze players screen.
 -- 
 -- **Note**: _Player will still be able to move or shoot._
--- @function [parent=#SWEP] FreezeMovement
+-- @function [parent=#WEAPON] FreezeMovement
 -- @param  self
 -- @return #boolean Return true to freeze moving the view.
 
@@ -5566,7 +5550,7 @@
 -- _Server_
 -- 
 -- This hook is for NPCs, you return what they should try to do with it.
--- @function [parent=#SWEP] GetCapabilities
+-- @function [parent=#WEAPON] GetCapabilities
 -- @param  self
 -- @return #number A number defining what NPC should do with the weapon. Use the **CAP\_ Enums**.
 
@@ -5574,7 +5558,7 @@
 -- _Client_
 -- 
 -- Allows you to override where the tracer effect comes from. (Visual bullets)
--- @function [parent=#SWEP] GetTracerOrigin
+-- @function [parent=#WEAPON] GetTracerOrigin
 -- @param  self
 -- @return #Vector The new position to start tracer effect from.
 
@@ -5582,7 +5566,7 @@
 -- _Client_
 -- 
 -- This hook allows you to adjust view model position and angles.
--- @function [parent=#SWEP] GetViewModelPosition
+-- @function [parent=#WEAPON] GetViewModelPosition
 -- @param  self
 -- @param  #Vector pos Current position.
 -- @param  #Angle ang Current angle.
@@ -5595,7 +5579,7 @@
 -- 
 -- **Note**: _This hook is predicted. This means that in singleplayer, it will
 -- not be called in the Client realm._
--- @function [parent=#SWEP] Holster
+-- @function [parent=#WEAPON] Holster
 -- @param  self
 -- @param  #Entity weapon The weapon we are trying switch to.
 -- @return #boolean Return true to allow weapon to holster.
@@ -5604,7 +5588,7 @@
 -- _Client_
 -- 
 -- This hook determines which parts of the HUD to draw.
--- @function [parent=#SWEP] HUDShouldDraw
+-- @function [parent=#WEAPON] HUDShouldDraw
 -- @param  self
 -- @param  #string element The HUD element in question.
 -- @return #boolean Return false to hide this HUD element.
@@ -5613,18 +5597,16 @@
 -- _Client_ | _Server_
 -- 
 -- Called when the weapon entity is created.
--- @function [parent=#SWEP] Initialize
+-- @function [parent=#WEAPON] Initialize
 -- @param  self
--- @param  #
--- @return #
 
 -------------------------------------------------------------------------------
 -- _Server_
 -- 
 -- Called when the engine sets a value for this scripted weapon. See
 -- **GM:EntityKeyValue** for a hook that works for all entities. See
--- **ENT:KeyValue** for an SENT hook that works for scripted entities.
--- @function [parent=#SWEP] KeyValue
+-- **ENTITY:KeyValue** for an SENT hook that works for scripted entities.
+-- @function [parent=#WEAPON] KeyValue
 -- @param  self
 -- @param  #string key The key that was affected.
 -- @param  #string value The new value.
@@ -5633,8 +5615,8 @@
 -------------------------------------------------------------------------------
 -- _Server_
 -- 
--- Called when weapon is dropped by **Player:DropWeapon**. See also **SWEP:OwnerChanged**.
--- @function [parent=#SWEP] OnDrop
+-- Called when weapon is dropped by **Player:DropWeapon**. See also **WEAPON:OwnerChanged**.
+-- @function [parent=#WEAPON] OnDrop
 -- @param  self
 -- @param  #
 -- @return #
@@ -5643,14 +5625,14 @@
 -- _Client_ | _Server_
 -- 
 -- Called whenever the weapons Lua script is reloaded.
--- @function [parent=#SWEP] OnReloaded
+-- @function [parent=#WEAPON] OnReloaded
 -- @param  self
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
 -- Called when the swep is about to be removed.
--- @function [parent=#SWEP] OnRemove
+-- @function [parent=#WEAPON] OnRemove
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -5659,15 +5641,15 @@
 -- Called when the weapon entity is reloaded from a Source Engine save (not the
 -- Sandbox saves or dupes) or on a changelevel (for example Half-Life 2
 -- campaign level transitions). For the duplicator library callbacks, see
--- **ENT:OnDuplicated**. See also saverestore library for relevant functions.
--- @function [parent=#SWEP] OnRestore
+-- **ENTITY:OnDuplicated**. See also saverestore library for relevant functions.
+-- @function [parent=#WEAPON] OnRestore
 -- @param  self
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- Called when weapon is dropped or picked up by a new player. See also **SWEP:OnDrop**.
--- @function [parent=#SWEP] OwnerChanged
+-- Called when weapon is dropped or picked up by a new player. See also **WEAPON:OnDrop**.
+-- @function [parent=#WEAPON] OwnerChanged
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -5675,9 +5657,9 @@
 -- 
 -- Called after the view model has been drawn while the weapon in use. This
 -- hook is called from the default implementation of **GM:PostDrawViewModel**, and
--- as such, will not occur if it has been overridden. **SWEP:ViewModelDrawn** is
+-- as such, will not occur if it has been overridden. **WEAPON:ViewModelDrawn** is
 -- an alternative hook which is always called before **GM:PostDrawViewModel**.
--- @function [parent=#SWEP] PostDrawViewModel
+-- @function [parent=#WEAPON] PostDrawViewModel
 -- @param  self
 -- @param  #Entity vm This is the view model entity after it is drawn.
 -- @param  #Weapon weapon This is the weapon that is from the view model. (same as self)
@@ -5688,7 +5670,7 @@
 -- 
 -- Allows you to modify viewmodel while the weapon in use before it is drawn.
 -- This hook only works if you haven't overridden **GM:PreDrawViewModel**.
--- @function [parent=#SWEP] PreDrawViewModel
+-- @function [parent=#WEAPON] PreDrawViewModel
 -- @param  self
 -- @param  #Entity vm This is the view model entity before it is drawn.
 -- @param  #Weapon weapon This is the weapon that is from the view model.
@@ -5699,23 +5681,23 @@
 -- 
 -- Called when primary attack button (+attack) is pressed. Since this is a
 -- predicted hook, as mentioned on the bottom of the page, it has some
--- additional behaviour to it. This is the same with all predicted SWEP hooks.
+-- additional behaviour to it. This is the same with all predicted WEAPON hooks.
 -- When in singleplayer, this function is only called in the server realm. When
 -- in multiplayer, the hook will be called on both the server and the client in
 -- order to allow for prediction.  
 -- You can force the hook to always be called on client like this:
 -- ```if ( game.SinglePlayer() ) then self:CallOnClient( "PrimaryAttack" ) end ```
--- Note that due to prediction, in multiplayer **SWEP:PrimaryAttack** is called
+-- Note that due to prediction, in multiplayer **WEAPON:PrimaryAttack** is called
 -- multiple times per one "shot" with the gun. To work around that, use
 -- **IsFirstTimePredicted**.
--- @function [parent=#SWEP] PrimaryAttack
+-- @function [parent=#WEAPON] PrimaryAttack
 -- @param  self
 
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
--- A convenience function that draws the weapon info box, used in **SWEP:DrawWeaponSelection**.
--- @function [parent=#SWEP] PrintWeaponInfo
+-- A convenience function that draws the weapon info box, used in **WEAPON:DrawWeaponSelection**.
+-- @function [parent=#WEAPON] PrintWeaponInfo
 -- @param  self
 -- @param  #number x The x co-ordinate of box position.
 -- @param  #number y The y co-ordinate of box position.
@@ -5728,7 +5710,7 @@
 -- 
 -- **Note**: _This hook is predicted. This means that in singleplayer, it will
 -- not be called in the Client realm._
--- @function [parent=#SWEP] Reload
+-- @function [parent=#WEAPON] Reload
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -5740,22 +5722,22 @@
 -- 
 -- **Note**: _This hook is predicted. This means that in singleplayer, it will
 -- not be called in the Client realm._
--- @function [parent=#SWEP] SecondaryAttack
+-- @function [parent=#WEAPON] SecondaryAttack
 -- @param  self
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
 -- Sets the weapon deploy speed. This value needs to match on client and server.
--- @function [parent=#SWEP] SetDeploySpeed
+-- @function [parent=#WEAPON] SetDeploySpeed
 -- @param  self
 -- @param  #number speed The value to set deploy speed to. Negative will slow down playback.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- Called when the SWEP should set up its Data Tables.
--- @function [parent=#SWEP] SetupDataTables
+-- Called when the WEAPON should set up its Data Tables.
+-- @function [parent=#WEAPON] SetupDataTables
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -5766,7 +5748,7 @@
 -- 
 -- **Note**: _You should avoid calling this function and call
 -- **Weapon:SetHoldType** now._
--- @function [parent=#SWEP] SetWeaponHoldType
+-- @function [parent=#WEAPON] SetWeaponHoldType
 -- @param  self
 -- @param  #string name Name of the hold type.
 
@@ -5774,7 +5756,7 @@
 -- _Client_ | _Server_
 -- 
 -- A convenience function to shoot bullets.
--- @function [parent=#SWEP] ShootBullet
+-- @function [parent=#WEAPON] ShootBullet
 -- @param  self
 -- @param  #number damage The damage of the bullet.
 -- @param  #number num_bullets Amount of bullets to shoot.
@@ -5784,7 +5766,7 @@
 -- _Client_ | _Server_
 -- 
 -- A convenience function to create shoot effects.
--- @function [parent=#SWEP] ShootEffects
+-- @function [parent=#WEAPON] ShootEffects
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -5792,7 +5774,7 @@
 -- 
 -- Should this weapon be dropped when its owner dies? This only works if the
 -- player has **Player:ShouldDropWeapon** set to true.
--- @function [parent=#SWEP] ShouldDropOnDie
+-- @function [parent=#WEAPON] ShouldDropOnDie
 -- @param  self
 -- @return #boolean Return true to drop the weapon, false otherwise.
 -- Default (if you don't return anything) is false.
@@ -5801,7 +5783,7 @@
 -- _Client_ | _Server_
 -- 
 -- A convenience function to remove primary ammo from clip.
--- @function [parent=#SWEP] TakePrimaryAmmo
+-- @function [parent=#WEAPON] TakePrimaryAmmo
 -- @param  self
 -- @param  #number amount Amount of primary ammo to remove.
 
@@ -5809,7 +5791,7 @@
 -- _Client_ | _Server_
 -- 
 -- A convenience function to remove secondary ammo from clip.
--- @function [parent=#SWEP] TakeSecondaryAmmo
+-- @function [parent=#WEAPON] TakeSecondaryAmmo
 -- @param  self
 -- @param  #number amount Amount of secondary ammo to remove.
 
@@ -5825,7 +5807,7 @@
 -- 
 -- **Note**: _This hook will be called before Player movement is processed on
 -- the client, and after on the server._
--- @function [parent=#SWEP] Think
+-- @function [parent=#WEAPON] Think
 -- @param  self
 
 -------------------------------------------------------------------------------
@@ -5834,7 +5816,7 @@
 -- Translate a player's activity into a weapon's activity, depending on how you
 -- want the player to be holding the weapon. For example, ACT\_MP\_RUN becomes
 -- ACT\_HL2MP\_RUN\_PISTOL.
--- @function [parent=#SWEP] TranslateActivity
+-- @function [parent=#WEAPON] TranslateActivity
 -- @param  self
 -- @param  #number act The activity to translate.
 -- @return #number The translated activity.
@@ -5843,7 +5825,7 @@
 -- _Client_
 -- 
 -- Allows to change players field of view while player holds the weapon.
--- @function [parent=#SWEP] TranslateFOV
+-- @function [parent=#WEAPON] TranslateFOV
 -- @param  self
 -- @param  #number fov The current/default FOV.
 -- @return #number The target FOV.
@@ -5852,8 +5834,8 @@
 -- _Client_
 -- 
 -- Called straight after the view model has been drawn. This is called before
--- **GM:PostDrawViewModel** and **SWEP:PostDrawViewModel**.
--- @function [parent=#SWEP] ViewModelDrawn
+-- **GM:PostDrawViewModel** and **WEAPON:PostDrawViewModel**.
+-- @function [parent=#WEAPON] ViewModelDrawn
 -- @param  self
 -- @param  #Entity ViewModel Players view model.
 
@@ -5867,7 +5849,7 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- Called when **SWEP:Deploy** of the toolgun is called. This is also called when
+-- Called when **WEAPON:Deploy** of the toolgun is called. This is also called when
 -- switching from another tool on the server.
 -- @function [parent=#TOOL] Deploy
 -- @param  self
@@ -5875,7 +5857,7 @@
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
--- Called when **SWEP:DrawHUD** of the toolgun is called, only when the user has
+-- Called when **WEAPON:DrawHUD** of the toolgun is called, only when the user has
 -- this tool selected.
 -- @function [parent=#TOOL] DrawHUD
 -- @param  self
@@ -5895,7 +5877,7 @@
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
--- Called when **SWEP:Think** of the toolgun is called, only when the user has
+-- Called when **WEAPON:Think** of the toolgun is called, only when the user has
 -- this tool selected.
 -- @function [parent=#TOOL] FreezeMovement
 -- @param  self
@@ -5904,7 +5886,7 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- Called when **SWEP:Holster** of the toolgun is called, as well as when
+-- Called when **WEAPON:Holster** of the toolgun is called, as well as when
 -- switching between different toolguns.
 -- 
 -- **Note**: _This hook is predicted. This means that in singleplayer, it will
@@ -5951,7 +5933,7 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- Called when **SWEP:Think** of the toolgun is called. This only happens when
+-- Called when **WEAPON:Think** of the toolgun is called. This only happens when
 -- the tool gun is currently equipped/selected by the player and the selected
 -- tool is this tool.
 -- @function [parent=#TOOL] Think
@@ -5960,7 +5942,7 @@
 -------------------------------------------------------------------------------
 -- Hooks that are available for all gamemodes based on base gamemode.
 --
--- @field [parent=#global] #GM GM
+-- @field [parent=#global] #GAMEMODE GM
 
 
 -- Global functions
@@ -11290,7 +11272,7 @@
 -- empty CTakeDamageInfo object can be created with **DamageInfo**.  
 -- List of hooks that this object is passed to:
 -- 
--- * **ENT:OnTakeDamage**
+-- * **ENTITY:OnTakeDamage**
 -- * **GM:DoPlayerDeath**
 -- * **GM:EntityTakeDamage**
 -- * **GM:OnDamagedByExplosion**
@@ -11709,7 +11691,7 @@
 -- weapon from the client when the next available command can do so.
 -- 
 -- **Note**: _This is the ideal function to use to create a custom weapon
--- selection HUD, as it allows prediction to run properly for **SWEP:Deploy**
+-- selection HUD, as it allows prediction to run properly for **WEAPON:Deploy**
 -- and **GM:PlayerSwitchWeapon**._
 -- @function [parent=#CUserCmd] SelectWeapon
 -- @param  self
@@ -12424,11 +12406,11 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- Fires a bullet. When used in a SWEP hook such as **SWEP:Think** or
--- **SWEP:PrimaryAttack**, it will use **Player:LagCompensation** internally.
+-- Fires a bullet. When used in a WEAPON hook such as **WEAPON:Think** or
+-- **WEAPON:PrimaryAttack**, it will use **Player:LagCompensation** internally.
 -- 
 -- **Note**: _Lag compensation will not work if this function is called in a
--- timer, regardless if the timer was made in a SWEP hook._
+-- timer, regardless if the timer was made in a WEAPON hook._
 -- @function [parent=#Entity] FireBullets
 -- @param  self
 -- @param  #table bulletInfo The bullet data to be used. See the **Bullet structure**.
@@ -12522,7 +12504,7 @@
 -- nothing if the attachment does not exist.
 -- 
 -- **Note**: _The update rate of this function is limited by the setting of
--- **ENT.AutomaticFrameAdvance** for Scripted Entities!_
+-- **ENTITY.AutomaticFrameAdvance** for Scripted Entities!_
 -- @function [parent=#Entity] GetAttachment
 -- @param  self
 -- @param  #number attachmentId The internal ID of the attachment.
@@ -13094,7 +13076,7 @@
 -- 
 -- **Note**: _This only includes engine defined key values. "targetname" is not
 -- an actual key value in-engine, use **Entity:GetName** for that instead. For
--- custom key values, use **GM:EntityKeyValue** or **ENT:KeyValue** to capture and
+-- custom key values, use **GM:EntityKeyValue** or **ENTITY:KeyValue** to capture and
 -- store them._
 -- @function [parent=#Entity] GetKeyValues
 -- @param  self
@@ -14450,7 +14432,7 @@
 -- _Client_ | _Server_
 -- 
 -- Creates a network variable on the entity and adds Set/Get functions for it.
--- This function should only be called in **ENT:SetupDataTables**.
+-- This function should only be called in **ENTITY:SetupDataTables**.
 -- @function [parent=#Entity] NetworkVar
 -- @param  self
 -- @param  #string type Supported choices:
@@ -14487,7 +14469,7 @@
 -- **Entity:InstallDataTable** has not been called. By default, this means this
 -- function only exists on SENTs (both serverside and clientside) and on
 -- players with a Player Class (serverside and clientside **LocalPlayer** only!).
--- It is therefore safest to only use this in **ENT:SetupDataTables**._
+-- It is therefore safest to only use this in **ENTITY:SetupDataTables**._
 -- 
 -- **Warning**: _A clientside NetworkVarNotify will not be called when the
 -- network var is changed serverside! This makes the function less useful.
@@ -14498,7 +14480,7 @@
 -- @param  #function callback The function to call when the variable changes.  
 -- It is passed 4 arugments:
 -- 
--- * _#Entity entity_ : Entity whos variable changed. (This will be variable called "self" in **ENT:CallBack** format.)
+-- * _#Entity entity_ : Entity whos variable changed. (This will be variable called "self" in **ENTITY:CallBack** format.)
 -- * _#string name_ : Name of changed variable.
 -- * _#any old_ : Old/current variable value.
 -- * _#any new_ : New variable value that it was set to.
@@ -14506,7 +14488,7 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- In the case of a scripted entity, this will cause the next **ENT:Think**
+-- In the case of a scripted entity, this will cause the next **ENTITY:Think**
 -- event to be run at the given time. Does not work clientside!
 -- Use **Entity:SetNextClientThink** instead.
 -- @function [parent=#Entity] NextThink
@@ -14747,7 +14729,7 @@
 -- _Server_
 -- 
 -- Precaches gibs for the entity's model. Normally this function should be ran
--- when the entity is spawned, for example the **ENT:Initialize**, after
+-- when the entity is spawned, for example the **ENTITY:Initialize**, after
 -- **Entity:SetModel** is called. This is required for **Entity:GibBreakServer** and
 -- **Entity:GibBreakClient** to work.
 -- @function [parent=#Entity] PrecacheGibs
@@ -15629,10 +15611,10 @@
 -------------------------------------------------------------------------------
 -- _Client_
 -- 
--- Sets the next time the clientside **ENT:Think** is called.
+-- Sets the next time the clientside **ENTITY:Think** is called.
 -- @function [parent=#Entity] SetNextClientThink
 -- @param  self
--- @param  #number nextthink The next time, relative to **CurTime**, to execute the **ENT:Think** clientside.
+-- @param  #number nextthink The next time, relative to **CurTime**, to execute the **ENTITY:Think** clientside.
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -16133,7 +16115,7 @@
 -- viewmodels to transmit to everyone too).
 -- 
 -- **Note**: _In the case of scripted entities, this will override
--- **ENT:UpdateTransmitState**._
+-- **ENTITY:UpdateTransmitState**._
 -- @function [parent=#Entity] SetTransmitWithParent
 -- @param  self
 -- @param  #boolean onoff Will set the TransmitWithParent flag on or off.
@@ -16183,7 +16165,7 @@
 -------------------------------------------------------------------------------
 -- _Server_
 -- 
--- Sets the use type of an entity, affecting how often **ENT:Use** will be
+-- Sets the use type of an entity, affecting how often **ENTITY:Use** will be
 -- called for Lua entities.
 -- @function [parent=#Entity] SetUseType
 -- @param  self
@@ -16254,7 +16236,7 @@
 -- _Client_ | _Server_
 -- 
 -- Initializes the entity and starts its networking. If called on a player, it
--- will respawn them. This calls **ENT:Initialize** on Lua-defined entities.
+-- will respawn them. This calls **ENTITY:Initialize** on Lua-defined entities.
 -- @function [parent=#Entity] Spawn
 -- @param  self
 
@@ -16520,7 +16502,7 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- Calls and returns **SWEP:TranslateActivity** on the weapon the entity (player
+-- Calls and returns **WEAPON:TranslateActivity** on the weapon the entity (player
 -- or NPC) carries. Despite existing on client, it doesn't actually do anything
 -- on client.
 -- @function [parent=#Entity] Weapon_TranslateActivity
@@ -22652,7 +22634,7 @@
 -- Returns the last command which was sent by the specified player. Can only be
 -- used in a Predicted Hook.
 -- 
--- **Note**: _When called clientside in singleplayer during **SWEP:Think**, it
+-- **Note**: _When called clientside in singleplayer during **WEAPON:Think**, it
 -- will return nothing as the hook is not technically predicted in that instance._
 -- @function [parent=#Player] GetCurrentCommand
 -- @param  self
@@ -22981,7 +22963,7 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- Gets the vehicle the player is driving, returns NULL ENT if the player is
+-- Gets the vehicle the player is driving, returns NULL ENTITY if the player is
 -- not driving.
 -- @function [parent=#Player] GetVehicle
 -- @param  self
@@ -23001,7 +22983,7 @@
 -- 
 -- Returns the player's view model entity by the index. Each player has 3 view
 -- models by default, but only the first one is used. To use the other
--- viewmodels in your SWEP, see **Entity:SetWeaponModel**.
+-- viewmodels in your WEAPON, see **Entity:SetWeaponModel**.
 -- 
 -- **Note**: _In the Client realm, other players' viewmodels are not available
 -- unless they are being spectated._
@@ -23573,7 +23555,7 @@
 -- Sets the active weapon of the player by its class name.
 -- 
 -- **Warning**: _This will switch the weapon out of prediction, causing delay
--- on the client and **SWEP:Deploy** to be called out of prediction. Try using
+-- on the client and **WEAPON:Deploy** to be called out of prediction. Try using
 -- **CUserCmd:SelectWeapon** or **input.SelectWeapon**, instead._
 -- 
 -- **Note**: _This will trigger the weapon switch event and associated
@@ -25934,7 +25916,7 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- Calls a SWEP function on client.
+-- Calls a WEAPON function on client.
 -- 
 -- **Warning**: _This uses the usermessage library internally, because of that,
 -- the combined length of the arguments of this function may not exceed 254
@@ -25942,7 +25924,7 @@
 -- @function [parent=#Weapon] CallOnClient
 -- @param  self
 -- @param  #string functionName Name of function to call.
--- If you want to call **SWEP:MyFunc**() on client, you type in "MyFunc".
+-- If you want to call **WEAPON:MyFunc**() on client, you type in "MyFunc".
 -- @param  #string arguments Arguments for the function, separated by spaces. _(Default: "")_
 -- 
 -- **Note**: _Only the second argument is passed as argument and must be a string._
@@ -26008,7 +25990,7 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- Gets the next time the weapon can primary fire. (Can call **SWEP:PrimaryAttack**)
+-- Gets the next time the weapon can primary fire. (Can call **WEAPON:PrimaryAttack**)
 -- @function [parent=#Weapon] GetNextPrimaryFire
 -- @param  self
 -- @return #number The time, relative to **CurTime**.
@@ -26016,7 +25998,7 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- Gets the next time the weapon can secondary fire. (Can call **SWEP:SecondaryAttack**)
+-- Gets the next time the weapon can secondary fire. (Can call **WEAPON:SecondaryAttack**)
 -- @function [parent=#Weapon] GetNextSecondaryFire
 -- @param  self
 -- @return #number The time, relative to **CurTime**.
@@ -26037,7 +26019,7 @@
 -- **Note**: _If that returns an untranslated message (#HL2\_XX), use
 -- **language.GetPhrase** to see the "nice" name._
 -- 
--- **Note**: _If **SWEP.PrintName** is not set in the Weapon or the Weapon Base
+-- **Note**: _If **WEAPON.PrintName** is not set in the Weapon or the Weapon Base
 -- then "<MISSING SWEP PRINT NAME>" will be returned._
 -- @function [parent=#Weapon] GetPrintName
 -- @param  self
@@ -26114,10 +26096,10 @@
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
 -- 
--- Checks if the weapon is a SWEP or a built-in weapon.
+-- Checks if the weapon is a WEAPON or a built-in weapon.
 -- @function [parent=#Weapon] IsScripted
 -- @param  self
--- @return #boolean Returns true if weapon is scripted (SWEP), false if not (a built-in HL2 weapon).
+-- @return #boolean Returns true if weapon is scripted (WEAPON), false if not (a built-in HL2 weapon).
 
 -------------------------------------------------------------------------------
 -- _Client_ | _Server_
@@ -26166,7 +26148,7 @@
 -- _Client_ | _Server_
 -- 
 -- Sets the hold type of the weapon. This function also calls
--- **SWEP:SetWeaponHoldType** and properly networks it to all clients.
+-- **WEAPON:SetWeaponHoldType** and properly networks it to all clients.
 -- 
 -- **Note**: _This only works on scripted weapons._
 -- @function [parent=#Weapon] SetHoldType
@@ -26339,6315 +26321,6315 @@
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_INVALID
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RESET
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_TRANSITION
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_COVER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_COVER_MED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_COVER_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_AIM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_CROUCH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_CROUCH_AIM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_AIM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_CROUCH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_CROUCH_AIM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_PROTECTED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SCRIPT_CUSTOM_MOVE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK1_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK2_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DIESIMPLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DIEBACKWARD
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DIEFORWARD
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DIEVIOLENT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DIERAGDOLL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_FLY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HOVER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GLIDE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SWIM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SWIM_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_JUMP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HOP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_LEAP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_LAND
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_CLIMB_UP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_CLIMB_DOWN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_CLIMB_DISMOUNT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SHIPLADDER_UP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SHIPLADDER_DOWN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_STRAFE_LEFT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_STRAFE_RIGHT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_ROLL_LEFT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_ROLL_RIGHT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_TURN_LEFT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_TURN_RIGHT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_CROUCH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_CROUCHIDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_STAND
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_USE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SIGNAL1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SIGNAL2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SIGNAL3
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SIGNAL_ADVANCE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SIGNAL_FORWARD
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SIGNAL_GROUP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SIGNAL_HALT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SIGNAL_LEFT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SIGNAL_RIGHT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SIGNAL_TAKECOVER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_LOOKBACK_RIGHT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_LOOKBACK_LEFT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_COWER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SMALL_FLINCH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_BIG_FLINCH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MELEE_ATTACK1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MELEE_ATTACK2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RELOAD
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RELOAD_START
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RELOAD_FINISH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RELOAD_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_ARM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DISARM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DROP_WEAPON
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DROP_WEAPON_SHOTGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_PICKUP_GROUND
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_PICKUP_RACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_ANGRY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_RELAXED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_STIMULATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_AGITATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_STEALTH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_HURT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_RELAXED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_STIMULATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_AGITATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_STEALTH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_RELAXED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_STIMULATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_AGITATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_STEALTH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_AIM_RELAXED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_AIM_STIMULATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_AIM_AGITATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_AIM_STEALTH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_AIM_RELAXED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_AIM_STIMULATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_AIM_AGITATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_AIM_STEALTH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_AIM_RELAXED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_AIM_STIMULATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_AIM_AGITATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_AIM_STEALTH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_CROUCHIDLE_STIMULATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_CROUCHIDLE_AIM_STIMULATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_CROUCHIDLE_AGITATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_HURT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_HURT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SPECIAL_ATTACK1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SPECIAL_ATTACK2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_COMBAT_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_SCARED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_SCARED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VICTORY_DANCE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DIE_HEADSHOT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DIE_CHESTSHOT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DIE_GUTSHOT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DIE_BACKSHOT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_FLINCH_HEAD
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_FLINCH_CHEST
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_FLINCH_STOMACH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_FLINCH_LEFTARM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_FLINCH_RIGHTARM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_FLINCH_LEFTLEG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_FLINCH_RIGHTLEG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_FLINCH_PHYSICS
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_ON_FIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_ON_FIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_ON_FIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RAPPEL_LOOP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_180_LEFT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_180_RIGHT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_90_LEFT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_90_RIGHT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_STEP_LEFT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_STEP_RIGHT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_STEP_BACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_STEP_FORE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RANGE_ATTACK1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RANGE_ATTACK2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_MELEE_ATTACK1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_MELEE_ATTACK2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RANGE_ATTACK1_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RANGE_ATTACK2_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MELEE_ATTACK_SWING_GESTURE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_SMALL_FLINCH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_BIG_FLINCH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_FLINCH_BLAST
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_FLINCH_BLAST_SHOTGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_FLINCH_BLAST_DAMAGED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_FLINCH_BLAST_DAMAGED_SHOTGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_FLINCH_HEAD
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_FLINCH_CHEST
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_FLINCH_STOMACH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_FLINCH_LEFTARM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_FLINCH_RIGHTARM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_FLINCH_LEFTLEG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_FLINCH_RIGHTLEG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_TURN_LEFT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_TURN_RIGHT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_TURN_LEFT45
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_TURN_RIGHT45
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_TURN_LEFT90
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_TURN_RIGHT90
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_TURN_LEFT45_FLAT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_TURN_RIGHT45_FLAT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_TURN_LEFT90_FLAT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_TURN_RIGHT90_FLAT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_BARNACLE_HIT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_BARNACLE_PULL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_BARNACLE_CHOMP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_BARNACLE_CHEW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DO_NOT_DISTURB
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DRAW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_HOLSTER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_FIDGET
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PULLBACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PULLBACK_HIGH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PULLBACK_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_THROW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PULLPIN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PRIMARYATTACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_SECONDARYATTACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_RELOAD
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DRYFIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_HITLEFT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_HITLEFT2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_HITRIGHT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_HITRIGHT2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_HITCENTER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_HITCENTER2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_MISSLEFT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_MISSLEFT2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_MISSRIGHT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_MISSRIGHT2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_MISSCENTER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_MISSCENTER2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_HAULBACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_SWINGHARD
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_SWINGMISS
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_SWINGHIT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_TO_LOWERED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_LOWERED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_LOWERED_TO_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_RECOIL1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_RECOIL2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_RECOIL3
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PICKUP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_RELEASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_ATTACH_SILENCER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DETACH_SILENCER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_STICKWALL_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_STICKWALL_ND_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_STICKWALL_ATTACH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_STICKWALL_ATTACH2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_STICKWALL_ND_ATTACH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_STICKWALL_ND_ATTACH2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_STICKWALL_DETONATE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_STICKWALL_DETONATOR_HOLSTER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_STICKWALL_DRAW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_STICKWALL_ND_DRAW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_STICKWALL_TO_THROW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_STICKWALL_TO_THROW_ND
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_STICKWALL_TO_TRIPMINE_ND
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_THROW_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_THROW_ND_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_THROW_THROW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_THROW_THROW2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_THROW_THROW_ND
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_THROW_THROW_ND2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_THROW_DRAW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_THROW_ND_DRAW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_THROW_TO_STICKWALL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_THROW_TO_STICKWALL_ND
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_THROW_DETONATE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_THROW_DETONATOR_HOLSTER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_THROW_TO_TRIPMINE_ND
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_TRIPMINE_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_TRIPMINE_DRAW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_TRIPMINE_ATTACH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_TRIPMINE_ATTACH2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_TRIPMINE_TO_STICKWALL_ND
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_TRIPMINE_TO_THROW_ND
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_DETONATOR_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_DETONATOR_DRAW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_DETONATOR_DETONATE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_DETONATOR_HOLSTER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_DETONATOR_STICKWALL_DRAW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SLAM_DETONATOR_THROW_DRAW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SHOTGUN_RELOAD_START
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SHOTGUN_RELOAD_FINISH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SHOTGUN_PUMP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SMG2_IDLE2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SMG2_FIRE2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SMG2_DRAW2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SMG2_RELOAD2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SMG2_DRYFIRE2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SMG2_TOAUTO
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SMG2_TOBURST
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_PHYSCANNON_UPGRADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK_AR1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK_AR2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK_AR2_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK_AR2_GRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK_HMG1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK_ML
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK_SMG1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK_SMG1_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK_SMG2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK_SHOTGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK_SHOTGUN_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK_PISTOL_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK_SLAM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK_TRIPWIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK_THROW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK_SNIPER_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_ATTACK_RPG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MELEE_ATTACK_SWING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_AIM_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_AIM_SMG1_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_AIM_PISTOL_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RANGE_AIM_AR2_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_COVER_PISTOL_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_COVER_SMG1_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RANGE_ATTACK_AR1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RANGE_ATTACK_AR2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RANGE_ATTACK_AR2_GRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RANGE_ATTACK_HMG1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RANGE_ATTACK_ML
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RANGE_ATTACK_SMG1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RANGE_ATTACK_SMG1_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RANGE_ATTACK_SMG2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RANGE_ATTACK_SHOTGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RANGE_ATTACK_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RANGE_ATTACK_PISTOL_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RANGE_ATTACK_SLAM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RANGE_ATTACK_TRIPWIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RANGE_ATTACK_THROW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RANGE_ATTACK_SNIPER_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_MELEE_ATTACK_SWING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_SMG1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_ANGRY_SMG1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_ANGRY_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_ANGRY_SHOTGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_STEALTH_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_PACKAGE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_PACKAGE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_SUITCASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_SUITCASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_SMG1_RELAXED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_SMG1_STIMULATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_RIFLE_RELAXED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_RIFLE_RELAXED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_RIFLE_STIMULATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_RIFLE_STIMULATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_AIM_RIFLE_STIMULATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_AIM_RIFLE_STIMULATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_AIM_RIFLE_STIMULATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_SHOTGUN_RELAXED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_SHOTGUN_STIMULATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_SHOTGUN_AGITATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_ANGRY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_POLICE_HARASS1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_POLICE_HARASS2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_MANNEDGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_ANGRY_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_RPG_RELAXED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_RPG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_ANGRY_RPG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_COVER_LOW_RPG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_RPG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_RPG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_CROUCH_RPG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_CROUCH_RPG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_RPG_RELAXED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_RPG_RELAXED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_AIM_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_CROUCH_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_CROUCH_AIM_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_AIM_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_CROUCH_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_CROUCH_AIM_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_STEALTH_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_AIM_SHOTGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_AIM_SHOTGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_AIM_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_AIM_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_STEALTH_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_AIM_STEALTH_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUN_AIM_STEALTH_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RELOAD_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RELOAD_PISTOL_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RELOAD_SMG1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RELOAD_SMG1_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RELOAD_SHOTGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RELOAD_SHOTGUN_LOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RELOAD
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RELOAD_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RELOAD_SMG1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_RELOAD_SHOTGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_BUSY_LEAN_LEFT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_BUSY_LEAN_LEFT_ENTRY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_BUSY_LEAN_LEFT_EXIT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_BUSY_LEAN_BACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_BUSY_LEAN_BACK_ENTRY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_BUSY_LEAN_BACK_EXIT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_BUSY_SIT_GROUND
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_BUSY_SIT_GROUND_ENTRY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_BUSY_SIT_GROUND_EXIT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_BUSY_SIT_CHAIR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_BUSY_SIT_CHAIR_ENTRY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_BUSY_SIT_CHAIR_EXIT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_BUSY_STAND
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_BUSY_QUEUE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DUCK_DODGE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DIE_BARNACLE_SWALLOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GESTURE_BARNACLE_STRANGLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_PHYSCANNON_DETACH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_PHYSCANNON_ANIMATE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_PHYSCANNON_ANIMATE_PRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_PHYSCANNON_ANIMATE_POST
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DIE_FRONTSIDE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DIE_RIGHTSIDE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DIE_BACKSIDE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DIE_LEFTSIDE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_OPEN_DOOR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DI_ALYX_ZOMBIE_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DI_ALYX_ZOMBIE_TORSO_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DI_ALYX_HEADCRAB_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DI_ALYX_ANTLION
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DI_ALYX_ZOMBIE_SHOTGUN64
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DI_ALYX_ZOMBIE_SHOTGUN26
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_READINESS_RELAXED_TO_STIMULATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_READINESS_RELAXED_TO_STIMULATED_WALK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_READINESS_AGITATED_TO_STIMULATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_READINESS_STIMULATED_TO_RELAXED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_READINESS_PISTOL_RELAXED_TO_STIMULATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_READINESS_PISTOL_RELAXED_TO_STIMULATED_WALK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_READINESS_PISTOL_AGITATED_TO_STIMULATED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_READINESS_PISTOL_STIMULATED_TO_RELAXED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLE_CARRY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_WALK_CARRY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_STARTDYING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DYINGLOOP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DYINGTODEAD
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RIDE_MANNED_GUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_SPRINT_ENTER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_SPRINT_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_SPRINT_LEAVE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_FIRE_START
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_FIRE_LOOP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_FIRE_END
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_CROUCHING_GRENADEIDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_CROUCHING_GRENADEREADY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_CROUCHING_PRIMARYATTACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_OVERLAY_GRENADEIDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_OVERLAY_GRENADEREADY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_OVERLAY_PRIMARYATTACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_OVERLAY_SHIELD_UP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_OVERLAY_SHIELD_DOWN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_OVERLAY_SHIELD_UP_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_OVERLAY_SHIELD_ATTACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_OVERLAY_SHIELD_KNOCKBACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SHIELD_UP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SHIELD_DOWN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SHIELD_UP_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SHIELD_ATTACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SHIELD_KNOCKBACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_CROUCHING_SHIELD_UP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_CROUCHING_SHIELD_DOWN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_CROUCHING_SHIELD_UP_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_CROUCHING_SHIELD_ATTACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_CROUCHING_SHIELD_KNOCKBACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_TURNRIGHT45
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_TURNLEFT45
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_TURN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_OBJ_ASSEMBLING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_OBJ_DISMANTLING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_OBJ_STARTUP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_OBJ_RUNNING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_OBJ_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_OBJ_PLACING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_OBJ_DETERIORATING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_OBJ_UPGRADING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DEPLOY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DEPLOY_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_UNDEPLOY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GRENADE_ROLL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GRENADE_TOSS
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HANDGRENADE_THROW1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HANDGRENADE_THROW2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HANDGRENADE_THROW3
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SHOTGUN_IDLE_DEEP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SHOTGUN_IDLE4
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GLOCK_SHOOTEMPTY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GLOCK_SHOOT_RELOAD
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RPG_DRAW_UNLOADED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RPG_HOLSTER_UNLOADED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RPG_IDLE_UNLOADED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RPG_FIDGET_UNLOADED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_CROSSBOW_DRAW_UNLOADED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_CROSSBOW_IDLE_UNLOADED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_CROSSBOW_FIDGET_UNLOADED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GAUSS_SPINUP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GAUSS_SPINCYCLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_TRIPMINE_GROUND
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_TRIPMINE_WORLD
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PRIMARYATTACK_SILENCED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_RELOAD_SILENCED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DRYFIRE_SILENCED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_SILENCED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DRAW_SILENCED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_EMPTY_LEFT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DRYFIRE_LEFT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_PLAYER_IDLE_FIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_PLAYER_CROUCH_FIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_PLAYER_CROUCH_WALK_FIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_PLAYER_WALK_FIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_PLAYER_RUN_FIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_IDLETORUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_RUNTOIDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_SPRINT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GET_DOWN_STAND
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GET_UP_STAND
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GET_DOWN_CROUCH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GET_UP_CROUCH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_PRONE_FORWARD
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_PRONE_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DEEPIDLE1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DEEPIDLE2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DEEPIDLE3
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DEEPIDLE4
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_RELOAD_DEPLOYED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_RELOAD_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DRAW_DEPLOYED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DRAW_EMPTY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PRIMARYATTACK_EMPTY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_RELOAD_EMPTY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_EMPTY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_DEPLOYED_EMPTY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_8
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_7
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_6
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_5
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_4
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_3
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_DEPLOYED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_DEPLOYED_8
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_DEPLOYED_7
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_DEPLOYED_6
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_DEPLOYED_5
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_DEPLOYED_4
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_DEPLOYED_3
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_DEPLOYED_2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_DEPLOYED_1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_UNDEPLOY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_UNDEPLOY_8
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_UNDEPLOY_7
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_UNDEPLOY_6
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_UNDEPLOY_5
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_UNDEPLOY_4
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_UNDEPLOY_3
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_UNDEPLOY_2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_UNDEPLOY_1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_UNDEPLOY_EMPTY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOY_8
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOY_7
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOY_6
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOY_5
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOY_4
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOY_3
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOY_2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOY_1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOY_EMPTY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PRIMARYATTACK_8
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PRIMARYATTACK_7
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PRIMARYATTACK_6
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PRIMARYATTACK_5
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PRIMARYATTACK_4
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PRIMARYATTACK_3
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PRIMARYATTACK_2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PRIMARYATTACK_1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PRIMARYATTACK_DEPLOYED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PRIMARYATTACK_DEPLOYED_8
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PRIMARYATTACK_DEPLOYED_7
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PRIMARYATTACK_DEPLOYED_6
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PRIMARYATTACK_DEPLOYED_5
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PRIMARYATTACK_DEPLOYED_4
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PRIMARYATTACK_DEPLOYED_3
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PRIMARYATTACK_DEPLOYED_2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PRIMARYATTACK_DEPLOYED_1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PRIMARYATTACK_DEPLOYED_EMPTY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_DEPLOYED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_DEPLOYED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_IDLE_ZOOMED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_ZOOMED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_ZOOMED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_ZOOMED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_ZOOMED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_FORWARD_ZOOMED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_DEPLOYED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE_DEPLOYED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_DEPLOYED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_DEPLOYED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SECONDARYATTACK_PRONE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_CROUCH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_AIM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_AIM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_AIM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_AIM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_AIM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_AIM_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_AIM_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_AIM_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_AIM_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_AIM_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_AIM_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_IDLE_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_IDLE_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_IDLE_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_IDLE_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_IDLE_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SPRINT_IDLE_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONEWALK_IDLE_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_AIM_C96
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_AIM_C96
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_AIM_C96
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_AIM_C96
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_AIM_C96
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_AIM_C96
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_IDLE_C96
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_IDLE_C96
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_IDLE_C96
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_IDLE_C96
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_IDLE_C96
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SPRINT_IDLE_C96
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONEWALK_IDLE_C96
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_AIM_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_AIM_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_AIM_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_AIM_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_AIM_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_AIM_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_IDLE_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_IDLE_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_IDLE_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_IDLE_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_IDLE_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SPRINT_IDLE_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONEWALK_IDLE_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_AIM_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_AIM_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_AIM_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_AIM_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_AIM_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_AIM_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_IDLE_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_IDLE_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_IDLE_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_IDLE_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_IDLE_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SPRINT_IDLE_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONEWALK_IDLE_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_AIM_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_AIM_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_AIM_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_AIM_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_AIM_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_AIM_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_IDLE_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_IDLE_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_IDLE_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_IDLE_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_IDLE_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SPRINT_IDLE_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONEWALK_IDLE_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_AIM_MP40
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_AIM_MP40
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_AIM_MP40
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_AIM_MP40
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_AIM_MP40
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_AIM_MP40
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_IDLE_MP40
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_IDLE_MP40
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_IDLE_MP40
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_IDLE_MP40
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_IDLE_MP40
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SPRINT_IDLE_MP40
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONEWALK_IDLE_MP40
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_AIM_MP44
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_AIM_MP44
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_AIM_MP44
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_AIM_MP44
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_AIM_MP44
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_AIM_MP44
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_IDLE_MP44
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_IDLE_MP44
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_IDLE_MP44
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_IDLE_MP44
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_IDLE_MP44
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SPRINT_IDLE_MP44
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONEWALK_IDLE_MP44
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_AIM_GREASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_AIM_GREASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_AIM_GREASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_AIM_GREASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_AIM_GREASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_AIM_GREASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_IDLE_GREASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_IDLE_GREASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_IDLE_GREASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_IDLE_GREASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_IDLE_GREASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SPRINT_IDLE_GREASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONEWALK_IDLE_GREASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_AIM_MG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_AIM_MG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_AIM_MG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_AIM_MG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_AIM_MG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_AIM_MG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_IDLE_MG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_IDLE_MG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_IDLE_MG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_IDLE_MG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_IDLE_MG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SPRINT_IDLE_MG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONEWALK_IDLE_MG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_AIM_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_AIM_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_AIM_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_AIM_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_AIM_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_AIM_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_IDLE_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_IDLE_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_IDLE_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_IDLE_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_IDLE_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SPRINT_IDLE_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONEWALK_IDLE_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_AIM_GREN_FRAG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_AIM_GREN_FRAG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_AIM_GREN_FRAG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_AIM_GREN_FRAG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_AIM_GREN_FRAG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_AIM_GREN_FRAG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SPRINT_AIM_GREN_FRAG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONEWALK_AIM_GREN_FRAG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_AIM_GREN_STICK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_AIM_GREN_STICK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_AIM_GREN_STICK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_AIM_GREN_STICK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_AIM_GREN_STICK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_AIM_GREN_STICK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SPRINT_AIM_GREN_STICK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONEWALK_AIM_GREN_STICK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_AIM_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_AIM_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_AIM_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_AIM_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_AIM_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_AIM_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SPRINT_AIM_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONEWALK_AIM_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_AIM_SPADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_AIM_SPADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_AIM_SPADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_AIM_SPADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_AIM_SPADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_AIM_SPADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SPRINT_AIM_SPADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONEWALK_AIM_SPADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_AIM_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_AIM_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_AIM_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_AIM_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_AIM_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_AIM_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_IDLE_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_IDLE_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_IDLE_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_IDLE_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_IDLE_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SPRINT_IDLE_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONEWALK_IDLE_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_AIM_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_AIM_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_AIM_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_AIM_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_AIM_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_AIM_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_IDLE_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_IDLE_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_IDLE_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_IDLE_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_IDLE_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SPRINT_IDLE_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONEWALK_IDLE_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_AIM_BAR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_AIM_BAR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_AIM_BAR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_AIM_BAR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_AIM_BAR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_AIM_BAR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_IDLE_BAR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_IDLE_BAR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_IDLE_BAR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_IDLE_BAR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_IDLE_BAR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SPRINT_IDLE_BAR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONEWALK_IDLE_BAR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_ZOOM_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_ZOOM_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_ZOOM_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_ZOOM_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_ZOOM_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_ZOOM_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_ZOOM_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_ZOOM_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_ZOOM_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_ZOOM_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_ZOOM_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_ZOOM_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_ZOOM_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_ZOOM_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_ZOOM_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_ZOOM_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_ZOOM_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_ZOOM_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_ZOOM_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_ZOOM_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_ZOOM_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_ZOOM_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_ZOOM_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_ZOOM_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_DEPLOY_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_DEPLOY_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_DEPLOY_MG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_DEPLOY_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_DEPLOY_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_DEPLOY_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_DEPLOY_MG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_DEPLOY_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SECONDARYATTACK_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SECONDARYATTACK_PRONE_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE_DEPLOYED_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_DEPLOYED_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SECONDARYATTACK_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SECONDARYATTACK_PRONE_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SECONDARYATTACK_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SECONDARYATTACK_PRONE_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_MP40
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE_MP40
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SECONDARYATTACK_MP40
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SECONDARYATTACK_PRONE_MP40
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_MP44
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE_MP44
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_GREASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE_GREASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_C96
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE_C96
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_MG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE_MG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE_DEPLOYED_MG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_DEPLOYED_MG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_DEPLOYED_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE_DEPLOYED_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_GREN_FRAG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE_GREN_FRAG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_GREN_STICK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE_GREN_STICK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_SPADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE_SPADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_BAR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_PRONE_BAR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_GARAND
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_K43
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_BAR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_MP40
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_MP44
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_M1CARBINE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_GREASEGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_FG42
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_RIFLEGRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_C96
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_CROUCH_BAR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_CROUCH_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_CROUCH_RIFLEGRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_CROUCH_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_CROUCH_MP44
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_CROUCH_MP40
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_CROUCH_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_CROUCH_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_CROUCH_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_CROUCH_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_CROUCH_M1CARBINE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_CROUCH_C96
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_ZOOMLOAD_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_ZOOMLOAD_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_DEPLOYED_FG42
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_DEPLOYED_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_DEPLOYED_MG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_DEPLOYED_MG34
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_DEPLOYED_BAR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_GARAND
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_M1CARBINE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_K43
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_MP40
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_MP44
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_BAR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_GREASEGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_FG42
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_RIFLEGRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_C96
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_ZOOMLOAD_PRONE_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_ZOOMLOAD_PRONE_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_DEPLOYED_BAR
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_DEPLOYED_FG42
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_DEPLOYED_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_DEPLOYED_MG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RELOAD_PRONE_DEPLOYED_MG34
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_ZOOM_FORWARD_RIFLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_ZOOM_FORWARD_BOLT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_ZOOM_FORWARD_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONE_ZOOM_FORWARD_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_CROUCH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_CROUCH_SPADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_CROUCH_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_CROUCH_GREN_FRAG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRIMARYATTACK_CROUCH_GREN_STICK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SECONDARYATTACK_CROUCH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SECONDARYATTACK_CROUCH_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SECONDARYATTACK_CROUCH_MP40
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_CROUCH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_IDLE_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_IDLE_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_IDLE_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_IDLE_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_IDLE_MG42
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_IDLE_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_IDLE_STICKGRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_IDLE_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_IDLE_MP44
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_IDLE_K98
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_CROUCH_30CAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_CROUCH_BAZOOKA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_CROUCH_PSCHRECK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_CROUCH_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_CROUCH_MG42
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_CROUCH_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_CROUCH_STICKGRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_CROUCH_TOMMY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_CROUCH_MP44
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_HS_CROUCH_K98
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_STAND_IDLE_TNT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCH_IDLE_TNT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_CROUCHWALK_IDLE_TNT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_WALK_IDLE_TNT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_RUN_IDLE_TNT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_SPRINT_IDLE_TNT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PRONEWALK_IDLE_TNT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_PLANT_TNT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DOD_DEFUSE_TNT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_FIZZLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_STAND_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_CROUCH_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_CROUCH_DEPLOYED_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_CROUCH_DEPLOYED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_DEPLOYED_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_WALK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_AIRWALK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_CROUCHWALK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_SPRINT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_START
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_FLOAT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_LAND
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_DOUBLEJUMP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_SWIM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_DEPLOYED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_SWIM_DEPLOYED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_VCD
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_SWIM_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_STAND_PRIMARYFIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_STAND_PRIMARYFIRE_DEPLOYED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_STAND_SECONDARYFIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_STAND_GRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_CROUCH_PRIMARYFIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_CROUCH_PRIMARYFIRE_DEPLOYED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_CROUCH_SECONDARYFIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_CROUCH_GRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_SWIM_PRIMARYFIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_SWIM_SECONDARYFIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_SWIM_GRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_AIRWALK_PRIMARYFIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_AIRWALK_SECONDARYFIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_AIRWALK_GRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_STAND
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_STAND_LOOP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_STAND_END
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_CROUCH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_CROUCH_LOOP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_CROUCH_END
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_SWIM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_SWIM_LOOP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_SWIM_END
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_AIRWALK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_AIRWALK_LOOP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_AIRWALK_END
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_STAND_PREFIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_STAND_POSTFIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_STAND_STARTFIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_CROUCH_PREFIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_CROUCH_POSTFIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_SWIM_PREFIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_SWIM_POSTFIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_STAND_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_CROUCH_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RUN_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_WALK_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_AIRWALK_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_CROUCHWALK_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_START_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_FLOAT_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_LAND_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_SWIM_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_DEPLOYED_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_SWIM_DEPLOYED_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_STAND_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_STAND_PRIMARY_DEPLOYED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_CROUCH_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_CROUCH_PRIMARY_DEPLOYED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_SWIM_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_AIRWALK_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_STAND_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_STAND_PRIMARY_LOOP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_STAND_PRIMARY_END
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_CROUCH_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_CROUCH_PRIMARY_LOOP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_CROUCH_PRIMARY_END
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_SWIM_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_SWIM_PRIMARY_LOOP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_SWIM_PRIMARY_END
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_AIRWALK_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_AIRWALK_PRIMARY_LOOP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_AIRWALK_PRIMARY_END
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_STAND_GRENADE_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_CROUCH_GRENADE_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_SWIM_GRENADE_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_AIRWALK_GRENADE_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_STAND_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_CROUCH_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RUN_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_WALK_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_AIRWALK_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_CROUCHWALK_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_START_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_FLOAT_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_LAND_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_SWIM_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_STAND_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_CROUCH_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_SWIM_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_AIRWALK_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_STAND_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_STAND_SECONDARY_LOOP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_STAND_SECONDARY_END
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_CROUCH_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_CROUCH_SECONDARY_LOOP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_CROUCH_SECONDARY_END
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_SWIM_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_SWIM_SECONDARY_LOOP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_SWIM_SECONDARY_END
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_AIRWALK_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_AIRWALK_SECONDARY_LOOP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RELOAD_AIRWALK_SECONDARY_END
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_STAND_GRENADE_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_CROUCH_GRENADE_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_SWIM_GRENADE_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_AIRWALK_GRENADE_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_STAND_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_CROUCH_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RUN_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_WALK_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_AIRWALK_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_CROUCHWALK_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_START_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_FLOAT_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_LAND_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_SWIM_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_STAND_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_STAND_MELEE_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_CROUCH_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_CROUCH_MELEE_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_SWIM_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_AIRWALK_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_STAND_GRENADE_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_CROUCH_GRENADE_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_SWIM_GRENADE_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_AIRWALK_GRENADE_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_FLINCH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_FLINCH_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_FLINCH_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_FLINCH_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_FLINCH_HEAD
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_FLINCH_CHEST
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_FLINCH_STOMACH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_FLINCH_LEFTARM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_FLINCH_RIGHTARM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_FLINCH_LEFTLEG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_FLINCH_RIGHTLEG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GRENADE1_DRAW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GRENADE1_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GRENADE1_ATTACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GRENADE2_DRAW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GRENADE2_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GRENADE2_ATTACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_PRIMARY_GRENADE1_DRAW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_PRIMARY_GRENADE1_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_PRIMARY_GRENADE1_ATTACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_PRIMARY_GRENADE2_DRAW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_PRIMARY_GRENADE2_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_PRIMARY_GRENADE2_ATTACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_SECONDARY_GRENADE1_DRAW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_SECONDARY_GRENADE1_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_SECONDARY_GRENADE1_ATTACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_SECONDARY_GRENADE2_DRAW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_SECONDARY_GRENADE2_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_SECONDARY_GRENADE2_ATTACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_MELEE_GRENADE1_DRAW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_MELEE_GRENADE1_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_MELEE_GRENADE1_ATTACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_MELEE_GRENADE2_DRAW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_MELEE_GRENADE2_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_MELEE_GRENADE2_ATTACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_STAND_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_CROUCH_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RUN_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_WALK_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_AIRWALK_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_CROUCHWALK_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_START_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_FLOAT_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_LAND_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_SWIM_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_STAND_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_CROUCH_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_SWIM_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_AIRWALK_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_STAND_GRENADE_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_CROUCH_GRENADE_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_SWIM_GRENADE_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_AIRWALK_GRENADE_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_STAND_PDA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_CROUCH_PDA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_RUN_PDA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_WALK_PDA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_AIRWALK_PDA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_CROUCHWALK_PDA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_PDA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_START_PDA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_FLOAT_PDA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_JUMP_LAND_PDA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_SWIM_PDA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_STAND_PDA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_ATTACK_SWIM_PDA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_HANDMOUTH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_FINGERPOINT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_FISTPUMP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_THUMBSUP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_NODYES
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_NODNO
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_HANDMOUTH_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_FINGERPOINT_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_FISTPUMP_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_THUMBSUP_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_NODYES_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_NODNO_PRIMARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_HANDMOUTH_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_FINGERPOINT_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_FISTPUMP_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_THUMBSUP_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_NODYES_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_NODNO_SECONDARY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_HANDMOUTH_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_FINGERPOINT_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_FISTPUMP_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_THUMBSUP_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_NODYES_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_NODNO_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_HANDMOUTH_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_FINGERPOINT_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_FISTPUMP_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_THUMBSUP_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_NODYES_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_NODNO_BUILDING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_HANDMOUTH_PDA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_FINGERPOINT_PDA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_FISTPUMP_PDA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_THUMBSUP_PDA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_NODYES_PDA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_MP_GESTURE_VC_NODNO_PDA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_UNUSABLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_UNUSABLE_TO_USABLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_USABLE_TO_UNUSABLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_GESTURE_AGREE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_GESTURE_BECON
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_GESTURE_BOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_GESTURE_DISAGREE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_TAUNT_SALUTE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_GESTURE_WAVE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_TAUNT_PERSISTENCE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_TAUNT_MUSCLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_TAUNT_LAUGH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_GESTURE_POINT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_TAUNT_CHEER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_FAST
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_CHARGING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_PANICKED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_PROTECTED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_MELEE_ANGRY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_ZOMBIE_SLUMP_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_ZOMBIE_SLUMP_RISE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_ZOMBIE_01
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_ZOMBIE_02
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_ZOMBIE_03
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_ZOMBIE_04
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_ZOMBIE_05
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_ZOMBIE_01
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_ZOMBIE_02
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_ZOMBIE_03
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_ZOMBIE_04
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_ZOMBIE_05
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_ZOMBIE_01
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_ZOMBIE_02
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_GESTURE_RANGE_ZOMBIE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_GESTURE_TAUNT_ZOMBIE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_TAUNT_DANCE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_TAUNT_ROBOT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_GESTURE_RANGE_ZOMBIE_SPECIAL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_GESTURE_RANGE_FRENZY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_ZOMBIE_FAST
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_ZOMBIE_06
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_ZOMBIE_LEAP_START
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_ZOMBIE_LEAPING
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_ZOMBIE_CLIMB_UP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_ZOMBIE_CLIMB_START
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_ZOMBIE_CLIMB_END
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_MAGIC
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_MAGIC
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_MAGIC
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_MAGIC
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_MAGIC
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_MAGIC
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_MAGIC
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_MAGIC
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_MAGIC
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_MAGIC
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_REVOLVER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_REVOLVER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_REVOLVER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_REVOLVER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_REVOLVER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_REVOLVER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_REVOLVER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_REVOLVER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_REVOLVER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_REVOLVER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CAMERA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CAMERA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_CAMERA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_CAMERA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_CAMERA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_CAMERA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_CAMERA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_CAMERA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_CAMERA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_CAMERA
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_ANGRY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_ANGRY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_ANGRY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_ANGRY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_ANGRY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_ANGRY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_ANGRY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_ANGRY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_ANGRY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_ANGRY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_SCARED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_SCARED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_SCARED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_SCARED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_SCARED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_SCARED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_SCARED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_SCARED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_SCARED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_SCARED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_ZOMBIE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_ZOMBIE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_ZOMBIE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_ZOMBIE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_ZOMBIE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_ZOMBIE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_ZOMBIE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_ZOMBIE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_ZOMBIE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_ZOMBIE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_SUITCASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_SUITCASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_SUITCASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_SUITCASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_SUITCASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_SUITCASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_SUITCASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_SUITCASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_SUITCASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_SUITCASE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_SMG1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_SMG1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_SMG1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_SMG1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_SMG1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_SMG1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_SMG1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_SMG1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_SMG1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_SMG1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_AR2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_AR2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_AR2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_AR2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_AR2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_AR2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_AR2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_AR2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_AR2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_SHOTGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_SHOTGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_SHOTGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_SHOTGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_SHOTGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_SHOTGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_SHOTGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_SHOTGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_SHOTGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_SHOTGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_RPG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_RPG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_RPG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_RPG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_RPG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_RPG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_RPG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_RPG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_RPG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_RPG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_GRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_GRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_GRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_GRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_GRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_GRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_GRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_GRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_GRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_GRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_DUEL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_DUEL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_DUEL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_DUEL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_DUEL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_DUEL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_DUEL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_DUEL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_DUEL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_DUEL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_PHYSGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_PHYSGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_PHYSGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_PHYSGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_PHYSGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_PHYSGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_PHYSGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_PHYSGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_PHYSGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_PHYSGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROSSBOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROSSBOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_CROSSBOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_CROSSBOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_CROSSBOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_CROSSBOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_CROSSBOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_CROSSBOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_CROSSBOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_CROSSBOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_SLAM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_SLAM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_SLAM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_SLAM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_SLAM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_SLAM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_SLAM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_SLAM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_SLAM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_SLAM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_CRAWL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_CRAWL_EMPTY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_HOLSTER_EMPTY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DOWN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DOWN_EMPTY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_READY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_ISHOOT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IIN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IIN_EMPTY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IIDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IIDLE_EMPTY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IOUT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IOUT_EMPTY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_PULLBACK_HIGH_BAKE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_HITKILL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOYED_IN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOYED_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOYED_FIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOYED_DRYFIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOYED_RELOAD
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOYED_RELOAD_EMPTY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOYED_OUT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOYED_IRON_IN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOYED_IRON_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOYED_IRON_FIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOYED_IRON_DRYFIRE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOYED_IRON_OUT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOYED_LIFTED_IN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOYED_LIFTED_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DEPLOYED_LIFTED_OUT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_RELOADEMPTY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IRECOIL1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IRECOIL2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_FIREMODE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_ISHOOT_LAST
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IFIREMODE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DFIREMODE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DIFIREMODE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_SHOOTLAST
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_ISHOOTDRY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DRAW_M203
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DRAWFULL_M203
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_READY_M203
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IDLE_M203
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_RELOAD_M203
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_HOLSTER_M203
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_HOLSTERFULL_M203
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IIN_M203
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IIDLE_M203
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_IOUT_M203
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_CRAWL_M203
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_DOWN_M203
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_ISHOOT_M203
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_RELOAD_INSERT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_RELOAD_INSERT_PULL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_RELOAD_END
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_RELOAD_END_EMPTY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_RELOAD_INSERT_EMPTY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_CROSSBOW_HOLSTER_UNLOADED
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_FIRE_TO_EMPTY
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_UNLOAD
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_VM_RELOAD2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_NOCLIP_LAYER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_FIST
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_FIST
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_FIST
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_FIST
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_FIST
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_FIST
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_FIST
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_FIST
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_FIST
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_FIST
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SIT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_FIST_BLOCK
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DRIVE_AIRBOAT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_DRIVE_JEEP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_SIT_ROLLERCOASTER
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_KNIFE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_PASSIVE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_PASSIVE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_PASSIVE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_PASSIVE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_PASSIVE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_PASSIVE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_PASSIVE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_PASSIVE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_PASSIVE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_PASSIVE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_MELEE2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_MELEE2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_RUN_MELEE2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_IDLE_CROUCH_MELEE2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_WALK_CROUCH_MELEE2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_GESTURE_RELOAD_MELEE2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_JUMP_MELEE2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE_MELEE2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_MELEE2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SIT_PISTOL
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SIT_SHOTGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SIT_SMG1
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SIT_AR2
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SIT_PHYSGUN
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SIT_GRENADE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SIT_RPG
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SIT_CROSSBOW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SIT_MELEE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SIT_SLAM
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SIT_FIST
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_IN_CHAT
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_GESTURE_ITEM_GIVE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_GESTURE_ITEM_DROP
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_GESTURE_ITEM_PLACE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_GESTURE_ITEM_THROW
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_GESTURE_MELEE_SHOVE_2HAND
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_GMOD_GESTURE_MELEE_SHOVE_1HAND
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number ACT_HL2MP_SWIM_IDLE
-	
+
 ---
 -- Enumerations used by functions like **Weapon:SendWeaponAnim** & **Entity:SelectWeightedSequence**.
 -- @field [parent=#global] #number LAST_SHARED_ACTIVITY
@@ -32856,6 +32838,7 @@
 -- Enumerations used by **render.SetModelLighting**. Place the light to the bottom.
 -- @field [parent=#global] #number BOX_BOTTOM
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -32866,6 +32849,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number BUTTON_CODE_INVALID
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -32876,6 +32860,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number BUTTON_CODE_NONE
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -32886,6 +32871,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number BUTTON_CODE_LAST
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -32896,6 +32882,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number BUTTON_CODE_COUNT
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -32906,6 +32893,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_FIRST
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -32916,6 +32904,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_NONE
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -32924,9 +32913,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Normal number 0 key.
 -- @field [parent=#global] #number KEY_0
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -32935,9 +32926,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Normal number 1 key.
 -- @field [parent=#global] #number KEY_1
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -32946,9 +32939,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Normal number 2 key.
 -- @field [parent=#global] #number KEY_2
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -32957,9 +32952,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Normal number 3 key.
 -- @field [parent=#global] #number KEY_3
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -32968,9 +32965,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Normal number 4 key.
 -- @field [parent=#global] #number KEY_4
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -32979,9 +32978,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Normal number 5 key.
 -- @field [parent=#global] #number KEY_5
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -32990,9 +32991,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Normal number 6 key.
 -- @field [parent=#global] #number KEY_6
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33001,9 +33004,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Normal number 7 key.
 -- @field [parent=#global] #number KEY_7
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33012,9 +33017,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Normal number 8 key.
 -- @field [parent=#global] #number KEY_8
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33023,9 +33030,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Normal number 9 key.
 -- @field [parent=#global] #number KEY_9
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33036,6 +33045,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_A
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33046,6 +33056,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_B
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33056,6 +33067,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_C
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33066,6 +33078,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_D
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33076,6 +33089,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_E
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33086,6 +33100,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_F
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33096,6 +33111,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_G
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33106,6 +33122,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_H
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33116,6 +33133,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_I
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33126,6 +33144,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_J
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33136,6 +33155,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_K
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33146,6 +33166,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_L
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33156,6 +33177,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_M
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33166,6 +33188,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_N
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33176,6 +33199,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_O
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33186,6 +33210,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_P
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33196,6 +33221,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_Q
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33206,6 +33232,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_R
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33216,6 +33243,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_S
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33226,6 +33254,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_T
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33236,6 +33265,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_U
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33246,6 +33276,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_V
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33256,6 +33287,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_W
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33266,6 +33298,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_X
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33276,6 +33309,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_Y
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33286,6 +33320,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_Z
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33294,9 +33329,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Keypad number 0 key.
 -- @field [parent=#global] #number KEY_PAD_0
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33305,9 +33342,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Keypad number 1 key.
 -- @field [parent=#global] #number KEY_PAD_1
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33316,9 +33355,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Keypad number 2 key.
 -- @field [parent=#global] #number KEY_PAD_2
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33327,9 +33368,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Keypad number 3 key.
 -- @field [parent=#global] #number KEY_PAD_3
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33338,9 +33381,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Keypad number 4 key.
 -- @field [parent=#global] #number KEY_PAD_4
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33349,9 +33394,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Keypad number 5 key.
 -- @field [parent=#global] #number KEY_PAD_5
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33360,9 +33407,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Keypad number 6 key.
 -- @field [parent=#global] #number KEY_PAD_6
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33371,9 +33420,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Keypad number 7 key.
 -- @field [parent=#global] #number KEY_PAD_7
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33382,9 +33433,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Keypad number 8 key.
 -- @field [parent=#global] #number KEY_PAD_8
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33393,9 +33446,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Keypad number 9 key.
 -- @field [parent=#global] #number KEY_PAD_9
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33404,9 +33459,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Keypad division/slash key (/).
 -- @field [parent=#global] #number KEY_PAD_DIVIDE
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33415,9 +33472,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Keypad asterisk key (*).
 -- @field [parent=#global] #number KEY_PAD_MULTIPLY
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33426,9 +33485,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Keypad minus key.
 -- @field [parent=#global] #number KEY_PAD_MINUS
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33437,9 +33498,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Keypad plus key.
 -- @field [parent=#global] #number KEY_PAD_PLUS
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33448,9 +33511,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Keypad enter key.
 -- @field [parent=#global] #number KEY_PAD_ENTER
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33459,9 +33524,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Keypad dot key (.).
 -- @field [parent=#global] #number KEY_PAD_DECIMAL
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33472,6 +33539,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_LBRACKET
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33482,6 +33550,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_RBRACKET
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33492,6 +33561,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_SEMICOLON
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33502,6 +33572,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_APOSTROPHE
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33512,6 +33583,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_BACKQUOTE
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33522,6 +33594,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_COMMA
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33532,6 +33605,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_PERIOD
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33542,6 +33616,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_SLASH
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33552,6 +33627,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_BACKSLASH
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33562,6 +33638,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_MINUS
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33572,6 +33649,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_EQUAL
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33582,6 +33660,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_ENTER
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33592,6 +33671,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_SPACE
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33602,6 +33682,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_BACKSPACE
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33612,6 +33693,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_TAB
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33622,6 +33704,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_CAPSLOCK
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33632,6 +33715,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_NUMLOCK
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33642,6 +33726,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_ESCAPE
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33652,6 +33737,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_SCROLLLOCK
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33662,6 +33748,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_INSERT
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33672,6 +33759,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_DELETE
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33682,6 +33770,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_HOME
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33692,6 +33781,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_END
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33702,6 +33792,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_PAGEUP
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33712,6 +33803,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_PAGEDOWN
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33722,6 +33814,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_BREAK
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33730,9 +33823,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- The left Shift key, has been seen to be triggered by Right Shift in **PANEL:OnKeyCodePressed**.
 -- @field [parent=#global] #number KEY_LSHIFT
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33743,6 +33838,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_RSHIFT
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33753,6 +33849,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_LALT
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33763,6 +33860,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_RALT
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33773,6 +33871,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_LCONTROL
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33783,6 +33882,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_RCONTROL
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33791,9 +33891,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- The left Windows key or the Command key on Mac OSX.
 -- @field [parent=#global] #number KEY_LWIN
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33802,9 +33904,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- The right Windows key or the Command key on Mac OSX.
 -- @field [parent=#global] #number KEY_RWIN
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33815,6 +33919,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_APP
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33825,6 +33930,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_UP
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33835,6 +33941,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_LEFT
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33845,6 +33952,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_DOWN
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33855,6 +33963,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_RIGHT
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33865,6 +33974,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_F1
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33875,6 +33985,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_F2
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33885,6 +33996,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_F3
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33895,6 +34007,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_F4
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33905,6 +34018,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_F5
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33915,6 +34029,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_F6
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33925,6 +34040,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_F7
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33935,6 +34051,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_F8
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33945,6 +34062,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_F9
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33955,6 +34073,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_F10
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33965,6 +34084,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_F11
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33975,6 +34095,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_F12
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33985,6 +34106,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_CAPSLOCKTOGGLE
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -33995,6 +34117,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_NUMLOCKTOGGLE
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34005,6 +34128,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_LAST
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34015,6 +34139,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_SCROLLLOCKTOGGLE
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34025,6 +34150,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_COUNT
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34035,6 +34161,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XBUTTON_A
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34045,6 +34172,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XBUTTON_B
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34055,6 +34183,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XBUTTON_X
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34065,6 +34194,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XBUTTON_Y
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34075,6 +34205,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XBUTTON_LEFT_SHOULDER
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34085,6 +34216,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XBUTTON_RIGHT_SHOULDER
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34095,6 +34227,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XBUTTON_BACK
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34105,6 +34238,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XBUTTON_START
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34115,6 +34249,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XBUTTON_STICK1
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34125,6 +34260,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XBUTTON_STICK2
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34135,6 +34271,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XBUTTON_UP
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34145,6 +34282,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XBUTTON_RIGHT
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34155,6 +34293,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XBUTTON_DOWN
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34165,6 +34304,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XBUTTON_LEFT
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34175,6 +34315,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XSTICK1_RIGHT
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34185,6 +34326,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XSTICK1_LEFT
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34195,6 +34337,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XSTICK1_DOWN
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34205,6 +34348,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XSTICK1_UP
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34215,6 +34359,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XBUTTON_LTRIGGER
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34225,6 +34370,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XBUTTON_RTRIGGER
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34235,6 +34381,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XSTICK2_RIGHT
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34245,6 +34392,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XSTICK2_LEFT
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34255,6 +34403,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XSTICK2_DOWN
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34265,6 +34414,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number KEY_XSTICK2_UP
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34273,9 +34423,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- First mouse button.
 -- @field [parent=#global] #number MOUSE_FIRST
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34284,9 +34436,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Left mouse button.
 -- @field [parent=#global] #number MOUSE_LEFT
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34295,9 +34449,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Right mouse button.
 -- @field [parent=#global] #number MOUSE_RIGHT
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34306,9 +34462,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Middle mouse button, aka the wheel press.
 -- @field [parent=#global] #number MOUSE_MIDDLE
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34317,9 +34475,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Mouse 4 button. (Sometimes, mouse wheel tilt left)
 -- @field [parent=#global] #number MOUSE_4
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34328,9 +34488,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Mouse 5 button. (Sometimes, mouse wheel tilt right)
 -- @field [parent=#global] #number MOUSE_5
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34339,9 +34501,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Mouse wheel scroll up.
 -- @field [parent=#global] #number MOUSE_WHEEL_UP
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34350,9 +34514,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Mouse wheel scroll down.
 -- @field [parent=#global] #number MOUSE_WHEEL_DOWN
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34361,9 +34527,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Last mouse button.
 -- @field [parent=#global] #number MOUSE_LAST
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34372,9 +34540,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Mouse button count.
 -- @field [parent=#global] #number MOUSE_COUNT
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34385,6 +34555,7 @@
 -- * **GM:PlayerButtonUp**
 -- @field [parent=#global] #number JOYSTICK_FIRST
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34393,9 +34564,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Joystick buttons are in this range, but don't have individual enum names.
 -- @field [parent=#global] #number JOYSTICK_FIRST_BUTTON
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34404,9 +34577,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Joystick buttons are in this range, but don't have individual enum names.
 -- @field [parent=#global] #number JOYSTICK_LAST_BUTTON
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34415,9 +34590,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Joystick POV buttons are in this range, but don't have individual enum names.
 -- @field [parent=#global] #number JOYSTICK_FIRST_POV_BUTTON
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34426,9 +34603,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Joystick POV buttons are in this range, but don't have individual enum names.
 -- @field [parent=#global] #number JOYSTICK_LAST_POV_BUTTON
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34437,9 +34616,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Joystick axis buttons are in this range, but don't have individual enum names.
 -- @field [parent=#global] #number JOYSTICK_FIRST_AXIS_BUTTON
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34448,9 +34629,11 @@
 -- * **input.GetKeyCode**
 -- * **GM:PlayerButtonDown**
 -- * **GM:PlayerButtonUp**
+-- 
 -- Joystick axis buttons are in this range, but don't have individual enum names.
 -- @field [parent=#global] #number JOYSTICK_LAST_AXIS_BUTTON
 
+---
 -- Used by:
 -- 
 -- * **input.IsButtonDown**
@@ -34462,154 +34645,154 @@
 -- @field [parent=#global] #number JOYSTICK_LAST
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only.
 -- When hit by an explosion, we'll simply block it instead of spilling it to entities behind us,
 -- the sv\_robust\_explosions cvar can also enable this globally when set to 0.
 -- @field [parent=#global] #number CAP_SIMPLE_RADIUS_DAMAGE
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only. Walk/Run.
 -- @field [parent=#global] #number CAP_MOVE_GROUND
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only. Jump/Leap.
 -- @field [parent=#global] #number CAP_MOVE_JUMP
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only. Can fly move all around.
 -- @field [parent=#global] #number CAP_MOVE_FLY
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only. Climb ladders.
 -- @field [parent=#global] #number CAP_MOVE_CLIMB
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only.
 -- @field [parent=#global] #number CAP_MOVE_SWIM
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only.
 -- @field [parent=#global] #number CAP_MOVE_CRAWL
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only. Tries to shoot weapon while moving.
 -- @field [parent=#global] #number CAP_MOVE_SHOOT
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only.
 -- @field [parent=#global] #number CAP_SKIP_NAV_GROUND_CHECK
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only. Open doors/push buttons/pull levers.
 -- @field [parent=#global] #number CAP_USE
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only. Can trigger auto doors.
 -- @field [parent=#global] #number CAP_AUTO_DOORS
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only. Can open manual doors.
 -- @field [parent=#global] #number CAP_OPEN_DOORS
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only. Can turn head always bone controller 0.
 -- @field [parent=#global] #number CAP_TURN_HEAD
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only.
 -- @field [parent=#global] #number CAP_WEAPON_RANGE_ATTACK1
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only.
 -- @field [parent=#global] #number CAP_WEAPON_RANGE_ATTACK2
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only.
 -- @field [parent=#global] #number CAP_WEAPON_MELEE_ATTACK1
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only.
 -- @field [parent=#global] #number CAP_WEAPON_MELEE_ATTACK2
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only.
 -- @field [parent=#global] #number CAP_INNATE_RANGE_ATTACK1
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only.
 -- @field [parent=#global] #number CAP_INNATE_RANGE_ATTACK2
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only.
 -- @field [parent=#global] #number CAP_INNATE_MELEE_ATTACK1
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only.
 -- @field [parent=#global] #number CAP_INNATE_MELEE_ATTACK2
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only.
 -- @field [parent=#global] #number CAP_USE_WEAPONS
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only.
 -- @field [parent=#global] #number CAP_USE_SHOT_REGULATOR
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only. Has animated eyes/face.
 -- @field [parent=#global] #number CAP_ANIMATEDFACE
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only. Don't take damage from npc's that are D_LI.
 -- @field [parent=#global] #number CAP_FRIENDLY_DMG_IMMUNE
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only. Can form squads.
 -- @field [parent=#global] #number CAP_SQUAD
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only. Cover and Reload ducking.
 -- @field [parent=#global] #number CAP_DUCK
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only. Don't hit players.
 -- @field [parent=#global] #number CAP_NO_HIT_PLAYER
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only. Use arms to aim gun, not just body.
 -- @field [parent=#global] #number CAP_AIM_GUN
 
 ---
--- Enumerations used by **NPC:CapabilitiesAdd**, **SWEP:GetCapabilities** and **NPC:CapabilitiesGet**.
+-- Enumerations used by **NPC:CapabilitiesAdd**, **WEAPON:GetCapabilities** and **NPC:CapabilitiesGet**.
 -- Serverside only.
 -- @field [parent=#global] #number CAP_NO_HIT_SQUADMATES
 
@@ -39183,17 +39366,17 @@
 -- @field [parent=#global] #number TRACER_LINE_AND_WHIZ
 
 ---
--- Enumerations used in **ENT:UpdateTransmitState** hook.
+-- Enumerations used in **ENTITY:UpdateTransmitState** hook.
 -- Always transmit the entity.
 -- @field [parent=#global] #number TRANSMIT_ALWAYS
 
 ---
--- Enumerations used in **ENT:UpdateTransmitState** hook.
+-- Enumerations used in **ENTITY:UpdateTransmitState** hook.
 -- Never transmit the entity, default for point entities.
 -- @field [parent=#global] #number TRANSMIT_NEVER
 
 ---
--- Enumerations used in **ENT:UpdateTransmitState** hook.
+-- Enumerations used in **ENTITY:UpdateTransmitState** hook.
 -- Transmit when entity is in players view.
 -- @field [parent=#global] #number TRANSMIT_PVS
 
@@ -39423,19 +39606,19 @@
 -- @field [parent=#global] #number TYPE_COLOR
 
 ---
--- Enumerations used by **ENT:Use**. Not to be confused with **_USE Enums** used by **Entity:SetUseType**.
+-- Enumerations used by **ENTITY:Use**. Not to be confused with **_USE Enums** used by **Entity:SetUseType**.
 -- @field [parent=#global] #number USE_OFF
 
 ---
--- Enumerations used by **ENT:Use**. Not to be confused with **_USE Enums** used by **Entity:SetUseType**.
+-- Enumerations used by **ENTITY:Use**. Not to be confused with **_USE Enums** used by **Entity:SetUseType**.
 -- @field [parent=#global] #number USE_ON
 
 ---
--- Enumerations used by **ENT:Use**. Not to be confused with **_USE Enums** used by **Entity:SetUseType**.
+-- Enumerations used by **ENTITY:Use**. Not to be confused with **_USE Enums** used by **Entity:SetUseType**.
 -- @field [parent=#global] #number USE_SET
 
 ---
--- Enumerations used by **ENT:Use**. Not to be confused with **_USE Enums** used by **Entity:SetUseType**.
+-- Enumerations used by **ENTITY:Use**. Not to be confused with **_USE Enums** used by **Entity:SetUseType**.
 -- @field [parent=#global] #number USE_TOGGLE
 
 ---
@@ -39463,9 +39646,1164 @@
 -- The NPC will almost never miss their shots.
 -- @field [parent=#global] #number WEAPON_PROFICIENCY_PERFECT
 
----
--- 
--- @field [parent=#global] #number 
 
+-- Global Garry's Mod Structure Types
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Tables used for bullets see **game.AddAmmoType**.
+-- @type AmmoData
+-- @field #number dmgtype Damage type using **DMG_ Enums**. Related function is **game.GetAmmoDamageType**. _(Default: DMG\_BULLET)_
+-- @field #number force The force of the ammo. Related function is **game.GetAmmoForce**. _(Default: 1000)_
+-- @field #number maxsplash The maximum water splash size. _(Default: 0)_
+-- @field #number minsplash The minimum water splash size. _(Default: 0)_
+-- @field #string name Name of the ammo. Related functions are **game.GetAmmoName** and **game.GetAmmoID**.
+-- @field #number npcdmg The damage dealt to NPCs. Related function is **game.GetAmmoNPCDamage**. _(Default: 10)_
+-- @field #number plydmg The damage dealt to players. Related function is **game.GetAmmoPlayerDamage**. _(Default: 10)_
+-- @field #number tracer Tracer type using **TRACER_ Enums**. _(Default: TRACER\_NONE)_
+-- @field #number maxcarry Maximum amount of ammo of this type the player should be able to carry in reserve. Related function is **game.GetAmmoMax**. _(Default: 9999)_
+-- @field #number flags Flags for the ammo type using **AMMO_ Enums**. _(Default: 0)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table used by various functions, such as **Entity:GetAttachment**.
+-- @type AngPos
+-- @field #Angle Ang Angle object.
+-- @field #Vector Pos Vector object.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table used by panel animation methods, primarily **Panel:AnimationThinkInternal**,
+-- and returned by **Panel:NewAnimation**.
+-- @type AnimationData
+-- @field #number StartTime The system time value returned by **SysTime** when the animation starts/will start.
+-- @field #number EndTime The system time value returned by **SysTime** when the animation ends/will end.
+-- @field #number Ease The ease in/out level of the animation. _(Default: -1)_
+-- @field #function OnEnd The callback function that will be called upon completion of the animation.
+-- The arguments passed to it are:
+-- 
+-- * _#table animData_ : This structure.
+-- * _#Panel tgtPanel_ : The panel the animation was run on.
+-- @field #function Think The *think* function called every frame that will animate the panel object. This varies based on the animation.
+-- You can create a custom function for this if you aren't using the stock panel methods.
+-- The arguments passed to it are:
+-- 
+-- * _#table animData_ : This structure.
+-- * _#Panel tgtPanel_ : The panel the animation is being run on.
+-- * _#number fraction_ : The progress fraction of the animation, between 0 and 1. The change rate of this number will not be linear if you are easing.
+-- @field #Vector Pos The target position, or target translation of the panel object. Used by **Panel:MoveTo** and **Panel:MoveBy** respectively.
+-- @field #Vector StartPos The position of the panel object when the animation started. Used by **Panel:MoveTo** and **Panel:MoveBy**.
+-- @field #boolean SizeX Whether to resize the panel horizontally or not. Only used by **Panel:SizeTo**.
+-- @field #boolean SizeY Whether to resize the panel vertically or not. Only used by **Panel:SizeTo**.
+-- @field #Vector Size The target size of the panel object. Only used by **Panel:SizeTo**. _(Default: Vector(0, 0, 0))_
+-- @field #Vector StartSize The size of the panel object when the animation started. Only used by **Panel:SizeTo**.
+-- @field #table Color The target colour of the panel object. Only used by **Panel:ColorTo**.
+-- @field #table StartColor The colour of the panel object when the animation started. Only used by **Panel:ColorTo**.
+-- @field #number Alpha The target alpha (0-255) of the panel object. Only used by **Panel:AlphaTo**.
+-- @field #number StartAlpha The alpha (0-255) of the panel object when the animation started. Only used by **Panel:AlphaTo**.
+-- @field #number Speed The speed to use for transitions when using linear interpolation (Lerp) animations. Only used by **Panel:LerpPositions**.
+-- @field #boolean UseGravity Whether or not to use easing to make the panel 'jump' at its target, slowing as it approaches. Only used by **Panel:LerpPositions**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table returned by **Entity:GetAttachments**.
+-- @type AttachmentData
+-- @field #number id Index of the attachment.
+-- @field #string name Name of the attachment.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table returned by **Entity:GetBodyGroups**.
+-- @type BodyGroupData
+-- @field #number id Index of the body group.
+-- @field #string name Name of the body group.
+-- @field #number num Amount of subgroups.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Structure used for storing/restoring bone manipulations. Data is stored from
+-- **Entity:GetManipulateBoneScale**, **Entity:GetManipulateBoneAngles**, and
+-- **Entity:GetManipulateBonePosition**. Data is restored using
+-- **Entity:ManipulateBoneScale**, **Entity:ManipulateBoneAngles**, and 
+-- **Entity:ManipulateBonePosition**. The function **duplicator.DoBoneManipulator**
+-- and **EntityCopyData structure** use a table containing a **BoneManipulationData
+-- structure** for each bone (that has manipulations applied) with the bone ID as
+-- the struct index in the table.
+-- 
+-- Fields s, a, and p are set if they don't equal Vector(1, 1, 1), Angle(0, 0, 0),
+-- and Vector(0, 0, 0) respectively. 
+-- @type BoneManipulationData
+-- @field #Vector s The entity's scale manipulation of the bone. _(Default: nil)_
+-- @field #Angle a The entity's angle manipulation of the bone. _(Default: nil)_
+-- @field #Vector p The entity's position manipulation of the given bone. _(Default: nil)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Tables used for bullets see **Entity:FireBullets** and **GM:EntityFireBullets**.
+-- @type Bullet
+-- @field #Entity Attacker The entity that should be reported as attacker eg. a player.
+-- By default this would be set to the entity **Entity:FireBullets** is called on. _(Default: self)_
+-- @field #function Callback Function to be called after the bullet was fired.  _(Default: nil)_
+-- The arguments are:
+-- 
+-- _#Entity attacker_
+-- * _#table tr_ - See **TraceResult structure**.
+-- * _#CTakeDamageInfo dmgInfo_
+-- @field #number Damage The damage dealt by the bullet. _(Default: 1)_
+-- @field #number Force The force of the bullets. _(Default: 1)_
+-- @field #number Distance Maximum distance the bullet can travel. _(Default: 56756)_
+-- @field #number HullSize The hull size of the bullet. _(Default: 0)_
+-- @field #number Num The amount of bullets to fire. _(Default: 1)_
+-- @field #number Tracer Show tracer for every x bullets. _(Default: 1)_
+-- @field #string AmmoType The ammunition name. _(Default: "")_
+-- @field #string TracerName The tracer name. You can find a list of default effects here. _(Default: nil)_
+-- @field #Vector Dir The fire direction. _(Default: Vector(0, 0, 0))_
+-- @field #Vector Spread The spread, only x and y are needed. _(Default: Vector(0, 0, 0))_
+-- @field #Vector Src The position to fire the bullets from. _(Default: Vector(0, 0, 0))_
+-- @field #Entity IgnoreEntity The entity that the bullet will ignore when it will be shot. _(Default: NULL)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table structure used **GM:CalcView** and **GM:CalcVehicleView** hook.
+-- @type CamData
+-- @field #Vector origin The camera's position.
+-- @field #Angle angles The camera's angles.
+-- @field #number fov The camera's FOV.
+-- @field #number znear Distance to near clipping plane.
+-- @field #number zfar Distance to far clipping plane.
+-- @field #boolean drawviewer Set true to draw local players player model. _(Default: false)_
+-- @field #table ortho If set, enables orthographic mode. _(Default: nil)_
+-- The table has following arguments:
+-- 
+-- * _#number left_
+-- * _#number right_
+-- * _#number top_
+-- * _#number bottom_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Passed as argument of **ENT_ANIM:PhysicsCollide**.
+-- @type CollisionData
+-- @field #Vector HitPos The collision position.
+-- @field #Entity HitEntity The other collision entity.
+-- @field #Vector OurOldVelocity The entity's velocity before the collision.
+-- @field #PhysObj HitObject Other entity's physics object.
+-- @field #number DeltaTime Time since the last collision _with this HitEntity_.
+-- @field #Vector TheirOldVelocity Speed of the other entity before the collision.
+-- @field #number Speed The speed of the entity before the collision.
+-- @field #Vector HitNormal Normal of the surface that hit the other entity.
+-- @field #PhysObj PhysObject Entity's physics object.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table created by the Color function and used in various situations.
+-- @type Color
+-- @field #number r The red channel.
+-- @field #number g The green channel.
+-- @field #number b The blue channel.
+-- @field #number a The alpha channel.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table that maintains information on the creation menu tabs. Each key of the
+-- table represents the name of the tab. See **spawnmenu.AddCreationTab** and
+-- **spawnmenu.GetCreationTabs**.
+-- @type CreationMenus
+-- @field #function Function The function used to generate the content of the tab.
+-- @field #string Icon The icon material that will accompany the title of the tab.
+-- @field #number Order The order in which a tab will be displayed relative to the other tabs.
+-- @field #string Tooltip The tooltip to be shown with the tab.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table returned by **os.date** and used by **os.time**.
+-- @type DateData
+-- @field #number day Day of the month.
+-- @field #number hour Hour.
+-- @field #boolean isdst Daylight saving enabled.
+-- @field #number min Minute.
+-- @field #number month Month. January: 1, December: 12
+-- @field #number sec Second.
+-- @field #number wday Day of the week. Sunday: 1, Saturday: 7
+-- @field #number yday Day of the year.
+-- @field #number year Year.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table returned by **debug.getinfo**.
+-- **Note**: _If a filter is applied to **debug.getinfo**, some members may not exist!_
+-- For functions defined in C/C++, the following members will always have the given values:
+-- 
+-- * what = "C"
+-- * source = "[C]"
+-- * nparams = 0
+-- * isvararg = true
+-- * namewhat = ""
+-- * short_src = "[C]"
+-- * linedefined = -1
+-- * currentline = -1
+-- * lastlinedefined = -1
+-- @type DebugInfo
+-- @field #function func Reference to the function that was passed in. If a stack level was specified, this will be the function at that stack level. 0 = **debug.getinfo**, 1 = function that called **debug.getinfo**, etc. _(Option: f)_
+-- @field #number linedefined The line where the function definiton starts (where "function" is located). _(Option: S)_
+-- @field #number lastlinedefined The line the function definition ended (where "end" is located). _(Option: S)_
+-- @field #string source The path to the file where the passed function is defined prepended by an @ (ex. "@lua/autorun/mytestfile.lua"). This will be the CompileString or RunString identifier if the function wasn't defined in a file, also prepended by an @. _(Option: S)_
+-- @field #string short_src The shortened name of the source (without the @). May be truncated if the source path is long. _(Option: S)_
+-- @field #string what The language used. Either "Lua" or "C". _(Option: S)_
+-- @field #number currentline The current line. This will be -1 if the code is not executed from a file. _(Option: l (lowercase L))_
+-- @field #string name The function name. This will be nil if the name cannot be found. Only works if stack level is passed rather than function pointer. _(Option: n)_
+-- @field #string namewhat The function "type". This will be "global", "local", "method", "field". Can also be an empty string if the function name could not be found. Only works if stack level is passed rather than function pointer. _(Option: n)_
+-- @field #boolean isvararg Whether the function is variadic (has a ... argument). _(Option: u)_
+-- @field #number nparams The number of arguments the function uses excluding varargs. _(Option: u)_
+-- @field #number nups Upvalue count. Max index that can be used with **debug.getupvalue**. C functions can have upvalues but they cannot be accessed from Lua. _(Option: u)_
+-- @field #table activelines A table of all the active lines in the function - that is, lines with code that actually does something (not blank lines or lines with comments only).
+-- The table keys will be line numbers, and their values will all be true. Lines that are inactive are simply not included in the table - they have the value nil. _(Option: L)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Structure for **DynamicLight**. All members are case insensitive.
+-- 
+-- **Note**: _This is an actual class named dlight_t, not a table._
+-- @type DynamicLight
+-- @field #number brightness The brightness of the light.
+-- @field #number decay Fade out speed. Here's a formula for calculating Decay for your light: 1000 / fadeOutTimeInSeconds. For example setting decay to 1000 would fade out the light in 1 second, 2000 - 0.5 seconds.
+-- @field #number dietime Time after which light will be removed. This is relative to **CurTime**.
+-- If you put in a value that is less than or equal to **CurTime**, the light will not behave properly.
+-- Note, that it does not affect fading out. Light will be removed regardless of it being fully faded out or not.
+-- @field #Vector dir The light direction. Used with InnerAngle and OuterAngle. _(Default: Vector(0, 0, 0))_
+-- @field #number innerangle The closer this is to zero, the smoother the light will be. Requires Dir and OuterAngle to be set. _(Default: 0)_
+-- @field #number outerangle The angle of the Dynamic Light. Requires Dir to be set. _(Default: 0)_
+-- @field #number key Makes the light brighter and flicker? Changing the value does not seem to affect anything.
+-- @field #number minlight Minimum light. _(Default: 0)_
+-- @field #boolean noworld Don't light the world. _(Default: false)_
+-- @field #boolean nomodel Don't light models. _(Default: false)_
+-- @field #Vector pos Position of the light.
+-- @field #number size Radius of the light.
+-- @field #number style Flicker style.
+-- @field #number b The blue part of the color.
+-- @field #number g The green part of the color.
+-- @field #number r The red part of the color.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- assed as argument of **GM:EntityEmitSound**.
+-- @type EmitSoundInfo
+-- @field #string SoundName The file path of the played sound. Sounds prefixed with ) tell the sound engine that it is a spatial sound; this allows the sound to emit from a specific location within the world.
+-- Sounds prefixed with ^ tell the sound engine that it is a distance based sound.
+-- The left channel of the .wav is the 'near' sound that will play when the sound originates close to you, and the right channel is the 'far' sound that will play when the sound originates far from you.
+-- @field #string OriginalSoundName The original file path or soundscript name. Even if the SoundName value is changed, the OriginalSoundName value will remain the same.
+-- Sounds may be returned as soundscripts (for example, "Weapon_357.Single") instead of the sound's file path. You can use **sound.GetProperties** to retrieve the actual file path.
+-- @field #number SoundTime The time at which the sound should be played. _(Default: 0)_
+-- If equal to 0 or **CurTime**(), the sound is played immediately.
+-- If greater than **CurTime**(), the sound is played with a delay.
+-- If less than **CurTime**(), part of the sound is skipped.
+-- @field #number DSP The DSP (digital signal processing) preset applied to the sound. _(Default: 0)_
+-- There are approximately 134 different presets defined by the Source engine between 0 and 133.
+-- These presets represent different types of 'rooms' or environments.
+-- @field #number SoundLevel The sound's attenuation, a number between 0 (low) and 511 (high). _(Default: 75)_
+-- This determines how fast the sound drops away. A higher value means the sound can be heard farther away. See **SNDLVL_ Enums**.
+-- @field #number Pitch The pitch of the played sound, a number between 0 (low) and 255 (high), where 100 is the sound's original pitch. _(Default: 100)_
+-- @field #number Flags The bit flags of the played sound. See **SND_ Enums** for available options. _(Default: 0)_
+-- @field #number Channel The sound's channel. See **CHAN_ Enums** for available options.
+-- @field #number Volume The volume of the played sound, return as a decimal number between 0 (low) and 1 (high).
+-- @field #Entity Entity The entity that played the sound.
+-- @field #Vector Pos The origin of the played sound.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- While some of the fields may be serverside or clientside only, it is
+-- recommended to provide them on both so addons could use their values.
+-- @type ENT
+-- @field #string Base The base entity to derive from. This must be a valid Lua entity. _(Default: "base\_entity")_
+-- @field #string Type of the entity. _(Default: anim)_  
+-- This must be one of these:
+-- 
+-- * anim
+-- * brush
+-- * point
+-- * ai
+-- * nextbot
+-- * filter
+-- @field #string ClassName Entity class name of the ENT (File or folder name of your ENT). This is set automatically after the entity file is loaded.
+-- @field #string Folder The folder from where the entity was loaded. This should always be "entity/ent_myentity", regardless whether your ENT is stored as a file, or multiple files in a folder.
+-- This is set automatically before the entity file is loaded.
+-- @field #boolean AutomaticFrameAdvance (Clientside) Set this to true if your entity has animations. _(Default: false)_
+-- @field #string Category (Clientside) Category the ENT is in. _(Default: Other)_
+-- @field #boolean Spawnable Whether this ENT should be displayed in the Q menu. _(Default: false)_
+-- @field #boolean Editable Whether the entity supports Editing. _(Default: false)_
+-- @field #boolean AdminOnly Whether or not only admins can spawn the ENT from their Q menu. _(Default: false)_
+-- @field #string PrintName (Clientside) Nice name of the ENT. _(Default: "")_
+-- @field #string Author (Clientside) The author of the ENT. _(Default: "")_
+-- @field #string Contact (Clientside) The contacts of the ENT creator. _(Default: "")_
+-- @field #string Purpose (Clientside) The purpose of the ENT creation. _(Default: "")_
+-- @field #string Instructions (Clientside) How to use your entity. _(Default: "")_
+-- @field #number RenderGroup (Clientside) The SENT's render group, see **RENDERGROUP_ Enums**. _(Default: RENDERGROUP\_OPAQUE)_
+-- @field #boolean DisableDuplicator (Serverside) Disable the ability for players to duplicate this SENT. _(Default: false)_
+-- @field #string ScriptedEntityType (Clientside) Sets the spawnmenu content icon type for the entity, used by spawnmenu in the Sandbox-derived gamemodes. _(Default: "entity")_
+-- See **spawnmenu.AddContentType** for more information.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Data structure used by the duplicator library to store and load entity data.
+-- It is created by **duplicator.CopyEntTable** and can be loaded by **duplicator.CreateEntityFromTable**.
+-- It also shows up in several other contexts:
+-- 
+-- * **duplicator.RegisterEntityClass**
+-- * **ENTITY:OnEntityCopyTableFinish**
+-- * **ENTITY:OnDuplicated**
+-- 
+-- **Note**: _In addition to all fields listed here, any field saved on the
+-- entity will be saved as-is to this table. For example, if you set
+-- ent.FavoriteFood = "Steak" before duplicating it, this structure will also
+-- contain the field FavoriteFood with the value "Steak"._
+-- @type EntityCopyData
+-- @field #string Name The entity's name, see **Entity:GetName**.
+-- @field #string Class The entity's class name, see **Entity:GetClass**.
+-- @field #Vector Pos The entity's position, relative to the duplication origin point.
+-- @field #Angle Angle The entity's angle, relative to the duplication angle.
+-- @field #table DT The entity's Network Vars, see **ENTITY:SetupDataTables** and Networking Entities.
+-- @field #string Model The entity's model, see **Entity:GetModel**.
+-- @field #number ModelScale The entity's model scale, see **Entity:GetModelScale**. This will only be present if the model scale isn't 1.
+-- @field #number Skin The entity's active skin, see **Entity:GetSkin**.
+-- @field #number ColGroup The entity's collision group, see **Entity:GetCollisionGroup**. Uses the **COLLISION\_GROUP\_ Enums**.
+-- @field #Vector Mins The entity's collision bound minimums, see **Entity:GetCollisionBounds**.
+-- @field #Vector Maxs The entity's collision bound maximums, see **Entity:GetCollisionBounds**.
+-- @field #table PhysicsObjects Data about the entity's PhysObjs, see **Entity:GetPhysicsObjectNum**.
+-- The key is the physics object index (starts from 0), and the value is a **PhysicsObjectSave structure**.
+-- Unlike other tables in this structure, if there are no physics objects for this entity this will be an empty table.
+-- @field #number FlexScale The entity's Flex Scale, see **Entity:GetFlexScale**.
+-- @field #table Flex Each flex bone's flex weight, see **Entity:GetFlexWeight**.
+-- The key is the flex's index and the value is the weight. Only flexes with a non-default (nonzero) weight are listed, and if none exist, this field will be nil.
+-- @field #table BodyG The entity's body groups, see **Entity:GetBodygroup**.
+-- The key is the bodygroup ID and the value is the assigned bodygroup number. Only body groups with a non-default (> 0) value are listed, and if none exist, this field will be nil.
+-- @field #table BoneManip Bone manipulation data, see **Entity:HasBoneManipulations**. The key is the bone index and the value is a BoneManipulationData structure. Only bones that have been manipulated with non-default values are listed, and if none exist, this field will be nil.
+-- @field #number MapCreationID The entity's MapCreationID, only exists for entities that were created by the map. See **Entity:MapCreationID**.
+-- @field #number WorkshopID Deprecated, always 0. See **Entity:GetWorkshopID**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Used for **surface.CreateFont**.
+-- @type FontData
+-- @field #string font The font source. _(Default: "Arial")_
+-- This must be the actual name of the font, not a file name. Font files are stored in resource/fonts/. This cannot be an existing game font, i.e. "ChatText", "Trebuchet18", etc. The length is limited to 31 characters maximum.
+-- @field #boolean extended Allow the font to display glyphs that are outside of the Latin-1 range. _(Default: false)_
+-- Unicode code points above 0xFFFF are not supported.
+-- @field #number size The font height in pixels. _(Default: 13)_ Maximum: 128
+-- @field #number weight The font boldness. _(Default: 500)_
+-- @field #number blursize The strength of the font blurring. _(Default: 0)_
+-- @field #number scanlines The "scanline" interval Must be > 1 to work. _(Default: 0)_
+-- This setting is per blursize per font - so if you create a font using "Arial" without scanlines, you cannot create an Arial font using scanlines with the same blursize.
+-- @field #boolean antialias Smooth the font. _(Default: true)_
+-- @field #boolean underline Add an underline to the font. _(Default: false)_
+-- @field #boolean italic Make the font italic. _(Default: false)_
+-- @field #boolean strikeout Add a strike through. _(Default: false)_
+-- @field #boolean symbol Enables the use of symbolic fonts such as Webdings. _(Default: false)_
+-- @field #boolean rotary Seems to add a line in the middle of each letter. _(Default: false)_
+-- @field #boolean shadow Add shadow casting to the font. _(Default: false)_
+-- @field #boolean additive Additive rendering. _(Default: false)_
+-- @field #boolean outline Add a black outline to the font. _(Default: false)_
+-- This does not work well with antialias, and only allows black 1-pixel outlines.
+-- It may be preferable to not use this parameter, and instead use **draw.SimpleTextOutlined** when drawing text that you want outlined.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Information about a gamemode, used in Gamemode Creation. While some of the
+-- fields may be serverside or clientside only, it is recommended to provide
+-- them on both so addons could use their values. 
+-- @type GM
+-- @field #string Name The fancy name of your gamemode.
+-- @field #string Author The name/contact info of the gamemode author.
+-- @field #string Email The contact email associated with the gamemode.
+-- @field #string Website The website associated with the gamemode.
+-- @field #string FolderName The name of the gamemode folder, automatically set.
+-- @field #string Folder The name of the gamemode folder prepended with "gamemodes/" (such as "gamemodes/sandbox"), automatically set.
+-- @field #boolean TeamBased Set this to true if your gamemode is team-based. Used to enable/disable the base gamemode team system.
+-- @field #boolean IsSandboxDerived True if the gamemode is derived from sandbox.
+-- @field #string ThisClass The name of the gamemode folder prepended with "gamemode\_" (such as "gamemode\_sandbox"), automatically set.
+-- @field #table BaseClass The table of the base gamemode to derive from, set automatically by **DeriveGamemode**.
+-- 
+-- **Note**: _It is recommended to use DEFINE\_BASECLASS when referencing the gamemode's BaseClass to prevent unintended behavior._
+-- 
+-- **Note**: _**DeriveGamemode** modifies the main gamemode's BaseClass, which is shared with parent gamemodes._
+-- _Because of this, in parent gamemodes the BaseClass can be incorrect, so for instance you need to use self.BaseClass.BaseClass in the 1st parent instead._
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table used by **HTTP** function.
+-- @type HTTPRequest
+-- @field #function failed Function to be called on failure.
+-- Arguments are:
+-- 
+-- * _#string reason_
+-- @field #function success Function to be called on success.
+-- Arguments are:
+-- 
+-- * _#number code_
+-- * _#string body_
+-- * _#table headers_
+-- @field #string method Request method, case insensitive.
+-- Possible values are:
+-- 
+-- * GET
+-- * POST
+-- * HEAD
+-- * PUT
+-- * DELETE
+-- * PATCH
+-- * OPTIONS
+-- @field #string url The target url.
+-- @field #table parameters KeyValue table for parameters.
+-- This is only applicable to the following request methods:
+-- 
+-- * GET
+-- * POST
+-- * HEAD
+-- @field #table headers KeyValue table for headers.
+-- @field #string body Body string for POST data. If set, will override parameters.
+-- @field #string type Content type for body. _(Default: "text/plain; charset=utf-8")_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table used by **util.TraceHull**.
+-- @type HullTrace
+-- @field #Vector start The start position of the trace.
+-- @field #Vector endpos The end position of the trace.
+-- @field #Vector maxs The 3D vector local to the start/endpos with the highest values. This will represent the corner with the upper bounds of the box.
+-- @field #Vector mins The 3D vector local to the start/endpos with the lowest (often negative) values. This will represent the corner with the lower bounds of the box.
+-- @field #Entity filter Things the trace should not hit. _(Default: {})_
+-- Can also be a table of entities or a function with one argument:
+-- 
+-- _#Entity ent_ : The entity that the trace hit.  
+-- Using a function here is super slow. Try to avoid it.
+-- @field #number mask The trace mask **MASK_ Enums**. _(Default: MASK\_SOLID)_
+-- This determines what the trace should hit and what it shouldn't hit.
+-- @field #number collisiongroup The collision group **COLLISION\_GROUP\_ Enums**. _(Default: COLLISION\_GROUP\_NONE)_
+-- This determines what the trace should hit in regards to the entity's collision group.
+-- @field #boolean ignoreworld Should the trace ignore world or not. _(Default: false)_
+-- @field #table output If set, the trace result will be written to the supplied table instead of returning a new table. _(Default: nil)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table structure used for **render.SetLocalModelLights**.
+-- @type LocalLight
+-- @field #number type The type of the light source, see **MATERIAL\_LIGHT\_ Enums**. _(Default: MATERIAL\_LIGHT\_POINT)_
+-- @field #Vector color The color of the light source (x is red, y is green, z is blue). _(Default: vector\_origin)_
+-- Values are not restricted to a specific range, higher values will result in a brighter light.
+-- @field #Vector pos The origin of the light in world coordinates. _(Default: vector\_origin)_
+-- @field #Vector dir The direction of the light. _(Default: vector\_origin)_
+-- Only required for directional and spot lights.
+-- @field #number range The maximum range of the light source. _(Default: 0)_
+-- Does not actually control light attenuation. Usually left at 0 for infinite range.
+-- @field #number angularFalloff Angular falloff exponent for spot lights. _(Default: 5)_
+-- Higher values result in a sharper transition between the inner cone and the outer cone.
+-- @field #number innerAngle The inner cone angle for spot lights, in degrees. _(Default: 45)_
+-- No angular falloff will occur inside that cone.
+-- @field #number outerAngle The outer cone angle for spot lights, in degrees. _(Default: 45)_
+-- @field #number fiftyPercentDistance The distance at which the light will fade to 50% of its brightness.
+-- @field #number zeroPercentDistance The distance at which the light will completely fade out.
+-- @field #number quadraticFalloff The quadratic term of the light falloff. _(Default: 0)_
+-- This will only be used if fiftyPercentDistance and zeroPercentDistance are not supplied, and allows finer control over light attenuation.
+-- @field #number linearFalloff The linear term of the light falloff. _(Default: 0)_
+-- This will only be used if fiftyPercentDistance and zeroPercentDistance are not supplied, and allows finer control over light attenuation.
+-- @field #number constantFalloff The constant term of the light falloff. _(Default: 1)_
+-- This will only be used if fiftyPercentDistance and zeroPercentDistance are not supplied, and allows finer control over light attenuation.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table structure used by **matproxy.Add**.
+-- @type MatProxyData
+-- @field #string name The name of the material proxy.
+-- @field #function init The function used to get variables from the ".vmt".
+-- Called once per each ".vmt". Arguments are:
+-- 
+-- * _#table self_
+-- * _#string materialName_
+-- * _#table values_
+-- @field #function bind The function used to apply the proxy. This is called every frame while any materials with this proxy are used in world.
+-- Arguments are:
+-- 
+-- * _#table self_
+-- * _#string materialName_
+-- * _#Entity ent_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table used by various functions, such as **IMesh:BuildFromTriangles**.
+-- @type MeshVertex
+-- @field #table color The vertex color. Uses the **Color structure**.
+-- @field #Vector normal The triangles normal required to calculate lighting(optional).
+-- @field #Vector tangent The triangles tangent. Not used by the VertexLitGeneric shader.
+-- @field #Vector binormal The triangles binormal. Not used by the VertexLitGeneric shader.
+-- @field #Vector pos The vertex position.
+-- @field #number u The u texture scale.
+-- @field #number v The v texture scale.
+-- @field #table userdata A table of four numbers.
+-- This is used by most shaders in Source to hold tangent information of the vertex (tangentX, tangentY, tangentZ, tangentHandedness).
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- The structure used by **Vehicle:GetOperatingParams**.
+-- @type OperatingParams
+-- @field #number RPM The current RPM of the vehicle.
+-- @field #number gear The current gear of the vehicle, starting from 0.
+-- @field #boolean isTorqueBoosting Is the vehicle boosting?
+-- @field #number speed The current speed, in inches per second.
+-- @field #number steeringAngle Steering angle.
+-- @field #number wheelsInContact Wheels on ground.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Structure represents a path segment, returned by **PathFollower:GetCurrentGoal**,
+-- **PathFollower:FirstSegment** and **PathFollower:LastSegment**.
+-- @type PathSegment
+-- @field #CNavArea area The navmesh area this segment occupies.
+-- @field #number curvature
+-- @field #number distanceFromStart Distance of this segment from the start of the path.
+-- @field #Vector forward The direction of travel to reach the end of this segment from the start, represented as a normalised vector.
+-- @field #number how The direction of travel to reach the end of this segment from the start, represented as a cardinal direction integer 0 to 3, or 9 for vertical movement.
+-- @field #CNavLadder ladder The navmesh ladder this segment occupies, if any.
+-- @field #number length Length of this segment.
+-- @field #Vector m_portalCenter
+-- @field #number m_portalHalfWidth
+-- @field #Vector pos The position of the end of this segment.
+-- @field #number type The movement type of this segment, indicating how bots are expected to move along this segment.
+-- 
+-- * 0 is ground movement
+-- * 1 is falling down
+-- * 2 is climbing up or jumping
+-- * 3 is jumping over a gap
+-- * 4 is climbing a ladder up (unused)
+-- * 5 is climbing a ladder down (unused)
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table used by **physenv.SetPerformanceSettings**.
+-- @type PhysEnvPerformanceSettings
+-- @field #number LookAheadTimeObjectsVsObject Maximum amount of seconds to precalculate collisions with objects.
+-- @field #number LookAheadTimeObjectsVsWorld Maximum amount of seconds to precalculate collisions with world.
+-- @field #number MaxAngularVelocity Maximum rotation velocity.
+-- @field #number MaxCollisionChecksPerTimestep Maximum collision checks per tick.
+-- @field #number MaxCollisionsPerObjectPerTimestep Maximum collision per object per tick.
+-- @field #number MaxFrictionMass Maximum mass of an object to be affected by friction.
+-- @field #number MaxVelocity Maximum speed of an object.
+-- @field #number MinFrictionMass Minimum mass of an object to be affected by friction.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Structure used in storing/restoring physics object attributes.
+-- **duplicator.GenericDuplicatorFunction** and **duplicator.DoGenericPhysics** use a
+-- table of PhysicsObjectSaves with the struct's index in the table being the
+-- physics object ID.
+-- @type PhysicsObjectSave
+-- @field #Vector Pos The entity's world position made local with **WorldToLocal**.
+-- @field #Angle Angle The entity's world angles made local with **WorldToLocal**.
+-- @field #boolean Frozen Whether the entity is moveable. Equal to (not **PhysObj:IsMoveable**)
+-- @field #boolean NoGrav Whether the entity's gravity is affected by gravity or not. **PhysObj:IsGravityEnabled**
+-- @field #boolean Sleep Whether the entity is dormant or not. **PhysObj:IsAsleep**
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Structure used by **construct.SetPhysProp**.
+-- @type PhysProperties
+-- @field #boolean GravityToggle Enables or disables gravity for the entity. _(Default: nil)_
+-- @field #string Material Sets the physics material for the entity. _(Default: nil)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- A structure containing vertex information for use with **surface.DrawPoly**. UV
+-- coordinates describe which part of a given texture should be drawn at a
+-- vertex - your graphics card's interpolator will fill in space between
+-- vertices. UV coords range from 0-1, with 0 being top/left and 1 being
+-- bottom/right. If you're using a texture these are mandatory.
+-- 
+-- **Note**: _You must pass a table of tables with this structure to the
+-- function. You need to pass at least 3 points._
+-- 
+-- **Note**: _Your points must be defined in a clockwise order. Otherwise, your
+-- shape will not render._
+-- @type PolygonVertex
+-- @field #number x The x coordinate of the vertex.
+-- @field #number y The y coordinate of the vertex.
+-- @field #number u The u texture coordinate of the vertex. _Can be left blank_.
+-- @field #number v The v texture coordinate of the vertex. _Can be left blank_.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Structure used for **properties.Add**.
+-- @type PropertyAdd
+-- @field #string Type Can be set to "toggle" to make this property a toggle property. _(Default: "simple")_
+-- @field #string MenuLabel Label to show on opened menu.
+-- @field #string MenuIcon Icon to show on opened menu for this item. Optional for simple properties and unused for toggle properties. _(Default: nil)_
+-- @field #number Order Where in the list should the property be positioned, relative to other properties.
+-- @field #boolean PrependSpacer Whether to add a spacer before this property. _(Default: false)_
+-- This should generally be true for the first property in a group of properties.
+-- @field #function Filter Used clientside to decide whether this property should be shown for an entity.
+-- Gets these arguments:
+-- 
+-- * _#table self_ : The property table.
+-- * _#Entity ent_ : The entity the player clicked.
+-- Return true if the property should be shown for this entity.
+-- It's good practice to call **SANDBOX:CanProperty** in this hook via **gamemode.Call** or **hook.Run**.
+-- @field #function Checked Required for toggle properties (clientside).
+-- Must return a boolean value to either check or uncheck the toggle property.
+-- 
+-- * _#table self_ : The property table.
+-- * _#Entity ent_ : The entity the player clicked.
+-- * _#table tr_ : The player's eye trace.
+-- @field #function Action Called clientside when the property is clicked with these arguments:
+-- 
+-- * _#table self_ : The property table.
+-- * _#Entity ent_ : The entity the player clicked.
+-- * _#table tr_ : The player's eye trace.
+-- When appropriate, within this function you can call **self:MsgStart**(), write data with the net library 'Write' functions, and finish with **self:MsgEnd**().
+-- This will activate the 'Receive' function on the server. In most cases, you will want to send the entity to the server, as it's not done by default.
+-- @field #function Receive Called serverside if the client sends a message in the 'Action' function (see above). _(Default: nil)_
+-- 
+-- * _#table self_ : The property table.
+-- * _#number len_ : The net message length, although this includes the property identifier used internally (the name of the property).
+-- * _#table ply_ : The player who clicked the property.
+-- You can read data received from the client with the net library 'Read' functions.
+-- It's good practice to check **SANDBOX:CanProperty** here via **gamemode.Call** or **hook.Run**.
+-- @field #function MenuOpen Called clientside when the property option has been created in the right-click menu. _(Default: nil)_
+-- This is not called for toggle properties!
+-- 
+-- * _#table self_ : The property table.
+-- * _#Panel option_ : The menu option.
+-- * _#Entity ent_ : The entity the player right-clicked.
+-- * _#table tr_ : The player's eye trace.
+-- @field #function OnCreate Same as MenuOpen, but also called for toggle properties and has different arguments. _(Default: nil)_
+-- This is called immediately after MenuOpen, but nothing happens in between so you should only ever use one or the other.
+-- 
+-- * _#table self_ : The property table.
+-- * _#Panel menu_ : The property menu.
+-- * _#Panel option_ : The menu option.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Used for **cam.Start**. Unless stated otherwise, the default values for all
+-- these keys would be inherited from the engine's current CViewSetup and do
+-- not have static representations.
+-- @type RenderCamData
+-- @field #number x The x position of the view port.
+-- @field #number y The y position of the view port.
+-- @field #number w The width of the view port.
+-- @field #number h The height of the view port.
+-- @field #string type The type of cam. _(Default: "3D")_
+-- Valid types are:
+-- 
+-- * "2D" - No additional arguments are required.
+-- * "3D" - Only origin and angles are needed, all other parameters are optional.
+-- @field #Vector origin The position to render from.
+-- @field #Angle angles The angles to render from.
+-- @field #number fov The field of view.
+-- @field #number aspect The aspect ratio of the view port. (Note that this is NOT set to w/h by default)
+-- @field #number zfar The distance to the far clipping plane.
+-- @field #number znear The distance to the near clipping plane.
+-- @field #boolean subrect m_bRenderToSubrectOfLargerScreen.
+-- @field #boolean bloomtone m\_bDoBloomAndToneMapping. _(Default: false)_
+-- @field #table offcenter A table having these keys: (all floats)
+-- 
+-- * left
+-- * right
+-- * bottom
+-- * top
+-- @field #table ortho If set, makes the view/camera orthogonal.
+-- A table having these keys: (all floats)
+-- 
+-- * left
+-- * right
+-- * bottom
+-- * top
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Used for **render.Capture**.
+-- @type RenderCaptureData
+-- @field #string format Format of the capture. Valid formats are: jpeg, png.
+-- @field #number x X coordinate of the capture origin.
+-- @field #number y Y coordinate of the capture origin.
+-- @field #number w Width of the capture.
+-- @field #number h Height of the capture.
+-- @field #number quality The quality of the capture. Affects jpeg only.
+-- @field #boolean alpha Set to false to capture an image with alpha channel set to fully opaque. _(Default: true)_
+-- Affects png only.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Used for **serverlist.Query**.
+-- @type ServerQueryData
+-- @field #string GameDir The game directory to get the servers for. _(Default: garrysmod)_
+-- @field #string Type Type of servers to retrieve. Valid values are:
+-- 
+-- * "internet"
+-- * "favorite"
+-- * "history"
+-- * "lan"
+-- @field #number AppID Steam application ID to get the servers for. _(Default: 4000)_
+-- @field #function Callback Called when a new server is found and queried.
+-- Arguments are:
+-- 
+-- * _#number ping_ : Latency to the server.
+-- * _#string name_ : Name of the server.
+-- * _#string desc_ : "Nice" gamemode name.
+-- * _#string map_ : Current map.
+-- * _#number players_ : Total player number. (bot + human)
+-- * _#number maxplayers_ : Maximum reported amount of players.
+-- * _#number botplayers_ : Amount of bots on the server.
+-- * _#boolean pass_ : Whether this server has password or not.
+-- * _#number lastplayed_ : Time when you last played on this server, as UNIX timestamp or 0.
+-- * _#string address_ : IP Address of the server.
+-- * _#string gamemode_ : Gamemode folder name.
+-- * _#number workshopid_ : Gamemode Steam Workshop ID.
+-- 
+-- Return false to stop the query.
+-- @field #function Finished Called when the query is finished. No arguments.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table used in **sound.Add** and **sound.GetProperties**.
+-- @type SoundData
+-- @field #number channel The sound channel to play in. See **CHAN_ Enums**.
+-- @field #string name The name of the sound.
+-- @field #number pitchend The pitch end. Deprecated, use pitch.
+-- @field #number pitchstart The initial pitch. Deprecated, use pitch.
+-- @field #number level The soundlevel of the sound in dB. See **SNDLVL_ Enums**.
+-- @field #string sound The sound file to be used in this sound effect. Can be a table of sound files. Relative to "sound" directory.
+-- @field #number volume The volume of the sound as a decimal between 0 and 1. _(Default: 1.0)_
+-- Can be a table of two numbers, a minimum and a maximum value.
+-- @field #number pitch The pitch of the sound. _(Default: 100)_
+-- Can be a table of two numbers, a minimum and a maximum value.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Returned by **util.GetSunInfo**.
+-- @type SunInfo
+-- @field #Vector direction The suns direction relative to Vector(0,0,0).
+-- @field #number obstruction Indicates how obstructed the sun is, 1 not visible, 0 fully visible.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table returned by **util.GetSurfaceData**.
+-- @type SurfacePropertyData
+-- @field #string name The name of the surface property, identical to **util.GetSurfacePropName**.
+-- @field #number hardnessFactor How hard a surface is. If this is greater than or equal to another surfaces's hardThreshold, a hard impact sound will be used.
+-- @field #number hardThreshold Hardness threshold for impact sounds.
+-- HitSurface.hardnessFactor >= InflictorSurface.hardThreshold - hard impact sound (depends on hardVelocityThreshold's value),
+-- HitSurface.hardnessFactor < InflictorSurface.hardThreshold - soft impact sound (always).
+-- @field #number hardVelocityThreshold Velocity threshold for impact sounds.
+-- impactSpeed >= HitSurface.hardVelocityThreshold - hard impact sound (depends on hardThreshold's value),
+-- impactSpeed < HitSurface.hardVelocityThreshold - soft impact sound (always).
+-- @field #number reflectivity Amount of sound reflected from the surface represented as a number 0.0 - 1.0. 0 - no reflection, 1 - fully reflected.
+-- @field #number roughnessFactor How rough a surface is. If this is greater than or equal to another surfaces's roughThreshold, a rough scrape sound will be used.
+-- @field #number roughThreshold Roughness threshold for friction sounds.
+-- HitSurface.roughnessFactor >= InflictorSurface.roughThreshold - rough friction sound,
+-- HitSurface.roughnessFactor < InflictorSurface.roughThreshold - soft friction sound.
+-- @field #number climbable Indicates whether or not the surface is a ladder. Used to detect whether a player is on a ladder. 0 - false, > 0 - true.
+-- @field #number jumpFactor Scalar multiplier for player jump height - or more accurately, applied z-axis velocity on a surface.
+-- For example, 1 - normal jump, 2 - twice as high, and 0.5 - half as high.
+-- @field #number material The surface material. See **MAT_ Enums**.
+-- @field #number maxSpeedFactor Scalar multiplier for player speed. Achieves this by multiplying **CMoveData:SetMaxSpeed** in **GM:Move**.
+-- @field #number dampening This is the physical drag on an object when in contact with this surface (0 - x, 0 none to x a lot).
+-- @field #number density Material density in kg / m^3 (water is 1000). If a surface's density is < 1000, it will float in water.
+-- This is used to calculate the total mass of an object.
+-- @field #number elasticity Collision elasticity - used to compute coefficient of restitution represented as a number 0.0 - 1.0. 0.01 is soft, 1.0 is hard.
+-- @field #number friction Physical friction used to slow entities touching the surface represented as a number 0.0 - 1.0. 0.01 is slick, 1.0 is completely rough.
+-- @field #number thickness Material thickness. If this is 0, the material is not volumetrically solid, and thus the object mass will be calculated as "volume * 0.0254^3 * density" where 0.0254 is meters per inch.
+-- If non-zero, the mass will be "surfacearea * thickness * 0.0254^3 * density".
+-- @field #string breakSound Sound to play when a prop or func_breakable is broken.
+-- @field #string bulletImpactSound Bullet impact sound with this surface.
+-- @field #string impactHardSound Physical impact sound when hitting surfaces hard.
+-- @field #string impactSoftSound Physical impact sound when hitting surfaces softly.
+-- @field #string rollingSound Unused sound.
+-- @field #string scrapeRoughSound Friction sound when roughly scraping against an entity.
+-- @field #string scrapeSmoothSound Friction sound when smoothly scraping against an entity.
+-- @field #string stepLeftSound Footstep sound for left foot.
+-- @field #string stepRightSound Footstep sound for right foot.
+-- @field #string strainSound Unused sound.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Information about a SWEP, used by **SANDBOX:PlayerGiveSWEP** and SWEP creation.
+-- While some of the fields may be serverside or clientside only, it is
+-- recommended to provide them on both so addons could use their values. 
+-- @type SWEP
+-- @field #string ClassName Entity class name of the SWEP (file or folder name of your SWEP). This is set automatically.
+-- @field #string Category (Clientside) Category the SWEP is in. _(Default: "Other")_
+-- @field #boolean Spawnable Whether this SWEP should be displayed in the Q menu. _(Default: false)_
+-- @field #boolean AdminOnly Whether or not only admins can spawn the SWEP from their Q menu. _(Default: false)_
+-- @field #string PrintName Nice name of the SWEP. _(Default: "Scripted Weapon")_
+-- @field #string Base The base weapon to derive from. This must be a Lua weapon. _(Default: "weapon\_base")_
+-- @field #number m_WeaponDeploySpeed Multiplier of deploy speed. _(Default: 1)_
+-- @field #Entity Owner The entity that owns/wields this SWEP, if any.
+-- @field #string Author (Clientside) The author of the SWEP to be shown in weapon selection. _(Default: "")_
+-- @field #string Contact (Clientside) The contacts of the SWEP creator to be shown in weapon selection. _(Default: "")_
+-- @field #string Purpose (Clientside) The purpose of the SWEP creator to be shown in weapon selection. _(Default: "")_
+-- @field #string Instructions (Clientside) How to use your weapon, to be shown in weapon selection. _(Default: "")_
+-- @field #string ViewModel Path to the view model for your SWEP. (what the wielder will see) _(Default: "models/weapons/v\_pistol.mdl")_
+-- @field #boolean ViewModelFlip (Clientside) Should we flip the view model? This is needed for some CS:S view models. _(Default: false)_
+-- @field #boolean ViewModelFlip1 (Clientside) Same as ViewModelFlip, but for the second viewmodel. _(Default: false)_
+-- @field #boolean ViewModelFlip2 (Clientside) Same as ViewModelFlip, but for the third viewmodel. _(Default: false)_
+-- @field #number ViewModelFOV (Clientside) An angle of FOV used for the view model. (Half-Life value is 90; Half-Life 2 is 54; Counter-Strike: Source is 74; Day of Defeat: Source is 45) _(Default: 62)_
+-- @field #string WorldModel The world model for your SWEP. (what you will see in other players hands) _(Default: "models/weapons/w\_357.mdl")_
+-- @field #boolean AutoSwitchFrom (Serverside) Whether this weapon can be autoswitched away from when the player runs out of ammo in this weapon or picks up another weapon or ammo. _(Default: true)_
+-- @field #boolean AutoSwitchTo (Serverside) Whether this weapon can be autoswitched to when the player runs out of ammo in their current weapon or they pick this weapon up. _(Default: true)_
+-- @field #number Weight (Serverside) Decides whether we should switch from/to this. _(Default: 5)_
+-- @field #number BobScale (Clientside) The scale of the viewmodel bob. (viewmodel movement from left to right when walking around) _(Default: 1)_
+-- @field #number SwayScale (Clientside) The scale of the viewmodel sway (viewmodel position lerp when looking around). _(Default: 1)_
+-- @field #boolean BounceWeaponIcon (Clientside) Should the weapon icon bounce in weapon selection? _(Default: true)_
+-- @field #boolean DrawWeaponInfoBox (Clientside) Should draw the weapon selection info box, containing SWEP.Instructions, etc. _(Default: true)_
+-- @field #boolean DrawAmmo (Clientside) Should we draw the default HL2 ammo counter? _(Default: true)_
+-- @field #boolean DrawCrosshair (Clientside) Should we draw the default crosshair? _(Default: true)_
+-- @field #number RenderGroup (Clientside) The SWEP render group, see **RENDERGROUP_ Enums**. _(Default: RENDERGROUP\_OPAQUE)_
+-- @field #number Slot Slot in the weapon selection menu, starts with 0. _(Default: 0)_
+-- @field #number SlotPos Position in the slot, should be in the range 0-128. _(Default: 10)_
+-- @field #number SpeechBubbleLid (Clientside) Internal variable for drawing the info box in weapon selection. _(Default: **surface.GetTextureID**("gui/speech_lid"))_
+-- @field #number WepSelectIcon (Clientside) Path to an texture. _(Default: **surface.GetTextureID**("weapons/swep"))_
+-- Override this in your SWEP to set the icon in the weapon selection. This must be the texture ID, see **surface.GetTextureID**.
+-- @field #boolean CSMuzzleFlashes (Clientside) Should we use Counter-Strike muzzle flashes upon firing? _(Default: false)_
+-- This is required for DoD:S or CS:S view models to fix their muzzle flashes.
+-- @field #boolean CSMuzzleX (Clientside) Use the X shape muzzle flash instead of the default Counter-Strike muzzle flash. _(Default: false)_
+-- Requires CSMuzzleFlashes to be set to true.
+-- @field #table Primary Primary attack settings.  
+-- The table contains these fields:
+-- 
+-- * _#string Ammo_ : Ammo type. ("Pistol", "SMG1" etc)
+-- * _#number ClipSize_ : The maximum amount of bullets one clip can hold.
+-- * _#number DefaultClip_ : Default ammo in the clip, making it higher than ClipSize will give player additional ammo on spawn.
+-- * _#boolean Automatic_ : If true makes the weapon shoot automatically as long as the player has primary attack button held down.
+-- @field #table Secondary Secondary attack settings, has same fields as Primary attack settings.
+-- @field #boolean UseHands (Clientside) Makes the player models hands bonemerged onto the view model. _(Default: false)_
+-- 
+-- **Warning**: _The gamemode and view models must support this feature for it to work!_
+-- @field #string Folder The folder from where the weapon was loaded. This should always be "weapons/weapon_myweapon", regardless whether your SWEP is stored as a file, or multiple files in a folder. It is set automatically on load.
+-- @field #boolean AccurateCrosshair (Clientside) Makes the default SWEP crosshair be positioned in 3D space where your aim actually is (like on Jeep), instead of simply sitting in the middle of the screen at all times. _(Default: false)_
+-- @field #boolean DisableDuplicator Disable the ability for players to duplicate this SWEP. _(Default: false)_
+-- @field #string ScriptedEntityType (Clientside) Sets the spawnmenu content icon type for the entity, used by spawnmenu in the Sandbox-derived gamemodes. _(Default: "weapon")_
+-- See **spawnmenu.AddContentType** for more information.
+-- @field #boolean m_bPlayPickupSound If set to false, the weapon will not play the weapon pick up sound when picked up. _(Default: true)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table is one element from **team.GetAllTeams**.
+-- @type TeamData
+-- @field #table Color Color of the team.
+-- @field #boolean Joinable Whether the team is joinable or not.
+-- @field #string Name Name of the team.
+-- @field #number Score Score of the team.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Used for **draw.Text**.
+-- @type TextData
+-- @field #string text Text to be drawn.
+-- @field #string font The font to draw with. _(Default: "DermaDefault")_
+-- @field #table pos This holds the X and Y coordinates. Key value 1 is x, key value 2 is y.
+-- @field #number xalign The alignment of the X position. See **TEXT\_ALIGN\_ Enums**. _(Default: TEXT\_ALIGN\_LEFT)_
+-- @field #number yalign The alignment of the Y position. See **TEXT\_ALIGN\_ Enums**. _(Default: TEXT\_ALIGN\_TOP)_
+-- @field #table color The text color. _(Default: color\_white)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Used for **draw.TexturedQuad**.
+-- @type TextureData
+-- @field #number texture **surface.GetTextureID** number of the texture to be drawn.
+-- @field #number x The x Coordinate.
+-- @field #number y The y Coordinate.
+-- @field #number w The width of the texture.
+-- @field #number h The height of the texture.
+-- @field #number color The texture color. _(Default: color\_white)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table returned by **Vector:ToScreen**.
+-- @type ToScreenData
+-- @field #number x The x coordinate on the players screen.
+-- @field #number y The y coordinate on the players screen.
+-- @field #boolean visible The coordinate is not behind the player. This does not mean the coordinate is on the screen.
+-- When this is false, it means that the coordinate would not be on the screen even if the player had a full 180 degree FOV.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table structure used for **util.TraceLine**.
+-- @type Trace
+-- @field #Vector start The start position of the trace. _(Default: Vector(0, 0, 0))_
+-- @field #Vector endpos The end position of the trace. _(Default: Vector(0, 0, 0))_
+-- @field #Entity filter Things the trace should not hit. _(Default: {})_
+-- Can also be a table of entities or a function with one argument:
+-- 
+-- * _#Entity ent_ : The entity that the trace hit.
+-- Return true in the function to hit the entity, false to skip it.
+-- 
+-- **Warning**: _Using a function here is super slow - try to avoid it._
+-- @field #number mask The trace mask **MASK_ Enums**. _(Default: MASK\_SOLID)_
+-- This determines what the trace should hit and what it shouldn't hit.
+-- A mask is a combination of **CONTENTS_ Enums** - you can use these for more advanced masks.
+-- @field #number collisiongroup The collision group **COLLISION\_GROUP\_ Enums**. _(Default: COLLISION\_GROUP\_NONE)_
+-- This determines what the trace should hit in regards to the entity's collision group.
+-- @field #boolean ignoreworld Should the trace ignore world or not. _(Default: false)_
+-- @field #table output If set, the trace result will be written to the supplied table instead of returning a new table. _(Default: nil)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table structure used as trace result. Default values are when the trace hits nothing.
+-- @type TraceResult
+-- @field #Entity Entity The entity hit by the trace. _(Default: NULL)_
+-- @field #number Fraction This indicates the how much of your trace length was used from 0-1 (resultLength/originalLength). _(Default: 1)_
+-- @field #number FractionLeftSolid Given the trace started in a solid enviroment, this will return at what distance the trace left the solid from 0-1. _(Default: 0)_
+-- Doesn't work if the trace hit a non-worldspawn entity.
+-- @field #boolean Hit Indicates whether the trace hit something. _(Default: false)_
+-- @field #number HitBox The ID of the hitbox hit by the trace. _(Default: 0)_
+-- @field #number HitGroup **HITGROUP_ Enums** describing what hitgroup the trace hit (not the same as HitBox). _(Default: 0)_
+-- @field #boolean HitNoDraw Indicates whenever the trace hit a no-draw brush. _(Default: false)_
+-- @field #boolean HitNonWorld Indicates whenever the trace did not hit the world. _(Default: false)_
+-- @field #Vector HitNormal The direction of the surface that was hit as a normal vector (vector with length of 1). _(Default: Vector(0,0,0))_
+-- @field #Vector HitPos The position the trace stopped. This will be the provided endpos if the trace hit nothing.
+-- @field #boolean HitSky Indicates whenever the trace hit the sky. _(Default: false)_
+-- @field #string HitTexture The surface material (not texture) of whatever the trace hit. _(Default: "\*\*empty\*\*")_
+-- Will be "\*\*displacement\*\*" if the trace hit a displacement, and \*\*studio\*\* if it hit a prop.
+-- @field #boolean HitWorld Indicates whenever the trace hit the world. _(Default: false)_
+-- @field #number MatType **MAT_ Enums** of the material hit by the trace. _(Default: 0)_
+-- @field #Vector Normal The direction of the trace as a normal vector (vector with length of 1).
+-- @field #number PhysicsBone The PhysObj ID that was hit. _(Default: 0)_
+-- Used for **Entity:GetPhysicsObjectNum**.
+-- @field #Vector StartPos The origin of the trace. Will match the provided startpos.
+-- @field #number SurfaceProps ID of hit surface property from scripts/surfaceproperties.txt. _(Default: 0)_
+-- You can get the name using **util.GetSurfacePropName**. Used for **CEffectData:SetSurfaceProp**.
+-- @field #boolean StartSolid Indicates whenever the trace started in a solid enviroment. _(Default: false)_
+-- @field #boolean AllSolid True if the entire trace is inside a solid. _(Default: false)_
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table structure used by **undo.Do_Undo**.
+-- @type Undo
+-- @field #Player Owner The player responsible who owns the undo.
+-- @field #string Name The name of the text to report to the player.
+-- @field #table Entities A table of entities to be removed by the undo.
+-- @field #table Functions A table of {function\_to\_call, func\_arg2, func\_arg3}.
+-- @field #string CustomUndoText A custom undo text to show the client.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- The structure used by **Vehicle:SetVehicleParams** and **Vehicle:GetVehicleParams**.
+-- @type VehicleParams
+-- @field #number wheelsPerAxle Wheels per axle.
+-- @field #number axleCount Number of axles.
+-- @field #table axles A table of **VehicleParamsAxle structure** tables.
+-- @field #table body See **VehicleParamsBody structure**.
+-- @field #table engine See **VehicleParamsEngine structure**.
+-- @field #table steering See **VehicleParamsSteering structure**.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- The structure used by **VehicleParams structure**.
+-- @type VehicleParamsAxle
+-- @field #number brakeFactor
+-- @field #Vector offset
+-- @field #Vector raytraceCenterOffset
+-- @field #Vector raytraceOffset
+-- @field #number suspension_maxBodyForce
+-- @field #number suspension_springConstant
+-- @field #number suspension_springDamping
+-- @field #number suspension_springDampingCompression
+-- @field #number suspension_stabilizerConstant
+-- @field #number torqueFactor
+-- @field #Vector wheelOffset
+-- @field #number wheels_brakeMaterialIndex Material index of braking material of the wheels. Upon braking, the wheels will be set to this material.
+-- @field #number wheels_damping
+-- @field #number wheels_frictionScale
+-- @field #number wheels_inertia
+-- @field #number wheels_mass Mass of each wheel.
+-- @field #number wheels_materialIndex Material index of the wheels by default.
+-- @field #number wheels_radius Radius of the wheels.
+-- @field #number wheels_rotdamping
+-- @field #number wheels_skidMaterialIndex Material index of skid material of the wheels. Upon skidding (pressing Space and sliding the vehicle), the wheels will be set to this material.
+-- @field #number wheels_springAdditionalLength
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- The structure used by **VehicleParams structure**.
+-- @type VehicleParamsBody
+-- @field #number addGravity Additional gravity to be applied to the vehicle.
+-- @field #number counterTorqueFactor
+-- @field #number keepUprightTorque
+-- @field #Vector massCenterOverride Mass center override.
+-- @field #number massOverride Mass override.
+-- @field #number maxAngularVelocity Maximum angular velocity.
+-- @field #number tiltForce
+-- @field #number tiltForceHeight
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- The structure used by **VehicleParams structure**.
+-- @type VehicleParamsEngine
+-- @field #number autobrakeSpeedFactor
+-- @field #number autobrakeSpeedGain
+-- @field #number axleRatio This acts as the final ratio of the gearbox. It's like a master coefficient of the gearbox.
+-- @field #number boostDelay Amount of seconds between being able to use the boost. (by pressing Shift key by default)
+-- @field #number boostDuration Duration of the boost in seconds
+-- @field #number boostForce
+-- @field #number boostMaxSpeed Maximum speed while boosting.
+-- 
+-- **Warning**: _The **Vehicle:SetVehicleParams** function takes this in miles per hour,
+-- **but Vehicle:GetVehicleParams** returns this in hammer units per second!_
+-- _1 MPH is roughly 17.6 HU/s._
+-- @field #number gearCount Amount of gears this vehicle has.
+-- @field #table gearRatio A table of numbers, of gear rations. Table length is equal to "gearCount" member of this table.
+-- @field #number horsepower The HP amount of the vehicle. This value is used to calculate the effectively applied torque, along with ratios and maxRPM.
+-- @field #boolean isAutoTransmission If true, the gearbox shifts gears, if false the gearbox stays stuck to the 1st gear (gear number 0).
+-- @field #number maxRPM Maximum RPM of the vehicle. Despite this being a maximum value, the vehicle can exceed it.
+-- 
+-- **Warning**: _Attempts to exceed the max RPM will force the active gear ratio to be that of the 1st gear, which will provide even more torque.
+-- This is the opposite of a rev limiter. This value is only used for the calculation of the effectively applied torque._
+-- @field #number maxRevSpeed Maximum reverse speed of the vehicle.
+-- 
+-- **Warning**: _The **Vehicle:SetVehicleParams** function takes this in miles per hour, but **Vehicle:GetVehicleParams** returns this in hammer units per second!_
+-- _1 MPH is roughly 17.6 HU/s._
+-- @field #number maxSpeed Maximum forward going speed of the vehicle without boosting.
+-- 
+-- **Warning**: _The **Vehicle:SetVehicleParams** function takes this in miles per hour, but **Vehicle:GetVehicleParams** returns this in hammer units per second!_
+-- _1 MPH is roughly 17.6 HU/s._
+-- @field #number shiftDownRPM Amount of RPM to automatically shift one gear down.
+-- @field #number shiftUpRPM Amount of RPM to automatically shift one gear up.
+-- @field #number throttleTime
+-- @field #boolean torqueBoost
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- The structure used by **VehicleParams structure**.
+-- @type VehicleParamsSteering
+-- @field #number boostSteeringRateFactor
+-- @field #number boostSteeringRestRateFactor
+-- @field #number brakeSteeringRateFactor
+-- @field #number degreesBoost The maximum angle at which the vehicle can turn while boosting.
+-- @field #number degreesFast The maximum angle at which the vehicle can turn while moving at max speed and not boosting.
+-- @field #number degreesSlow The maximum angle at which the vehicle can turn while moving slowest.
+-- @field #boolean dustCloud Disabled in Garry's Mod. In Half-Life 2: Episode 2 this dictates whether the vehicle should leave wheel dust effects when driving around.
+-- @field #boolean isSkidAllowed Whether the vehicle is allowed to skid/drift.
+-- @field #number powerSlideAccel In Hammer Units.
+-- @field #number speedFast
+-- @field #number speedSlow
+-- @field #number steeringExponent
+-- @field #number steeringRateFast
+-- @field #number steeringRateSlow
+-- @field #number steeringRestRateFast
+-- @field #number steeringRestRateSlow
+-- @field #number throttleSteeringRestRateFactor
+-- @field #number turnThrottleReduceFast
+-- @field #number turnThrottleReduceSlow
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table used by **video.Record**.
+-- @type VideoData
+-- @field #string container The video container format. Valid options are: webm, ogg
+-- @field #string video The video codec. Valid options are: vp8, theora
+-- @field #string audio The audio codec. Valid options are: vorbis
+-- @field #number quality The video quality.
+-- @field #number bitrate The record bitrate.
+-- @field #number fps Frames per second.
+-- @field #boolean lockfps Lock the frame count per second.
+-- @field #string name The file name for the video.
+-- @field #number width The videos width.
+-- @field #number height The videos height.
+
+-------------------------------------------------------------------------------
+-- _Client_ | _Server_
+-- 
+-- Table structure used for **render.RenderView**. Unless stated otherwise, the
+-- default values for all these keys would be inherited from the engine's
+-- CViewSetup and do not have static representations. 
+-- @type ViewData
+-- @field #Vector origin The view's original position.
+-- @field #Angle angles The view's angles.
+-- @field #number aspectratio Default width divided by height.
+-- @field #number x The x position of the viewport to render in.
+-- @field #number y The y position of the viewport to render in.
+-- @field #number w The width of the viewport to render in.
+-- @field #number h The height of the viewport to render in.
+-- @field #boolean drawhud Draw the HUD and call the hud painting related hooks. _(Default: false)_
+-- @field #boolean drawmonitors Draw monitors. _(Default: false)_
+-- @field #boolean drawviewmodel The weapon's viewmodel. _(Default: true)_
+-- @field #number viewmodelfov The viewmodel's FOV.
+-- @field #number fov The main view's FOV.
+-- @field #boolean ortho Render the view orthogonal. _(Default: false)_
+-- Can also be a table with these keys: (In which case orthogonal view is automatically set to true)
+-- 
+-- * left
+-- * right
+-- * top
+-- * bottom
+-- @field #number ortholeft Coordinate for the left clipping plane.
+-- @field #number orthoright Coordinate for the right clipping plane.
+-- @field #number orthotop Coordinate for the top clipping plane.
+-- @field #number orthobottom Coordinate for the bottom clipping plane.
+-- @field #number znear The distance of the view's origin to the near clipping plane.
+-- @field #number zfar The distance of the view's origin to the far clipping plane.
+-- @field #number znearviewmodel The distance of the view's origin to the near clipping plane for the viewmodel.
+-- @field #number zfarviewmodel The distance of the view's origin to the far clipping plane for the viewmodel.
+-- @field #boolean dopostprocess Currently works identically to the "bloomtone" option (it also overrides it if you set this to false). _(Default: false)_
+-- @field #boolean bloomtone Disables default engine bloom and pauses the "brightness changes" on HDR maps. _(Default: true)_
+-- @field #table offcenter This allows you to "zoom in" on a part of the screen - for example, the top-left quarter of the screen.
+-- This is similar to how poster splits the screen into separate renders.
+-- It's a table with 4 keys, controlling what portion of the screen to draw:
+-- 
+-- * left - Where the left edge starts. Natural value is 0.
+-- * right - Where the right edge ends. Natural value is equal to w (the width of the viewport).
+-- * top - Where the bottom edge starts. Natural value is 0.
+-- * bottom - Where the top edge ends. Natural value is equal to h (the height of the viewport).
+-- 
+-- Note that top and bottom are reversed.
+-- Values outside the viewport are allowed, but not recommended - instead you should increase the view FOV.
 
 return nil
